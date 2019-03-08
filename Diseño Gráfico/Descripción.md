@@ -1,5 +1,5 @@
-#Diseño Gráfico
-##Descripción
+# Diseño Gráfico
+## Descripción
 
 En esta carpeta se irán guardando los diferentes archivos referentes al departamento de Diseño Gráfico de *Beyond* *Software*:
 - Plantilla diseño de Niveles
