@@ -4,19 +4,19 @@ vale pues aqui lo que quiero es crear un buen parrafo para aprender cono dar fop
 
 ---
 
-be### ahora creare una buena lista
+### ahora creare una buena lista
 
 
 * goodbye
 * hi
-* [prueba link](pruebaparalink.md)
+* [prueba link](Página%20Web/pruebaparalink.md)
 
 
-![imagen de prueba](img/5bf5f7cc08f3d9057a8b4567.jpg)
+![imagen de prueba](Página%20Web/img/5bf5f7cc08f3d9057a8b4567.jpg)
 
 ---
 
-[![claro que si](img/hola.jpg)](https://eloyrj.github.io/webloy/pruebaparalink)
+[![claro que si](Página%20Web/img/hola.jpg)](https://eloyrj.github.io/webloy/pruebaparalink)
 
 
 
