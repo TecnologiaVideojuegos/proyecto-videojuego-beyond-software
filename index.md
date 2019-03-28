@@ -1,10 +1,10 @@
-# hola hola no vengas sola
+# pagina web de la desarroyadora Betond Software
 ## todo lo que quiero es intentar saber como va esto
 vale pues aqui lo que quiero es crear un buen parrafo para aprender cono dar foprmato a esto para ello me dispongo ha crear un texto largo para ver como este se distribulla a lo largo de la mierda esta de pagina.
 
 ---
 
-### ahora creare una buena lista
+be### ahora creare una buena lista
 
 
 * goodbye
