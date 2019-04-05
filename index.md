@@ -1,9 +1,8 @@
-# ***NUESTROS JUEGOS***
+# **NUESTROS JUEGOS**
 
 ---
 
-### Lil'Which
+### _Lil'Which_
 
-* * *
 
 ![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)
