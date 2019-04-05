@@ -7,3 +7,6 @@ Estas mazmorras están divididas en 4 zonas, relacionadas con los
 4 elementos (agua, fuego, tierra y aire), en las que, para pasar de
 una zona a otra, habrá que derrotar a un jefe final.
 La estructura será la siguiente:
+
+---
+[volver](./../lilWhich.html)
