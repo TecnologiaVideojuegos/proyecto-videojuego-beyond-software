@@ -2,4 +2,4 @@
 
 ### Lil'Which
 
-![lil'which](/Página Web/img/Logo (PROVISIONAL).png)
+![lil'which](Página Web/img/Logo (PROVISIONAL).png)
