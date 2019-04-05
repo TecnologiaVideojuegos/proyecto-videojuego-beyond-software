@@ -2,7 +2,7 @@
 
 ---
 
-### [ _Lil'Which_](https://tecnologiavideojuegos.github.io/proyecto-videojuego-beyond-software/P%C3%A1gina%20Web/)
+### [ _Lil'Which_](lilWhich.md)
 
 
-[![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)](https://tecnologiavideojuegos.github.io/proyecto-videojuego-beyond-software/P%C3%A1gina%20Web/)
+[![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)](lilWhich.md)
