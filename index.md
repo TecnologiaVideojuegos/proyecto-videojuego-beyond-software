@@ -2,7 +2,7 @@
 
 ---
 
-### [ _Lil'Which_](lilWhich.md)
+### [ _Lil'Which_](./lilWhich.html)
 
 
-[![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)](lilWhich.md)
+[![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)](./lilWhich.html)
