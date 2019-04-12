@@ -1,1 +1,4 @@
-hello world
+nombre 
+dia 
+fecha 
+hola 
