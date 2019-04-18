@@ -35,7 +35,7 @@ public class GestorColision {
     }
     
     private void buscarColision(int i, int j) {
-        if(lista.get(i).getAreaColision().intersects(lista.get(j).getAreaColision())) {
+        if(lista.get(i).getHitbox().intersects(lista.get(j).getHitbox())) {
             lista.get(i).alColisionar(lista.get(j));
             lista.get(j).alColisionar(lista.get(i));      
         }

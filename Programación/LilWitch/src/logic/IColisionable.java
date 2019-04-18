@@ -12,6 +12,7 @@ import org.newdawn.slick.geom.Shape;
  * @author alvar
  */
 public interface IColisionable {
-    public Shape getAreaColision();
+    public Shape getHitbox();
     public void alColisionar(IColisionable colision);
+    public void sincronizarArea();
 }

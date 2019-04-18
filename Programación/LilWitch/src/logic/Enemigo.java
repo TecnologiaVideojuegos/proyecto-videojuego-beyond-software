@@ -5,10 +5,27 @@
  */
 package logic;
 
+import org.newdawn.slick.geom.Shape;
+
 /**
  *
  * @author alvar
  */
-public class Enemigo {
+public class Enemigo implements IColisionable {
+
+    @Override
+    public Shape getHitbox() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void alColisionar(IColisionable colision) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void sincronizarArea() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -119,5 +119,13 @@ public class SpriteAnimado {
     public void stopR() {
         this.animaciones.stopR();
     }
+
+    public Image getQuieto() {
+        return quieto;
+    }
+
+    public void setQuieto(Image quieto) {
+        this.quieto = quieto;
+    }
     
 }
