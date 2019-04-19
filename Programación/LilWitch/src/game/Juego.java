@@ -20,6 +20,8 @@ public class Juego extends BasicGameState{
     private Input entrada;
     private Jugador player;
     private GestorColision gestor;
+    private SpriteSheet mapa;
+    private Polygon limites, abismo1, abismo2;
     
     @Override
     public int getID() {
@@ -32,11 +34,19 @@ public class Juego extends BasicGameState{
         player = new Jugador();
         gestor = new GestorColision();
         gestor.registrarCuerpo(player);
+        mapa = new SpriteSheet("resources/Mapa Completo.png", 1920, 1080);
+        limites = new Polygon(new float[]{480,0, 480,120, 600,120, 600,240, 480,240, 480,360, 360,360, 360,480, 240,480, 240,600, 0,600, 0,1080, 1920,1080, 1920,0});
+        abismo1 = new Polygon(new float[]{1320,360, 1320,480, 1200,480, 1200,600, 1080,600, 1080,720, 1320,720, 1320,600, 1440,600, 1440,480, 1800,480, 1800,360});
+        abismo2 = new Polygon(new float[]{1680,720, 1680,840, 1560,840, 1560,960, 1800,960, 1800,720});
     }
 
     @Override
-    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
+        mapa.getSubImage(0, 10).draw(0, 0);
         player.draw(entrada);
+        g.draw(limites);
+        g.draw(abismo1);
+        g.draw(abismo2);
     }
 
     @Override

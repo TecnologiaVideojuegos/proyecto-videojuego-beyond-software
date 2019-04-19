@@ -14,17 +14,20 @@ import org.newdawn.slick.*;
  */
 public class SpriteAnimado {
     private ControladorAnimacion animaciones;
-    private Image quieto;
+    private Image staticDown, staticUp, staticR, staticL;
     protected Punto posicion;
 
-    public SpriteAnimado(ControladorAnimacion animaciones, Image imagen, Punto posicion) {
+    public SpriteAnimado(ControladorAnimacion animaciones, Image imagenDown, Image imagenUp, Image imagenR, Image imagenL, Punto posicion) {
         this.animaciones = animaciones;
-        this.quieto = imagen;
+        this.staticDown = imagenDown;
+        this.staticUp = imagenUp;
+        this.staticR = imagenR;
+        this.staticL = imagenL;
         this.posicion = posicion;
     }
 
-    public SpriteAnimado(ControladorAnimacion animaciones, Image imagen, float x, float y) throws SlickException {
-        this(animaciones, imagen, new Punto(x, y));
+    public SpriteAnimado(ControladorAnimacion animaciones, Image imagenDown, Image imagenUp, Image imagenR, Image imagenL, float x, float y) throws SlickException {
+        this(animaciones, imagenDown, imagenUp, imagenR, imagenL, new Punto(x, y));
     }
 
     public ControladorAnimacion getAnimaciones() {
@@ -69,7 +72,19 @@ public class SpriteAnimado {
     }
     
     public void draw() {
-        this.quieto.draw(posicion.getX(), posicion.getY());
+        this.staticDown.draw(posicion.getX(), posicion.getY());
+    }
+    
+    public void drawStaticUp() {
+        this.staticUp.draw(posicion.getX(), posicion.getY());
+    }
+    
+    public void drawStaticR() {
+        this.staticR.draw(posicion.getX(), posicion.getY());
+    }
+    
+    public void drawStaticL() {
+        this.staticL.draw(posicion.getX(), posicion.getY());
     }
     
     public void drawUp() {
@@ -120,12 +135,12 @@ public class SpriteAnimado {
         this.animaciones.stopR();
     }
 
-    public Image getQuieto() {
-        return quieto;
+    public Image getStaticDown() {
+        return staticDown;
     }
 
-    public void setQuieto(Image quieto) {
-        this.quieto = quieto;
+    public void setStaticDown(Image staticDown) {
+        this.staticDown = staticDown;
     }
     
 }
