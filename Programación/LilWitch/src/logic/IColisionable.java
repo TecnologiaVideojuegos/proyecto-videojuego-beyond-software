@@ -15,4 +15,5 @@ public interface IColisionable {
     public Shape getHitbox();
     public void alColisionar(IColisionable colision);
     public void sincronizarArea();
+    public boolean isHostile();
 }

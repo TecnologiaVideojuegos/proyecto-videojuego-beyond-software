@@ -27,5 +27,9 @@ public class Enemigo implements IColisionable {
     public void sincronizarArea() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public boolean isHostile() {
+        return true;
+    }
 }
