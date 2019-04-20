@@ -37,7 +37,7 @@ public class Jugador implements IColisionable {
         r = new Animation(i4, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 500);
+        personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 400);
         hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth(), personaje.getStaticDown().getHeight());
         this.up = false;
         this.down = false;
@@ -58,14 +58,14 @@ public class Jugador implements IColisionable {
         else if(entrada.isKeyDown(Input.KEY_DOWN)) {
            personaje.drawDown();
         }
-        else if(up) {
-            personaje.drawStaticUp();
-        }
         else if(r) {
             personaje.drawStaticR();
         }
         else if(l) {
             personaje.drawStaticL();
+        }
+        else if(up) {
+            personaje.drawStaticUp();
         }
         else {
             personaje.draw();
@@ -129,7 +129,7 @@ public class Jugador implements IColisionable {
             personaje.stopR();
             personaje.stopUp();
             personaje.stopDown();
-            this.up = false;
+            this.up = true;
             this.down = false;
             this.r = false;
             this.l = true;
@@ -143,7 +143,7 @@ public class Jugador implements IColisionable {
             personaje.stopUp();
             personaje.stopDown();
             this.up = false;
-            this.down = false;
+            this.down = true;
             this.r = false;
             this.l = true;
             
@@ -155,7 +155,7 @@ public class Jugador implements IColisionable {
             personaje.startR();
             personaje.stopUp();
             personaje.stopDown();
-            this.up = false;
+            this.up = true;
             this.down = false;
             this.r = true;
             this.l = false;
@@ -168,7 +168,7 @@ public class Jugador implements IColisionable {
             personaje.stopUp();
             personaje.stopDown();
             this.up = false;
-            this.down = false;
+            this.down = true;
             this.r = true;
             this.l = false;
         }
@@ -188,12 +188,28 @@ public class Jugador implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(up) {
+            personaje.moverY(1f);
+        }
+        if(down) {
+            personaje.moverY(-1f);
+        }
+        if(r) {
+            personaje.moverX(-1f);
+        }
+        if(l) {
+            personaje.moverX(1f);
+        }
     }
 
     @Override
     public void sincronizarArea() {
         hitbox.setX(personaje.getPosicion().getX());
         hitbox.setY(personaje.getPosicion().getY());
+    }
+
+    @Override
+    public boolean isHostile() {
+        return false;
     }
 }

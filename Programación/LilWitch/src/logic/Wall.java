@@ -5,26 +5,28 @@
  */
 package logic;
 
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Shape;
+
 /**
  *
  * @author alvar
  */
-public class Enemigo implements IColisionable {
-    Rectangle hitbox;
+public class Wall implements IColisionable {
+    Polygon hitbox;
 
-    public Enemigo(Rectangle hitbox) {
-        this.hitbox = hitbox;
+    public Wall(float[] puntos) {
+        hitbox = new Polygon(puntos);
     }
 
     @Override
-    public Rectangle getHitbox() {
+    public Shape getHitbox() {
         return hitbox;
     }
 
     @Override
     public void alColisionar(IColisionable colision) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Colision");
     }
 
     @Override
@@ -34,6 +36,6 @@ public class Enemigo implements IColisionable {
 
     @Override
     public boolean isHostile() {
-        return true;
+        return false;
     }
 }
