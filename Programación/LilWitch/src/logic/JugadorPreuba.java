@@ -12,12 +12,12 @@ import org.newdawn.slick.geom.Shape;
  *
  * @author alvar
  */
-public class Jugador implements IColisionable {
+public class JugadorPreuba implements IColisionable {
     private SpriteAnimado personaje;
     private Rectangle hitbox;
-    private boolean up, down, r, l;
+    private boolean up, down, r, l, colisionUp, colisionDown, colisionR, colisionL;
 
-    public Jugador() throws SlickException {
+    public JugadorPreuba() throws SlickException {
         SpriteSheet tileSet;
         Image[] i1 = new Image[10];
         Image[] i2 = new Image[10];
@@ -37,12 +37,16 @@ public class Jugador implements IColisionable {
         r = new Animation(i4, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 500);
-        hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth(), personaje.getStaticDown().getHeight());
+        this.personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 400);
+        this.hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth(), personaje.getStaticDown().getHeight());
         this.up = false;
         this.down = false;
         this.r = false;
         this.l = false;
+        this.colisionUp = false;
+        this.colisionDown = false;
+        this.colisionR = false;
+        this.colisionL = false;
     }
     
     public void draw(Input entrada) {
@@ -58,14 +62,14 @@ public class Jugador implements IColisionable {
         else if(entrada.isKeyDown(Input.KEY_DOWN)) {
            personaje.drawDown();
         }
-        else if(up) {
-            personaje.drawStaticUp();
-        }
         else if(r) {
             personaje.drawStaticR();
         }
         else if(l) {
             personaje.drawStaticL();
+        }
+        else if(up) {
+            personaje.drawStaticUp();
         }
         else {
             personaje.draw();
@@ -79,98 +83,202 @@ public class Jugador implements IColisionable {
     
     private void updateTeclado(Input entrada) {
         if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
-            personaje.moverX(-0.25f);
-            personaje.startL();
-            personaje.stopR();
-            personaje.stopUp();
-            personaje.stopDown();
-            this.up = false;
-            this.down = false;
-            this.r = false;
-            this.l = true;
+            if(!colisionL) {
+                personaje.moverX(-0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = false;
+                this.r = false;
+                this.l = true;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Derecha
-            personaje.moverX(0.25f);
-            personaje.stopL();
-            personaje.startR();
-            personaje.stopUp();
-            personaje.stopDown();
-            this.up = false;
-            this.down = false;
-            this.r = true;
-            this.l = false;
+            if(!colisionR) {
+                personaje.moverX(0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = false;
+                this.r = true;
+                this.l = false;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba
-            personaje.moverY(-0.25f);
-            personaje.stopL();
-            personaje.stopR();
-            personaje.startUp();
-            personaje.stopDown();
-            this.up = true;
-            this.down = false;
-            this.r = false;
-            this.l = false;
+            if(!colisionUp) {
+                personaje.moverY(-0.25f);
+                personaje.stopL();
+                personaje.stopR();
+                personaje.startUp();
+                personaje.stopDown();
+                this.up = true;
+                this.down = false;
+                this.r = false;
+                this.l = false;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo
-            personaje.moverY(0.25f);
-            personaje.stopL();
-            personaje.stopR();
-            personaje.stopUp();
-            personaje.startDown();
-            this.up = false;
-            this.down = true;
-            this.r = false;
-            this.l = false;
+            if(!colisionDown) {
+                personaje.moverY(0.25f);
+                personaje.stopL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.startDown();
+                this.up = false;
+                this.down = true;
+                this.r = false;
+                this.l = false;
+            }
         }
         else if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba-Izquierda
-            personaje.moverX(-0.25f);
-            personaje.moverY(-0.25f);
-            personaje.startL();
-            personaje.stopR();
-            personaje.stopUp();
-            personaje.stopDown();
-            this.up = false;
-            this.down = false;
-            this.r = false;
-            this.l = true;
+            if(!colisionUp && !colisionL) {
+                personaje.moverX(-0.25f);
+                personaje.moverY(-0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = true;
+                this.down = false;
+                this.r = false;
+                this.l = true;
+            }
+            else if(colisionUp) {
+                personaje.moverX(-0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = false;
+                this.r = false;
+                this.l = true;
+            }
+            else if(colisionL) {
+                personaje.moverY(-0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = true;
+                this.down = false;
+                this.r = false;
+                this.l = false;
+            }
             
         }
         else if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo-Izquierda
-            personaje.moverX(-0.25f);
-            personaje.moverY(0.25f);
-            personaje.startL();
-            personaje.stopR();
-            personaje.stopUp();
-            personaje.stopDown();
-            this.up = false;
-            this.down = false;
-            this.r = false;
-            this.l = true;
+            if(!colisionDown && !colisionL) {
+                personaje.moverX(-0.25f);
+                personaje.moverY(0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = true;
+                this.r = false;
+                this.l = true;
+            }
+            else if(colisionDown) {
+                personaje.moverX(0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = false;
+                this.r = false;
+                this.l = true;
+            }
+            else if(colisionL) {
+                personaje.moverY(-0.25f);
+                personaje.startL();
+                personaje.stopR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = true;
+                this.r = false;
+                this.l = false;
+            }
             
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba-Derecha
-            personaje.moverX(0.25f);
-            personaje.moverY(-0.25f);
-            personaje.stopL();
-            personaje.startR();
-            personaje.stopUp();
-            personaje.stopDown();
-            this.up = false;
-            this.down = false;
-            this.r = true;
-            this.l = false;
+            if(!colisionUp && !colisionL) {
+                personaje.moverX(0.25f);
+                personaje.moverY(-0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = true;
+                this.down = false;
+                this.r = true;
+                this.l = false;
+            }
+            else if(colisionUp) {
+                personaje.moverX(0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = false;
+                this.r = true;
+                this.l = false;
+            }
+            else if(colisionR) {
+                personaje.moverY(-0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = true;
+                this.down = false;
+                this.r = false;
+                this.l = false;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo-Derecha
-            personaje.moverX(0.25f);
-            personaje.moverY(0.25f);
-            personaje.stopL();
-            personaje.startR();
-            personaje.stopUp();
-            personaje.stopDown();
-            this.up = false;
-            this.down = false;
-            this.r = true;
-            this.l = false;
+            if(!colisionDown && !colisionL) {
+                personaje.moverX(0.25f);
+                personaje.moverY(0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = true;
+                this.r = true;
+                this.l = false;
+            }
+            else if(colisionDown) {
+                personaje.moverX(0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = false;
+                this.r = true;
+                this.l = false;
+            }
+            else if(colisionL) {
+                personaje.moverY(0.25f);
+                personaje.stopL();
+                personaje.startR();
+                personaje.stopUp();
+                personaje.stopDown();
+                this.up = false;
+                this.down = true;
+                this.r = false;
+                this.l = false;
+            }
         }
     }
     
@@ -180,6 +288,13 @@ public class Jugador implements IColisionable {
         this.r = false;
         this.l = false;
     }
+    
+    public void resetColisiones() {
+        this.colisionUp = false;
+        this.colisionDown = false;
+        this.colisionR = false;
+        this.colisionL = false;
+    }
 
     @Override
     public Shape getHitbox() {
@@ -188,7 +303,18 @@ public class Jugador implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(up) {
+            this.colisionUp = true;
+        }
+        else if(down) {
+            this.colisionDown = true;
+        }
+        else if(r) {
+            this.colisionR = true;
+        }
+        else if(l) {
+            this.colisionL = true;
+        }
     }
 
     @Override
@@ -201,4 +327,13 @@ public class Jugador implements IColisionable {
     public boolean isHostile() {
         return false;
     }
+
+    public SpriteAnimado getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(SpriteAnimado personaje) {
+        this.personaje = personaje;
+    }
+    
 }
