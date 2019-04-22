@@ -6,6 +6,7 @@
 package logic;
 
 import java.util.ArrayList;
+import org.newdawn.slick.Graphics;
 
 /**
  *
@@ -26,18 +27,47 @@ public class GestorColision {
         if(lista.contains(cuerpo)) lista.remove(cuerpo);
     }
     
-    public void comprobarColisiones() {
+    public int comprobarColisiones() {
+        int n = 0;
         for (int i = 0; i < lista.size(); i++) {
             for (int j = 0; j < lista.size(); j++) {
-                if(i != j) buscarColision(i, j);  
+                if(i != j) {
+                    if(n == 0) {
+                        n = buscarColision(i, j);
+                    }
+                    else {
+                        buscarColision(i, j);
+                    }
+                    
+                }  
             }  
+        }
+        return n;
+    }
+    
+    private int buscarColision(int i, int j) {
+        if(lista.get(i).getHitbox().intersects(lista.get(j).getHitbox())) {
+            lista.get(i).alColisionar(lista.get(j));
+            lista.get(j).alColisionar(lista.get(i));
+            if(lista.get(i) instanceof Puerta && lista.get(j) instanceof Jugador) {
+                return lista.get(i).getSalaDestino();
+            }
+            else if(lista.get(j) instanceof Puerta && lista.get(i) instanceof Jugador) {
+                return lista.get(j).getSalaDestino();
+            }
+            else {
+                return 0;
+            }
+        }
+        else {
+            return 0;
         }
     }
     
-    private void buscarColision(int i, int j) {
-        if(lista.get(i).getHitbox().intersects(lista.get(j).getHitbox())) {
-            lista.get(i).alColisionar(lista.get(j));
-            lista.get(j).alColisionar(lista.get(i));      
+    public void drawHitboxes(Graphics g) {
+        for (int i = 0; i < lista.size(); i++) {
+            g.draw(lista.get(i).getHitbox());
+            
         }
     }
 }

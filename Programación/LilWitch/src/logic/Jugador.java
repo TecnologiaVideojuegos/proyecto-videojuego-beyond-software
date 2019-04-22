@@ -15,7 +15,7 @@ import org.newdawn.slick.geom.Shape;
 public class Jugador implements IColisionable {
     private SpriteAnimado personaje;
     private Rectangle hitbox;
-    private boolean up, down, r, l;
+    private boolean up, down, r, l, stop;
 
     public Jugador() throws SlickException {
         SpriteSheet tileSet;
@@ -43,6 +43,7 @@ public class Jugador implements IColisionable {
         this.down = false;
         this.r = false;
         this.l = false;
+        this.stop = false;
     }
     
     public void draw(Input entrada) {
@@ -78,6 +79,7 @@ public class Jugador implements IColisionable {
     }
     
     private void updateTeclado(Input entrada) {
+        if(!stop){
         if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
             personaje.moverX(-0.25f);
             personaje.startL();
@@ -172,6 +174,7 @@ public class Jugador implements IColisionable {
             this.r = true;
             this.l = false;
         }
+        }
     }
     
     public void resetDirecciones() {
@@ -188,17 +191,57 @@ public class Jugador implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        if(up) {
-            personaje.moverY(1f);
+        if(!colision.isGate()) {
+            if(up) {
+                personaje.moverY(1f);
+            }
+            if(down) {
+                personaje.moverY(-1f);
+            }
+            if(r) {
+                personaje.moverX(-1f);
+            }
+            if(l) {
+                personaje.moverX(1f);
+            }
         }
-        if(down) {
-            personaje.moverY(-1f);
-        }
-        if(r) {
-            personaje.moverX(-1f);
-        }
-        if(l) {
-            personaje.moverX(1f);
+        else {
+            this.stop = true;
+            switch(colision.getDir()) {
+                case 0:
+                    personaje.setPosicion(2000, 2000);
+                    personaje.setPosicion(960, 960);
+                    this.up = true;
+                    this.down = false;
+                    this.r = false;
+                    this.l = false;
+                    break;
+                case 1:
+                    personaje.setPosicion(2000, 2000);
+                    personaje.setPosicion(10, 540);
+                    this.up = false;
+                    this.down = false;
+                    this.r = true;
+                    this.l = false;
+                    break;
+                case 2:
+                    personaje.setPosicion(2000, 2000);
+                    personaje.setPosicion(960, 10);
+                    this.up = false;
+                    this.down = true;
+                    this.r = false;
+                    this.l = false;
+                    break;
+                case 3:
+                    personaje.setPosicion(2000, 2000);
+                    personaje.setPosicion(1800, 540);
+                    this.up = false;
+                    this.down = false;
+                    this.r = false;
+                    this.l = true;
+                    break;
+            }
+            this.stop = false;
         }
     }
 
@@ -211,5 +254,25 @@ public class Jugador implements IColisionable {
     @Override
     public boolean isHostile() {
         return false;
+    }
+
+    @Override
+    public boolean isGate() {
+        return false;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return true;
+    }
+    
+    @Override
+    public int getDir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getSalaDestino() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

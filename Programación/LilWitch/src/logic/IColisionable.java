@@ -16,4 +16,8 @@ public interface IColisionable {
     public void alColisionar(IColisionable colision);
     public void sincronizarArea();
     public boolean isHostile();
+    public boolean isGate();
+    public boolean isPlayer();
+    public int getDir();
+    public int getSalaDestino();
 }

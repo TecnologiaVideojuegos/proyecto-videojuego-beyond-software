@@ -336,4 +336,23 @@ public class JugadorPreuba implements IColisionable {
         this.personaje = personaje;
     }
     
+    @Override
+    public boolean isGate() {
+        return false;
+    }
+    
+    @Override
+    public boolean isPlayer() {
+        return false;
+    }
+    
+    @Override
+    public int getDir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public int getSalaDestino() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

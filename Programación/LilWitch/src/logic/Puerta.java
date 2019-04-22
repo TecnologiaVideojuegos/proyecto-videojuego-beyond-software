@@ -5,18 +5,27 @@
  */
 package logic;
 
-import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 /**
  *
  * @author alvar
  */
-public class Wall implements IColisionable {
-    Polygon hitbox;
+public class Puerta implements IColisionable {
+    Rectangle hitbox;
+    int destino, direccion;
+    /*  Direccion hace referencia a la posicion de la puerta y destino apunta a la siguiente sala:
+        Direccion  Significado
+        0          Norte
+        1          Este
+        2          Sur
+        3          Oeste*/
 
-    public Wall(float[] puntos) {
-        hitbox = new Polygon(puntos);
+    public Puerta(float x, float y, float width, float height, int direccion, int destino) { 
+        hitbox = new Rectangle(x, y, width, height);
+        this.direccion = direccion;
+        this.destino = destino;
     }
 
     @Override
@@ -26,7 +35,9 @@ public class Wall implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        //System.out.println("Colision");
+        if(colision.isPlayer()) {
+            System.out.println("Teleport");
+        }
     }
 
     @Override
@@ -41,7 +52,7 @@ public class Wall implements IColisionable {
     
     @Override
     public boolean isGate() {
-        return false;
+        return true;
     }
     
     @Override
@@ -51,11 +62,11 @@ public class Wall implements IColisionable {
     
     @Override
     public int getDir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return direccion;
     }
     
     @Override
     public int getSalaDestino() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return destino;
     }
 }

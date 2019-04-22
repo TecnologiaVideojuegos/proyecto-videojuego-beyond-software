@@ -36,4 +36,24 @@ public class Enemigo implements IColisionable {
     public boolean isHostile() {
         return true;
     }
+
+    @Override
+    public boolean isGate() {
+        return false;
+    }
+    
+    @Override
+    public boolean isPlayer() {
+        return false;
+    }
+    
+    @Override
+    public int getDir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public int getSalaDestino() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
