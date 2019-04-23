@@ -11,15 +11,34 @@ import org.newdawn.slick.geom.Rectangle;
  * @author alvar
  */
 public class Enemigo implements IColisionable {
-    Rectangle hitbox;
+    private SpriteAnimado sprite;
+    private Rectangle hitbox;
+    private boolean up, down, r, l, stop;
+    private int vida, ataque;
 
-    public Enemigo(Rectangle hitbox) {
+    public Enemigo(SpriteAnimado personaje, Rectangle hitbox, int vida, int ataque) {
+        this.sprite = personaje;
         this.hitbox = hitbox;
+        this.up = false;
+        this.down = false;
+        this.r = false;
+        this.l = false;
+        this.stop = false;
+        this.vida = vida;
+        this.ataque = ataque;
     }
 
     @Override
     public Rectangle getHitbox() {
         return hitbox;
+    }
+    
+    public void update() {
+        sincronizarArea();
+    }
+    
+    public void mover(int x, int y) {
+        
     }
 
     @Override
@@ -29,7 +48,8 @@ public class Enemigo implements IColisionable {
 
     @Override
     public void sincronizarArea() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        hitbox.setX(sprite.getPosicion().getX());
+        hitbox.setY(sprite.getPosicion().getY());
     }
 
     @Override
