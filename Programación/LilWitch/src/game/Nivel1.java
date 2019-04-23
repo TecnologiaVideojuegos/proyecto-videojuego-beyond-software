@@ -34,7 +34,7 @@ public class Nivel1 extends BasicGameState{
         salas = new ArrayList<>();
         entrada = container.getInput();
         player = new Jugador();
-        mapa = new SpriteSheet("resources/Mapa Completo.png", 1920, 1080);
+        mapa = new SpriteSheet("resources/Mapa Completo_v1.png", 1920, 1080);
         Wall limites1 = new Wall(new float[]{480,0, 480,120, 600,120, 600,240, 480,240, 480,360, 360,360, 360,480, 240,480, 240,600, 0,600, 0,1080, 1920,1080, 1920,0});
         Wall abismo11 = new Wall(new float[]{1320,360, 1320,480, 1200,480, 1200,600, 1080,600, 1080,720, 1320,720, 1320,600, 1440,600, 1440,480, 1800,480, 1800,360});
         Wall abismo12 = new Wall(new float[]{1680,720, 1680,840, 1560,840, 1560,960, 1800,960, 1800,720});
