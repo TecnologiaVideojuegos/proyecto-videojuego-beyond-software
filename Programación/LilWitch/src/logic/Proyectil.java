@@ -5,6 +5,7 @@
  */
 package logic;
 
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 /**
@@ -12,6 +13,13 @@ import org.newdawn.slick.geom.Shape;
  * @author alvar
  */
 public class Proyectil implements IColisionable {
+    private SpriteMovil sprite;
+    private Rectangle hitbox;
+
+    public Proyectil(SpriteMovil sprite) {
+        this.sprite = sprite;
+        hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getImagen().getWidth(), sprite.getImagen().getHeight());
+    }
 
     @Override
     public Shape getHitbox() {
