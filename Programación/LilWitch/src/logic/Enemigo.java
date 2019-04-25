@@ -10,7 +10,7 @@ import org.newdawn.slick.geom.Rectangle;
  *
  * @author alvar
  */
-public class Enemigo implements IColisionable {
+abstract class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
@@ -34,12 +34,10 @@ public class Enemigo implements IColisionable {
     }
     
     public void update() {
+        atacar();
         sincronizarArea();
     }
-    
-    public void mover(int x, int y) {
-        
-    }
+    abstract void atacar();
 
     @Override
     public void alColisionar(IColisionable colision) {
