@@ -16,8 +16,8 @@ abstract class Enemigo implements IColisionable {
     private boolean up, down, r, l, stop;
     private int vida, ataque;
 
-    public Enemigo(SpriteAnimado personaje, Rectangle hitbox, int vida, int ataque) {
-        this.sprite = personaje;
+    public Enemigo(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
+        this.sprite = sprite;
         this.hitbox = hitbox;
         this.up = false;
         this.down = false;
@@ -41,7 +41,20 @@ abstract class Enemigo implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!colision.isGate()) {
+            if(up) {
+                sprite.moverY(1f);
+            }
+            if(down) {
+                sprite.moverY(-1f);
+            }
+            if(r) {
+                sprite.moverX(-1f);
+            }
+            if(l) {
+                sprite.moverX(1f);
+            }
+        }
     }
 
     @Override
