@@ -38,7 +38,7 @@ public class Jugador implements IColisionable {
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
         personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 400);
-        hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth(), personaje.getStaticDown().getHeight());
+        hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth()-40, personaje.getStaticDown().getHeight()-40);
         this.up = false;
         this.down = false;
         this.r = false;
@@ -81,6 +81,17 @@ public class Jugador implements IColisionable {
     private void updateTeclado(Input entrada) {
         if(!stop){
         if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverX(-0.25f*3);
+            personaje.startL();
+            personaje.stopR();
+            personaje.stopUp();
+            personaje.stopDown();
+            this.up = false;
+            this.down = false;
+            this.r = false;
+            this.l = true;
+            }else{
             personaje.moverX(-0.25f);
             personaje.startL();
             personaje.stopR();
@@ -90,8 +101,20 @@ public class Jugador implements IColisionable {
             this.down = false;
             this.r = false;
             this.l = true;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Derecha
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverX(0.25f*3);
+            personaje.stopL();
+            personaje.startR();
+            personaje.stopUp();
+            personaje.stopDown();
+            this.up = false;
+            this.down = false;
+            this.r = true;
+            this.l = false;
+            }else{
             personaje.moverX(0.25f);
             personaje.stopL();
             personaje.startR();
@@ -101,8 +124,20 @@ public class Jugador implements IColisionable {
             this.down = false;
             this.r = true;
             this.l = false;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverY(-0.25f*3);
+            personaje.stopL();
+            personaje.stopR();
+            personaje.startUp();
+            personaje.stopDown();
+            this.up = true;
+            this.down = false;
+            this.r = false;
+            this.l = false;
+            }else{
             personaje.moverY(-0.25f);
             personaje.stopL();
             personaje.stopR();
@@ -112,8 +147,20 @@ public class Jugador implements IColisionable {
             this.down = false;
             this.r = false;
             this.l = false;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverY(0.25f*3);
+            personaje.stopL();
+            personaje.stopR();
+            personaje.stopUp();
+            personaje.startDown();
+            this.up = false;
+            this.down = true;
+            this.r = false;
+            this.l = false;
+            }else{
             personaje.moverY(0.25f);
             personaje.stopL();
             personaje.stopR();
@@ -123,8 +170,21 @@ public class Jugador implements IColisionable {
             this.down = true;
             this.r = false;
             this.l = false;
+            }
         }
         else if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba-Izquierda
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverX(-0.25f*3);
+            personaje.moverY(-0.25f*3);
+            personaje.startL();
+            personaje.stopR();
+            personaje.stopUp();
+            personaje.stopDown();
+            this.up = true;
+            this.down = false;
+            this.r = false;
+            this.l = true;
+            }else{
             personaje.moverX(-0.25f);
             personaje.moverY(-0.25f);
             personaje.startL();
@@ -135,9 +195,22 @@ public class Jugador implements IColisionable {
             this.down = false;
             this.r = false;
             this.l = true;
+            }
             
         }
         else if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo-Izquierda
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverX(-0.25f*3);
+            personaje.moverY(0.25f*3);
+            personaje.startL();
+            personaje.stopR();
+            personaje.stopUp();
+            personaje.stopDown();
+            this.up = false;
+            this.down = true;
+            this.r = false;
+            this.l = true;
+            }else{
             personaje.moverX(-0.25f);
             personaje.moverY(0.25f);
             personaje.startL();
@@ -148,9 +221,22 @@ public class Jugador implements IColisionable {
             this.down = true;
             this.r = false;
             this.l = true;
+            }
             
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba-Derecha
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverX(0.25f*3);
+            personaje.moverY(-0.25f*3);
+            personaje.stopL();
+            personaje.startR();
+            personaje.stopUp();
+            personaje.stopDown();
+            this.up = true;
+            this.down = false;
+            this.r = true;
+            this.l = false;
+            }else{
             personaje.moverX(0.25f);
             personaje.moverY(-0.25f);
             personaje.stopL();
@@ -161,8 +247,21 @@ public class Jugador implements IColisionable {
             this.down = false;
             this.r = true;
             this.l = false;
+            }
         }
         else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo-Derecha
+            if(entrada.isKeyDown(Input.KEY_LSHIFT)){
+            personaje.moverX(0.25f*3);
+            personaje.moverY(0.25f*3);
+            personaje.stopL();
+            personaje.startR();
+            personaje.stopUp();
+            personaje.stopDown();
+            this.up = false;
+            this.down = true;
+            this.r = true;
+            this.l = false;
+            }else{
             personaje.moverX(0.25f);
             personaje.moverY(0.25f);
             personaje.stopL();
@@ -173,6 +272,7 @@ public class Jugador implements IColisionable {
             this.down = true;
             this.r = true;
             this.l = false;
+            }
         }
         }
     }
@@ -210,7 +310,7 @@ public class Jugador implements IColisionable {
             switch(colision.getDir()) {
                 case 0:
                     personaje.setPosicion(2000, 2000);
-                    personaje.setPosicion(960, 960);
+                    personaje.setPosicion(900, 840);
                     this.up = true;
                     this.down = false;
                     this.r = false;
@@ -218,7 +318,7 @@ public class Jugador implements IColisionable {
                     break;
                 case 1:
                     personaje.setPosicion(2000, 2000);
-                    personaje.setPosicion(10, 540);
+                    personaje.setPosicion(10, 420);
                     this.up = false;
                     this.down = false;
                     this.r = true;
@@ -226,7 +326,7 @@ public class Jugador implements IColisionable {
                     break;
                 case 2:
                     personaje.setPosicion(2000, 2000);
-                    personaje.setPosicion(960, 10);
+                    personaje.setPosicion(900, 10);
                     this.up = false;
                     this.down = true;
                     this.r = false;
@@ -234,7 +334,7 @@ public class Jugador implements IColisionable {
                     break;
                 case 3:
                     personaje.setPosicion(2000, 2000);
-                    personaje.setPosicion(1800, 540);
+                    personaje.setPosicion(1800, 420);
                     this.up = false;
                     this.down = false;
                     this.r = false;
@@ -247,8 +347,8 @@ public class Jugador implements IColisionable {
 
     @Override
     public void sincronizarArea() {
-        hitbox.setX(personaje.getPosicion().getX());
-        hitbox.setY(personaje.getPosicion().getY());
+        hitbox.setX(personaje.getPosicion().getX()+20);
+        hitbox.setY(personaje.getPosicion().getY()+40);
     }
 
     @Override
