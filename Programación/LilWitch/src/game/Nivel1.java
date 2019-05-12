@@ -22,7 +22,7 @@ public class Nivel1 extends BasicGameState{
     private Jugador player;
     private SpriteSheet mapa;
     private ArrayList<Sala> salas;
-    private int salaActual = 1;
+    private int salaActual = 2;
     
     @Override
     public int getID() {
@@ -50,12 +50,12 @@ public class Nivel1 extends BasicGameState{
         Wall abismo32 = new Wall(new float[]{1920, 960, 1800, 960, 1800, 840, 1560, 840, 1560, 720, 1800, 720, 1800, 840, 1920, 840});
         Wall abismo33 = new Wall(new float[]{1080, 0, 1080, 360, 1200, 360, 1200, 480, 1320, 480, 1680, 480, 1680, 360, 1560, 360, 1560, 240, 1440, 240, 1440, 120, 1320, 120, 1320,0});
         Wall limites_4 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
-        Puerta p11 = new Puerta(1915, 360, 5, 240, 1, 2);
-        Puerta p21 = new Puerta(1915, 360, 5, 240, 1, 3);
-        Puerta p22 = new Puerta(840, 955, 240, 5, 2, 2);
-        Puerta p23 = new Puerta(0, 360, 5, 240, 3, 1);
-        Puerta p31 = new Puerta(0, 360, 5, 240, 3, 2);
-        Puerta p32 = new Puerta(840, 0, 240, 5, 0, 4);
+        Puerta p11 = new Puerta(1915, 360, 5, 240, 1, 2, 1);
+        Puerta p21 = new Puerta(1915, 360, 5, 240, 1, 3, 1);
+        Puerta p22 = new Puerta(840, 955, 240, 5, 2, 2, 1);
+        Puerta p23 = new Puerta(0, 360, 5, 240, 3, 1, 1);
+        Puerta p31 = new Puerta(0, 360, 5, 240, 3, 2, 1);
+        Puerta p32 = new Puerta(840, 0, 240, 5, 0, 4, 2);
         
         ArrayList<Wall> walls1 = new ArrayList<>();
         walls1.add(limites_1);

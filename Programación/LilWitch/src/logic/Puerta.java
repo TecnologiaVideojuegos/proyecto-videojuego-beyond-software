@@ -15,6 +15,7 @@ import org.newdawn.slick.geom.Shape;
 public class Puerta implements IColisionable {
     Rectangle hitbox;
     int destino, direccion;
+    int nivel;
     /*  Direccion hace referencia a la posicion de la puerta y destino apunta a la siguiente sala:
         Direccion  Significado
         0          Norte
@@ -22,10 +23,11 @@ public class Puerta implements IColisionable {
         2          Sur
         3          Oeste*/
 
-    public Puerta(float x, float y, float width, float height, int direccion, int destino) { 
+    public Puerta(float x, float y, float width, float height, int direccion, int destino, int nivel) { 
         hitbox = new Rectangle(x, y, width, height);
         this.direccion = direccion;
         this.destino = destino;
+        this.nivel = nivel;
     }
 
     @Override
