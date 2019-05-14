@@ -5,6 +5,8 @@
  */
 package logic;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -16,9 +18,23 @@ public class Proyectil implements IColisionable {
     private SpriteMovil sprite;
     private Rectangle hitbox;
 
-    public Proyectil(SpriteMovil sprite) {
-        this.sprite = sprite;
+    public Proyectil(Image imagen, float x, float y, float escala, float vX, float vY) {
+        try {
+            sprite = new SpriteMovil(imagen, x, y, escala, vX, vY);
+        }
+        catch (SlickException e){
+            System.out.println("Error al crear el proyectil");
+        }
         hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getImagen().getWidth(), sprite.getImagen().getHeight());
+    }
+    
+    public void update(int delta) {
+        sprite.update(delta);
+        sincronizarArea();
+    }
+    
+    public void draw() {
+        sprite.draw();
     }
 
     @Override
@@ -33,7 +49,8 @@ public class Proyectil implements IColisionable {
 
     @Override
     public void sincronizarArea() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        hitbox.setX(sprite.getPosicion().getX());
+        hitbox.setY(sprite.getPosicion().getY());
     }
 
     @Override

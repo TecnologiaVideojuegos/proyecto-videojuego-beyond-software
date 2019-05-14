@@ -27,6 +27,10 @@ public class GestorColision {
         if(lista.contains(cuerpo)) lista.remove(cuerpo);
     }
     
+    public void anularCuerpo(int i) {
+        lista.remove(i);
+    }
+    
     public int comprobarColisiones() {
         int n = 0;
         for (int i = 0; i < lista.size(); i++) {

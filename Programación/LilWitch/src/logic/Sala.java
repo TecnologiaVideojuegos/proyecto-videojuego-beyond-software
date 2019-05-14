@@ -15,15 +15,11 @@ import org.newdawn.slick.Input;
  * @author alvar
  */
 public class Sala {
-    private ArrayList<Wall> paredes;
-    private ArrayList<Puerta> puertas;
     private GestorColision gestor;
     private Image imagen;
     private Jugador player;
 
     public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, Jugador jugador) {
-        this.paredes = paredes;
-        this.puertas = puertas;
         this.imagen = imagen;
         this.player = jugador;
         gestor = new GestorColision();
@@ -45,24 +41,8 @@ public class Sala {
     }
     
     public int update(Input entrada) {
-        player.update(entrada);
+        player.update(entrada, gestor);
         return gestor.comprobarColisiones();
-    }
-
-    public ArrayList<Wall> getParedes() {
-        return paredes;
-    }
-
-    public void setParedes(ArrayList<Wall> paredes) {
-        this.paredes = paredes;
-    }
-
-    public ArrayList<Puerta> getPuertas() {
-        return puertas;
-    }
-
-    public void setPuertas(ArrayList<Puerta> puertas) {
-        this.puertas = puertas;
     }
 
     public GestorColision getGestor() {

@@ -15,31 +15,9 @@ import org.newdawn.slick.SlickException;
 public class SpriteMovil extends Sprite {
     private Vector velocidad;
 
-    public SpriteMovil(Image imagen, Punto posicion, float escala, Vector velocidad) throws SlickException {
-        super(imagen, posicion, escala);
-        this.velocidad = velocidad;
-    }
-
-    public SpriteMovil(Image imagen, float escala, Vector velocidad) throws SlickException {
-        super(imagen, escala);
-        this.velocidad = velocidad;
-    }
-
-    public SpriteMovil(Image imagen, float x, float y, float escala, Vector velocidad) throws SlickException {
+    public SpriteMovil(Image imagen, float x, float y, float escala, float vX, float vY) throws SlickException {
         super(imagen, x, y, escala);
-        this.velocidad = velocidad;
-    }
-    
-    public SpriteMovil(Image imagen, Punto posicion, float escala, Punto velocidad) throws SlickException {
-        this(imagen, posicion, escala, new Vector(velocidad));
-    }
-    
-    public SpriteMovil(Image imagen, float escala, Punto velocidad) throws SlickException {
-        this(imagen, escala, new Vector(velocidad));
-    }
-
-    public SpriteMovil(Image imagen, float x, float y, float escala, Punto velocidad) throws SlickException {
-        this(imagen, x, y, escala, new Vector(velocidad));
+        this.velocidad = new Vector(new Punto(vX, vY));
     }
 
     public Vector getVelocidad() {
