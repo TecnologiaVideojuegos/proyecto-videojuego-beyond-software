@@ -73,13 +73,16 @@ public class Jugador implements IColisionable {
         }
     }
     
-    public void update(Input entrada, GestorColision gestor) {
-        updateTeclado(entrada, gestor);
+    public void update(Input entrada) {
+        updateTeclado(entrada);
         sincronizarArea();
     }
     
-    private void updateTeclado(Input entrada, GestorColision gestor) {
+    private void updateTeclado(Input entrada) {
         if(!stop){
+            if(entrada.isKeyDown(Input.KEY_SPACE)) {
+                atacar();
+            }
             if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
                     personaje.moverX(-0.25f*3);
@@ -226,35 +229,32 @@ public class Jugador implements IColisionable {
         }
     }
     
-    public void atacar(GestorColision gestor) {
-        try {
-            float x = personaje.getPosicion().getX();
-            float y = personaje.getPosicion().getY();
-            float vX = 10;
-            float vY = 10;
-            if(up) {
-                x += personaje.getStaticDown().getWidth();
-                y += personaje.getStaticDown().getHeight();
+    public void atacar() {
+        float x = personaje.getPosicion().getX();
+        float y = personaje.getPosicion().getY();
+        float vX = 0;
+        float vY = 0;
+        if(up) {
+            x += personaje.getStaticDown().getWidth();
+            y += personaje.getStaticDown().getHeight();
+            vY = -10;
             }
-            else if(down) {
-                x += personaje.getStaticDown().getWidth();
-                y += personaje.getStaticDown().getHeight();
-            }
-            else if(r) {
-                x += personaje.getStaticDown().getWidth();
-                y += personaje.getStaticDown().getHeight();
-            }
-            else if(l) {
-                x += personaje.getStaticDown().getWidth();
-                y += personaje.getStaticDown().getHeight();
-            }
-            Proyectil p = new Proyectil(new Image("resources/minish.png"), x, y, 1, vX, vY);
-            gestor.registrarCuerpo(p);
-
+        else if(down) {
+            x += personaje.getStaticDown().getWidth();
+            y += personaje.getStaticDown().getHeight();
+            vY = 10;
         }
-        catch (SlickException e) {
-            System.out.println("Error al atacar");
+        else if(r) {
+            x += personaje.getStaticDown().getWidth();
+            y += personaje.getStaticDown().getHeight();
+            vX = 10;
         }
+        else {
+            x += personaje.getStaticDown().getWidth();
+            y += personaje.getStaticDown().getHeight();
+            vX = -10;
+        }
+        Proyectil p = new Proyectil("resources/Fire.png", x, y, 58, 72, 1, vX, vY);       
     }
     
     public void resetDirecciones() {
@@ -344,6 +344,11 @@ public class Jugador implements IColisionable {
     @Override
     public boolean isPlayer() {
         return true;
+    }
+
+    @Override
+    public boolean isProyectile() {
+        return false;
     }
     
     @Override

@@ -18,14 +18,14 @@ public class Proyectil implements IColisionable {
     private SpriteMovil sprite;
     private Rectangle hitbox;
 
-    public Proyectil(Image imagen, float x, float y, float escala, float vX, float vY) {
+    public Proyectil(String path, float x, float y, int width, int height, float escala, float vX, float vY) {
         try {
-            sprite = new SpriteMovil(imagen, x, y, escala, vX, vY);
+            sprite = new SpriteMovil(path, width, height, x, y, escala, vX, vY);
         }
         catch (SlickException e){
             System.out.println("Error al crear el proyectil");
         }
-        hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getImagen().getWidth(), sprite.getImagen().getHeight());
+        hitbox = new Rectangle(sprite.getX(), sprite.getY(), width, height);
     }
     
     public void update(int delta) {
@@ -49,8 +49,8 @@ public class Proyectil implements IColisionable {
 
     @Override
     public void sincronizarArea() {
-        hitbox.setX(sprite.getPosicion().getX());
-        hitbox.setY(sprite.getPosicion().getY());
+        hitbox.setX(sprite.getX());
+        hitbox.setY(sprite.getY());
     }
 
     @Override
@@ -66,6 +66,11 @@ public class Proyectil implements IColisionable {
     @Override
     public boolean isPlayer() {
         return false;
+    }
+
+    @Override
+    public boolean isProyectile() {
+        return true;
     }
     
     @Override

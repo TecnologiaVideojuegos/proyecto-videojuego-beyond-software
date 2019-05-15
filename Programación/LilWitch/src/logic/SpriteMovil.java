@@ -5,18 +5,36 @@
  */
 package logic;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 /**
  *
  * @author alvar
  */
-public class SpriteMovil extends Sprite {
+public class SpriteMovil {
     private Vector velocidad;
+    private float x, y, escala;
+    private Animation animacion;
 
-    public SpriteMovil(Image imagen, float x, float y, float escala, float vX, float vY) throws SlickException {
-        super(imagen, x, y, escala);
+    public SpriteMovil(String path, int ancho, int alto, float x, float y, float escala, float vX, float vY) throws SlickException {
+        SpriteSheet tileSet;
+        tileSet = new SpriteSheet(path, ancho, alto);
+        Image[] img = new Image[ancho*alto];
+        int cont = 0;
+        
+        for (int i = 0; i < tileSet.getVerticalCount(); i++) {
+            for (int j = 0; j < tileSet.getHorizontalCount(); j++) {
+                img[cont] = tileSet.getSprite(i, j);               
+            }   
+        }
+        
+        this.x = x;
+        this.y = y;
+        this.escala = 1;
+        this.animacion = new Animation(img, 100);
         this.velocidad = new Vector(new Punto(vX, vY));
     }
 
@@ -42,9 +60,44 @@ public class SpriteMovil extends Sprite {
 
     //delta hace referencia al tiempo en ms
     public void update(int delta) {
-        float x = posicion.getX() + velocidad.getX() * ((float) delta / 1000);
-        float y = posicion.getY() + velocidad.getY() * ((float) delta / 1000);
-        super.setPosicion(x,y);
+        x = x + velocidad.getX() * ((float) delta / 1000);
+        y = y + velocidad.getY() * ((float) delta / 1000);
     }
     
+    public void draw() {
+        animacion.draw(x, y);
+        animacion.start();
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getEscala() {
+        return escala;
+    }
+
+    public void setEscala(float escala) {
+        this.escala = escala;
+    }
+
+    public Animation getAnimacion() {
+        return animacion;
+    }
+
+    public void setAnimacion(Animation animacion) {
+        this.animacion = animacion;
+    }
 }

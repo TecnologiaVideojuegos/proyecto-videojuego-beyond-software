@@ -50,6 +50,11 @@ public class Wall implements IColisionable {
     }
     
     @Override
+    public boolean isProyectile() {
+        return false;
+    }
+    
+    @Override
     public int getDir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

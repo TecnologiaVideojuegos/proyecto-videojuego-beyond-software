@@ -41,7 +41,7 @@ public class Sala {
     }
     
     public int update(Input entrada) {
-        player.update(entrada, gestor);
+        player.update(entrada);
         return gestor.comprobarColisiones();
     }
 
