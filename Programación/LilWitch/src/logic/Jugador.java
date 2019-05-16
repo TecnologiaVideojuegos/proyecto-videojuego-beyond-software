@@ -17,6 +17,7 @@ public class Jugador implements IColisionable {
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
+    private int vida;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -46,6 +47,7 @@ public class Jugador implements IColisionable {
         this.l = false;
         this.stop = false;
         this.proyectiles = proyectiles;
+        vida = 6;
     }
     
     public void draw(Input entrada) {
@@ -327,6 +329,15 @@ public class Jugador implements IColisionable {
         }
     }
 
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+    
+    
     @Override
     public void sincronizarArea() {
         hitbox.setX(personaje.getPosicion().getX()+20);

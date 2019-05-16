@@ -34,10 +34,11 @@ abstract class Enemigo implements IColisionable {
     }
     
     public void update() {
-        atacar();
+        avanzar();
         sincronizarArea();
     }
-    abstract void atacar();
+    abstract void atacar(Jugador j);
+    abstract void avanzar();
 
     @Override
     public void alColisionar(IColisionable colision) {
@@ -57,6 +58,46 @@ abstract class Enemigo implements IColisionable {
         }
     }
 
+    public SpriteAnimado getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(SpriteAnimado sprite) {
+        this.sprite = sprite;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
+    
     @Override
     public void sincronizarArea() {
         hitbox.setX(sprite.getPosicion().getX());
