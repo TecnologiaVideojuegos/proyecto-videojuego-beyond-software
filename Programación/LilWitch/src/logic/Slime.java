@@ -11,9 +11,9 @@ import org.newdawn.slick.geom.Rectangle;
  *
  * @author corte
  */
-public class Slimes extends Enemigo{
+public class Slime extends Enemigo{
 
-    public Slimes(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
+    public Slime(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
         super(sprite, hitbox, vida, ataque);
     }
 

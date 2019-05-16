@@ -11,9 +11,9 @@ import org.newdawn.slick.geom.Rectangle;
  *
  * @author corte
  */
-public class Esqueletos extends Enemigo{
+public class Esqueleto extends Enemigo{
 
-    public Esqueletos(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
+    public Esqueleto(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
         super(sprite, hitbox, vida, ataque);
     }
 
