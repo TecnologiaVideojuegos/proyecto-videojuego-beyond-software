@@ -39,12 +39,12 @@ public class Proyectil implements IColisionable {
 
     @Override
     public Shape getHitbox() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return hitbox;
     }
 
     @Override
     public void alColisionar(IColisionable colision) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Colision");
     }
 
     @Override
@@ -81,5 +81,13 @@ public class Proyectil implements IColisionable {
     @Override
     public int getSalaDestino() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public int getWidth() {
+        return sprite.getAncho();
+    }
+
+    public int getHeight() {
+        return sprite.getAlto();
     }
 }

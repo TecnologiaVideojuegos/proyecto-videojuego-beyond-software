@@ -14,13 +14,19 @@ import org.newdawn.slick.Graphics;
  */
 public class GestorColision {
     private ArrayList<IColisionable> lista;
+    private ControladorProyectiles proyectiles;
     
-    public GestorColision() {
+    public GestorColision(ControladorProyectiles proyectiles) {
         lista = new ArrayList<IColisionable>();
+        this.proyectiles = proyectiles;
     }
     
     public void registrarCuerpo(IColisionable cuerpo) {
         if(!lista.contains(cuerpo)) lista.add(cuerpo);
+    }
+    
+    public void addProyectil(float x, float y, float vX, float vY) {
+        proyectiles.addProyectil(x, y, vX, vY);
     }
     
     public void anularCuerpo(IColisionable cuerpo) {
@@ -34,6 +40,7 @@ public class GestorColision {
     public int comprobarColisiones() {
         int n = 0;
         for (int i = 0; i < lista.size(); i++) {
+            buscarColisionProyectil(i);
             for (int j = 0; j < lista.size(); j++) {
                 if(i != j) {
                     if(n == 0) {
@@ -44,7 +51,7 @@ public class GestorColision {
                     }
                     
                 }  
-            }  
+            }
         }
         return n;
     }
@@ -68,10 +75,33 @@ public class GestorColision {
         }
     }
     
+    private void buscarColisionProyectil(int i) {
+        for (int j = 0; j < proyectiles.getProyectiles().size(); j++) {
+                if(proyectiles.get(j).getHitbox().intersects(lista.get(i).getHitbox())) {
+                proyectiles.get(j).alColisionar(lista.get(i));
+                lista.get(i).alColisionar(proyectiles.get(j));
+                if(lista.get(i) instanceof Wall) {
+                    proyectiles.removeProyectil(j);
+                }
+            }       
+        }
+    }
+    
     public void drawHitboxes(Graphics g) {
         for (int i = 0; i < lista.size(); i++) {
             g.draw(lista.get(i).getHitbox());
             
         }
+        for (int j = 0; j < proyectiles.getProyectiles().size(); j++) {
+            g.draw(proyectiles.get(j).getHitbox());;    
+        }
+    }
+    
+    public void updateProyectiles(int delta) {
+        proyectiles.update(delta);
+    }
+    
+    public void drawProyectiles() {
+        proyectiles.draw();
     }
 }

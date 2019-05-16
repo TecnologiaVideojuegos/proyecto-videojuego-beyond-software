@@ -16,8 +16,9 @@ public class Jugador implements IColisionable {
     private SpriteAnimado personaje;
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
+    private ControladorProyectiles proyectiles;
 
-    public Jugador() throws SlickException {
+    public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
         Image[] i1 = new Image[10];
         Image[] i2 = new Image[10];
@@ -44,6 +45,7 @@ public class Jugador implements IColisionable {
         this.r = false;
         this.l = false;
         this.stop = false;
+        this.proyectiles = proyectiles;
     }
     
     public void draw(Input entrada) {
@@ -80,7 +82,7 @@ public class Jugador implements IColisionable {
     
     private void updateTeclado(Input entrada) {
         if(!stop){
-            if(entrada.isKeyDown(Input.KEY_SPACE)) {
+            if(entrada.isKeyPressed(Input.KEY_SPACE)) {
                 atacar();
             }
             if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
@@ -234,27 +236,27 @@ public class Jugador implements IColisionable {
         float y = personaje.getPosicion().getY();
         float vX = 0;
         float vY = 0;
-        if(up) {
+        if(r) {
             x += personaje.getStaticDown().getWidth();
-            y += personaje.getStaticDown().getHeight();
-            vY = -10;
-            }
-        else if(down) {
-            x += personaje.getStaticDown().getWidth();
-            y += personaje.getStaticDown().getHeight();
-            vY = 10;
+            y += (personaje.getStaticDown().getHeight() / 2) - 36;
+            vX = 200;
         }
-        else if(r) {
-            x += personaje.getStaticDown().getWidth();
-            y += personaje.getStaticDown().getHeight();
-            vX = 10;
+        else if(l) {
+            x -= 58;
+            y += (personaje.getStaticDown().getHeight() / 2) - 36;
+            vX = -200;
+        }
+        else if(up) {
+            x += (personaje.getStaticDown().getWidth() / 2) - 29;
+            y -= 72;
+            vY = -200;
         }
         else {
-            x += personaje.getStaticDown().getWidth();
+            x += (personaje.getStaticDown().getWidth() / 2) - 29;
             y += personaje.getStaticDown().getHeight();
-            vX = -10;
-        }
-        Proyectil p = new Proyectil("resources/Fire.png", x, y, 58, 72, 1, vX, vY);       
+            vY = 200;     
+        }  
+        proyectiles.addProyectil(x, y, vX, vY);
     }
     
     public void resetDirecciones() {

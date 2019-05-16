@@ -19,10 +19,10 @@ public class Sala {
     private Image imagen;
     private Jugador player;
 
-    public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, Jugador jugador) {
+    public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, Jugador jugador, ControladorProyectiles proyectiles) {
         this.imagen = imagen;
         this.player = jugador;
-        gestor = new GestorColision();
+        gestor = new GestorColision(proyectiles);
         gestor.registrarCuerpo(jugador);
         for (int i = 0; i < paredes.size(); i++) {
             gestor.registrarCuerpo(paredes.get(i));
@@ -37,11 +37,13 @@ public class Sala {
     public void draw(Graphics g, Input entrada) {
         imagen.draw(0, 0);
         player.draw(entrada);
+        gestor.drawProyectiles();
         gestor.drawHitboxes(g);
     }
     
-    public int update(Input entrada) {
+    public int update(Input entrada, int delta) {
         player.update(entrada);
+        gestor.updateProyectiles(delta);
         return gestor.comprobarColisiones();
     }
 

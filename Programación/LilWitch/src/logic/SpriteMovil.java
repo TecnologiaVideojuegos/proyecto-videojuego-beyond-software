@@ -5,10 +5,7 @@
  */
 package logic;
 
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.*;
 
 /**
  *
@@ -18,24 +15,32 @@ public class SpriteMovil {
     private Vector velocidad;
     private float x, y, escala;
     private Animation animacion;
+    private int ancho, alto;
 
     public SpriteMovil(String path, int ancho, int alto, float x, float y, float escala, float vX, float vY) throws SlickException {
         SpriteSheet tileSet;
         tileSet = new SpriteSheet(path, ancho, alto);
-        Image[] img = new Image[ancho*alto];
+        Image[] img = new Image[tileSet.getHorizontalCount()*tileSet.getVerticalCount()];
         int cont = 0;
         
-        for (int i = 0; i < tileSet.getVerticalCount(); i++) {
-            for (int j = 0; j < tileSet.getHorizontalCount(); j++) {
-                img[cont] = tileSet.getSprite(i, j);               
+        for (int i = 0; i < tileSet.getHorizontalCount(); i++) {
+            for (int j = 0; j < tileSet.getVerticalCount(); j++) {
+                img[cont] = tileSet.getSprite(i, j);
+                cont++;
             }   
         }
         
         this.x = x;
         this.y = y;
         this.escala = 1;
+        for (int i = 0; i < img.length; i++) {
+            System.out.println("Array" + i + ": " + img[i]);;
+            
+        }
         this.animacion = new Animation(img, 100);
         this.velocidad = new Vector(new Punto(vX, vY));
+        this.alto = alto;
+        this.ancho = ancho;
     }
 
     public Vector getVelocidad() {
@@ -99,5 +104,21 @@ public class SpriteMovil {
 
     public void setAnimacion(Animation animacion) {
         this.animacion = animacion;
+    }
+
+    public int getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
+    }
+
+    public int getAlto() {
+        return alto;
+    }
+
+    public void setAlto(int alto) {
+        this.alto = alto;
     }
 }

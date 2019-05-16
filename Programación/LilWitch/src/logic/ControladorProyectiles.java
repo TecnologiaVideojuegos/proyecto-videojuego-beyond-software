@@ -14,12 +14,16 @@ import java.util.ArrayList;
 public class ControladorProyectiles {
     private ArrayList<Proyectil> proyectiles;
 
-    public ControladorProyectiles(ArrayList<Proyectil> proyectiles) {
-        this.proyectiles = proyectiles;
+    public ControladorProyectiles() {
+        proyectiles = new ArrayList<Proyectil>();
     }
     
     public void addProyectil(float x, float y, float vX, float vY) {
-        proyectiles.add(new Proyectil("resources/Fire.png", x, y, 58, 72, 1, vX, vY));
+        proyectiles.add(new Proyectil("resources/Fire.png", x, y, 58, 72, 0.5f, vX, vY));
+    }
+    
+    public void removeProyectil(int i) {
+        Proyectil p = proyectiles.remove(i);
     }
     
     public void update(int delta) {
@@ -32,5 +36,17 @@ public class ControladorProyectiles {
         for (int i = 0; i < proyectiles.size(); i++) {
             proyectiles.get(i).draw();          
         }
+    }
+    
+    public Proyectil get(int i) {
+        return proyectiles.get(i);
+    }
+
+    public ArrayList<Proyectil> getProyectiles() {
+        return proyectiles;
+    }
+
+    public void setProyectiles(ArrayList<Proyectil> proyectiles) {
+        this.proyectiles = proyectiles;
     }
 }

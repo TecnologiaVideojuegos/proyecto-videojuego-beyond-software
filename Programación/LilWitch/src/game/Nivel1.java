@@ -23,6 +23,7 @@ public class Nivel1 extends BasicGameState{
     private SpriteSheet mapa;
     private ArrayList<Sala> salas;
     private int salaActual = 2;
+    private ControladorProyectiles proyectiles;
     
     @Override
     public int getID() {
@@ -31,9 +32,10 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
-        player = new Jugador();
+        player = new Jugador(proyectiles);
         mapa = new SpriteSheet("resources/Nivel 1.png", 1920, 1080);
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites1 = new Wall(new float[]{480,0, 480,120, 600,120, 600,240, 480,240, 480,360, 360,360, 360,480, 0,480, 0,960, 1920,960, 1920,0});
@@ -97,10 +99,10 @@ public class Nivel1 extends BasicGameState{
         ArrayList<Puerta> puertas4 = new ArrayList();
 
         
-        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, player);
-        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, player);
-        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, player);
-        Sala sala4 = new Sala(mapa.getSubImage(2, 0), walls4, puertas4, player);
+        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, player, proyectiles);
+        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, player, proyectiles);
+        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, player, proyectiles);
+        Sala sala4 = new Sala(mapa.getSubImage(2, 0), walls4, puertas4, player, proyectiles);
         salas.add(sala1);
         salas.add(sala2);
         salas.add(sala3);
@@ -114,7 +116,7 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        int n = salas.get(salaActual-1).update(entrada);
+        int n = salas.get(salaActual-1).update(entrada, delta);
         System.out.println(n);
         if(n!=0) salaActual = n;
     }
