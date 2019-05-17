@@ -293,6 +293,9 @@ public class Jugador implements IColisionable {
             if(l) {
                 personaje.moverX(1f);
             }
+            if (colision.isEnemy()) {
+                vida -= colision.getAtaque();
+            }
         }
         else {
             this.stop = true;
