@@ -53,11 +53,22 @@ private StateBasedGame game;
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if(container.getInput().isKeyPressed(Input.KEY_1)){
-            game.enterState(0);
-        }
-        
+        if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
+            switch(selected) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    container.exit();
+                    break;
+            }
+        }   
     }
+    
+    @Override
     public void keyReleased(int key, char c) {
 		if (key == Input.KEY_DOWN) {
 			selected++;
@@ -77,7 +88,5 @@ private StateBasedGame game;
 		if (key == Input.KEY_2) {
 			game.enterState(1);
 		}*/
-	}
-    
-    
+	} 
 }
