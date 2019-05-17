@@ -5,6 +5,7 @@
  */
 package logic;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Rectangle;
 /**
  *
@@ -33,11 +34,27 @@ abstract class Enemigo implements IColisionable {
         return hitbox;
     }
     
+    public void draw() {
+        if(r) {
+            sprite.drawR();
+        }
+        else if(l) {
+            sprite.drawL();
+        }
+        else if(up) {
+            sprite.drawUp();
+        }
+        else {
+            sprite.drawDown();
+        }
+    }
+    
     public void update() {
         avanzar();
         sincronizarArea();
     }
-    abstract void atacar(Jugador j);
+    
+    abstract void atacar();
     abstract void avanzar();
 
     @Override
@@ -89,6 +106,30 @@ abstract class Enemigo implements IColisionable {
 
     public void setVida(int vida) {
         this.vida = vida;
+    }
+
+    public boolean isR() {
+        return r;
+    }
+
+    public void setR(boolean r) {
+        this.r = r;
+    }
+
+    public boolean isL() {
+        return l;
+    }
+
+    public void setL(boolean l) {
+        this.l = l;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
     }
     
     @Override
