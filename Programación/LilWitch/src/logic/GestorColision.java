@@ -80,7 +80,9 @@ public class GestorColision {
             if(proyectiles.get(j).getHitbox().intersects(lista.get(i).getHitbox())) {
                 proyectiles.get(j).alColisionar(lista.get(i));
                 lista.get(i).alColisionar(proyectiles.get(j));
-                proyectiles.removeProyectil(j);
+                if (!lista.get(i).isPlayer()) {
+                    proyectiles.removeProyectil(j);
+                }
                 if (lista.get(i).getVida() <= 0) {
                     lista.remove(i);
                 }
