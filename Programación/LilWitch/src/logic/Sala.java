@@ -42,7 +42,7 @@ public class Sala {
     }
     
     public int update(Input entrada, int delta) {
-        player.update(entrada);
+        player.update(entrada, delta);
         gestor.updateProyectiles(delta);
         return gestor.comprobarColisiones();
     }

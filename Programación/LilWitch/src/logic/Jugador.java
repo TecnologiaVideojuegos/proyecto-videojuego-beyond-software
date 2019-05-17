@@ -17,7 +17,7 @@ public class Jugador implements IColisionable {
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
-    private int vida;
+    private int vida, cooldown;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -48,6 +48,7 @@ public class Jugador implements IColisionable {
         this.stop = false;
         this.proyectiles = proyectiles;
         vida = 6;
+        cooldown = 500;
     }
     
     public void draw(Input entrada) {
@@ -77,14 +78,15 @@ public class Jugador implements IColisionable {
         }
     }
     
-    public void update(Input entrada) {
+    public void update(Input entrada, int delta) {
+        cooldown += delta;
         updateTeclado(entrada);
         sincronizarArea();
     }
     
     private void updateTeclado(Input entrada) {
         if(!stop){
-            if(entrada.isKeyPressed(Input.KEY_SPACE)) {
+            if(entrada.isKeyDown(Input.KEY_SPACE)) {
                 atacar();
             }
             if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
@@ -234,31 +236,34 @@ public class Jugador implements IColisionable {
     }
     
     public void atacar() {
-        float x = personaje.getPosicion().getX();
-        float y = personaje.getPosicion().getY();
-        float vX = 0;
-        float vY = 0;
-        if(r) {
-            x += personaje.getStaticDown().getWidth();
-            y += (personaje.getStaticDown().getHeight() / 2) - 36;
-            vX = 200;
+        if (cooldown > 500) {
+            float x = personaje.getPosicion().getX();
+            float y = personaje.getPosicion().getY();
+            float vX = 0;
+            float vY = 0;
+            if (r) {
+                x += personaje.getStaticDown().getWidth();
+                y += (personaje.getStaticDown().getHeight() / 2) - 36;
+                vX = 200;
+            }
+            else if (l) {
+                x -= 58;
+                y += (personaje.getStaticDown().getHeight() / 2) - 36;
+                vX = -200;
+            }
+            else if (up) {
+                x += (personaje.getStaticDown().getWidth() / 2) - 29;
+                y -= 72;
+                vY = -200;
+            }
+            else {
+                x += (personaje.getStaticDown().getWidth() / 2) - 29;
+                y += personaje.getStaticDown().getHeight();
+                vY = 200;     
+            }  
+            proyectiles.addProyectil(x, y, vX, vY);
+            cooldown = 0;
         }
-        else if(l) {
-            x -= 58;
-            y += (personaje.getStaticDown().getHeight() / 2) - 36;
-            vX = -200;
-        }
-        else if(up) {
-            x += (personaje.getStaticDown().getWidth() / 2) - 29;
-            y -= 72;
-            vY = -200;
-        }
-        else {
-            x += (personaje.getStaticDown().getWidth() / 2) - 29;
-            y += personaje.getStaticDown().getHeight();
-            vY = 200;     
-        }  
-        proyectiles.addProyectil(x, y, vX, vY);
     }
     
     public void resetDirecciones() {

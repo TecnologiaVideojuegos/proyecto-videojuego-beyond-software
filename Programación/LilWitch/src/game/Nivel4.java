@@ -27,7 +27,7 @@ public class Nivel4 extends BasicGameState{
     
     @Override
     public int getID() {
-        return 0;
+        return 6;
     }
 
     @Override

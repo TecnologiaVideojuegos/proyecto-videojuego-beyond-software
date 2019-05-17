@@ -19,7 +19,7 @@ public class ControladorProyectiles {
     }
     
     public void addProyectil(float x, float y, float vX, float vY) {
-        proyectiles.add(new Proyectil("resources/Fire.png", x, y, 58, 72, 0.5f, vX, vY));
+        proyectiles.add(new Proyectil("resources/Fire.png", x, y, 58, 72, 0.5f, vX, vY, 1));
     }
     
     public void removeProyectil(int i) {
