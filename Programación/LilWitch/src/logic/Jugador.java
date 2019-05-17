@@ -26,7 +26,7 @@ public class Jugador implements IColisionable {
         Image[] i3 = new Image[10];
         Image[] i4 = new Image[10];
         Animation up, down, l, r;
-        tileSet = new SpriteSheet("resources/minish.png", 96, 104);
+        tileSet = new SpriteSheet("resources/sprites/minish.png", 96, 104);
         for (int i = 0; i < 10; i++) {
             i1[i] = tileSet.getSprite(i, 4);
             i2[i] = tileSet.getSprite(i, 5);

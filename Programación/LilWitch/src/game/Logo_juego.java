@@ -27,7 +27,7 @@ private Image image;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/Logo.png");
+        image = new Image("resources/logos/Logo.png");
     }
 
     @Override

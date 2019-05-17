@@ -35,7 +35,7 @@ public class Nivel5 extends BasicGameState{
         salas = new ArrayList<>();
         entrada = container.getInput();
         player = new Jugador(proyectiles);
-        mapa = new SpriteSheet("resources/Nivel 5.png", 1920, 1080);
+        mapa = new SpriteSheet("resources/niveles/Nivel 5.png", 1920, 1080);
         Wall limites_1 = new Wall(new float[]{100, 100, 100, 860, 840, 860, 840, 960, 1080, 960, 1080, 860, 1820, 860, 1820, 600, 1920, 600, 1920, 360, 1820, 360, 1820, 100});
         Wall limites_2 = new Wall(new float[]{100, 100, 100, 360, 0, 360, 0, 600, 100, 600, 100, 860, 1820, 860, 1820, 600, 1920, 600, 1920, 360, 1820, 360, 1820, 100, 1080, 100, 1080, 0, 840, 0, 840, 100});
         Wall limites_3 = new Wall(new float[]{100, 100, 100, 360, 0, 360, 0, 600, 100, 600, 100, 860, 1820, 860, 1820, 100});
