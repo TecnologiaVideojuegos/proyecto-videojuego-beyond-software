@@ -25,8 +25,8 @@ public class GestorColision {
         if(!lista.contains(cuerpo)) lista.add(cuerpo);
     }
     
-    public void addProyectil(float x, float y, float vX, float vY, boolean enemy) {
-        proyectiles.addProyectil(x, y, vX, vY, enemy);
+    public void addProyectil(float x, float y, float vX, float vY, int tipo) {
+        proyectiles.addProyectil(x, y, vX, vY, tipo);
     }
     
     public void anularCuerpo(IColisionable cuerpo) {

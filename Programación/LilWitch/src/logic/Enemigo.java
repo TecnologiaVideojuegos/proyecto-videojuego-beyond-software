@@ -71,7 +71,7 @@ abstract class Enemigo implements IColisionable {
         if(l) {
             sprite.moverX(1f);
         }
-        if (colision.isProyectile() && !colision.isEnemy()) {
+        if (colision.isProyectile() == 2) {
             vida -= colision.getAtaque();
         }
     }
@@ -154,8 +154,8 @@ abstract class Enemigo implements IColisionable {
     }
 
     @Override
-    public boolean isProyectile() {
-        return false;
+    public int isProyectile() {
+        return 0;
     }
     
     @Override

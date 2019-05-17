@@ -19,7 +19,7 @@ public interface IColisionable {
     public boolean isGate();
     public boolean isPlayer();
     public boolean isEnemy();
-    public boolean isProyectile();
+    public int isProyectile(); //0 si no es un proyectil, 1 si el pryectil es enemigo, 2 si el proyectil es del jugador
     public int getDir();
     public int getSalaDestino();
     public int getAtaque();

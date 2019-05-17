@@ -18,9 +18,9 @@ public class Proyectil implements IColisionable {
     private SpriteMovil sprite;
     private Rectangle hitbox;
     private int ataque;
-    private boolean enemy;
+    private int tipo;
 
-    public Proyectil(String path, float x, float y, int width, int height, float escala, float vX, float vY, int daño, boolean enemy) {
+    public Proyectil(String path, float x, float y, int width, int height, float escala, float vX, float vY, int daño, int tipo) {
         try {
             sprite = new SpriteMovil(path, width, height, x, y, escala, vX, vY);
         }
@@ -29,7 +29,7 @@ public class Proyectil implements IColisionable {
         }
         hitbox = new Rectangle(sprite.getX(), sprite.getY(), width, height);
         this.ataque = daño;
-        this.enemy = enemy;
+        this.tipo = tipo;
     }
     
     public void update(int delta) {
@@ -59,7 +59,7 @@ public class Proyectil implements IColisionable {
 
     @Override
     public boolean isHostile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
     
     @Override
@@ -73,8 +73,18 @@ public class Proyectil implements IColisionable {
     }
 
     @Override
-    public boolean isProyectile() {
-        return true;
+    public int isProyectile() {
+        return tipo;
+    }
+    
+    @Override
+    public boolean isEnemy() {
+        if(tipo == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
     @Override
@@ -94,11 +104,6 @@ public class Proyectil implements IColisionable {
     public int getHeight() {
         return sprite.getAlto();
     }
-    
-    @Override
-    public boolean isEnemy() {
-        return false;
-    } 
     
     @Override
     public int getAtaque() {

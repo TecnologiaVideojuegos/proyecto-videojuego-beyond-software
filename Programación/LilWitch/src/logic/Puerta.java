@@ -63,8 +63,8 @@ public class Puerta implements IColisionable {
     }
     
     @Override
-    public boolean isProyectile() {
-        return false;
+    public int isProyectile() {
+        return 0;
     }
     
     @Override

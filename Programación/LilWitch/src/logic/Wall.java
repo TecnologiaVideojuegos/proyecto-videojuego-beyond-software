@@ -50,8 +50,8 @@ public class Wall implements IColisionable {
     }
     
     @Override
-    public boolean isProyectile() {
-        return false;
+    public int isProyectile() {
+        return 0;
     }
     
     @Override

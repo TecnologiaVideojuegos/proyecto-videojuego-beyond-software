@@ -261,7 +261,7 @@ public class Jugador implements IColisionable {
                 y += personaje.getStaticDown().getHeight();
                 vY = 200;     
             }  
-            proyectiles.addProyectil(x, y, vX, vY, false);
+            proyectiles.addProyectil(x, y, vX, vY, 2);
             cooldown = 0;
         }
     }
@@ -281,20 +281,22 @@ public class Jugador implements IColisionable {
     @Override
     public void alColisionar(IColisionable colision) {
         if(!colision.isGate()) {
-            if(up) {
-                personaje.moverY(1f);
-            }
-            if(down) {
-                personaje.moverY(-1f);
-            }
-            if(r) {
-                personaje.moverX(-1f);
-            }
-            if(l) {
-                personaje.moverX(1f);
-            }
-            if (colision.isEnemy()) {
-                vida -= colision.getAtaque();
+            if(colision.isProyectile() != 2) {
+                if(up) {
+                    personaje.moverY(1f);
+                }
+                if(down) {
+                    personaje.moverY(-1f);
+                }
+                if(r) {
+                    personaje.moverX(-1f);
+                }
+                if(l) {
+                    personaje.moverX(1f);
+                }
+                if (colision.isEnemy()) {
+                    vida -= colision.getAtaque();
+                }
             }
         }
         else {
@@ -369,8 +371,8 @@ public class Jugador implements IColisionable {
     }
 
     @Override
-    public boolean isProyectile() {
-        return false;
+    public int isProyectile() {
+        return 0;
     }
     
     @Override
