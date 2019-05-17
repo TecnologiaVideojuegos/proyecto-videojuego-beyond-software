@@ -76,4 +76,8 @@ public class Puerta implements IColisionable {
     public int getSalaDestino() {
         return destino;
     }
+    
+    public int getEstado() {
+        return nivel;
+    }
 }

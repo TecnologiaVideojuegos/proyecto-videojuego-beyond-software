@@ -90,4 +90,5 @@ public class Proyectil implements IColisionable {
     public int getHeight() {
         return sprite.getAlto();
     }
+
 }
