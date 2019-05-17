@@ -24,11 +24,6 @@ public class Murcielago  extends Enemigo{
     }
 
     @Override
-    public boolean isProyectile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     void avanzar() {
         
         int rx = (int) (Math.random() * 3+1);

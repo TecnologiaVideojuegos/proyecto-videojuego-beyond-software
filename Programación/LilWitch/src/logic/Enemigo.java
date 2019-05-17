@@ -118,6 +118,11 @@ abstract class Enemigo implements IColisionable {
     public boolean isPlayer() {
         return false;
     }
+
+    @Override
+    public boolean isProyectile() {
+        return false;
+    }
     
     @Override
     public int getDir() {

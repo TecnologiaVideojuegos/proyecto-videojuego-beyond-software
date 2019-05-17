@@ -49,11 +49,5 @@ public class Slime extends Enemigo{
                 super.getSprite().moverY((float)0.25);
                 break;   
         }
-    }
-
-    @Override
-    public boolean isProyectile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }   
 }

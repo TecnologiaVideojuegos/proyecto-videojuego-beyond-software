@@ -49,10 +49,4 @@ public class Esqueleto extends Enemigo{
                 break;   
         }
     }
-
-    @Override
-    public boolean isProyectile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
