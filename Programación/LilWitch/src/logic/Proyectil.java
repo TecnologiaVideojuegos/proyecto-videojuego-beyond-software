@@ -17,9 +17,10 @@ import org.newdawn.slick.geom.Shape;
 public class Proyectil implements IColisionable {
     private SpriteMovil sprite;
     private Rectangle hitbox;
-    private int daño;
+    private int ataque;
+    private boolean enemy;
 
-    public Proyectil(String path, float x, float y, int width, int height, float escala, float vX, float vY, int daño) {
+    public Proyectil(String path, float x, float y, int width, int height, float escala, float vX, float vY, int daño, boolean enemy) {
         try {
             sprite = new SpriteMovil(path, width, height, x, y, escala, vX, vY);
         }
@@ -27,7 +28,8 @@ public class Proyectil implements IColisionable {
             System.out.println("Error al crear el proyectil");
         }
         hitbox = new Rectangle(sprite.getX(), sprite.getY(), width, height);
-        this.daño = daño;
+        this.ataque = daño;
+        this.enemy = enemy;
     }
     
     public void update(int delta) {
@@ -92,12 +94,19 @@ public class Proyectil implements IColisionable {
     public int getHeight() {
         return sprite.getAlto();
     }
-
-    public int getDaño() {
-        return daño;
+    
+    @Override
+    public boolean isEnemy() {
+        return false;
+    } 
+    
+    @Override
+    public int getAtaque() {
+        return ataque;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
-    }
+    @Override
+    public int getVida() {
+        return 1;
+    } 
 }

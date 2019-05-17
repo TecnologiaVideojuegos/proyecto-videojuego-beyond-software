@@ -42,19 +42,20 @@ abstract class Enemigo implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        if(!colision.isGate()) {
-            if(up) {
-                sprite.moverY(1f);
-            }
-            if(down) {
-                sprite.moverY(-1f);
-            }
-            if(r) {
-                sprite.moverX(-1f);
-            }
-            if(l) {
-                sprite.moverX(1f);
-            }
+        if(up) {
+            sprite.moverY(1f);
+        }
+        if(down) {
+            sprite.moverY(-1f);
+        }
+        if(r) {
+            sprite.moverX(-1f);
+        }
+        if(l) {
+            sprite.moverX(1f);
+        }
+        if (colision.isProyectile() && !colision.isEnemy()) {
+            vida -= colision.getAtaque();
         }
     }
 
@@ -88,14 +89,6 @@ abstract class Enemigo implements IColisionable {
 
     public void setVida(int vida) {
         this.vida = vida;
-    }
-
-    public int getAtaque() {
-        return ataque;
-    }
-
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
     }
     
     @Override
@@ -133,4 +126,14 @@ abstract class Enemigo implements IColisionable {
     public int getSalaDestino() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public boolean isEnemy() {
+        return true;
+    }
+
+    @Override
+    public int getAtaque() {
+        return ataque;
+    } 
 }

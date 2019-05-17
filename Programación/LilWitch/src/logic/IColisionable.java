@@ -18,7 +18,10 @@ public interface IColisionable {
     public boolean isHostile();
     public boolean isGate();
     public boolean isPlayer();
+    public boolean isEnemy();
     public boolean isProyectile();
     public int getDir();
     public int getSalaDestino();
+    public int getAtaque();
+    public int getVida();
 }

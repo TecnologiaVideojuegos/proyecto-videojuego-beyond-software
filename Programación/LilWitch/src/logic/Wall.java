@@ -63,4 +63,19 @@ public class Wall implements IColisionable {
     public int getSalaDestino() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean isEnemy() {
+        return false;
+    } 
+    
+    @Override
+    public int getAtaque() {
+        return 0;
+    }
+    
+    @Override
+    public int getVida() {
+        return 1;
+    } 
 }

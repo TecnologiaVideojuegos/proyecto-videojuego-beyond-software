@@ -80,4 +80,19 @@ public class Puerta implements IColisionable {
     public int getEstado() {
         return nivel;
     }
+    
+    @Override
+    public boolean isEnemy() {
+        return false;
+    } 
+    
+    @Override
+    public int getAtaque() {
+        return 0;
+    }
+    
+    @Override
+    public int getVida() {
+        return 1;
+    } 
 }

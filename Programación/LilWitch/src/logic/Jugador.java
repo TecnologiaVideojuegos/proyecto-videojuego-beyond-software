@@ -261,7 +261,7 @@ public class Jugador implements IColisionable {
                 y += personaje.getStaticDown().getHeight();
                 vY = 200;     
             }  
-            proyectiles.addProyectil(x, y, vX, vY);
+            proyectiles.addProyectil(x, y, vX, vY, false);
             cooldown = 0;
         }
     }
@@ -334,6 +334,7 @@ public class Jugador implements IColisionable {
         }
     }
 
+    @Override
     public int getVida() {
         return vida;
     }
@@ -378,5 +379,14 @@ public class Jugador implements IColisionable {
     public int getSalaDestino() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Override
+    public boolean isEnemy() {
+        return false;
+    } 
+    
+    @Override
+    public int getAtaque() {
+        return 0;
+    }
 }
