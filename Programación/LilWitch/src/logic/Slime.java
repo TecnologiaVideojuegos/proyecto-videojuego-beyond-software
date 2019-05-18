@@ -5,6 +5,7 @@
  */
 package logic;
 
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 /**
@@ -13,8 +14,8 @@ import org.newdawn.slick.geom.Rectangle;
  */
 public class Slime extends Enemigo{
 
-    public Slime(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
-        super(sprite, hitbox, vida, ataque);
+    public Slime(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
+        super(filename, ancho, alto, x, y, vida, ataque);
     }
 
     @Override

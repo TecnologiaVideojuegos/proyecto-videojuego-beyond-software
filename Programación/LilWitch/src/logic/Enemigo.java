@@ -5,7 +5,11 @@
  */
 package logic;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 /**
  *
@@ -17,7 +21,32 @@ abstract class Enemigo implements IColisionable {
     private boolean up, down, r, l, stop;
     private int vida, ataque;
 
-    public Enemigo(SpriteAnimado sprite, Rectangle hitbox, int vida, int ataque) {
+    public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
+        SpriteSheet tileSet;
+        Animation up, down, l, r;
+        tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
+        int numSprites = tileSet.getHorizontalCount();
+        Image[] i1 = new Image[numSprites];
+        Image[] i2 = new Image[numSprites];
+        Image[] i3 = new Image[numSprites];
+        Image[] i4 = new Image[numSprites];
+        
+        for (int i = 0; i < numSprites; i++) {
+            i1[i] = tileSet.getSprite(i, 0);
+            i2[i] = tileSet.getSprite(i, 1);
+            i3[i] = tileSet.getSprite(i, 2);
+            i4[i] = tileSet.getSprite(i, 3);
+        }
+        
+        up = new Animation(i1, 100);
+        down = new Animation(i3, 100);
+        l = new Animation(i4, 100);
+        r = new Animation(i2, 100);
+        ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
+        
+        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(2, 1), tileSet.getSprite(0, 1), tileSet.getSprite(1, 1), tileSet.getSprite(4, 1), x, y);
+        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
+        
         this.sprite = sprite;
         this.hitbox = hitbox;
         this.up = false;

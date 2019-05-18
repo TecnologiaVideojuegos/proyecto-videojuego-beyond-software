@@ -18,6 +18,7 @@ public class Jugador implements IColisionable {
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
     private int vida, cooldown;
+    private int[] objetos, varitas;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -49,6 +50,8 @@ public class Jugador implements IColisionable {
         this.proyectiles = proyectiles;
         vida = 6;
         cooldown = 500;
+        this.objetos = new int[6];
+        this.varitas = new int[4];
     }
     
     public void draw(Input entrada) {
