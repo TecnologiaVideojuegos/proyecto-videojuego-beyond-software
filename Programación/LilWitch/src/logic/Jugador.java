@@ -405,4 +405,9 @@ public class Jugador implements IColisionable {
 
     @Override
     public void alDetectar(IColisionable colision) {}
+
+    @Override
+    public Punto getPosicion() {
+        return personaje.getPosicion();
+    }
 }

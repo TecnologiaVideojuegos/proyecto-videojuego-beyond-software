@@ -258,4 +258,9 @@ abstract class Enemigo implements IColisionable {
 
     @Override
     public void alDetectar(IColisionable colision) {}
+    
+    @Override
+    public Punto getPosicion() {
+        return sprite.getPosicion();
+    }
 }
