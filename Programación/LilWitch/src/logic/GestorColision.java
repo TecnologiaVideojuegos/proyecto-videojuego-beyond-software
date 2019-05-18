@@ -70,6 +70,18 @@ public class GestorColision {
                 return 0;
             }
         }
+        else if(lista.get(i) instanceof Jugador && lista.get(j) instanceof Enemigo) {
+            if(lista.get(j).getVisionRange().intersects(lista.get(i).getHitbox())) {
+                lista.get(j).alDetectar(lista.get(i));
+            }
+            return 0;
+        }
+        else if(lista.get(i) instanceof Enemigo && lista.get(j) instanceof Jugador) {
+            if(lista.get(i).getVisionRange().intersects(lista.get(j).getHitbox())) {
+                lista.get(i).alDetectar(lista.get(j));
+            }
+            return 0;
+        }
         else {
             return 0;
         }

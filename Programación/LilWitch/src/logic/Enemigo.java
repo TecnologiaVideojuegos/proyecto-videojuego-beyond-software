@@ -21,6 +21,7 @@ abstract class Enemigo implements IColisionable {
     private Rectangle hitbox, visionRange;;
     private boolean up, down, r, l, stop;
     private int vida, ataque;
+    private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
         SpriteSheet tileSet;
@@ -257,7 +258,9 @@ abstract class Enemigo implements IColisionable {
     }
 
     @Override
-    public void alDetectar(IColisionable colision) {}
+    public void alDetectar(IColisionable colision) {
+        playerPosition = colision.getPosicion();
+    }
     
     @Override
     public Punto getPosicion() {

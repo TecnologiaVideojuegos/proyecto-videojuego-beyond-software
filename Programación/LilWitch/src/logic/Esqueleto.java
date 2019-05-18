@@ -17,6 +17,7 @@ public class Esqueleto extends Enemigo{
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque, distanciaVision);
+        //Normal 120x150 Escudo 130x180
     }
 
     @Override
@@ -87,10 +88,5 @@ public class Esqueleto extends Enemigo{
             super.getSprite().stopUp();
             super.getSprite().stopDown();
         } 
-    }
-    
-    @Override
-    public void alDetectar(IColisionable colision) {
-        
     }
 }
