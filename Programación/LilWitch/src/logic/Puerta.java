@@ -95,4 +95,12 @@ public class Puerta implements IColisionable {
     public int getVida() {
         return 1;
     } 
+    
+    @Override
+    public Shape getVisionRange() {
+        return hitbox;
+    }
+
+    @Override
+    public void alDetectar(IColisionable colision) {}
 }

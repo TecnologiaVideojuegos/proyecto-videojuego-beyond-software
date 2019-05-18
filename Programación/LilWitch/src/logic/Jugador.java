@@ -397,4 +397,12 @@ public class Jugador implements IColisionable {
     public int getAtaque() {
         return 0;
     }
+    
+    @Override
+    public Shape getVisionRange() {
+        return hitbox;
+    }
+
+    @Override
+    public void alDetectar(IColisionable colision) {}
 }

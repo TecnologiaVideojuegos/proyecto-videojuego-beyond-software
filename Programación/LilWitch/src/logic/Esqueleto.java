@@ -7,6 +7,7 @@ package logic;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
 /**
  *
@@ -14,8 +15,8 @@ import org.newdawn.slick.geom.Rectangle;
  */
 public class Esqueleto extends Enemigo{
     
-    public Esqueleto(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
-        super(filename, ancho, alto, x, y, vida, ataque);
+    public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
+        super(filename, ancho, alto, x, y, vida, ataque, distanciaVision);
     }
 
     @Override
@@ -86,5 +87,10 @@ public class Esqueleto extends Enemigo{
             super.getSprite().stopUp();
             super.getSprite().stopDown();
         } 
+    }
+    
+    @Override
+    public void alDetectar(IColisionable colision) {
+        
     }
 }
