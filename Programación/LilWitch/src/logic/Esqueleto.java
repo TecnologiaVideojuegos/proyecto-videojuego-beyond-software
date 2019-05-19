@@ -35,11 +35,12 @@ public class Esqueleto extends Enemigo{
 
     @Override
     void atacar(int delta) {
-        //avanzar(delta);
+        avanzar(delta);
         if (super.getPlayerPosition() != null) {
             if (super.getCooldown() > 500) {
                 float x = super.getPosicion().getX();
                 float y = super.getPosicion().getY();
+                System.out.println("Jugador en: " + x+ "," +y);
                 int vX, vY;
                 /*x += (super.getSprite().getStaticDown().getWidth() / 2) - 29;
                 y += super.getSprite().getStaticDown().getHeight();*/

@@ -199,12 +199,11 @@ abstract class Enemigo implements IColisionable {
     public void sincronizarArea() {
         hitbox.setX(sprite.getPosicion().getX());
         hitbox.setY(sprite.getPosicion().getY());
-        visionRange.setX(hitbox.getX() + hitbox.getWidth() / 2);
-        System.out.println("X: "+sprite.getPosicion().getX() + sprite.getStaticDown().getWidth() / 2);
-        visionRange.setY(hitbox.getY() + hitbox.getHeight() / 2);
+        visionRange.setCenterX(hitbox.getX() + hitbox.getWidth() / 2);
+        visionRange.setCenterY(hitbox.getY() + hitbox.getHeight() / 2);
     }
 
-    @Override
+    @Override   
     public boolean isHostile() {
         return true;
     }
