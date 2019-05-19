@@ -286,16 +286,16 @@ public class Jugador implements IColisionable {
         if(!colision.isGate()) {
             if(colision.isProyectile() != 2) {
                 if(up) {
-                    personaje.moverY(400f);
+                    personaje.moverY(1f);
                 }
                 if(down) {
-                    personaje.moverY(-400f);
+                    personaje.moverY(-1f);
                 }
                 if(r) {
-                    personaje.moverX(-400f);
+                    personaje.moverX(-1f);
                 }
                 if(l) {
-                    personaje.moverX(400f);
+                    personaje.moverX(1f);
                 }
                 if (colision.isEnemy()) {
                     vida -= colision.getAtaque();
