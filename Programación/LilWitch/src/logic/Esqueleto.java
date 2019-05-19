@@ -19,7 +19,7 @@ public class Esqueleto extends Enemigo{
     private int contador, dirX, dirY;
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
-        super(filename, ancho, alto, x, y, vida, ataque, distanciaVision);
+        super(filename, ancho, alto, x, y, distanciaVision, vida, ataque);
         this.proyectiles = proyectiles;
         this.contador = 0;
         this.dirX = (int) (Math.random() * 3+1);
