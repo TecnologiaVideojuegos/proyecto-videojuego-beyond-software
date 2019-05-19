@@ -25,8 +25,8 @@ public class GestorColision {
         if(!lista.contains(cuerpo)) lista.add(cuerpo);
     }
     
-    public void addProyectil(String filename, float x, float y, float vX, float vY, int daño, int tipo) {
-        proyectiles.addProyectil(filename, x, y, vX, vY, daño, tipo);
+    public void addProyectil(String filename, float x, float y, int width, int height, float escala, float vX, float vY, int daño, int tipo) {
+        proyectiles.addProyectil(filename, x, y, width, height, escala, vX, vY, daño, tipo);
     }
     
     public void anularCuerpo(IColisionable cuerpo) {
@@ -92,7 +92,7 @@ public class GestorColision {
             if(proyectiles.get(j).getHitbox().intersects(lista.get(i).getHitbox())) {
                 proyectiles.get(j).alColisionar(lista.get(i));
                 lista.get(i).alColisionar(proyectiles.get(j));
-                if (!lista.get(i).isPlayer()) {
+                if (!lista.get(i).isPlayer() && proyectiles.get(j).isProyectile() >  2 || !lista.get(i).isEnemy() && proyectiles.get(j).isProyectile() != 1) {
                     proyectiles.removeProyectil(j);
                 }
                 if (lista.get(i).getVida() <= 0) {

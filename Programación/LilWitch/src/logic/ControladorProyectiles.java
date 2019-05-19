@@ -18,8 +18,8 @@ public class ControladorProyectiles {
         proyectiles = new ArrayList<Proyectil>();
     }
     
-    public void addProyectil(String filename, float x, float y, float vX, float vY, int daño, int tipo) {
-        proyectiles.add(new Proyectil(filename, x, y, 58, 72, 0.5f, vX, vY, daño, tipo));
+    public void addProyectil(String filename, float x, float y, int width, int height, float escala, float vX, float vY, int daño, int tipo) {
+        proyectiles.add(new Proyectil(filename, x, y, width, height, escala, vX, vY, daño, tipo));
     }
     
     public void removeProyectil(int i) {

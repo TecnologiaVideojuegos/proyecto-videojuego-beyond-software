@@ -58,7 +58,7 @@ public class Esqueleto extends Enemigo{
                 else {
                     vY = 100;
                 }
-                proyectiles.addProyectil("Hueso.png", x, y, vX, vY, 1, 1);
+                proyectiles.addProyectil("Hueso.png", x, y, 120, 120, 0.5f, vX, vY, 1, 1);
                 super.setCooldown(0);
             }
         }

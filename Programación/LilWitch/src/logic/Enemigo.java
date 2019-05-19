@@ -123,16 +123,16 @@ abstract class Enemigo implements IColisionable {
     @Override
     public void alColisionar(IColisionable colision) {
         if(up) {
-            sprite.moverY(5f);
+            sprite.moverY(1f);
         }
         if(down) {
-            sprite.moverY(-5f);
+            sprite.moverY(-1f);
         }
         if(r) {
-            sprite.moverX(-5f);
+            sprite.moverX(-1f);
         }
         if(l) {
-            sprite.moverX(5f);
+            sprite.moverX(1f);
         }
         if (colision.isProyectile() == 2) {
             vida -= colision.getAtaque();
