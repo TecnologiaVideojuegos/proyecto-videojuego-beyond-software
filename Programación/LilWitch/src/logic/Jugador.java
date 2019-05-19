@@ -83,21 +83,21 @@ public class Jugador implements IColisionable {
     
     public void update(Input entrada, int delta) {
         cooldown += delta;
-        updateTeclado(entrada);
+        updateTeclado(entrada, delta);
         sincronizarArea();
     }
     
-    private void updateTeclado(Input entrada) {
+    private void updateTeclado(Input entrada, int delta) {
         if(!stop){
             if(entrada.isKeyDown(Input.KEY_SPACE)) {
                 atacar();
             }
             if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(-0.25f*3);
+                    personaje.moverX(-100*3 * ((float) delta / 1000));
                 } 
                 else {
-                    personaje.moverX(-0.25f);
+                    personaje.moverX(-100 * ((float) delta / 1000));
                 }
                 personaje.startL();
                 personaje.stopR();
@@ -111,10 +111,10 @@ public class Jugador implements IColisionable {
             
             else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Derecha
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(0.25f*3);
+                    personaje.moverX(100f*3 * ((float) delta / 1000));
                 } 
                 else {
-                    personaje.moverX(0.25f);
+                    personaje.moverX(100f * ((float) delta / 1000));
                 }
                 personaje.stopL();
                 personaje.startR();
@@ -128,10 +128,10 @@ public class Jugador implements IColisionable {
         
             else if(!entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverY(-0.25f*3);
+                    personaje.moverY(-100f*3 * ((float) delta / 1000));
                 }
                 else {
-                    personaje.moverY(-0.25f);   
+                    personaje.moverY(-100f * ((float) delta / 1000));   
                 }
                 personaje.stopL();
                 personaje.stopR();
@@ -145,10 +145,10 @@ public class Jugador implements IColisionable {
         
             else if(!entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverY(0.25f*3);
+                    personaje.moverY(100f*3 * ((float) delta / 1000));
                 }
                 else{
-                    personaje.moverY(0.25f);
+                    personaje.moverY(100f * ((float) delta / 1000));
                 }
                 personaje.stopL();
                 personaje.stopR();
@@ -162,12 +162,12 @@ public class Jugador implements IColisionable {
         
             else if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba-Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(-0.25f*3);
-                    personaje.moverY(-0.25f*3);
+                    personaje.moverX(-100f*3 * ((float) delta / 1000));
+                    personaje.moverY(-100f*3 * ((float) delta / 1000));
                 }
                 else {
-                    personaje.moverX(-0.25f);
-                    personaje.moverY(-0.25f);
+                    personaje.moverX(-100f * ((float) delta / 1000));
+                    personaje.moverY(-100f * ((float) delta / 1000));
                 }
                 personaje.startL();
                 personaje.stopR();
@@ -181,12 +181,12 @@ public class Jugador implements IColisionable {
         
             else if(entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo-Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(-0.25f*3);
-                    personaje.moverY(0.25f*3);
+                    personaje.moverX(-100f*3 * ((float) delta / 1000));
+                    personaje.moverY(100f*3 * ((float) delta / 1000));
                 }
                 else{
-                    personaje.moverX(-0.25f);
-                    personaje.moverY(0.25f);
+                    personaje.moverX(-100f * ((float) delta / 1000));
+                    personaje.moverY(100f * ((float) delta / 1000));
                 }
                 personaje.startL();
                 personaje.stopR();
@@ -200,12 +200,12 @@ public class Jugador implements IColisionable {
             
             else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN)) { //Arriba-Derecha
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(0.25f*3);
-                    personaje.moverY(-0.25f*3);
+                    personaje.moverX(100f*3 * ((float) delta / 1000));
+                    personaje.moverY(-100f*3 * ((float) delta / 1000));
                 }
                 else{
-                    personaje.moverX(0.25f);
-                    personaje.moverY(-0.25f);
+                    personaje.moverX(100f * ((float) delta / 1000));
+                    personaje.moverY(-100f * ((float) delta / 1000));
                 }
                 personaje.stopL();
                 personaje.startR();
@@ -219,12 +219,12 @@ public class Jugador implements IColisionable {
         
             else if(!entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT) && !entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN)) { //Abajo-Derecha
                 if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(0.25f*3);
-                    personaje.moverY(0.25f*3);
+                    personaje.moverX(100f*3 * ((float) delta / 1000));
+                    personaje.moverY(100f*3 * ((float) delta / 1000));
                 }
                 else {
-                    personaje.moverX(0.25f);
-                    personaje.moverY(0.25f);
+                    personaje.moverX(100f * ((float) delta / 1000));
+                    personaje.moverY(100f * ((float) delta / 1000));
                 }
                 personaje.stopL();
                 personaje.startR();
@@ -286,16 +286,16 @@ public class Jugador implements IColisionable {
         if(!colision.isGate()) {
             if(colision.isProyectile() != 2) {
                 if(up) {
-                    personaje.moverY(1f);
+                    personaje.moverY(400f);
                 }
                 if(down) {
-                    personaje.moverY(-1f);
+                    personaje.moverY(-400f);
                 }
                 if(r) {
-                    personaje.moverX(-1f);
+                    personaje.moverX(-400f);
                 }
                 if(l) {
-                    personaje.moverX(1f);
+                    personaje.moverX(400f);
                 }
                 if (colision.isEnemy()) {
                     vida -= colision.getAtaque();

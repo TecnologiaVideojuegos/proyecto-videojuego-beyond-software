@@ -13,55 +13,63 @@ import org.newdawn.slick.geom.Rectangle;
  * @author corte
  */
 public class Slime extends Enemigo{
+    private int contador, dirX, dirY;
 
     public Slime(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque);
+        this.contador = 0;
+        this.dirX = (int) (Math.random() * 3+1);
+        this.dirY = (int) (Math.random() * 3+1);
     }
 
     @Override
-    void atacar() {
+    void atacar(int delta) {
         super.setCooldown(0);
-        avanzar();
+        avanzar(delta);
     }
 
     @Override
-    void avanzar() {    
-        int rx = (int) (Math.random() * 3+1);
-        int ry = (int) (Math.random() * 3+1);
-        switch(rx){
+    void avanzar(int delta) {
+        if (contador > 4) {
+            dirX = (int) (Math.random() * 3+1);
+            dirY = (int) (Math.random() * 3+1);
+            contador = 0;
+        }
+        switch(dirX){
             case 1:
-                super.getSprite().moverX((float)-0.25);
+                super.getSprite().moverX(-2 * ((float) delta / 1000));
                 super.setL(true);
                 super.setR(false);
                 break;
             case 2:
-                super.getSprite().moverX((float)0);
+                super.getSprite().moverX(0);
                 super.setL(false);
                 super.setR(false);
                 break;
             case 3:
-                super.getSprite().moverX((float)0.25);
+                super.getSprite().moverX(2 * ((float) delta / 1000));
                 super.setL(false);
                 super.setR(true);
                 break;  
         }
-        switch(ry){
+        switch(dirY){
             case 1:
-                super.getSprite().moverY((float)-0.25);
+                super.getSprite().moverY(-2 * ((float) delta / 1000));
                 super.setUp(true);
                 super.setDown(false);
                 break;
             case 2:
-                super.getSprite().moverY((float)0);
+                super.getSprite().moverY(0);
                 super.setUp(false);
                 super.setDown(false);
                 break;
             case 3:
-                super.getSprite().moverY((float)0.25);
+                super.getSprite().moverY(2 * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   
         }
+        contador ++;
         
         if (super.isUp()) {
             super.getSprite().stopL();

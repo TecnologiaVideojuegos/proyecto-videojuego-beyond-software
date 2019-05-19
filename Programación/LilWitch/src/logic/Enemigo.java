@@ -81,10 +81,10 @@ abstract class Enemigo implements IColisionable {
             i4[i] = tileSet.getSprite(i, 3);
         }
         
-        up = new Animation(i1, 100);
-        down = new Animation(i3, 100);
-        l = new Animation(i4, 100);
-        r = new Animation(i2, 100);
+        up = new Animation(i1, 200);
+        down = new Animation(i3, 200);
+        l = new Animation(i4, 200);
+        r = new Animation(i2, 200);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
         SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
@@ -109,42 +109,31 @@ abstract class Enemigo implements IColisionable {
     }
     
     public void draw() {
-        if(r) {
-            sprite.drawR();
-        }
-        else if(l) {
-            sprite.drawL();
-        }
-        else if(up) {
-            sprite.drawUp();
-        }
-        else {
-            sprite.drawDown();
-        }
+        sprite.drawDown();     
     }
     
     public void update(int delta) {
         cooldown += delta;
-        atacar();
+        atacar(delta);
         sincronizarArea();
     }
     
-    abstract void atacar();
-    abstract void avanzar();
+    abstract void atacar(int delta);
+    abstract void avanzar(int delta);
 
     @Override
     public void alColisionar(IColisionable colision) {
         if(up) {
-            sprite.moverY(1f);
+            sprite.moverY(5f);
         }
         if(down) {
-            sprite.moverY(-1f);
+            sprite.moverY(-5f);
         }
         if(r) {
-            sprite.moverX(-1f);
+            sprite.moverX(-5f);
         }
         if(l) {
-            sprite.moverX(1f);
+            sprite.moverX(5f);
         }
         if (colision.isProyectile() == 2) {
             vida -= colision.getAtaque();
