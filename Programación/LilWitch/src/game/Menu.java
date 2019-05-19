@@ -23,8 +23,9 @@ import org.newdawn.slick.tests.states.TestState2;
  */
 public class Menu extends BasicGameState{
 private int selected;
-private String[] options = new String[] {"Nueva Partida","Cargar Partida","Highscores","Salir"};
+private String[] options = new String[] {"",""};
 private StateBasedGame game;
+private Image image;
 
     @Override
     public int getID() {
@@ -33,20 +34,21 @@ private StateBasedGame game;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        
+        image = new Image("resources/niveles/menu.png");
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
-        g.setColor(Color.blue);
-        g.drawString("Menú del Juego", 200, 50);
+        g.drawImage(image, 0, 0);
+        //g.setColor(Color.blue);
+        //g.drawString("Menú del Juego", 200, 50);
         //g.setBackground(Color.white);
-        g.setColor(Color.black);
+        g.setColor(Color.white);
         
         for (int i=0;i<options.length;i++) {
-			g.drawString(options[i], 400, 200+(i*50));
+			g.drawString(options[i], 1000, 350+(i*337));
 			if (selected == i) {
-				g.drawRect(200,190+(i*50),400,50);
+				g.drawRect(1000, 320+(i*337),350,70);
 			}
 		}
     }
@@ -59,10 +61,6 @@ private StateBasedGame game;
                     game.enterState(3);
                     break;
                 case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
                     container.exit();
                     break;
             }
