@@ -18,8 +18,8 @@ public class ControladorProyectiles {
         proyectiles = new ArrayList<Proyectil>();
     }
     
-    public void addProyectil(float x, float y, float vX, float vY, int tipo) {
-        proyectiles.add(new Proyectil("resources/proyectiles/Fire.png", x, y, 58, 72, 0.5f, vX, vY, 1, tipo));
+    public void addProyectil(String filename, float x, float y, float vX, float vY, int tipo) {
+        proyectiles.add(new Proyectil(filename, x, y, 58, 72, 0.5f, vX, vY, 1, tipo));
     }
     
     public void removeProyectil(int i) {

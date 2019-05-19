@@ -20,7 +20,7 @@ abstract class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
     private Rectangle hitbox, visionRange;;
     private boolean up, down, r, l, stop;
-    private int vida, ataque;
+    private int vida, ataque, cooldown;
     private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
@@ -58,6 +58,7 @@ abstract class Enemigo implements IColisionable {
         this.stop = false;
         this.vida = vida;
         this.ataque = ataque;
+        this.cooldown = 500;
     }
     
     public Enemigo(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
@@ -118,8 +119,9 @@ abstract class Enemigo implements IColisionable {
         }
     }
     
-    public void update() {
-        avanzar();
+    public void update(int delta) {
+        cooldown += delta;
+        atacar();
         sincronizarArea();
     }
     
@@ -265,5 +267,21 @@ abstract class Enemigo implements IColisionable {
     @Override
     public Punto getPosicion() {
         return sprite.getPosicion();
+    }
+
+    public Punto getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public void setPlayerPosition(Punto playerPosition) {
+        this.playerPosition = playerPosition;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+
+    public void setCooldown(int cooldown) {
+        this.cooldown = cooldown;
     }
 }

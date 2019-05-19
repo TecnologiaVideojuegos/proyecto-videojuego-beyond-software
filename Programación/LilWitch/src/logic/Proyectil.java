@@ -20,9 +20,9 @@ public class Proyectil implements IColisionable {
     private int ataque;
     private int tipo;
 
-    public Proyectil(String path, float x, float y, int width, int height, float escala, float vX, float vY, int daño, int tipo) {
+    public Proyectil(String filename, float x, float y, int width, int height, float escala, float vX, float vY, int daño, int tipo) {
         try {
-            sprite = new SpriteMovil(path, width, height, x, y, escala, vX, vY);
+            sprite = new SpriteMovil("resources/proyectiles/" + filename, width, height, x, y, escala, vX, vY);
         }
         catch (SlickException e){
             System.out.println("Error al crear el proyectil");

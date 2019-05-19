@@ -14,15 +14,34 @@ import org.newdawn.slick.geom.Shape;
  * @author corte
  */
 public class Esqueleto extends Enemigo{
+    private ControladorProyectiles proyectiles;
+    private boolean escudo;
     
-    public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
+    public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque, distanciaVision);
+        this.proyectiles = proyectiles;
+        if(x == 120) {
+            escudo = false;
+        }
+        else {
+            escudo = true;
+        }
         //Normal 120x150 Escudo 130x180
     }
 
     @Override
     void atacar() {
         avanzar();
+        if (super.getPlayerPosition() != null) {
+            if (super.getCooldown() > 500) {
+                float x = super.getPosicion().getX();
+                float y = super.getPosicion().getY();
+                x += (super.getSprite().getStaticDown().getWidth() / 2) - 29;
+                y += super.getSprite().getStaticDown().getHeight(); 
+                proyectiles.addProyectil("Hueso.png", x, y, 100, 100, 2);
+                super.setCooldown(0);
+            }
+        }
     }
 
     @Override
