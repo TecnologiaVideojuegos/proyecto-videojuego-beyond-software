@@ -100,7 +100,7 @@ public class Nivel1 extends BasicGameState{
         ArrayList<Puerta> puertas4 = new ArrayList();
         
         ArrayList<Esqueleto> esqueletos1 = new ArrayList<>();
-        Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 2400, 5, 1, proyectiles);
+        Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
         esqueletos1.add(e1);
 
         

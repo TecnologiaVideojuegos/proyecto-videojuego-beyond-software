@@ -10,6 +10,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 /**
@@ -18,7 +19,8 @@ import org.newdawn.slick.geom.Shape;
  */
 abstract class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
-    private Rectangle hitbox, visionRange;;
+    private Rectangle hitbox;
+    private Circle visionRange;
     private boolean up, down, r, l, stop;
     private int vida, ataque, cooldown, distanciaVision;
     private Punto playerPosition;
@@ -47,11 +49,9 @@ abstract class Enemigo implements IColisionable {
         r = new Animation(i2, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
-        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
+        this.sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
+        this.hitbox = new Rectangle(x, y, ancho, alto);
               
-        this.sprite = sprite;
-        this.hitbox = hitbox;
         this.up = false;
         this.down = false;
         this.r = false;
@@ -87,12 +87,10 @@ abstract class Enemigo implements IColisionable {
         r = new Animation(i2, 200);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
-        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
+        this.sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
+        this.hitbox = new Rectangle(x, y, ancho, alto); 
+        this.visionRange = new Circle(x + ancho / 2, y + alto / 2, distanciaVision); 
         
-        this.visionRange = new Rectangle(hitbox.getX() - distanciaVision, hitbox.getY() - distanciaVision, 2*distanciaVision + hitbox.getWidth(), 2*distanciaVision + hitbox.getHeight());      
-        this.sprite = sprite;
-        this.hitbox = hitbox;
         this.up = false;
         this.down = false;
         this.r = false;
@@ -100,6 +98,7 @@ abstract class Enemigo implements IColisionable {
         this.stop = false;
         this.vida = vida;
         this.ataque = ataque;
+        this.cooldown = 500;
         this.distanciaVision = distanciaVision;
     }
 
@@ -200,8 +199,9 @@ abstract class Enemigo implements IColisionable {
     public void sincronizarArea() {
         hitbox.setX(sprite.getPosicion().getX());
         hitbox.setY(sprite.getPosicion().getY());
-        visionRange.setX(sprite.getPosicion().getX() - distanciaVision);
-        visionRange.setY(sprite.getPosicion().getY() - distanciaVision);
+        visionRange.setX(hitbox.getX() + hitbox.getWidth() / 2);
+        System.out.println("X: "+sprite.getPosicion().getX() + sprite.getStaticDown().getWidth() / 2);
+        visionRange.setY(hitbox.getY() + hitbox.getHeight() / 2);
     }
 
     @Override
