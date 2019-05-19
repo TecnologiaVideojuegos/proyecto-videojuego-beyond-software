@@ -34,7 +34,7 @@ private Image image;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/niveles/menu.png");
+        image = new Image("resources/intro/fondo_1.png");
     }
 
     @Override
@@ -46,9 +46,9 @@ private Image image;
         g.setColor(Color.white);
         
         for (int i=0;i<options.length;i++) {
-			g.drawString(options[i], 1000, 350+(i*337));
+			g.drawString(options[i], 1510, 920+(i*50));
 			if (selected == i) {
-				g.drawRect(1000, 320+(i*337),350,70);
+				g.drawRect(1510, 920+(i*50),300,50);
 			}
 		}
     }
@@ -58,7 +58,7 @@ private Image image;
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
-                    game.enterState(3);
+                    game.enterState(10);
                     break;
                 case 1:
                     container.exit();
