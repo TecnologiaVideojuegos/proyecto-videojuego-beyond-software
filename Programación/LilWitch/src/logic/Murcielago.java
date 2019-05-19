@@ -20,6 +20,7 @@ public class Murcielago  extends Enemigo{
     
     @Override
     void atacar() {
+        super.setCooldown(0);
         avanzar();
     }
 

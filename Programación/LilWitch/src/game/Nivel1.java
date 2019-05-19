@@ -98,12 +98,16 @@ public class Nivel1 extends BasicGameState{
         walls4.add(abismo41);
         walls4.add(abismo42);
         ArrayList<Puerta> puertas4 = new ArrayList();
+        
+        ArrayList<Esqueleto> esqueletos1 = new ArrayList<>();
+        Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
+        esqueletos1.add(e1);
 
         
-        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, player, proyectiles);
-        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, player, proyectiles);
-        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, player, proyectiles);
-        Sala sala4 = new Sala(mapa.getSubImage(2, 0), walls4, puertas4, player, proyectiles);
+        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, player, proyectiles);
+        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, esqueletos1, player, proyectiles);
+        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, player, proyectiles);
+        Sala sala4 = new Sala(mapa.getSubImage(2, 0), walls4, puertas4, null, player, proyectiles);
         salas.add(sala1);
         salas.add(sala2);
         salas.add(sala3);

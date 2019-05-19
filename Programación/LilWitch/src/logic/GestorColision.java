@@ -25,8 +25,8 @@ public class GestorColision {
         if(!lista.contains(cuerpo)) lista.add(cuerpo);
     }
     
-    public void addProyectil(String filename, float x, float y, float vX, float vY, int tipo) {
-        proyectiles.addProyectil(filename, x, y, vX, vY, tipo);
+    public void addProyectil(String filename, float x, float y, float vX, float vY, int daño, int tipo) {
+        proyectiles.addProyectil(filename, x, y, vX, vY, daño, tipo);
     }
     
     public void anularCuerpo(IColisionable cuerpo) {
@@ -105,6 +105,9 @@ public class GestorColision {
     public void drawHitboxes(Graphics g) {
         for (int i = 0; i < lista.size(); i++) {
             g.draw(lista.get(i).getHitbox());
+            if(lista.get(i) instanceof Enemigo) {
+                g.draw(lista.get(i).getVisionRange());
+            }
             
         }
         for (int j = 0; j < proyectiles.getProyectiles().size(); j++) {

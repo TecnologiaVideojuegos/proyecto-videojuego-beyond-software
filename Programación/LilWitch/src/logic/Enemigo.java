@@ -20,7 +20,7 @@ abstract class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
     private Rectangle hitbox, visionRange;;
     private boolean up, down, r, l, stop;
-    private int vida, ataque, cooldown;
+    private int vida, ataque, cooldown, distanciaVision;
     private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
@@ -28,6 +28,7 @@ abstract class Enemigo implements IColisionable {
         Animation up, down, l, r;
         tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
         int numSprites = tileSet.getHorizontalCount();
+        
         Image[] i1 = new Image[numSprites];
         Image[] i2 = new Image[numSprites];
         Image[] i3 = new Image[numSprites];
@@ -46,7 +47,7 @@ abstract class Enemigo implements IColisionable {
         r = new Animation(i2, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(2, 1), tileSet.getSprite(0, 1), tileSet.getSprite(1, 1), tileSet.getSprite(4, 1), x, y);
+        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
         Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
               
         this.sprite = sprite;
@@ -59,6 +60,7 @@ abstract class Enemigo implements IColisionable {
         this.vida = vida;
         this.ataque = ataque;
         this.cooldown = 500;
+        this.distanciaVision = 0;
     }
     
     public Enemigo(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
@@ -66,6 +68,7 @@ abstract class Enemigo implements IColisionable {
         Animation up, down, l, r;
         tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
         int numSprites = tileSet.getHorizontalCount();
+        
         Image[] i1 = new Image[numSprites];
         Image[] i2 = new Image[numSprites];
         Image[] i3 = new Image[numSprites];
@@ -84,7 +87,7 @@ abstract class Enemigo implements IColisionable {
         r = new Animation(i2, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(2, 1), tileSet.getSprite(0, 1), tileSet.getSprite(1, 1), tileSet.getSprite(4, 1), x, y);
+        SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
         Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
         
         this.visionRange = new Rectangle(hitbox.getX() - distanciaVision, hitbox.getY() - distanciaVision, 2*distanciaVision + hitbox.getWidth(), 2*distanciaVision + hitbox.getHeight());      
@@ -97,6 +100,7 @@ abstract class Enemigo implements IColisionable {
         this.stop = false;
         this.vida = vida;
         this.ataque = ataque;
+        this.distanciaVision = distanciaVision;
     }
 
     @Override
@@ -207,6 +211,8 @@ abstract class Enemigo implements IColisionable {
     public void sincronizarArea() {
         hitbox.setX(sprite.getPosicion().getX());
         hitbox.setY(sprite.getPosicion().getY());
+        visionRange.setX(sprite.getPosicion().getX() - distanciaVision);
+        visionRange.setY(sprite.getPosicion().getY() - distanciaVision);
     }
 
     @Override

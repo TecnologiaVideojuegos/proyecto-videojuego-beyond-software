@@ -18,10 +18,12 @@ public class Sala {
     private GestorColision gestor;
     private Image imagen;
     private Jugador player;
+    private ArrayList<Esqueleto> esqueletos;
 
-    public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, Jugador jugador, ControladorProyectiles proyectiles) {
+    public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, ArrayList<Esqueleto> esqueletos, Jugador jugador, ControladorProyectiles proyectiles) {
         this.imagen = imagen;
         this.player = jugador;
+        this.esqueletos = esqueletos;
         gestor = new GestorColision(proyectiles);
         gestor.registrarCuerpo(jugador);
         for (int i = 0; i < paredes.size(); i++) {
@@ -32,19 +34,45 @@ public class Sala {
             gestor.registrarCuerpo(puertas.get(j));
             
         }
+        if(esqueletos != null) {
+            for (int k = 0; k < esqueletos.size(); k++) {
+                gestor.registrarCuerpo(esqueletos.get(k));
+
+            }
+        }
     }
     
     public void draw(Graphics g, Input entrada) {
         imagen.draw(0, 0);
         player.draw(entrada);
+        if(esqueletos != null) {
+            drawEnemigos();
+        }
         gestor.drawProyectiles();
         gestor.drawHitboxes(g);
     }
     
     public int update(Input entrada, int delta) {
         player.update(entrada, delta);
+        if(esqueletos != null) {
+            updateEnemigos(delta);
+        }
         gestor.updateProyectiles(delta);
         return gestor.comprobarColisiones();
+    }
+    
+    public void updateEnemigos(int delta) {
+        for (int i = 0; i < esqueletos.size(); i++) {
+            esqueletos.get(i).update(delta);
+            
+        }
+    }
+    
+    public void drawEnemigos() {
+        for (int i = 0; i < esqueletos.size(); i++) {
+            esqueletos.get(i).draw();
+            
+        }
     }
 
     public GestorColision getGestor() {

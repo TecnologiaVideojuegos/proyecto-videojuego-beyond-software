@@ -20,6 +20,7 @@ public class Slime extends Enemigo{
 
     @Override
     void atacar() {
+        super.setCooldown(0);
         avanzar();
     }
 

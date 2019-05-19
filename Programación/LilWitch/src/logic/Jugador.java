@@ -264,7 +264,7 @@ public class Jugador implements IColisionable {
                 y += personaje.getStaticDown().getHeight();
                 vY = 200;     
             }  
-            proyectiles.addProyectil("Fire.png", x, y, vX, vY, 2);
+            proyectiles.addProyectil("Fire.png", x, y, vX, vY, 2, 2);
             cooldown = 0;
         }
     }
