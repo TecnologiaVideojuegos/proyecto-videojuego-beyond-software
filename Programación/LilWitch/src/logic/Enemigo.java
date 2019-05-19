@@ -48,7 +48,7 @@ abstract class Enemigo implements IColisionable {
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
         SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
-        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
+        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), ancho, alto);
               
         this.sprite = sprite;
         this.hitbox = hitbox;
@@ -88,9 +88,9 @@ abstract class Enemigo implements IColisionable {
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
         SpriteAnimado sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
-        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), sprite.getStaticDown().getWidth()-40, sprite.getStaticDown().getHeight()-40);
+        Rectangle hitbox = new Rectangle(sprite.getPosicion().getX(), sprite.getPosicion().getY(), ancho, alto);
         
-        this.visionRange = new Rectangle(hitbox.getX() - distanciaVision, hitbox.getY() - distanciaVision, 2*distanciaVision + hitbox.getWidth(), 2*distanciaVision + hitbox.getHeight());      
+        this.visionRange = new Rectangle(hitbox.getX() - distanciaVision, hitbox.getY() - distanciaVision, 2*distanciaVision + ancho, 2*distanciaVision + alto);      
         this.sprite = sprite;
         this.hitbox = hitbox;
         this.up = false;
