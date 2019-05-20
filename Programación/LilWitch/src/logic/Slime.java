@@ -30,14 +30,14 @@ public class Slime extends Enemigo{
 
     @Override
     void avanzar(int delta) {
-        if (contador > 4) {
+        if (contador > 50) {
             dirX = (int) (Math.random() * 3+1);
             dirY = (int) (Math.random() * 3+1);
             contador = 0;
         }
         switch(dirX){
             case 1:
-                super.getSprite().moverX(-2 * ((float) delta / 1000));
+                super.getSprite().moverX(-100 * ((float) delta / 1000));
                 super.setL(true);
                 super.setR(false);
                 break;
@@ -47,14 +47,14 @@ public class Slime extends Enemigo{
                 super.setR(false);
                 break;
             case 3:
-                super.getSprite().moverX(2 * ((float) delta / 1000));
+                super.getSprite().moverX(100 * ((float) delta / 1000));
                 super.setL(false);
                 super.setR(true);
                 break;  
         }
         switch(dirY){
             case 1:
-                super.getSprite().moverY(-2 * ((float) delta / 1000));
+                super.getSprite().moverY(-100 * ((float) delta / 1000));
                 super.setUp(true);
                 super.setDown(false);
                 break;
@@ -64,7 +64,7 @@ public class Slime extends Enemigo{
                 super.setDown(false);
                 break;
             case 3:
-                super.getSprite().moverY(2 * ((float) delta / 1000));
+                super.getSprite().moverY(100 * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   

@@ -21,7 +21,7 @@ abstract class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
     private Rectangle hitbox;
     private Circle visionRange;
-    private boolean up, down, r, l, stop;
+    private boolean up, down, r, l, colision;
     private int vida, ataque, cooldown, distanciaVision;
     private Punto playerPosition;
 
@@ -56,10 +56,10 @@ abstract class Enemigo implements IColisionable {
         this.down = false;
         this.r = false;
         this.l = false;
-        this.stop = false;
+        this.colision = false;
         this.vida = vida;
         this.ataque = ataque;
-        this.cooldown = 500;
+        this.cooldown = 1000;
         this.distanciaVision = 0;
     }
     
@@ -95,10 +95,10 @@ abstract class Enemigo implements IColisionable {
         this.down = false;
         this.r = false;
         this.l = false;
-        this.stop = false;
+        this.colision = false;
         this.vida = vida;
         this.ataque = ataque;
-        this.cooldown = 500;
+        this.cooldown = 1000;
         this.distanciaVision = distanciaVision;
     }
 
@@ -108,7 +108,18 @@ abstract class Enemigo implements IColisionable {
     }
     
     public void draw() {
-        sprite.drawDown();     
+        if(down) {
+            sprite.drawDown();
+        }
+        else if (up) {
+            sprite.drawUp();
+        }
+        else if (l) {
+            sprite.drawL();
+        }
+        else if (r) {
+            sprite.drawR();
+        }
     }
     
     public void update(int delta) {
@@ -122,20 +133,25 @@ abstract class Enemigo implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        if(up) {
-            sprite.moverY(1f);
-        }
-        if(down) {
-            sprite.moverY(-1f);
-        }
-        if(r) {
-            sprite.moverX(-1f);
-        }
-        if(l) {
-            sprite.moverX(1f);
-        }
-        if (colision.isProyectile() == 2) {
-            vida -= colision.getAtaque();
+        if(colision.isProyectile() != 1) {
+            if(up) {
+                sprite.moverY(1f);
+            }
+            if(down) {
+                sprite.moverY(-1f);
+            }
+            if(r) {
+                sprite.moverX(-1f);
+            }
+            if(l) {
+                sprite.moverX(1f);
+            }
+            if (colision.isProyectile() == 2) {
+                vida -= colision.getAtaque();
+            }
+            if (!colision.isPlayer()) {
+                this.colision = true;
+            }
         }
     }
 
@@ -187,12 +203,12 @@ abstract class Enemigo implements IColisionable {
         this.l = l;
     }
 
-    public boolean isStop() {
-        return stop;
+    public boolean isColision() {
+        return colision;
     }
 
-    public void setStop(boolean stop) {
-        this.stop = stop;
+    public void setColision(boolean colision) {
+        this.colision = colision;
     }
     
     @Override

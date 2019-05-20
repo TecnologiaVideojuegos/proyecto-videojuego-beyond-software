@@ -16,14 +16,14 @@ import org.newdawn.slick.geom.Shape;
 public class Esqueleto extends Enemigo{
     private ControladorProyectiles proyectiles;
     private boolean escudo;
-    private int contador, dirX, dirY;
+    private int contador, movX, movY;
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque);
         this.proyectiles = proyectiles;
         this.contador = 0;
-        this.dirX = (int) (Math.random() * 3+1);
-        this.dirY = (int) (Math.random() * 3+1);
+        this.movX = (int) (Math.random() * 3 + 1);
+        this.movY = (int) (Math.random() * 3 + 1);
         if(x == 120) {
             escudo = false;
         }
@@ -37,7 +37,7 @@ public class Esqueleto extends Enemigo{
     void atacar(int delta) {
         avanzar(delta);
         if (super.getPlayerPosition() != null) {
-            if (super.getCooldown() > 500) {
+            if (super.getCooldown() > 2000) {
                 float x = super.getPosicion().getX();
                 float y = super.getPosicion().getY();
                 System.out.println("Jugador en: " + x+ "," +y);
@@ -58,7 +58,7 @@ public class Esqueleto extends Enemigo{
                 else {
                     vY = 100;
                 }
-                proyectiles.addProyectil("Hueso.png", x, y, 120, 120, 0.5f, vX, vY, 1, 1);
+                proyectiles.addProyectil("Hueso.png", x, y, 120, 120, 0.25f, vX, vY, 1, 1);
                 super.setCooldown(0);
             }
         }
@@ -66,12 +66,26 @@ public class Esqueleto extends Enemigo{
 
     @Override
     void avanzar(int delta) {
-        if (contador > 50) {
-            dirX = (int) (Math.random() * 3+1);
-            dirY = (int) (Math.random() * 3+1);
-            contador = 0;
+        if(super.isColision()) {
+            if(super.isUp()) {
+                movX = (int) (Math.random() * 3 + 1);
+                movY = 1;
+            }
+            if(super.isDown()) {
+                movX = (int) (Math.random() * 3 + 1);
+                movY = 3;
+            }
+            if(super.isR()) {
+                movX = 1;
+                movY = (int) (Math.random() * 3 + 1);
+            }
+            else {
+                movX = 3;
+                movY = (int) (Math.random() * 3 + 1);
+            }
+            super.setColision(false);
         }
-        switch(dirX){
+        switch(movX){
             case 1:
                 super.getSprite().moverX(-100 * ((float) delta / 1000));
                 super.setL(true);
@@ -88,7 +102,7 @@ public class Esqueleto extends Enemigo{
                 super.setR(true);
                 break;  
         }
-        switch(dirY){
+        switch(movY){
             case 1:
                 super.getSprite().moverY(-100 * ((float) delta / 1000));
                 super.setUp(true);
