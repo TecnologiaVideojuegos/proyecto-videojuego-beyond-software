@@ -38,7 +38,7 @@ import org.newdawn.slick.state.StateBasedGame;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(11);
+            game.enterState(3);
         }
     }
 }
