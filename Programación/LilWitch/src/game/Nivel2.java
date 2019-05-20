@@ -24,6 +24,10 @@ public class Nivel2 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual = 3;
     private ControladorProyectiles proyectiles;
+    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private int selected;
+    private boolean paused = false;
+    private Image image;
     
     @Override
     public int getID() {
@@ -125,8 +129,18 @@ public class Nivel2 extends BasicGameState{
         if(container.isPaused())
         {
             g.setBackground(Color.black);
+            g.drawImage(image, 0, 0);
             g.setColor(Color.white);
-            g.drawString("PAUSA", 955, 475);
+            g.drawString("PAUSA", 955, 400);
+            g.setColor(Color.white);
+            
+            
+            for (int i=0;i<options.length;i++) {
+			g.drawString(options[i], 920, 475+(i*50));
+			if (selected == i) {
+				g.drawRect(890, 470+(i*50),200,30);
+			}
+		}
         }else{
         salas.get(salaActual-1).draw(g, entrada);
         }
@@ -139,8 +153,44 @@ public class Nivel2 extends BasicGameState{
         System.out.println(n);
         if(n!=0) salaActual = n;
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE))
+        {
             container.setPaused(!container.isPaused());
+            paused=!paused;
+            }
+         if(container.isPaused())
+        {
+            if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
+            switch(selected) {
+                case 0:
+                    container.setPaused(!container.isPaused());
+                    paused=!paused;
+                    break;
+                case 1:
+                    game.enterState(2);
+                    break;
+                }
+            }   
+        }
     }
+    
+    @Override
+    public void keyReleased(int key, char c) {
+        if(paused)
+        {
+		if (key == Input.KEY_DOWN) {
+			selected++;
+			if (selected >= options.length) {
+				selected = 0;
+			}
+		}
+		if (key == Input.KEY_UP) {
+			selected--;
+			if (selected < 0) {
+				selected = options.length - 1;
+			}
+		}
+        }
+	} 
     
     
 }
