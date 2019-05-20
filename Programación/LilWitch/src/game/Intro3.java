@@ -12,6 +12,8 @@ import logic.*;
 import org.newdawn.slick.geom.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
  *
@@ -38,7 +40,7 @@ private Image image;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(13);
+            game.enterState(13,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
     }
     

@@ -22,16 +22,16 @@ public class Principal extends StateBasedGame{
     public Principal() throws SlickException {
         super("Lil'Witch");
         contenedor = new AppGameContainer(this);
-        contenedor.setDisplayMode(1920, 1080, true);
+        contenedor.setDisplayMode(1920, 1080, false);
         contenedor.start();
     }
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         /*this.addState(new Logo());
-        this.addState(new Logo_juego());*/
+        this.addState(new Logo_juego());
         this.addState(new Menu());
-        /*this.addState(new Intro1());
+        this.addState(new Intro1());
         this.addState(new Intro2());
         this.addState(new Intro3());
         this.addState(new Intro4());
