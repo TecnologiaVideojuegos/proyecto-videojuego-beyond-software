@@ -58,7 +58,7 @@ private Image image;
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
-                    game.enterState(10);
+                    game.enterState(3);
                     break;
                 case 1:
                     container.exit();

@@ -27,7 +27,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/intro/fondo_2.png");
+        image = new Image("resources/intro/game_over.png");
     }
 
     @Override
@@ -38,7 +38,7 @@ import org.newdawn.slick.state.StateBasedGame;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(3);
+            game.enterState(2);
         }
     }
 }
