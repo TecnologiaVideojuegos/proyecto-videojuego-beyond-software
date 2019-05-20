@@ -17,8 +17,9 @@ public class Jugador implements IColisionable {
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
-    private int vida, cooldown;
+    private int vida, vidaTotal, cooldown;
     private int[] objetos, varitas;
+    private Image corazonVacio, corazonLleno, corazonMedio;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -48,10 +49,14 @@ public class Jugador implements IColisionable {
         this.l = false;
         this.stop = false;
         this.proyectiles = proyectiles;
-        vida = 6;
-        cooldown = 1000;
+        this.vida = 6;
+        this.vidaTotal = 6;
+        this.cooldown = 1000;
         this.objetos = new int[6];
         this.varitas = new int[4];
+        this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
+        this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
+        this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
     }
     
     public void draw(Input entrada) {
@@ -78,6 +83,29 @@ public class Jugador implements IColisionable {
         }
         else {
             personaje.draw();
+        }
+        
+        int contador = vida;
+        boolean medio;
+        
+        if(vida % 2 == 1) {
+            medio = true;
+            contador--;
+        }
+        else {
+            medio = false;
+        }
+        
+        contador = contador / 2;
+        
+        for (int i = 0; i < contador; i++) {
+            corazonLleno.draw(24 + i * 56, 10); 
+        }
+        if(medio) {
+            corazonMedio.draw(24 + contador * 56, 10); 
+        }
+        for (int j = contador+1; j < vidaTotal / 2; j++) {
+            corazonVacio.draw(24 + j * 56, 10);    
         }
     }
     
