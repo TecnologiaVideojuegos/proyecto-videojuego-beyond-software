@@ -37,6 +37,14 @@ public class GestorColision {
         lista.remove(i);
     }
     
+    public void comprobarVidas() {
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getVida() <= 0) {
+                lista.remove(i);
+            }          
+        }
+    }
+    
     public int comprobarColisiones() {
         int n = 0;
         for (int i = 0; i < lista.size(); i++) {
@@ -53,6 +61,7 @@ public class GestorColision {
                 }  
             }
         }
+        comprobarVidas();
         return n;
     }
     
@@ -94,9 +103,6 @@ public class GestorColision {
                 lista.get(i).alColisionar(proyectiles.get(j));
                 if (!lista.get(i).isPlayer() && proyectiles.get(j).isProyectile() >  2 || !lista.get(i).isEnemy() && proyectiles.get(j).isProyectile() != 1) {
                     proyectiles.removeProyectil(j);
-                }
-                if (lista.get(i).getVida() <= 0) {
-                    lista.remove(i);
                 }
             }       
         }

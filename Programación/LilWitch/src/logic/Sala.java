@@ -63,6 +63,12 @@ public class Sala {
     
     public void updateEnemigos(int delta) {
         for (int i = 0; i < esqueletos.size(); i++) {
+            if(esqueletos.get(i).getVida() <= 0) {
+                esqueletos.remove(i);
+            }    
+        }
+        
+        for (int i = 0; i < esqueletos.size(); i++) {
             esqueletos.get(i).update(delta);
             
         }
