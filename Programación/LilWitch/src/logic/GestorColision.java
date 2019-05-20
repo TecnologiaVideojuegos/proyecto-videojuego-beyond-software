@@ -101,7 +101,7 @@ public class GestorColision {
             if(proyectiles.get(j).getHitbox().intersects(lista.get(i).getHitbox())) {
                 proyectiles.get(j).alColisionar(lista.get(i));
                 lista.get(i).alColisionar(proyectiles.get(j));
-                if (!lista.get(i).isPlayer() && proyectiles.get(j).isProyectile() >  2 || !lista.get(i).isEnemy() && proyectiles.get(j).isProyectile() != 1) {
+                if (lista.get(i).isPlayer() && proyectiles.get(j).isProyectile() == 1 || lista.get(i).isEnemy() && proyectiles.get(j).isProyectile() > 1 || !lista.get(i).isPlayer() && !lista.get(i).isEnemy()) {
                     proyectiles.removeProyectil(j);
                 }
             }       
