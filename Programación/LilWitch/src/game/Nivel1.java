@@ -165,7 +165,12 @@ public class Nivel1 extends BasicGameState{
         }
         else {
             int n = salas.get(salaActual-1).update(entrada, delta);
-            if(n!=0) salaActual = n;
+            if(n!=0) {
+                if(n != salaActual) {
+                    salas.get(salaActual-1).getGestor().resetProyectiles();
+                }
+                salaActual = n;
+            }
         }
     }
     

@@ -103,6 +103,5 @@ public class Sala {
 
     public void setPlayer(Jugador player) {
         this.player = player;
-    }
-    
+    }   
 }

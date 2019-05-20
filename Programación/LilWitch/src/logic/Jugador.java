@@ -443,4 +443,12 @@ public class Jugador implements IColisionable {
     public Punto getPosicion() {
         return personaje.getPosicion();
     }
+
+    public ControladorProyectiles getProyectiles() {
+        return proyectiles;
+    }
+
+    public void setProyectiles(ControladorProyectiles proyectiles) {
+        this.proyectiles = proyectiles;
+    }
 }

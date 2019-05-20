@@ -128,4 +128,8 @@ public class GestorColision {
     public void drawProyectiles() {
         proyectiles.draw();
     }
+    
+    public void resetProyectiles() {
+        proyectiles.resetProyectiles();
+    }
 }

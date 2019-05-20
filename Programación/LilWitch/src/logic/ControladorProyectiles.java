@@ -26,6 +26,13 @@ public class ControladorProyectiles {
         Proyectil p = proyectiles.remove(i);
     }
     
+    public void resetProyectiles() {
+        int longitud = proyectiles.size();
+        for (int i = 0; i < longitud; i++) {
+            proyectiles.remove(0);     
+        }
+    }
+    
     public void update(int delta) {
         for (int i = 0; i < proyectiles.size(); i++) {
             proyectiles.get(i).update(delta);          
