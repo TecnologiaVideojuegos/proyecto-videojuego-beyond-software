@@ -117,7 +117,15 @@ public class Nivel5 extends BasicGameState{
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
+        if(container.isPaused())
+        {
+            g.setBackground(Color.black);
+            g.setColor(Color.white);
+            g.drawString("PAUSA", 955, 475);
+        }else{
         salas.get(salaActual-1).draw(g, entrada);
+        }
+        
     }
 
     @Override
@@ -125,6 +133,8 @@ public class Nivel5 extends BasicGameState{
         int n = salas.get(salaActual-1).update(entrada, delta);
         System.out.println(n);
         if(n!=0) salaActual = n;
+        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE))
+            container.setPaused(!container.isPaused());
     }
     
     
