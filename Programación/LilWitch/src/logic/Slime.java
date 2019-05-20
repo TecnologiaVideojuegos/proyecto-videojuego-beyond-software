@@ -13,13 +13,12 @@ import org.newdawn.slick.geom.Rectangle;
  * @author corte
  */
 public class Slime extends Enemigo{
-    private int contador, dirX, dirY;
+    private int movX, movY;
 
     public Slime(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque);
-        this.contador = 0;
-        this.dirX = (int) (Math.random() * 3+1);
-        this.dirY = (int) (Math.random() * 3+1);
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
     }
 
     @Override
@@ -30,14 +29,28 @@ public class Slime extends Enemigo{
 
     @Override
     void avanzar(int delta) {
-        if (contador > 50) {
-            dirX = (int) (Math.random() * 3+1);
-            dirY = (int) (Math.random() * 3+1);
-            contador = 0;
+        if(super.isColision()) {
+            if(super.isUp()) {
+                movX = (int) (Math.random() * 3 + 1);
+                movY = 1;
+            }
+            if(super.isDown()) {
+                movX = (int) (Math.random() * 3 + 1);
+                movY = 3;
+            }
+            if(super.isR()) {
+                movX = 1;
+                movY = (int) (Math.random() * 3 + 1);
+            }
+            else {
+                movX = 3;
+                movY = (int) (Math.random() * 3 + 1);
+            }
+            super.setColision(false);
         }
-        switch(dirX){
+        switch(movX){
             case 1:
-                super.getSprite().moverX(-100 * ((float) delta / 1000));
+                super.getSprite().moverX(-150 * ((float) delta / 1000));
                 super.setL(true);
                 super.setR(false);
                 break;
@@ -47,14 +60,14 @@ public class Slime extends Enemigo{
                 super.setR(false);
                 break;
             case 3:
-                super.getSprite().moverX(100 * ((float) delta / 1000));
+                super.getSprite().moverX(150 * ((float) delta / 1000));
                 super.setL(false);
                 super.setR(true);
                 break;  
         }
-        switch(dirY){
+        switch(movY){
             case 1:
-                super.getSprite().moverY(-100 * ((float) delta / 1000));
+                super.getSprite().moverY(-150 * ((float) delta / 1000));
                 super.setUp(true);
                 super.setDown(false);
                 break;
@@ -64,12 +77,11 @@ public class Slime extends Enemigo{
                 super.setDown(false);
                 break;
             case 3:
-                super.getSprite().moverY(100 * ((float) delta / 1000));
+                super.getSprite().moverY(150 * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   
         }
-        contador ++;
         
         if (super.isUp()) {
             super.getSprite().stopL();

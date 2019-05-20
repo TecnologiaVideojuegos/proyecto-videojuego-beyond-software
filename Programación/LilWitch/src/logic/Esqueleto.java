@@ -118,7 +118,6 @@ public class Esqueleto extends Enemigo{
                 super.setDown(true);
                 break;   
         }
-        contador ++;
         
         if (super.isUp()) {
             super.getSprite().stopL();
