@@ -17,17 +17,17 @@ import org.newdawn.slick.state.*;
  *
  * @author alvar
  */
-public class intro_1 extends BasicGameState{
+public class Intro2 extends BasicGameState{
 private Image image;
     
     @Override
     public int getID() {
-        return 10;
+        return 11;
     }
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/intro/fondo_2.png");
+        image = new Image("resources/intro/fondo_3_1.png");
     }
 
     @Override
@@ -38,7 +38,7 @@ private Image image;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(11);
+            game.enterState(12);
         }
     }
     

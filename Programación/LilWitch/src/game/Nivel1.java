@@ -28,7 +28,7 @@ public class Nivel1 extends BasicGameState{
     private String[] options = new String[] {"Volver al juego","Volver al inicio"};
     private int selected;
     private boolean paused = false;
-    private Image image;
+    private Image fondoPausa;
     
     @Override
     public int getID() {
@@ -42,7 +42,7 @@ public class Nivel1 extends BasicGameState{
         entrada = container.getInput();
         player = new Jugador(proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 1.png", 1920, 1080);
-        image = new Image("resources/intro/fondo_5.png");
+        fondoPausa = new Image("resources/intro/fondo_5.png");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites1 = new Wall(new float[]{480,0, 480,120, 600,120, 600,240, 480,240, 480,360, 360,360, 360,480, 0,480, 0,960, 1920,960, 1920,0});
         Wall abismo11 = new Wall(new float[]{1320, 240,1320,360, 1200,360, 1200,480, 1080,480, 1080,600, 1320,600, 1320,480, 1440,480, 1440,360, 1800,360, 1800,240});
@@ -121,14 +121,12 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
-        if(container.isPaused())
-        {
+        if(container.isPaused()) {
             g.setBackground(Color.black);
-            g.drawImage(image, 0, 0);
+            g.drawImage(fondoPausa, 0, 0);
             g.setColor(Color.white);
             g.drawString("PAUSA", 955, 400);
             g.setColor(Color.white);
-            
             
             for (int i=0;i<options.length;i++) {
 			g.drawString(options[i], 920, 475+(i*50));
@@ -136,24 +134,20 @@ public class Nivel1 extends BasicGameState{
 				g.drawRect(890, 470+(i*50),200,30);
 			}
 		}
-        }else{
-        salas.get(salaActual-1).draw(g, entrada);
-        }
-        
+        } 
+        else{
+            salas.get(salaActual-1).draw(g, entrada);
+        }   
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        int n = salas.get(salaActual-1).update(entrada, delta);
-        System.out.println(n);
-        if(n!=0) salaActual = n;
-        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE))
-        {
+        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             container.setPaused(!container.isPaused());
             paused=!paused;
-            }
-         if(container.isPaused())
-        {
+        }
+        
+        if(container.isPaused()) {
             if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
@@ -166,25 +160,27 @@ public class Nivel1 extends BasicGameState{
                 }
             }   
         }
+        
+        int n = salas.get(salaActual-1).update(entrada, delta);
+        if(n!=0) salaActual = n;
     }
+    
     @Override
     public void keyReleased(int key, char c) {
-        if(paused)
-        {
-		if (key == Input.KEY_DOWN) {
-			selected++;
-			if (selected >= options.length) {
-				selected = 0;
-			}
-		}
-		if (key == Input.KEY_UP) {
-			selected--;
-			if (selected < 0) {
-				selected = options.length - 1;
-			}
-		}
+        if(paused) {
+            if (key == Input.KEY_DOWN) {
+                    selected++;
+                    if (selected >= options.length) {
+                            selected = 0;
+                    }
+            }
+            if (key == Input.KEY_UP) {
+                    selected--;
+                    if (selected < 0) {
+                            selected = options.length - 1;
+                    }
+            }
         }
-	} 
-    
+    } 
     
 }

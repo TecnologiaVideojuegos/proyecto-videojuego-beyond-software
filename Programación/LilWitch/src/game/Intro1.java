@@ -6,7 +6,6 @@ package game;
  * and open the template in the editor.
  */
 
-
 import java.util.ArrayList;
 import logic.*;
 import org.newdawn.slick.geom.*;
@@ -17,17 +16,17 @@ import org.newdawn.slick.state.*;
  *
  * @author alvar
  */
-public class intro_3 extends BasicGameState{
-private Image image;
+public class Intro1 extends BasicGameState{
+    private Image image;
     
     @Override
     public int getID() {
-        return 12;
+        return 10;
     }
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/intro/fondo_3_2.png");
+        image = new Image("resources/intro/fondo_2.png");
     }
 
     @Override
@@ -38,9 +37,7 @@ private Image image;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(13);
+            game.enterState(11);
         }
     }
-    
-    
 }
