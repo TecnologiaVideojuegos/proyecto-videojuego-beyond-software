@@ -58,7 +58,7 @@ public class Esqueleto extends Enemigo{
                 else {
                     vY = 100;
                 }
-                proyectiles.addProyectil("Hueso.png", x, y, 120, 120, 0.25f, vX, vY, 1, 1);
+                proyectiles.addProyectil("Hueso.png", x, y, 60, 60, 0.25f, vX, vY, 1, 1);
                 super.setCooldown(0);
             }
         }
@@ -87,7 +87,7 @@ public class Esqueleto extends Enemigo{
         }
         switch(movX){
             case 1:
-                super.getSprite().moverX(-100 * ((float) delta / 1000));
+                super.getSprite().moverX(-150 * ((float) delta / 1000));
                 super.setL(true);
                 super.setR(false);
                 break;
@@ -97,14 +97,14 @@ public class Esqueleto extends Enemigo{
                 super.setR(false);
                 break;
             case 3:
-                super.getSprite().moverX(100 * ((float) delta / 1000));
+                super.getSprite().moverX(150 * ((float) delta / 1000));
                 super.setL(false);
                 super.setR(true);
                 break;  
         }
         switch(movY){
             case 1:
-                super.getSprite().moverY(-100 * ((float) delta / 1000));
+                super.getSprite().moverY(-150 * ((float) delta / 1000));
                 super.setUp(true);
                 super.setDown(false);
                 break;
@@ -114,7 +114,7 @@ public class Esqueleto extends Enemigo{
                 super.setDown(false);
                 break;
             case 3:
-                super.getSprite().moverY(100 * ((float) delta / 1000));
+                super.getSprite().moverY(150 * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   
