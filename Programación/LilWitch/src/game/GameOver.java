@@ -22,7 +22,7 @@ import org.newdawn.slick.state.StateBasedGame;
     
     @Override
     public int getID() {
-        return 11;
+        return 20;
     }
 
     @Override

@@ -160,8 +160,8 @@ public class Nivel1 extends BasicGameState{
                 }
             }   
         }
-        if(player.getVida() < 0) {
-            game.enterState(11);
+        if(player.getVida() <= 0) {
+            game.enterState(17);
         }
         else {
             int n = salas.get(salaActual-1).update(entrada, delta);
