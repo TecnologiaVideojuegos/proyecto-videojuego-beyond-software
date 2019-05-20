@@ -13,6 +13,7 @@ import org.newdawn.slick.geom.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+
 /**
  *
  * @author alvar
@@ -24,6 +25,10 @@ public class Nivel4 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual = 3;
     private ControladorProyectiles proyectiles;
+    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private int selected;
+    private boolean paused = false;
+    private Image image;
     
     @Override
     public int getID() {
@@ -32,10 +37,12 @@ public class Nivel4 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
         player = new Jugador(proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 4.png", 1920, 1080);
+        image = new Image("resources/intro/fondo_5.png");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20});
@@ -120,8 +127,18 @@ public class Nivel4 extends BasicGameState{
         if(container.isPaused())
         {
             g.setBackground(Color.black);
+            g.drawImage(image, 0, 0);
             g.setColor(Color.white);
-            g.drawString("PAUSA", 955, 475);
+            g.drawString("PAUSA", 955, 400);
+            g.setColor(Color.white);
+            
+            
+            for (int i=0;i<options.length;i++) {
+			g.drawString(options[i], 920, 475+(i*50));
+			if (selected == i) {
+				g.drawRect(890, 470+(i*50),200,30);
+			}
+		}
         }else{
         salas.get(salaActual-1).draw(g, entrada);
         }
@@ -134,8 +151,43 @@ public class Nivel4 extends BasicGameState{
         System.out.println(n);
         if(n!=0) salaActual = n;
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE))
+        {
             container.setPaused(!container.isPaused());
+            paused=!paused;
+            }
+         if(container.isPaused())
+        {
+            if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
+            switch(selected) {
+                case 0:
+                    container.setPaused(!container.isPaused());
+                    paused=!paused;
+                    break;
+                case 1:
+                    game.enterState(2);
+                    break;
+                }
+            }   
+        }
     }
+    @Override
+    public void keyReleased(int key, char c) {
+        if(paused)
+        {
+		if (key == Input.KEY_DOWN) {
+			selected++;
+			if (selected >= options.length) {
+				selected = 0;
+			}
+		}
+		if (key == Input.KEY_UP) {
+			selected--;
+			if (selected < 0) {
+				selected = options.length - 1;
+			}
+		}
+        }
+	} 
     
     
 }
