@@ -1,4 +1,4 @@
-package org.newdawn.slick.tests;
+    package org.newdawn.slick.tests;
 	
 import java.util.ArrayList;
 

@@ -83,29 +83,38 @@ public class Jugador implements IColisionable {
         }
         else {
             personaje.draw();
-        }
-        
-        int contador = vida;
+        } 
+        drawCorazones();
+    }
+    
+    public void drawCorazones() {
+        int numLlenos = vida;
+        int contador = 0;
         boolean medio;
         
         if(vida % 2 == 1) {
             medio = true;
-            contador--;
+            numLlenos--;
         }
         else {
             medio = false;
         }
         
-        contador = contador / 2;
+        numLlenos = numLlenos / 2;
+        int numVacios = vidaTotal/2 - numLlenos;
+        if(medio) numVacios --;
         
-        for (int i = 0; i < contador; i++) {
-            corazonLleno.draw(24 + i * 56, 10); 
+        for (int i = 0; i < numLlenos; i++) {
+            corazonLleno.draw(24 + i * 56, 10);
+            contador++;        
         }
         if(medio) {
-            corazonMedio.draw(24 + contador * 56, 10); 
+            corazonMedio.draw(24 + contador * 56, 10);
+            contador++;
         }
-        for (int j = contador+1; j < vidaTotal / 2; j++) {
-            corazonVacio.draw(24 + j * 56, 10);    
+        for (int j = 0; j < numVacios; j++) {
+            corazonVacio.draw(24 + contador * 56, 10);
+            contador++;        
         }
     }
     

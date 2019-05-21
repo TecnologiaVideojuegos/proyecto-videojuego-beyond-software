@@ -7,6 +7,7 @@ package game;
  */
 
 
+import java.io.File;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -49,6 +50,7 @@ public class Principal extends StateBasedGame{
     
     public static void main(String args[]) {
         try {
+            System.setProperty("java.ilbrary.path", new File("./LWJGL").getAbsolutePath());
             Principal main = new Principal(); 
         }
         catch(SlickException slick) {
