@@ -18,8 +18,8 @@ public class Jugador implements IColisionable {
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
     private int vida, vidaTotal, cooldown;
-    private int[] objetos, varitas;
     private Image corazonVacio, corazonLleno, corazonMedio;
+    Inventario inventario;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -52,11 +52,10 @@ public class Jugador implements IColisionable {
         this.vida = 6;
         this.vidaTotal = 6;
         this.cooldown = 1000;
-        this.objetos = new int[6];
-        this.varitas = new int[4];
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
+        this.inventario = new Inventario();
     }
     
     public void draw(Input entrada) {

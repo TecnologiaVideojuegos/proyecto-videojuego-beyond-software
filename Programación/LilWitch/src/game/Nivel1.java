@@ -56,7 +56,6 @@ public class Nivel1 extends BasicGameState{
         Wall limites2 = new Wall(new float[]{0,0, 0,960, 1920,960, 1920,0});
         Wall abismo21 = new Wall(new float[]{360,240, 360,480, 600,480, 600,240});
         Wall abismo22 = new Wall(new float[]{1320,480, 1320,720, 1560,720, 1560,480});
-        Wall planta2 = new Wall(new float[]{1340, 260, 1340, 340, 1420, 340, 1420, 260});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940,1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites31 = new Wall(new float[]{840, 0, 840, 360, 600, 360, 600, 240, 720, 240, 720, 0, 840, 0});
         Wall limites32 = new Wall(new float[]{0, 0, 0, 960, 1920, 960, 1920, 0, 0, 0});
@@ -86,7 +85,6 @@ public class Nivel1 extends BasicGameState{
         walls2.add(limites2);
         walls2.add(abismo21);
         walls2.add(abismo22);
-        walls2.add(planta2);
         ArrayList<Puerta> puertas2 = new ArrayList<>();
         puertas2.add(p21);
         puertas2.add(p22);
