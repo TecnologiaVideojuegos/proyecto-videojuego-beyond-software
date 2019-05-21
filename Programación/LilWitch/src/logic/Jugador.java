@@ -459,4 +459,12 @@ public class Jugador implements IColisionable {
     public void setProyectiles(ControladorProyectiles proyectiles) {
         this.proyectiles = proyectiles;
     }
+
+    public Inventario getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
+    }
 }
