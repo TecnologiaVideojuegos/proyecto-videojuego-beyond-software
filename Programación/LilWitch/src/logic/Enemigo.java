@@ -146,7 +146,7 @@ abstract class Enemigo implements IColisionable {
             if(l) {
                 sprite.moverX(1f);
             }
-            if (colision.isProyectile() == 2) {
+            if (colision.isProyectile() >= 2) {
                 vida -= colision.getAtaque();
             }
             if (!colision.isPlayer()) {

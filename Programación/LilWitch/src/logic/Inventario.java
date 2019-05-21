@@ -24,7 +24,7 @@ public class Inventario {
         this.botas = false;
         this.pociones = 0;
         this.pocionesG = 0;
-        this.varitaActiva = 2;
+        this.varitaActiva = 0;
     }
     
     public Inventario(boolean debug) {
@@ -35,7 +35,7 @@ public class Inventario {
             this.botas = true;
             this.pociones = 99;
             this.pocionesG = 99;
-            this.varitaActiva = 2;
+            this.varitaActiva = 0;
         }
         else {
             this.varitaFuego = false;
@@ -44,7 +44,7 @@ public class Inventario {
             this.botas = false;
             this.pociones = 0;
             this.pocionesG = 0;
-            this.varitaActiva = 2;
+            this.varitaActiva = 0;
         }
     }
     

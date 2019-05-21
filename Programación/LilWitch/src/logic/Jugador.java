@@ -55,7 +55,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario();
+        this.inventario = new Inventario(true);
     }
     
     public void draw(Input entrada) {
@@ -125,20 +125,22 @@ public class Jugador implements IColisionable {
     
     private void updateTeclado(Input entrada, int delta) {
         if(!stop){
-            atacar(entrada);
-            
-            if(entrada.isKeyDown(Input.KEY_LCONTROL)) {
+            if(entrada.isKeyPressed(Input.KEY_LCONTROL)) {
                 inventario.cambiarVaritaL();
             }
-            if(entrada.isKeyDown(Input.KEY_SPACE)) {
+            if(entrada.isKeyPressed(Input.KEY_SPACE)) {
                 inventario.cambiarVaritaR();
             }
-            if(entrada.isKeyDown(Input.KEY_E)) {
+            if(entrada.isKeyPressed(Input.KEY_E)) {
                 inventario.usarPocion();
+                heal(2);
             }
-            if(entrada.isKeyDown(Input.KEY_R)) {
+            if(entrada.isKeyPressed(Input.KEY_R)) {
                 inventario.usarPocionG();
+                heal(4);
             }
+            
+            atacar(entrada);
             
             if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Izquierda
                 /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
@@ -290,45 +292,52 @@ public class Jugador implements IColisionable {
         if (cooldown > 500) {
             float x = personaje.getPosicion().getX();
             float y = personaje.getPosicion().getY();
-            float vX = 0;
-            float vY = 0;
+            float dirX = 0;
+            float dirY = 0;
             if (!entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN) && !entrada.isKeyDown(Input.KEY_LEFT) && entrada.isKeyDown(Input.KEY_RIGHT)) {
                 x += personaje.getStaticDown().getWidth();
                 y += (personaje.getStaticDown().getHeight() / 2) - 36;
-                vX = 500;
-                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, vX, vY, 2, 2);
+                dirX = 1;
+                crearProyectil(x, y, dirX, dirY);
                 cooldown = 0;
             }
             else if (!entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN) && entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT)) {
                 x -= 58;
                 y += (personaje.getStaticDown().getHeight() / 2) - 36;
-                vX = -500;
-                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, vX, vY, 2, 2);
+                dirX = -1;
+                crearProyectil(x, y, dirX, dirY);
                 cooldown = 0;
             }
             else if (entrada.isKeyDown(Input.KEY_UP) && !entrada.isKeyDown(Input.KEY_DOWN) && !entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT)) {
                 x += (personaje.getStaticDown().getWidth() / 2) - 29;
                 y -= 72;
-                vY = -500;
-                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, vX, vY, 2, 2);
+                dirY = -1;
+                crearProyectil(x, y, dirX, dirY);
                 cooldown = 0;
             }
             else if (!entrada.isKeyDown(Input.KEY_UP) && entrada.isKeyDown(Input.KEY_DOWN) && !entrada.isKeyDown(Input.KEY_LEFT) && !entrada.isKeyDown(Input.KEY_RIGHT)) {
                 x += (personaje.getStaticDown().getWidth() / 2) - 29;
                 y += personaje.getStaticDown().getHeight();
-                vY = 500; 
-                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, vX, vY, 2, 2);
+                dirY = 1; 
+                crearProyectil(x, y, dirX, dirY);
                 cooldown = 0;
             }     
         }
     }
     
-    /*public void crearProyectil(float x, float y, ) {
+    public void crearProyectil(float x, float y, float dirX, float dirY) {
         switch(inventario.getVaritaActiva()) {
             case 0:
-                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, vX, vY, 2, 2);
+                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, 500*dirX, 500*dirY, 2, 2);
+                break;
+            case 1:
+                proyectiles.addProyectil("Fire.png", x, y, 58, 72, 0.5f, 300*dirX, 300*dirY, 4, 3);
+                break;
+            case 2:
+                proyectiles.addProyectil("tornado.png", x, y, 100, 119, 0.5f, 400*dirX, 400*dirY, 3, 4);
+                break;
         }
-    }*/
+    }
     
     public void resetDirecciones() {
         this.up = false;
@@ -345,7 +354,7 @@ public class Jugador implements IColisionable {
     @Override
     public void alColisionar(IColisionable colision) {
         if(!colision.isGate()) {
-            if(colision.isProyectile() != 2) {
+            if(colision.isProyectile() < 2) {
                 if(up) {
                     personaje.moverY(1f);
                 }
@@ -412,6 +421,12 @@ public class Jugador implements IColisionable {
         this.vida = vida;
     }
     
+    public void heal(int n) {
+        vida+=n;
+        if(vida>vidaTotal) {
+            vida = vidaTotal;
+        }
+    }
     
     @Override
     public void sincronizarArea() {
