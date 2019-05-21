@@ -43,7 +43,7 @@ public class Nivel1 extends BasicGameState{
         salas = new ArrayList<>();
         entrada = container.getInput();
         player = new Jugador(proyectiles);
-        mapa = new SpriteSheet("resources/niveles/Nivel 1.png", 1920, 1080);
+        mapa = new SpriteSheet("resources/niveles/Nivel 1_v1.png", 1920, 1080);
         fondoPausa = new Image("resources/intro/fondo_5.png");
         music = new Music("resources/sonidos/Caves.ogg");
         music.setVolume(0.5f);
