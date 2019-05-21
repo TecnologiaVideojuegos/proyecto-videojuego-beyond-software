@@ -35,12 +35,16 @@ private Image image;
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
         g.drawImage(image,0, 0);
+        g.drawString("Pulse ESPACIO para saltar", 840, 20);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             game.enterState(16);
+        }
+        if(container.getInput().isKeyPressed(Input.KEY_SPACE)){
+            game.enterState(3);
         }
     }
     

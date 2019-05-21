@@ -26,6 +26,7 @@ private int selected;
 private String[] options = new String[] {"",""};
 private StateBasedGame game;
 private Image image;
+private Sound sound;
 
     @Override
     public int getID() {
@@ -35,6 +36,7 @@ private Image image;
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/intro/fondo_1.png");
+        sound = new Sound("resources/sonidos/Select.ogg");
     }
 
     @Override
@@ -58,7 +60,7 @@ private Image image;
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
-                    game.enterState(10,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(3,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                     break;
                 case 1:
                     container.exit();
@@ -70,13 +72,15 @@ private Image image;
     @Override
     public void keyReleased(int key, char c) {
 		if (key == Input.KEY_DOWN) {
-			selected++;
+			sound.play();
+                        selected++;
 			if (selected >= options.length) {
 				selected = 0;
 			}
 		}
 		if (key == Input.KEY_UP) {
-			selected--;
+			sound.play();
+                        selected--;
 			if (selected < 0) {
 				selected = options.length - 1;
 			}
