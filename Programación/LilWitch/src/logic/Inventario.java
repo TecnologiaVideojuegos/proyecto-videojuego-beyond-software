@@ -11,11 +11,11 @@ package logic;
  */
 public class Inventario {
     private boolean varitaFuego, varitaAgua, varitaLuz, botas;
-    private int pociones, varitaActiva;
+    private int pociones, pocionesG, varitaActiva;
     /*varitaActiva
-        2 -> varita estándar y varita de luz
-        3 -> varita de fuego 
-        4 -> varita de agua
+        0 -> varita estándar y varita de luz
+        1 -> varita de fuego 
+        2 -> varita de agua
     */
     public Inventario() {
         this.varitaFuego = false;
@@ -23,6 +23,7 @@ public class Inventario {
         this.varitaLuz = false;
         this.botas = false;
         this.pociones = 0;
+        this.pocionesG = 0;
         this.varitaActiva = 2;
     }
     
@@ -33,6 +34,7 @@ public class Inventario {
             this.varitaLuz = true;
             this.botas = true;
             this.pociones = 99;
+            this.pocionesG = 99;
             this.varitaActiva = 2;
         }
         else {
@@ -41,8 +43,35 @@ public class Inventario {
             this.varitaLuz = false;
             this.botas = false;
             this.pociones = 0;
+            this.pocionesG = 0;
             this.varitaActiva = 2;
         }
+    }
+    
+    public void cambiarVaritaR() {
+        if(varitaActiva == 2) {
+            varitaActiva = 0;
+        }
+        else {
+            varitaActiva++;
+        }
+    }
+    
+    public void cambiarVaritaL() {
+        if(varitaActiva == 0) {
+            varitaActiva = 2;
+        }
+        else {
+            varitaActiva--;
+        }
+    }
+    
+    public void usarPocion() {
+        pociones --;
+    }
+    
+    public void usarPocionG() {
+        pocionesG --;
     }
 
     public boolean isVaritaFuego() {

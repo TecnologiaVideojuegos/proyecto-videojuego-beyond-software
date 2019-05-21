@@ -17,9 +17,9 @@ public class Jugador implements IColisionable {
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
-    private int vida, vidaTotal, cooldown;
+    private int vida, vidaTotal, cooldown, varitaActual;
     private Image corazonVacio, corazonLleno, corazonMedio;
-    Inventario inventario;
+    private Inventario inventario;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -126,6 +126,19 @@ public class Jugador implements IColisionable {
     private void updateTeclado(Input entrada, int delta) {
         if(!stop){
             atacar(entrada);
+            
+            if(entrada.isKeyDown(Input.KEY_LCONTROL)) {
+                inventario.cambiarVaritaL();
+            }
+            if(entrada.isKeyDown(Input.KEY_SPACE)) {
+                inventario.cambiarVaritaR();
+            }
+            if(entrada.isKeyDown(Input.KEY_E)) {
+                inventario.usarPocion();
+            }
+            if(entrada.isKeyDown(Input.KEY_R)) {
+                inventario.usarPocionG();
+            }
             
             if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Izquierda
                 /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
@@ -309,6 +322,13 @@ public class Jugador implements IColisionable {
             }     
         }
     }
+    
+    /*public void crearProyectil(float x, float y, ) {
+        switch(inventario.getVaritaActiva()) {
+            case 0:
+                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, vX, vY, 2, 2);
+        }
+    }*/
     
     public void resetDirecciones() {
         this.up = false;
