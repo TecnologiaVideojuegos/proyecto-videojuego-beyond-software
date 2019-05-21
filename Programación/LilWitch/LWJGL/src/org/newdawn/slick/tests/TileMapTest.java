@@ -49,7 +49,8 @@ public class TileMapTest extends BasicGame {
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
-		map = new TiledMap("testdata/testmap.tmx","testdata");
+		//map = new TiledMap("testdata/testmap.tmx","testdata");
+                map = new TiledMap("res/Ciudad.tmx","testdata");
 		// read some properties from map and layer
 		mapName = map.getMapProperty("name", "Unknown map name");
 		monsterDifficulty = map.getLayerProperty(0, "monsters", "easy peasy");
