@@ -148,7 +148,7 @@ public class Jugador implements IColisionable {
             
             if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverX(-100*6 * ((float) delta / 1000));
+                    personaje.moverX(-100*5 * ((float) delta / 1000));
                 } 
                 else {
                     personaje.moverX(-100 *3* ((float) delta / 1000));
@@ -165,7 +165,7 @@ public class Jugador implements IColisionable {
             
             else if(!entrada.isKeyDown(Input.KEY_A) && entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Derecha
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverX(100f*6 * ((float) delta / 1000));
+                    personaje.moverX(100f*5 * ((float) delta / 1000));
                 } 
                 else {
                     personaje.moverX(100f *3* ((float) delta / 1000));
@@ -182,7 +182,7 @@ public class Jugador implements IColisionable {
         
             else if(!entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Arriba
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverY(-100f*6 * ((float) delta / 1000));
+                    personaje.moverY(-100f*5 * ((float) delta / 1000));
                 }
                 else {
                     personaje.moverY(-100f *3* ((float) delta / 1000));   
@@ -199,7 +199,7 @@ public class Jugador implements IColisionable {
         
             else if(!entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && entrada.isKeyDown(Input.KEY_S)) { //Abajo
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverY(100f*6 * ((float) delta / 1000));
+                    personaje.moverY(100f*5 * ((float) delta / 1000));
                 }
                 else{
                     personaje.moverY(100f *3* ((float) delta / 1000));
@@ -216,8 +216,8 @@ public class Jugador implements IColisionable {
         
             else if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Arriba-Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverX(-100f*6 * ((float) delta / 1000));
-                    personaje.moverY(-100f*6 * ((float) delta / 1000));
+                    personaje.moverX(-100f*5 * ((float) delta / 1000));
+                    personaje.moverY(-100f*5 * ((float) delta / 1000));
                 }
                 else {
                     personaje.moverX(-100f *3* ((float) delta / 1000));
@@ -235,8 +235,8 @@ public class Jugador implements IColisionable {
         
             else if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && entrada.isKeyDown(Input.KEY_S)) { //Abajo-Izquierda
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverX(-100f*6 * ((float) delta / 1000));
-                    personaje.moverY(100f*6 * ((float) delta / 1000));
+                    personaje.moverX(-100f*5 * ((float) delta / 1000));
+                    personaje.moverY(100f*5 * ((float) delta / 1000));
                 }
                 else{
                     personaje.moverX(-100f *3* ((float) delta / 1000));
@@ -254,8 +254,8 @@ public class Jugador implements IColisionable {
             
             else if(!entrada.isKeyDown(Input.KEY_A) && entrada.isKeyDown(Input.KEY_D) && entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Arriba-Derecha
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverX(100f*6 * ((float) delta / 1000));
-                    personaje.moverY(-100f*6 * ((float) delta / 1000));
+                    personaje.moverX(100f*5 * ((float) delta / 1000));
+                    personaje.moverY(-100f*5 * ((float) delta / 1000));
                 }
                 else{
                     personaje.moverX(100f *3* ((float) delta / 1000));
@@ -273,8 +273,8 @@ public class Jugador implements IColisionable {
         
             else if(!entrada.isKeyDown(Input.KEY_A) && entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && entrada.isKeyDown(Input.KEY_S)) { //Abajo-Derecha
                 if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
-                    personaje.moverX(100f*6 * ((float) delta / 1000));
-                    personaje.moverY(100f*6 * ((float) delta / 1000));
+                    personaje.moverX(100f*5 * ((float) delta / 1000));
+                    personaje.moverY(100f*5 * ((float) delta / 1000));
                 }
                 else {
                     personaje.moverX(100f *3* ((float) delta / 1000));
@@ -293,7 +293,7 @@ public class Jugador implements IColisionable {
     }
     
     public void atacar(Input entrada) {
-        if (cooldown > 500) {
+        if (cooldown > getCooldownActual()) {
             float x = personaje.getPosicion().getX();
             float y = personaje.getPosicion().getY();
             float dirX = 0;
@@ -326,6 +326,19 @@ public class Jugador implements IColisionable {
                 crearProyectil(x, y, dirX, dirY);
                 cooldown = 0;
             }     
+        }
+    }
+    
+    public int getCooldownActual() {
+        switch (inventario.getVaritaActiva()) {
+            case 0:
+                return 600;
+            case 1:
+                return 1000;
+            case 2:
+                return 800;
+            default:
+                return 600;          
         }
     }
     
