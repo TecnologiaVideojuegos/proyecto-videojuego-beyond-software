@@ -44,7 +44,7 @@ public class Sala {
     
     public void draw(Graphics g, Input entrada) {
         imagen.draw(0, 0);
-        player.draw(entrada);
+        player.draw(entrada, g);
         if(esqueletos != null) {
             drawEnemigos();
         }

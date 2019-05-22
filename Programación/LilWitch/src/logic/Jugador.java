@@ -58,7 +58,7 @@ public class Jugador implements IColisionable {
         this.inventario = new Inventario(true);
     }
     
-    public void draw(Input entrada) {
+    public void draw(Input entrada, Graphics g) {
         if(entrada.isKeyDown(Input.KEY_A)) {
             personaje.drawL();
         }
@@ -84,6 +84,7 @@ public class Jugador implements IColisionable {
             personaje.draw();
         } 
         drawCorazones();
+        inventario.draw(g);
     }
     
     public void drawCorazones() {
@@ -132,23 +133,26 @@ public class Jugador implements IColisionable {
                 inventario.cambiarVaritaR();
             }
             if(entrada.isKeyPressed(Input.KEY_E)) {
-                inventario.usarPocion();
-                heal(2);
+                if(inventario.usarPocion()) {
+                    heal(2); 
+                } 
             }
             if(entrada.isKeyPressed(Input.KEY_R)) {
-                inventario.usarPocionG();
-                heal(4);
+                if(inventario.usarPocionG()) {
+                    heal(4);
+                }
+                
             }
             
             atacar(entrada);
             
             if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Izquierda
-                /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(-100*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverX(-100*6 * ((float) delta / 1000));
                 } 
-                else {*/
+                else {
                     personaje.moverX(-100 *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.startL();
                 personaje.stopR();
                 personaje.stopUp();
@@ -160,12 +164,12 @@ public class Jugador implements IColisionable {
             }
             
             else if(!entrada.isKeyDown(Input.KEY_A) && entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Derecha
-               /* if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverX(100f*6 * ((float) delta / 1000));
                 } 
-                else {*/
+                else {
                     personaje.moverX(100f *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.stopL();
                 personaje.startR();
                 personaje.stopUp();
@@ -177,12 +181,12 @@ public class Jugador implements IColisionable {
             }
         
             else if(!entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Arriba
-                /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverY(-100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverY(-100f*6 * ((float) delta / 1000));
                 }
-                else {*/
+                else {
                     personaje.moverY(-100f *3* ((float) delta / 1000));   
-                //}
+                }
                 personaje.stopL();
                 personaje.stopR();
                 personaje.startUp();
@@ -194,12 +198,12 @@ public class Jugador implements IColisionable {
             }
         
             else if(!entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && entrada.isKeyDown(Input.KEY_S)) { //Abajo
-                /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverY(100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverY(100f*6 * ((float) delta / 1000));
                 }
-                else{*/
+                else{
                     personaje.moverY(100f *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.stopL();
                 personaje.stopR();
                 personaje.stopUp();
@@ -211,14 +215,14 @@ public class Jugador implements IColisionable {
             }
         
             else if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Arriba-Izquierda
-               /* if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(-100f*3 * ((float) delta / 1000));
-                    personaje.moverY(-100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverX(-100f*6 * ((float) delta / 1000));
+                    personaje.moverY(-100f*6 * ((float) delta / 1000));
                 }
-                else {*/
+                else {
                     personaje.moverX(-100f *3* ((float) delta / 1000));
                     personaje.moverY(-100f *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.startL();
                 personaje.stopR();
                 personaje.stopUp();
@@ -230,14 +234,14 @@ public class Jugador implements IColisionable {
             }
         
             else if(entrada.isKeyDown(Input.KEY_A) && !entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && entrada.isKeyDown(Input.KEY_S)) { //Abajo-Izquierda
-                /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(-100f*3 * ((float) delta / 1000));
-                    personaje.moverY(100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverX(-100f*6 * ((float) delta / 1000));
+                    personaje.moverY(100f*6 * ((float) delta / 1000));
                 }
-                else{*/
+                else{
                     personaje.moverX(-100f *3* ((float) delta / 1000));
                     personaje.moverY(100f *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.startL();
                 personaje.stopR();
                 personaje.stopUp();
@@ -249,14 +253,14 @@ public class Jugador implements IColisionable {
             }
             
             else if(!entrada.isKeyDown(Input.KEY_A) && entrada.isKeyDown(Input.KEY_D) && entrada.isKeyDown(Input.KEY_W) && !entrada.isKeyDown(Input.KEY_S)) { //Arriba-Derecha
-                /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(100f*3 * ((float) delta / 1000));
-                    personaje.moverY(-100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverX(100f*6 * ((float) delta / 1000));
+                    personaje.moverY(-100f*6 * ((float) delta / 1000));
                 }
-                else{*/
+                else{
                     personaje.moverX(100f *3* ((float) delta / 1000));
                     personaje.moverY(-100f *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.stopL();
                 personaje.startR();
                 personaje.stopUp();
@@ -268,14 +272,14 @@ public class Jugador implements IColisionable {
             }
         
             else if(!entrada.isKeyDown(Input.KEY_A) && entrada.isKeyDown(Input.KEY_D) && !entrada.isKeyDown(Input.KEY_W) && entrada.isKeyDown(Input.KEY_S)) { //Abajo-Derecha
-                /*if(entrada.isKeyDown(Input.KEY_LSHIFT)){
-                    personaje.moverX(100f*3 * ((float) delta / 1000));
-                    personaje.moverY(100f*3 * ((float) delta / 1000));
+                if(entrada.isKeyDown(Input.KEY_LSHIFT) && inventario.isBotas()){
+                    personaje.moverX(100f*6 * ((float) delta / 1000));
+                    personaje.moverY(100f*6 * ((float) delta / 1000));
                 }
-                else {*/
+                else {
                     personaje.moverX(100f *3* ((float) delta / 1000));
                     personaje.moverY(100f *3* ((float) delta / 1000));
-                //}
+                }
                 personaje.stopL();
                 personaje.startR();
                 personaje.stopUp();
@@ -328,13 +332,18 @@ public class Jugador implements IColisionable {
     public void crearProyectil(float x, float y, float dirX, float dirY) {
         switch(inventario.getVaritaActiva()) {
             case 0:
-                proyectiles.addProyectil("luz_1.png", x, y, 58, 72, 0.5f, 500*dirX, 500*dirY, 2, 2);
+                if(inventario.isVaritaLuz()) {
+                    proyectiles.addProyectil("luz.png", x, y, 120, 120, 1f, 600*dirX, 600*dirY, 2, 5);
+                }
+                else {
+                    proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
+                }
                 break;
             case 1:
-                proyectiles.addProyectil("Fire.png", x, y, 58, 72, 0.5f, 300*dirX, 300*dirY, 4, 3);
+                proyectiles.addProyectil("Fire.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 4, 3);
                 break;
             case 2:
-                proyectiles.addProyectil("tornado.png", x, y, 100, 119, 0.5f, 400*dirX, 400*dirY, 3, 4);
+                proyectiles.addProyectil("tornado.png", x, y, 100, 119, 1f, 450*dirX, 450*dirY, 3, 4);
                 break;
         }
     }
