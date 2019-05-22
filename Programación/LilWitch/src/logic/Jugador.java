@@ -333,7 +333,7 @@ public class Jugador implements IColisionable {
         switch(inventario.getVaritaActiva()) {
             case 0:
                 if(inventario.isVaritaLuz()) {
-                    proyectiles.addProyectil("luz.png", x, y, 120, 120, 1f, 600*dirX, 600*dirY, 2, 5);
+                    proyectiles.addProyectil("luz.png", x, y, 120, 120, 1f, 600*dirX, 600*dirY, 5, 5);
                 }
                 else {
                     proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
