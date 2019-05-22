@@ -55,7 +55,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario(true);
+        this.inventario = new Inventario();
     }
     
     public void draw(Input entrada, Graphics g) {
@@ -332,13 +332,13 @@ public class Jugador implements IColisionable {
     public int getCooldownActual() {
         switch (inventario.getVaritaActiva()) {
             case 0:
-                return 600;
+                return 750;
             case 1:
-                return 1000;
+                return 1500;
             case 2:
-                return 800;
+                return 1000;
             default:
-                return 600;          
+                return 750;          
         }
     }
     
