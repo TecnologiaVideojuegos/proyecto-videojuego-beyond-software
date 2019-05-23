@@ -39,10 +39,10 @@ public class Objeto implements IColisionable{
                 imagen = new Image("/resources/objetos/botas-rojo.png");
                 break;
             case 6:
-                imagen = new Image("/resources/objetos/pocion_1_g.png");
+                imagen = new Image("/resources/objetos/pocion_1.png");
                 break;
             case 7:
-                imagen = new Image("/resources/objetos/pocion_2_g.png");
+                imagen = new Image("/resources/objetos/pocion_2.png");
                 break;
             case 8:
                 imagen = new Image("/resources/objetos/corazon-lleno.png");

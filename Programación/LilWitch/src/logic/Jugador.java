@@ -42,7 +42,7 @@ public class Jugador implements IColisionable {
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
         personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 400);
-        hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth()-40, personaje.getStaticDown().getHeight()-40);
+        hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth()-40, personaje.getStaticDown().getHeight()-15);
         this.up = false;
         this.down = false;
         this.r = false;
@@ -55,7 +55,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario();
+        this.inventario = new Inventario(true);
     }
     
     public void draw(Input entrada, Graphics g) {
@@ -346,7 +346,10 @@ public class Jugador implements IColisionable {
         switch(inventario.getVaritaActiva()) {
             case 0:
                 if(inventario.isVaritaLuz()) {
-                    proyectiles.addProyectil("luz.png", x, y, 120, 120, 1f, 600*dirX, 600*dirY, 5, 5);
+                    if(dirX == 0) {
+                        x -= 25;
+                    }
+                    proyectiles.addProyectil("luz_2_110_110.png", x, y, 110, 110, 1f, 600*dirX, 600*dirY, 5, 5);
                 }
                 else {
                     proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
@@ -483,7 +486,7 @@ public class Jugador implements IColisionable {
     @Override
     public void sincronizarArea() {
         hitbox.setX(personaje.getPosicion().getX()+20);
-        hitbox.setY(personaje.getPosicion().getY()+40);
+        hitbox.setY(personaje.getPosicion().getY()+15);
     }
 
     @Override
