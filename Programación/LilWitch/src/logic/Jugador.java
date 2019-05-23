@@ -377,6 +377,36 @@ public class Jugador implements IColisionable {
     public void alColisionar(IColisionable colision) {
         if(!colision.isGate()) {
             if(colision.isProyectile() < 2) {
+                if(colision.isObjeto() > 0) {
+                    switch(colision.isObjeto()) {
+                        case 1:
+                           inventario.setVaritaLuz(true);
+                           break;
+                        case 2:
+                            inventario.setVaritaFuego(true);
+                            break;
+                        case 3:
+                            inventario.setVaritaAgua(true);
+                            break;
+                        case 4:
+                            inventario.setBotas(true);
+                            break;
+                        case 5:
+                            inventario.setBotasFuego(true);
+                            break;
+                        case 6:
+                            inventario.setPociones(inventario.getPociones() + 1);
+                            break;
+                        case 7:
+                            inventario.setPocionesG(inventario.getPocionesG() + 1);
+                            break;
+                        case 8:
+                            vidaTotal += 2;
+                            vida = vidaTotal;
+                            break;
+                    }
+                }
+                
                 if(up) {
                     personaje.moverY(1f);
                 }
@@ -523,5 +553,10 @@ public class Jugador implements IColisionable {
 
     public void setInventario(Inventario inventario) {
         this.inventario = inventario;
+    }
+    
+    @Override
+    public int isObjeto() {
+        return 0;
     }
 }

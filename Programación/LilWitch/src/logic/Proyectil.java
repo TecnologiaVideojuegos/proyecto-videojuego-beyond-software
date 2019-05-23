@@ -127,4 +127,9 @@ public class Proyectil implements IColisionable {
     public Punto getPosicion() {
         return new Punto(sprite.getX(), sprite.getY());
     }
+    
+    @Override
+    public int isObjeto() {
+        return 0;
+    }
 }

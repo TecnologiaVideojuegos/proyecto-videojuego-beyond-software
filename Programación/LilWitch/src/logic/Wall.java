@@ -91,4 +91,9 @@ public class Wall implements IColisionable {
     public Punto getPosicion() {
         return new Punto(hitbox.getX(), hitbox.getY());
     }
+    
+    @Override
+    public int isObjeto() {
+        return 0;
+    }
 }

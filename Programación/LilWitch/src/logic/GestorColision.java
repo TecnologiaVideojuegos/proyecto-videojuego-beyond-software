@@ -49,16 +49,13 @@ public class GestorColision {
         int n = 0;
         for (int i = 0; i < lista.size(); i++) {
             buscarColisionProyectil(i);
-            for (int j = 0; j < lista.size(); j++) {
-                if(i != j) {
-                    if(n == 0) {
-                        n = buscarColision(i, j);
-                    }
-                    else {
-                        buscarColision(i, j);
-                    }
-                    
-                }  
+            for (int j = i+1; j < lista.size(); j++) {
+                if(n == 0) {
+                    n = buscarColision(i, j);
+                }
+                else {
+                    buscarColision(i, j);
+                }      
             }
         }
         comprobarVidas();

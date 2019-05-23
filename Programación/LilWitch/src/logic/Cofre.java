@@ -7,6 +7,7 @@ package logic;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -15,16 +16,40 @@ import org.newdawn.slick.geom.Shape;
  * @author alvar
  */
 public class Cofre implements IColisionable {
-    private int vida;
+    private int vida, delay;
     private Sprite spriteCerrado, spriteAbierto;
     private Rectangle hitbox;
     private boolean abierto;
     private Objeto contenido;
 
-    public Cofre(Objeto contenido, float x, float y) throws SlickException {
+    public Cofre(Objeto contenido, float x, float y, int tipo) throws SlickException {
+        String filename;
+        switch(tipo) {
+            case 0:
+               filename = "cofre_1.png"; 
+               break;
+            case 1:
+                filename = "cofre_2.png";
+                break;
+            case 2:
+                filename = "cofre_3.png";
+                break;
+            case 3:
+                filename = "cofre_4.png";
+                break;
+            case 4:
+                filename = "cofre_5.png";
+                break;
+            default:
+                filename = "cofre_5.png";
+                break;
+        }
+        
         Image imagenAbierto, imagenCerrado;
-        imagenAbierto = new Image("/resources/objetos/cofreAbierto.png");
-        imagenCerrado = new Image("/resources/objetos/cofreCerrado.png");
+        SpriteSheet sprites = new SpriteSheet("resources/objetos/" + filename, 120, 120);
+        imagenAbierto = sprites.getSprite(0, 1);
+        imagenCerrado = sprites.getSprite(0, 0);
+        
         this.spriteAbierto = new Sprite(imagenAbierto, x, y, 1);
         this.spriteCerrado = new Sprite(imagenCerrado, x, y, 1);
         this.hitbox = new Rectangle(x, y, imagenCerrado.getWidth(), imagenCerrado.getHeight());
@@ -33,6 +58,7 @@ public class Cofre implements IColisionable {
         this.contenido = contenido;
         this.abierto = false;
         this.hitbox = hitbox;
+        this.delay = 0;
     }
     
     public void draw() {
@@ -41,6 +67,10 @@ public class Cofre implements IColisionable {
         }
         else {
             spriteCerrado.draw();
+            if(delay < 5) {
+                contenido.draw();
+            }
+            delay++;
         }
     }
 
@@ -57,7 +87,8 @@ public class Cofre implements IColisionable {
     @Override
     public void alColisionar(IColisionable colision) {
         if(colision.isPlayer() && colision.isProyectile() == 0) {
-           abierto = true; 
+           abierto = true;
+           contenido.setPosicion(spriteAbierto.getPosicion().getX(), spriteAbierto.getPosicion().getY() - 20);
         }
     }
 
@@ -115,5 +146,10 @@ public class Cofre implements IColisionable {
     @Override
     public Punto getPosicion() {
         return spriteCerrado.getPosicion();
+    }
+    
+    @Override
+    public int isObjeto() {
+        return contenido.isObjeto();
     }
 }

@@ -7,7 +7,6 @@ package logic;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Circle;
@@ -293,5 +292,10 @@ abstract class Enemigo implements IColisionable {
 
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
+    }
+    
+    @Override
+    public int isObjeto() {
+        return 0;
     }
 }

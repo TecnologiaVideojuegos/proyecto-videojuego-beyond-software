@@ -23,28 +23,28 @@ public class Objeto implements IColisionable{
         Image imagen;
         
         switch(tipo) {
-            case 2:
+            case 1:
                imagen = new Image("/resources/varitas/varita_1.png"); 
                break;
-            case 3:
+            case 2:
                 imagen = new Image("/resources/varitas/varita_2.png"); 
                 break;
-            case 4:
+            case 3:
                 imagen = new Image("/resources/varitas/varita_3.png");
                 break;
-            case 5:
+            case 4:
                 imagen = new Image("/resources/objetos/botas.png");
                 break;
-            case 6:
+            case 5:
                 imagen = new Image("/resources/objetos/botas-rojo.png");
                 break;
-            case 7:
+            case 6:
                 imagen = new Image("/resources/objetos/pocion_1_g.png");
                 break;
-            case 8:
+            case 7:
                 imagen = new Image("/resources/objetos/pocion_2_g.png");
                 break;
-            case 9:
+            case 8:
                 imagen = new Image("/resources/objetos/corazon-lleno.png");
                 break;
             default:
@@ -59,7 +59,9 @@ public class Objeto implements IColisionable{
     }
     
     public void draw() {
-       sprite.draw();
+        if(vida > 0) {
+            sprite.draw();
+        }
     }
 
     @Override
@@ -133,5 +135,14 @@ public class Objeto implements IColisionable{
     @Override
     public Punto getPosicion() {
         return sprite.getPosicion();
+    }
+    
+    public void setPosicion(float x, float y) {
+        sprite.setPosicion(x, y);
+    }
+
+    @Override
+    public int isObjeto() {
+        return tipo;
     }
 }

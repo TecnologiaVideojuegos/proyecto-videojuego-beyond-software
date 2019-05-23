@@ -26,5 +26,6 @@ public interface IColisionable {
     public int getSalaDestino();
     public int getAtaque();
     public int getVida();
+    public int isObjeto();
     public Punto getPosicion();
 }
