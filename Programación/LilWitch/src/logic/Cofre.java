@@ -40,14 +40,17 @@ public class Cofre implements IColisionable {
             case 4:
                 filename = "cofre_5.png";
                 break;
+            case 5:
+                filename = "cofre_6.png";
+                break;
             default:
-                filename = "cofre_5.png";
+                filename = "cofre_6.png";
                 break;
         }
         
         Image imagenAbierto, imagenCerrado;
         SpriteSheet sprites = new SpriteSheet("resources/objetos/" + filename, 120, 120);
-        imagenAbierto = sprites.getSprite(0, 1);
+        imagenAbierto = sprites.getSprite(1, 0);
         imagenCerrado = sprites.getSprite(0, 0);
         
         this.spriteAbierto = new Sprite(imagenAbierto, x, y, 1);
@@ -64,13 +67,18 @@ public class Cofre implements IColisionable {
     public void draw() {
         if(abierto) {
             spriteAbierto.draw();
+            if(delay < 1000) {
+                contenido.draw();
+            }
         }
         else {
             spriteCerrado.draw();
-            if(delay < 5) {
-                contenido.draw();
-            }
-            delay++;
+        }
+    }
+    
+    public void update(int delta) {
+        if(abierto) {
+            delay += delta;
         }
     }
 
@@ -86,9 +94,9 @@ public class Cofre implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision) {
-        if(colision.isPlayer() && colision.isProyectile() == 0) {
+        if(colision.isPlayer() && colision.isProyectile() == 0 && !abierto) {
            abierto = true;
-           contenido.setPosicion(spriteAbierto.getPosicion().getX(), spriteAbierto.getPosicion().getY() - 20);
+           contenido.setPosicion(spriteAbierto.getPosicion().getX(), spriteAbierto.getPosicion().getY() - 150);
         }
     }
 
@@ -150,6 +158,11 @@ public class Cofre implements IColisionable {
     
     @Override
     public int isObjeto() {
-        return contenido.isObjeto();
+        if(!abierto) {
+            return contenido.isObjeto();
+        }
+        else {
+            return 0;
+        }
     }
 }
