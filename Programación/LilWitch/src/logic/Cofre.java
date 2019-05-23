@@ -49,7 +49,7 @@ public class Cofre implements IColisionable {
         }
         
         Image imagenAbierto, imagenCerrado;
-        SpriteSheet sprites = new SpriteSheet("resources/objetos/" + filename, 120, 120);
+        SpriteSheet sprites = new SpriteSheet("resources/objetos/" + filename, 90, 90);
         imagenAbierto = sprites.getSprite(1, 0);
         imagenCerrado = sprites.getSprite(0, 0);
         
