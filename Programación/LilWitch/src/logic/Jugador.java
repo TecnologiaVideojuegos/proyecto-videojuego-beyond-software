@@ -359,7 +359,7 @@ public class Jugador implements IColisionable {
                 proyectiles.addProyectil("Fire.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 4, 3);
                 break;
             case 2:
-                proyectiles.addProyectil("tornado.png", x, y, 100, 119, 1f, 450*dirX, 450*dirY, 3, 4);
+                proyectiles.addProyectil("tornado.png", x, y, 50, 60, 1f, 450*dirX, 450*dirY, 3, 4);
                 break;
         }
     }
