@@ -13,7 +13,7 @@ import org.newdawn.slick.geom.Shape;
  *
  * @author corte
  */
-public class Esqueleto extends Enemigo{
+public class Esqueleto extends Enemigo {
     private ControladorProyectiles proyectiles;
     private boolean escudo;
     private int movX, movY;
@@ -33,7 +33,7 @@ public class Esqueleto extends Enemigo{
     }
 
     @Override
-    void atacar(int delta) {
+    public void atacar(int delta) {
         avanzar(delta);
         if (super.getPlayerPosition() != null) {
             if (super.getCooldown() > 2000) {
@@ -41,8 +41,6 @@ public class Esqueleto extends Enemigo{
                 float y = super.getPosicion().getY();
                 System.out.println("Jugador en: " + x+ "," +y);
                 int vX, vY;
-                /*x += (super.getSprite().getStaticDown().getWidth() / 2) - 29;
-                y += super.getSprite().getStaticDown().getHeight();*/
                 float dirX = super.getPlayerPosition().getX() - x;
                 float dirY = super.getPlayerPosition().getY() - y;
                 if (dirX < 0) {
@@ -63,8 +61,8 @@ public class Esqueleto extends Enemigo{
         }
     }
 
-    @Override
-    void avanzar(int delta) {
+    /*@Override
+    public void avanzar(int delta) {
         if(super.isColision()) {
             if(super.isUp()) {
                 movX = (int) (Math.random() * 3 + 1);
@@ -143,5 +141,5 @@ public class Esqueleto extends Enemigo{
             super.getSprite().stopUp();
             super.getSprite().stopDown();
         } 
-    }
+    }*/
 }
