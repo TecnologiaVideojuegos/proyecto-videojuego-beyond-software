@@ -21,8 +21,8 @@ public class Esqueleto extends Enemigo {
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque);
         this.proyectiles = proyectiles;
-        this.movX = (int) (Math.random() * 3 + 1);
-        this.movY = (int) (Math.random() * 3 + 1);
+//        this.movX = (int) (Math.random() * 3 + 1);
+//        this.movY = (int) (Math.random() * 3 + 1);
         if(x == 120) {
             escudo = false;
         }
@@ -35,7 +35,7 @@ public class Esqueleto extends Enemigo {
     @Override
     public void atacar(int delta) {
         avanzar(delta);
-        if (super.getPlayerPosition() != null) {
+        /*if (super.getPlayerPosition() != null) {
             if (super.getCooldown() > 2000) {
                 float x = super.getPosicion().getX();
                 float y = super.getPosicion().getY();
@@ -58,7 +58,7 @@ public class Esqueleto extends Enemigo {
                 proyectiles.addProyectil("Hueso.png", x, y, 60, 60, 0.25f, vX, vY, 1, 1);
                 super.setCooldown(0);
             }
-        }
+        }*/
     }
 
     /*@Override

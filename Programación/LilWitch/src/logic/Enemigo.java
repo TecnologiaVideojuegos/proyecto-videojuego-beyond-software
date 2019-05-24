@@ -101,6 +101,8 @@ public class Enemigo implements IColisionable {
         this.ataque = ataque;
         this.cooldown = 1000;
         this.distanciaVision = distanciaVision;
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
     }
 
     @Override
@@ -120,6 +122,9 @@ public class Enemigo implements IColisionable {
         }
         else if (r) {
             sprite.drawR();
+        }
+        else {
+            sprite.draw(); 
         }
     }
     

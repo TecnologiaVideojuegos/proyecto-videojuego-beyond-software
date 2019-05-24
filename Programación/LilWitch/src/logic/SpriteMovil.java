@@ -33,10 +33,6 @@ public class SpriteMovil {
         this.x = x;
         this.y = y;
         this.escala = 1;
-        for (int i = 0; i < img.length; i++) {
-            System.out.println("Array" + i + ": " + img[i]);;
-            
-        }
         this.animacion = new Animation(img, 100);
         this.velocidad = new Vector(new Punto(vX, vY));
         this.alto = alto;

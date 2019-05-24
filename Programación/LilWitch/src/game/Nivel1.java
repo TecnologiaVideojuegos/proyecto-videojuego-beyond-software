@@ -137,6 +137,7 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
         Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
+        Slime s1 = new Slime("slime.png", 120, 150, 200, 200, 5, 1);
         enemigos1.add(e1);
         
         ArrayList<Objeto> objetos = new ArrayList<>();
