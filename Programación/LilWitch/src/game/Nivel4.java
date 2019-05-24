@@ -23,7 +23,7 @@ public class Nivel4 extends BasicGameState{
     private Jugador player;
     private SpriteSheet mapa;
     private ArrayList<Sala> salas;
-    private int salaActual = 3;
+    private int salaActual = 5;
     private ControladorProyectiles proyectiles;
     private String[] options = new String[] {"Volver al juego","Volver al inicio"};
     private int selected;
@@ -41,12 +41,14 @@ public class Nivel4 extends BasicGameState{
         salas = new ArrayList<>();
         entrada = container.getInput();
         player = new Jugador(proyectiles);
-        mapa = new SpriteSheet("resources/niveles/Nivel 4.png", 1920, 1080);
+        mapa = new SpriteSheet("resources/niveles/Nivel 4_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
-        Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
-        Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
-        Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20});
+        Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
+        Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
+        Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840,20});
         Wall limites_4 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
+        Wall limites_5 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
+        Wall limites_6 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20});
         Wall pinchos1_1 = new Wall(new float[]{20, 20, 20, 220, 110, 220, 110, 110, 220, 110, 220, 20});
         Wall pinchos1_2 = new Wall(new float[]{140, 620, 220, 620, 220, 700, 140, 700});
         Wall pinchos1_3 = new Wall(new float[]{1700, 940, 1900, 940, 1900, 740, 1810, 740, 1810, 850, 1700, 850});
@@ -65,12 +67,23 @@ public class Nivel4 extends BasicGameState{
         Wall pinchos4_6 = new Wall(new float[]{1220, 260, 1300, 260, 1300, 340, 1220, 340});
         Wall pinchos4_7 = new Wall(new float[]{1220, 740, 1300, 740, 1300, 820, 1220, 820});
         Wall pinchos4_8 = new Wall(new float[]{620, 740, 700, 740, 700, 820, 620, 820});
-        Puerta p11 = new Puerta(1915, 360, 5, 240, 1, 2, 0);
-        Puerta p21 = new Puerta(1915, 360, 5, 240, 1, 3, 0);
-        Puerta p22 = new Puerta(0, 360, 5, 240, 3, 1, 0);
-        Puerta p31 = new Puerta(0, 360, 5, 240, 3, 2, 0);
-        Puerta p12 = new Puerta(840, 0, 240, 5, 0, 4, 0);
-        Puerta p41 = new Puerta(840, 0, 240, 5, 0, 2, 3);
+        Wall pinchos5_1 = new Wall(new float[]{140, 620, 220, 620, 220, 700, 140, 700});
+        Wall pinchos5_2 = new Wall(new float[]{1820, 740, 1820, 860, 1700, 860, 1700, 940, 1900, 940,  1900, 740, 1820, 740});
+        Wall pinchos5_3 = new Wall(new float[]{1690, 620, 1690, 700, 1780, 700, 1780, 620});
+        Wall pinchos6_1 = new Wall(new float[]{0, 740, 340, 740, 340, 820, 230, 820, 230, 940, 0, 940});
+        Wall pinchos6_2 = new Wall(new float[]{260, 140, 260, 460, 340, 460, 340, 140});
+        Wall pinchos6_3 = new Wall(new float[]{1710, 20, 1710, 100, 1820, 100, 1820, 220, 1900, 220, 1900, 20});
+        Wall pinchos6_4 = new Wall(new float[]{1580, 620, 1580, 840, 1660, 840, 1660, 620});
+        Puerta p1_1 = new Puerta(1915, 360, 5, 240, 1, 2, 0);
+        Puerta p2_1 = new Puerta(1915, 360, 5, 240, 1, 3, 0);
+        Puerta p2_2 = new Puerta(0, 360, 5, 240, 3, 1, 0);
+        Puerta p2_3 = new Puerta(840, 0, 240, 5, 0, 6, 0);
+        Puerta p3_1 = new Puerta(0, 360, 5, 240, 3, 2, 0);
+        Puerta p3_2 = new Puerta(840, 0, 240, 5, 0, 4, 0);
+        //Puerta p4_1 = new Puerta(840, 0, 240, 5, 0, 2, 3);
+        Puerta p5_1 = new Puerta(1915, 360, 5, 240, 1, 6, 0);
+        Puerta p6_1 = new Puerta(0, 360, 5, 240, 3, 5, 0);
+        Puerta p6_2 = new Puerta(840, 960, 240, 5, 2, 2, 0);
         
         ArrayList<Wall> walls1 = new ArrayList<>();
         walls1.add(limites_1);
@@ -78,8 +91,7 @@ public class Nivel4 extends BasicGameState{
         walls1.add(pinchos1_2);
         walls1.add(pinchos1_3);
         ArrayList<Puerta> puertas1 = new ArrayList<>();
-        puertas1.add(p11);
-        puertas1.add(p12);
+        puertas1.add(p1_1);
         
         ArrayList<Wall> walls2 = new ArrayList<>();
         walls2.add(limites_2);
@@ -88,8 +100,9 @@ public class Nivel4 extends BasicGameState{
         walls2.add(pinchos2_3);
         walls2.add(pinchos2_4);
         ArrayList<Puerta> puertas2 = new ArrayList<>();
-        puertas2.add(p21);
-        puertas2.add(p22);
+        puertas2.add(p2_1);
+        puertas2.add(p2_2);
+        puertas2.add(p2_3);
         
         ArrayList<Wall> walls3 = new ArrayList<>();
         walls3.add(limites_3);
@@ -97,7 +110,8 @@ public class Nivel4 extends BasicGameState{
         walls3.add(pinchos3_2);
         walls3.add(pinchos3_3);
         ArrayList<Puerta> puertas3 = new ArrayList();
-        puertas3.add(p31);
+        puertas3.add(p3_1);
+        puertas3.add(p3_2);
         
         ArrayList<Wall> walls4 = new ArrayList<>();
         walls4.add(limites_4);
@@ -110,16 +124,37 @@ public class Nivel4 extends BasicGameState{
         walls4.add(pinchos4_7);
         walls4.add(pinchos4_8);
         ArrayList<Puerta> puertas4 = new ArrayList();
-        puertas4.add(p41);
+        //puertas4.add(p4_1);
         
+        ArrayList<Wall> walls5 = new ArrayList<>();
+        walls5.add(limites_5);
+        walls5.add(pinchos5_1);
+        walls5.add(pinchos5_2);
+        walls5.add(pinchos5_3);
+        ArrayList<Puerta> puertas5 = new ArrayList();
+        puertas5.add(p5_1);
+        
+        ArrayList<Wall> walls6 = new ArrayList<>();
+        walls6.add(limites_6);
+        walls6.add(pinchos6_1);
+        walls6.add(pinchos6_2);
+        walls6.add(pinchos6_3);
+        walls6.add(pinchos6_4);
+        ArrayList<Puerta> puertas6 = new ArrayList();
+        puertas6.add(p6_1);
+        puertas6.add(p6_2);
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, player, proyectiles);
-        Sala sala4 = new Sala(mapa.getSubImage(0, 0), walls4, puertas4, null, player, proyectiles);
+        Sala sala4 = new Sala(mapa.getSubImage(2, 0), walls4, puertas4, null, player, proyectiles);
+        Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, player, proyectiles);
+        Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, player, proyectiles);
         salas.add(sala1);
         salas.add(sala2);
         salas.add(sala3);
         salas.add(sala4);
+        salas.add(sala5);
+        salas.add(sala6);
     }
 
     @Override
