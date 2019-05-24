@@ -16,12 +16,12 @@ import org.newdawn.slick.geom.Shape;
  *
  * @author alvar
  */
-abstract class Enemigo implements IColisionable {
+public class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
     private Rectangle hitbox;
     private Circle visionRange;
     private boolean up, down, r, l, colision;
-    private int vida, ataque, cooldown, distanciaVision;
+    private int vida, ataque, cooldown, distanciaVision, movX, movY;
     private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
@@ -60,6 +60,8 @@ abstract class Enemigo implements IColisionable {
         this.ataque = ataque;
         this.cooldown = 1000;
         this.distanciaVision = 0;
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
     }
     
     public Enemigo(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
@@ -99,6 +101,8 @@ abstract class Enemigo implements IColisionable {
         this.ataque = ataque;
         this.cooldown = 1000;
         this.distanciaVision = distanciaVision;
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
     }
 
     @Override
@@ -119,6 +123,9 @@ abstract class Enemigo implements IColisionable {
         else if (r) {
             sprite.drawR();
         }
+        else {
+            sprite.draw(); 
+        }
     }
     
     public void update(int delta) {
@@ -127,23 +134,105 @@ abstract class Enemigo implements IColisionable {
         sincronizarArea();
     }
     
-    abstract void atacar(int delta);
-    abstract void avanzar(int delta);
-
-    @Override
-    public void alColisionar(IColisionable colision) {
-        if(colision.isProyectile() != 1) {
+    public void atacar(int delta) {
+        avanzar(delta);   
+    }
+    public void avanzar(int delta) {
+        if(colision) {
             if(up) {
-                sprite.moverY(1f);
+                movX = (int) (Math.random() * 3 + 1);
+                movY = 1;
             }
             if(down) {
-                sprite.moverY(-1f);
+                movX = (int) (Math.random() * 3 + 1);
+                movY = 3;
             }
             if(r) {
-                sprite.moverX(-1f);
+                movX = 1;
+                movY = (int) (Math.random() * 3 + 1);
+            }
+            else {
+                movX = 3;
+                movY = (int) (Math.random() * 3 + 1);
+            }
+            colision = false;
+        }
+        switch(movX){
+            case 1:
+                sprite.moverX(-150 * ((float) delta / 1000));
+                l = true;
+                r = false;
+                break;
+            case 2:
+                sprite.moverX(0);
+                l = false;
+                r = false;
+                break;
+            case 3:
+                sprite.moverX(150 * ((float) delta / 1000));
+                l = false;
+                r = true;
+                break;  
+        }
+        switch(movY){
+            case 1:
+                sprite.moverY(-150 * ((float) delta / 1000));
+                up = true;
+                down = false;
+                break;
+            case 2:
+                sprite.moverY(0);
+                up = false;
+                down = false;
+                break;
+            case 3:
+                sprite.moverY(150 * ((float) delta / 1000));
+                up = false;
+                down = true;
+                break;   
+        }
+        
+        if (up) {
+            sprite.stopL();
+            sprite.stopR();
+            sprite.startUp();
+            sprite.stopDown();
+        }
+        else if (down) {
+            sprite.stopL();
+            sprite.stopR();
+            sprite.stopUp();
+            sprite.startDown();
+        }
+        else if (l) {
+            sprite.startL();
+            sprite.stopR();
+            sprite.stopUp();
+            sprite.stopDown();
+        }
+        else if (r) {
+            sprite.stopL();
+            sprite.startR();
+            sprite.stopUp();
+            sprite.stopDown();
+        } 
+    
+    }
+
+    @Override
+    public void alColisionar(IColisionable colision, int delta) {
+        if(colision.isProyectile() != 1) {
+            if(up) {
+                sprite.moverY(150f * (float) delta / 1000);
+            }
+            if(down) {
+                sprite.moverY(-150f * (float) delta / 1000);
+            }
+            if(r) {
+                sprite.moverX(-150f * (float) delta / 1000);
             }
             if(l) {
-                sprite.moverX(1f);
+                sprite.moverX(150f * (float) delta / 1000);
             }
             if (colision.isProyectile() >= 2) {
                 vida -= colision.getAtaque();

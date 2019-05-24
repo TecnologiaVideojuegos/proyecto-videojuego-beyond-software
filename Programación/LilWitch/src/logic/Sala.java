@@ -18,12 +18,12 @@ public class Sala {
     private GestorColision gestor;
     private Image imagen;
     private Jugador player;
-    private ArrayList<Esqueleto> esqueletos;
+    private ArrayList<Enemigo> enemigos;
 
-    public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, ArrayList<Esqueleto> esqueletos, Jugador jugador, ControladorProyectiles proyectiles) {
+    public Sala(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, ArrayList<Enemigo> enemigos, Jugador jugador, ControladorProyectiles proyectiles) {
         this.imagen = imagen;
         this.player = jugador;
-        this.esqueletos = esqueletos;
+        this.enemigos = enemigos;
         gestor = new GestorColision(proyectiles);
         gestor.registrarCuerpo(jugador);
         for (int i = 0; i < paredes.size(); i++) {
@@ -34,9 +34,9 @@ public class Sala {
             gestor.registrarCuerpo(puertas.get(j));
             
         }
-        if(esqueletos != null) {
-            for (int k = 0; k < esqueletos.size(); k++) {
-                gestor.registrarCuerpo(esqueletos.get(k));
+        if(this.enemigos != null) {
+            for (int k = 0; k < this.enemigos.size(); k++) {
+                gestor.registrarCuerpo(this.enemigos.get(k));
 
             }
         }
@@ -45,7 +45,7 @@ public class Sala {
     public void draw(Graphics g, Input entrada) {
         imagen.draw(0, 0);
         player.draw(entrada, g);
-        if(esqueletos != null) {
+        if(enemigos != null) {
             drawEnemigos();
         }
         gestor.drawProyectiles();
@@ -54,30 +54,29 @@ public class Sala {
     
     public int update(Input entrada, int delta) {
         player.update(entrada, delta);
-        if(esqueletos != null) {
+        if(enemigos != null) {
             updateEnemigos(delta);
         }
         gestor.updateProyectiles(delta);
-        return gestor.comprobarColisiones();
+        return gestor.comprobarColisiones(delta);
     }
     
     public void updateEnemigos(int delta) {
-        for (int i = 0; i < esqueletos.size(); i++) {
-            if(esqueletos.get(i).getVida() <= 0) {
-                esqueletos.remove(i);
+        for (int i = 0; i < enemigos.size(); i++) {
+            if(enemigos.get(i).getVida() <= 0) {
+                enemigos.remove(i);
             }    
         }
         
-        for (int i = 0; i < esqueletos.size(); i++) {
-            esqueletos.get(i).update(delta);
+        for (int i = 0; i < enemigos.size(); i++) {
+            enemigos.get(i).update(delta);
             
         }
     }
     
     public void drawEnemigos() {
-        for (int i = 0; i < esqueletos.size(); i++) {
-            esqueletos.get(i).draw();
-            
+        for (int i = 0; i < enemigos.size(); i++) {
+            enemigos.get(i).draw();    
         }
     }
 

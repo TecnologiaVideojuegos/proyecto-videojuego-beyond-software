@@ -22,13 +22,13 @@ public class Murcielago  extends Enemigo{
     }
 
     @Override
-    void atacar(int delta) {
+    public void atacar(int delta) {
         super.setCooldown(0);
         avanzar(delta);
     }
 
     @Override
-    void avanzar(int delta) {
+    public void avanzar(int delta) {
         if(super.isColision()) {
             if(super.isUp()) {
                 movX = (int) (Math.random() * 3 + 1);

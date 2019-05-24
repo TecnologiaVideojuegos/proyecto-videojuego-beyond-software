@@ -146,7 +146,6 @@ public class Inventario {
         }
         if(pocionesG > 0) {
             sprites.get(7).draw();
-            g.setColor(Color.black);
             g.drawString(pocionesG+"", 1246, 1006);
         }
     }

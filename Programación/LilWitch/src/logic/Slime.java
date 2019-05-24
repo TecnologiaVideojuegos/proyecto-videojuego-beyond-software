@@ -17,18 +17,17 @@ public class Slime extends Enemigo{
 
     public Slime(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque);
-        this.movX = (int) (Math.random() * 3+1);
-        this.movY = (int) (Math.random() * 3+1);
+//        this.movX = (int) (Math.random() * 3+1);
+//        this.movY = (int) (Math.random() * 3+1);
     }
 
-    @Override
-    void atacar(int delta) {
-        super.setCooldown(0);
+    /*@Override
+    public void atacar(int delta) {
         avanzar(delta);
     }
 
     @Override
-    void avanzar(int delta) {
+    public void avanzar(int delta) {
         if(super.isColision()) {
             if(super.isUp()) {
                 movX = (int) (Math.random() * 3 + 1);
@@ -107,5 +106,5 @@ public class Slime extends Enemigo{
             super.getSprite().stopUp();
             super.getSprite().stopDown();
         } 
-    }
+    }*/
 }

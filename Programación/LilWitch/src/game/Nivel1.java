@@ -135,9 +135,10 @@ public class Nivel1 extends BasicGameState{
         ArrayList<Puerta> puertas6 = new ArrayList();
         puertas6.add(p6_1);
         
-        ArrayList<Esqueleto> esqueletos1 = new ArrayList<>();
+        ArrayList<Enemigo> enemigos1 = new ArrayList<>();
         Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
-        esqueletos1.add(e1);
+        Slime s1 = new Slime("slime.png", 120, 150, 200, 200, 5, 1);
+        enemigos1.add(e1);
         
         ArrayList<Objeto> objetos = new ArrayList<>();
         for (int i = 1; i < 9; i++) {
@@ -147,7 +148,7 @@ public class Nivel1 extends BasicGameState{
 
         
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, player, proyectiles);
-        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, esqueletos1, player, proyectiles);
+        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, player, proyectiles);
         SalaBoss sala4 = new SalaBoss(mapa.getSubImage(2, 0), walls4, puertas4, objetos, player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, player, proyectiles);

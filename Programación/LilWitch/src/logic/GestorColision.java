@@ -45,16 +45,16 @@ public class GestorColision {
         }
     }
     
-    public int comprobarColisiones() {
+    public int comprobarColisiones(int delta) {
         int n = 0;
         for (int i = 0; i < lista.size(); i++) {
-            buscarColisionProyectil(i);
+            buscarColisionProyectil(i, delta);
             for (int j = i+1; j < lista.size(); j++) {
                 if(n == 0) {
-                    n = buscarColision(i, j);
+                    n = buscarColision(i, j, delta);
                 }
                 else {
-                    buscarColision(i, j);
+                    buscarColision(i, j, delta);
                 }      
             }
         }
@@ -62,10 +62,10 @@ public class GestorColision {
         return n;
     }
     
-    private int buscarColision(int i, int j) {
+    private int buscarColision(int i, int j, int delta) {
         if(lista.get(i).getHitbox().intersects(lista.get(j).getHitbox())) {
-            lista.get(i).alColisionar(lista.get(j));
-            lista.get(j).alColisionar(lista.get(i));
+            lista.get(i).alColisionar(lista.get(j), delta);
+            lista.get(j).alColisionar(lista.get(i), delta);
             if(lista.get(i) instanceof Puerta && lista.get(j) instanceof Jugador) {
                 return lista.get(i).getSalaDestino();
             }
@@ -93,11 +93,11 @@ public class GestorColision {
         }
     }
     
-    private void buscarColisionProyectil(int i) {
+    private void buscarColisionProyectil(int i, int delta) {
         for (int j = 0; j < proyectiles.getProyectiles().size(); j++) {
             if(proyectiles.get(j).getHitbox().intersects(lista.get(i).getHitbox())) {
-                proyectiles.get(j).alColisionar(lista.get(i));
-                lista.get(i).alColisionar(proyectiles.get(j));
+                proyectiles.get(j).alColisionar(lista.get(i), delta);
+                lista.get(i).alColisionar(proyectiles.get(j), delta);
                 if (lista.get(i).isPlayer() && proyectiles.get(j).isProyectile() == 1 || lista.get(i).isEnemy() && proyectiles.get(j).isProyectile() > 1 || !lista.get(i).isPlayer() && !lista.get(i).isEnemy()) {
                     proyectiles.removeProyectil(j);
                 }

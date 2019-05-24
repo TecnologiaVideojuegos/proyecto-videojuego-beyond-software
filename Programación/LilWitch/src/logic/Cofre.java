@@ -49,7 +49,7 @@ public class Cofre implements IColisionable {
         }
         
         Image imagenAbierto, imagenCerrado;
-        SpriteSheet sprites = new SpriteSheet("resources/objetos/" + filename, 120, 120);
+        SpriteSheet sprites = new SpriteSheet("resources/objetos/" + filename, 90, 90);
         imagenAbierto = sprites.getSprite(1, 0);
         imagenCerrado = sprites.getSprite(0, 0);
         
@@ -93,7 +93,7 @@ public class Cofre implements IColisionable {
     }
 
     @Override
-    public void alColisionar(IColisionable colision) {
+    public void alColisionar(IColisionable colision, int delta) {
         if(colision.isPlayer() && colision.isProyectile() == 0 && !abierto) {
            abierto = true;
            contenido.setPosicion(spriteAbierto.getPosicion().getX(), spriteAbierto.getPosicion().getY() - 150);
