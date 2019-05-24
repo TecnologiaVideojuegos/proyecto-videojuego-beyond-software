@@ -93,7 +93,7 @@ public class Cofre implements IColisionable {
     }
 
     @Override
-    public void alColisionar(IColisionable colision) {
+    public void alColisionar(IColisionable colision, int delta) {
         if(colision.isPlayer() && colision.isProyectile() == 0 && !abierto) {
            abierto = true;
            contenido.setPosicion(spriteAbierto.getPosicion().getX(), spriteAbierto.getPosicion().getY() - 150);

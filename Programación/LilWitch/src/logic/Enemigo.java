@@ -220,19 +220,19 @@ public class Enemigo implements IColisionable {
     }
 
     @Override
-    public void alColisionar(IColisionable colision) {
+    public void alColisionar(IColisionable colision, int delta) {
         if(colision.isProyectile() != 1) {
             if(up) {
-                sprite.moverY(1f);
+                sprite.moverY(150f * (float) delta / 1000);
             }
             if(down) {
-                sprite.moverY(-1f);
+                sprite.moverY(-150f * (float) delta / 1000);
             }
             if(r) {
-                sprite.moverX(-1f);
+                sprite.moverX(-150f * (float) delta / 1000);
             }
             if(l) {
-                sprite.moverX(1f);
+                sprite.moverX(150f * (float) delta / 1000);
             }
             if (colision.isProyectile() >= 2) {
                 vida -= colision.getAtaque();

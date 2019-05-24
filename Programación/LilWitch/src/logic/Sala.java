@@ -58,7 +58,7 @@ public class Sala {
             updateEnemigos(delta);
         }
         gestor.updateProyectiles(delta);
-        return gestor.comprobarColisiones();
+        return gestor.comprobarColisiones(delta);
     }
     
     public void updateEnemigos(int delta) {

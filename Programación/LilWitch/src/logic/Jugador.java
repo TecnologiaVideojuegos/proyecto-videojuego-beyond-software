@@ -377,7 +377,7 @@ public class Jugador implements IColisionable {
     }
 
     @Override
-    public void alColisionar(IColisionable colision) {
+    public void alColisionar(IColisionable colision, int delta) {
         if(!colision.isGate()) {
             if(colision.isProyectile() < 2) {
                 if(colision.isObjeto() > 0) {
@@ -411,16 +411,16 @@ public class Jugador implements IColisionable {
                 }
                 
                 if(up) {
-                    personaje.moverY(1f);
+                    personaje.moverY(500f * (float) delta / 1000);
                 }
                 if(down) {
-                    personaje.moverY(-1f);
+                    personaje.moverY(-500f * (float) delta / 1000);
                 }
                 if(r) {
-                    personaje.moverX(-1f);
+                    personaje.moverX(-500f * (float) delta / 1000);
                 }
                 if(l) {
-                    personaje.moverX(1f);
+                    personaje.moverX(500f * (float) delta / 1000);
                 }
                 if (colision.isEnemy()) {
                     vida -= colision.getAtaque();

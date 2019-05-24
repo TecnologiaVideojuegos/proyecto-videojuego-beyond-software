@@ -14,7 +14,7 @@ import org.newdawn.slick.geom.Shape;
 public interface IColisionable {
     public Shape getHitbox();
     public Shape getVisionRange();
-    public void alColisionar(IColisionable colision);
+    public void alColisionar(IColisionable colision, int delta);
     public void alDetectar(IColisionable colision);
     public void sincronizarArea();
     public boolean isHostile();

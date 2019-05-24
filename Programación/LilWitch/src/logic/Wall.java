@@ -25,7 +25,7 @@ public class Wall implements IColisionable {
     }
 
     @Override
-    public void alColisionar(IColisionable colision) {
+    public void alColisionar(IColisionable colision, int delta) {
         //System.out.println("Colision");
     }
 
