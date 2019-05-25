@@ -23,7 +23,7 @@ public class Nivel1 extends BasicGameState{
     private Jugador player;
     private SpriteSheet mapa;
     private ArrayList<Sala> salas;
-    private int salaActual = 6;
+    private int salaActual;
     private ControladorProyectiles proyectiles;
     private String[] options = new String[] {"Volver al juego","Volver al inicio"};
     private int selected;
@@ -39,6 +39,7 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        salaActual = 2;
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
@@ -137,20 +138,15 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
         Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
-        Slime s1 = new Slime("slime.png", 120, 150, 200, 200, 5, 1);
+        Slime s1 = new Slime("slime.png", 120, 150, 1000, 200, 5, 1);
         enemigos1.add(e1);
-        
-        ArrayList<Objeto> objetos = new ArrayList<>();
-        for (int i = 1; i < 9; i++) {
-            Objeto o = new Objeto(i, 120*i, 120);
-            objetos.add(o); 
-        }
+        enemigos1.add(s1);
 
         
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, player, proyectiles);
-        SalaBoss sala4 = new SalaBoss(mapa.getSubImage(2, 0), walls4, puertas4, objetos, player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(mapa.getSubImage(2, 0), walls4, puertas4, new Objeto(2, 980, 420), player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, player, proyectiles);
         salas.add(sala1);

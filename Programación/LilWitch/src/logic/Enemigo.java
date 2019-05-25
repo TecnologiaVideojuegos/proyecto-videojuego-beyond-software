@@ -25,6 +25,11 @@ public class Enemigo implements IColisionable {
     private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
+        System.out.println("movX: " + movX);
+        System.out.println("movY: " + movY);
+        
         SpriteSheet tileSet;
         Animation up, down, l, r;
         tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
@@ -59,9 +64,7 @@ public class Enemigo implements IColisionable {
         this.vida = vida;
         this.ataque = ataque;
         this.cooldown = 1000;
-        this.distanciaVision = 0;
-        this.movX = (int) (Math.random() * 3+1);
-        this.movY = (int) (Math.random() * 3+1);
+        this.distanciaVision = 0;   
     }
     
     public Enemigo(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
@@ -101,8 +104,14 @@ public class Enemigo implements IColisionable {
         this.ataque = ataque;
         this.cooldown = 1000;
         this.distanciaVision = distanciaVision;
+        
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
+        
+        while(movX == 2 && movY == 2) {
+            this.movX = (int) (Math.random() * 3+1);
+            this.movY = (int) (Math.random() * 3+1);
+        }
     }
 
     @Override
@@ -222,24 +231,25 @@ public class Enemigo implements IColisionable {
     @Override
     public void alColisionar(IColisionable colision, int delta) {
         if(colision.isProyectile() != 1) {
-            if(up) {
-                sprite.moverY(150f * (float) delta / 1000);
-            }
-            if(down) {
-                sprite.moverY(-150f * (float) delta / 1000);
-            }
-            if(r) {
-                sprite.moverX(-150f * (float) delta / 1000);
-            }
-            if(l) {
-                sprite.moverX(150f * (float) delta / 1000);
+            if (!colision.isPlayer()) {
+                this.colision = true;
+                if(up) {
+                    sprite.moverY(150f * (float) delta / 1000);
+                }
+                if(down) {
+                    sprite.moverY(-150f * (float) delta / 1000);
+                }
+                if(r) {
+                    sprite.moverX(-150f * (float) delta / 1000);
+                }
+                if(l) {
+                    sprite.moverX(150f * (float) delta / 1000);
+                }
             }
             if (colision.isProyectile() >= 2) {
                 vida -= colision.getAtaque();
             }
-            if (!colision.isPlayer()) {
-                this.colision = true;
-            }
+            
         }
     }
 
@@ -303,8 +313,10 @@ public class Enemigo implements IColisionable {
     public void sincronizarArea() {
         hitbox.setX(sprite.getPosicion().getX());
         hitbox.setY(sprite.getPosicion().getY());
-        visionRange.setCenterX(hitbox.getX() + hitbox.getWidth() / 2);
-        visionRange.setCenterY(hitbox.getY() + hitbox.getHeight() / 2);
+        if(distanciaVision != 0) {
+            visionRange.setCenterX(hitbox.getX() + hitbox.getWidth() / 2);
+            visionRange.setCenterY(hitbox.getY() + hitbox.getHeight() / 2);
+        }
     }
 
     @Override   
@@ -386,5 +398,21 @@ public class Enemigo implements IColisionable {
     @Override
     public int isObjeto() {
         return 0;
+    }
+
+    public int getMovX() {
+        return movX;
+    }
+
+    public void setMovX(int movX) {
+        this.movX = movX;
+    }
+
+    public int getMovY() {
+        return movY;
+    }
+
+    public void setMovY(int movY) {
+        this.movY = movY;
     }
 }

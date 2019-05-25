@@ -26,14 +26,19 @@ public class Sala {
         this.enemigos = enemigos;
         gestor = new GestorColision(proyectiles);
         gestor.registrarCuerpo(jugador);
+        
         for (int i = 0; i < paredes.size(); i++) {
             gestor.registrarCuerpo(paredes.get(i));
             
         }
-        for (int j = 0; j < puertas.size(); j++) {
-            gestor.registrarCuerpo(puertas.get(j));
-            
+        
+        if(puertas != null) {
+            for (int j = 0; j < puertas.size(); j++) {
+                gestor.registrarCuerpo(puertas.get(j));
+
+            }
         }
+        
         if(this.enemigos != null) {
             for (int k = 0; k < this.enemigos.size(); k++) {
                 gestor.registrarCuerpo(this.enemigos.get(k));
@@ -68,8 +73,8 @@ public class Sala {
             }    
         }
         
-        for (int i = 0; i < enemigos.size(); i++) {
-            enemigos.get(i).update(delta);
+        for (int j = 0; j < enemigos.size(); j++) {
+            enemigos.get(j).update(delta);
             
         }
     }
@@ -102,5 +107,5 @@ public class Sala {
 
     public void setPlayer(Jugador player) {
         this.player = player;
-    }   
+    } 
 }
