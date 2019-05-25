@@ -16,13 +16,11 @@ import org.newdawn.slick.geom.Shape;
 public class Esqueleto extends Enemigo {
     private ControladorProyectiles proyectiles;
     private boolean escudo;
-    private int movX, movY;
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque);
         this.proyectiles = proyectiles;
-//        this.movX = (int) (Math.random() * 3 + 1);
-//        this.movY = (int) (Math.random() * 3 + 1);
+        
         if(x == 120) {
             escudo = false;
         }

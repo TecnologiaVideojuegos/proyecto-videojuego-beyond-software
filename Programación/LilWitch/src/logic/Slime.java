@@ -13,12 +13,9 @@ import org.newdawn.slick.geom.Rectangle;
  * @author corte
  */
 public class Slime extends Enemigo{
-    private int movX, movY;
 
     public Slime(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque);
-//        this.movX = (int) (Math.random() * 3+1);
-//        this.movY = (int) (Math.random() * 3+1);
     }
 
     /*@Override

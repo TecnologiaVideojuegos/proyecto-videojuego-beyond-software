@@ -17,7 +17,7 @@ public class Jugador implements IColisionable {
     private Rectangle hitbox;
     private boolean up, down, r, l, stop;
     private ControladorProyectiles proyectiles;
-    private int vida, vidaTotal, cooldown, varitaActual;
+    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad;
     private Image corazonVacio, corazonLleno, corazonMedio;
     private Inventario inventario;
 
@@ -52,6 +52,7 @@ public class Jugador implements IColisionable {
         this.vida = 6;
         this.vidaTotal = 6;
         this.cooldown = 1000;
+        this.tiempoInvencibilidad = 350;
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
@@ -120,6 +121,7 @@ public class Jugador implements IColisionable {
     
     public void update(Input entrada, int delta) {
         cooldown += delta;
+        tiempoInvencibilidad += delta;
         updateTeclado(entrada, delta);
         sincronizarArea();
     }
@@ -410,20 +412,30 @@ public class Jugador implements IColisionable {
                     }
                 }
                 
-                if(up) {
-                    personaje.moverY(500f * (float) delta / 1000);
-                }
-                if(down) {
-                    personaje.moverY(-500f * (float) delta / 1000);
-                }
-                if(r) {
-                    personaje.moverX(-500f * (float) delta / 1000);
-                }
-                if(l) {
-                    personaje.moverX(500f * (float) delta / 1000);
-                }
                 if (colision.isEnemy()) {
-                    vida -= colision.getAtaque();
+                    if(colision.isProyectile() == 1) {
+                        vida -= colision.getAtaque();
+                    }
+                    else {
+                        if(tiempoInvencibilidad > 350) {
+                            vida -= colision.getAtaque();
+                            tiempoInvencibilidad = 0;
+                        }
+                    }    
+                }
+                else {
+                    if(up) {
+                        personaje.moverY(500f * (float) delta / 1000);
+                    }
+                    if(down) {
+                        personaje.moverY(-500f * (float) delta / 1000);
+                    }
+                    if(r) {
+                        personaje.moverX(-500f * (float) delta / 1000);
+                    }
+                    if(l) {
+                        personaje.moverX(500f * (float) delta / 1000);
+                    }
                 }
             }
         }

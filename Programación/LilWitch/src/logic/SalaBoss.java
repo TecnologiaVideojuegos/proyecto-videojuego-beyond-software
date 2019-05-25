@@ -9,53 +9,52 @@ import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 /**
  *
  * @author alvar
  */
 public class SalaBoss extends Sala {
-    ArrayList<Objeto> objetos;
-    ArrayList<Cofre> cofres;
+    private ArrayList<Objeto> objetos;
+    private ArrayList<Puerta> puertas;
+    private boolean cleared;
 
-    public SalaBoss(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, ArrayList<Objeto> objetos, Jugador jugador, ControladorProyectiles proyectiles) {
-        super(imagen, paredes, puertas, null, jugador, proyectiles);
-        this.objetos = objetos;
-        cofres = new ArrayList<>();
-        for (int i = 0; i < this.objetos.size(); i++) {
-            //super.getGestor().registrarCuerpo(this.objetos.get(i));
-            try {
-                Cofre c = new Cofre(this.objetos.get(i), this.objetos.get(i).getPosicion().getX(), this.objetos.get(i).getPosicion().getY() + 120, i % 7);
-                cofres.add(c);
-                super.getGestor().registrarCuerpo(c);
-            } catch(Exception e) {
-                System.out.println("Error");
-                e.printStackTrace();
-            }
+    public SalaBoss(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, Objeto objeto, Jugador jugador, ControladorProyectiles proyectiles) {
+        super(imagen, paredes, null, null, jugador, proyectiles);
+        this.puertas = puertas;
+        this.objetos = new ArrayList<>();
+        try {
+            objetos.add(new Objeto(8, 840, 420));
         }
+        catch (SlickException se) {
+            System.out.println("Error al crear la sala");
+        }
+        objetos.add(objeto);
+        
+        
+        
+        
     }
 
     @Override
     public int update(Input entrada, int delta) {
         int n = super.update(entrada, delta);
-        for (int j = 0; j < cofres.size(); j++) {
-            cofres.get(j).update(delta);            
-        }
+        
         return n;
     }
     
-    
-
     @Override
     public void draw(Graphics g, Input entrada) {
         super.draw(g, entrada);
         /*for (int i = 0; i < objetos.size(); i++) {
             objetos.get(i).draw(); 
         }*/
-        for (int j = 0; j < cofres.size(); j++) {
-            cofres.get(j).draw();            
-        }
     }
     
-    
+    public void habilitarPuertas() {
+        for (int j = 0; j < puertas.size(); j++) {
+            super.getGestor().registrarCuerpo(puertas.get(j));   
+        }
+    }
 }
