@@ -56,18 +56,20 @@ public class SalaBoss extends Sala {
 
     @Override
     public int update(Input entrada, int delta) {
-        int n = super.update(entrada, delta);
         if(jefe.getVida() <= 0) {
             super.setImagen(imagenes.get(1));
             habilitarPuertas();
             dropObjetos();
         }
+        jefe.update(delta);
+        int n = super.update(entrada, delta);
         return n;
     }
     
     @Override
     public void draw(Graphics g, Input entrada) {
         super.draw(g, entrada);
+        jefe.draw();
         if(jefe.getVida() <= 0) {
             for (int i = 0; i < objetos.size(); i++) {
                 objetos.get(i).draw(); 

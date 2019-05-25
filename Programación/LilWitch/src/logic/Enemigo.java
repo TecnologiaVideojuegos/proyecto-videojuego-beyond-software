@@ -420,4 +420,12 @@ public class Enemigo implements IColisionable {
     public void setMovY(int movY) {
         this.movY = movY;
     }
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
 }

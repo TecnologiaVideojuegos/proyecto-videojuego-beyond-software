@@ -21,7 +21,7 @@ public class Prueba {
             
         }*/
         int vida = 85;
-        System.out.println(vida / 10);
+        System.out.println((vida / 10) + 1);
     }
     
 }
