@@ -18,7 +18,7 @@ public class Esqueleto extends Enemigo {
     private boolean escudo;
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
-        super(filename, ancho, alto, x, y, distanciaVision, vida, ataque);
+        super(filename, ancho, alto, x, y, distanciaVision, vida, ataque, 150);
         this.proyectiles = proyectiles;
         
         if(x == 120) {

@@ -16,10 +16,12 @@ public class Prueba {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        for (int i = 0; i < 100; i++) {
+        /*for (int i = 0; i < 100; i++) {
             System.out.println((int) (Math.random() * 3+1));
             
-        }
+        }*/
+        int vida = 85;
+        System.out.println(vida / 10);
     }
     
 }

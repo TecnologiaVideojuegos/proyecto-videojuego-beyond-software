@@ -21,15 +21,10 @@ public class Enemigo implements IColisionable {
     private Rectangle hitbox;
     private Circle visionRange;
     private boolean up, down, r, l, colision;
-    private int vida, ataque, cooldown, distanciaVision, movX, movY;
+    private int vida, ataque, cooldown, distanciaVision, movX, movY, velocidad;
     private Punto playerPosition;
 
-    public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
-        this.movX = (int) (Math.random() * 3+1);
-        this.movY = (int) (Math.random() * 3+1);
-        System.out.println("movX: " + movX);
-        System.out.println("movY: " + movY);
-        
+    public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad) throws SlickException {    
         SpriteSheet tileSet;
         Animation up, down, l, r;
         tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
@@ -64,10 +59,19 @@ public class Enemigo implements IColisionable {
         this.vida = vida;
         this.ataque = ataque;
         this.cooldown = 1000;
-        this.distanciaVision = 0;   
+        this.distanciaVision = 0;
+        this.velocidad = velocidad;
+        
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
+        
+        while(movX == 2 && movY == 2) {
+            this.movX = (int) (Math.random() * 3+1);
+            this.movY = (int) (Math.random() * 3+1);
+        }
     }
     
-    public Enemigo(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque) throws SlickException {
+    public Enemigo(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, int velocidad) throws SlickException {
         SpriteSheet tileSet;
         Animation up, down, l, r;
         tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
@@ -104,6 +108,7 @@ public class Enemigo implements IColisionable {
         this.ataque = ataque;
         this.cooldown = 1000;
         this.distanciaVision = distanciaVision;
+        this.velocidad = velocidad;
         
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
@@ -168,7 +173,7 @@ public class Enemigo implements IColisionable {
         }
         switch(movX){
             case 1:
-                sprite.moverX(-150 * ((float) delta / 1000));
+                sprite.moverX(-velocidad * ((float) delta / 1000));
                 l = true;
                 r = false;
                 break;
@@ -178,14 +183,14 @@ public class Enemigo implements IColisionable {
                 r = false;
                 break;
             case 3:
-                sprite.moverX(150 * ((float) delta / 1000));
+                sprite.moverX(velocidad * ((float) delta / 1000));
                 l = false;
                 r = true;
                 break;  
         }
         switch(movY){
             case 1:
-                sprite.moverY(-150 * ((float) delta / 1000));
+                sprite.moverY(-velocidad * ((float) delta / 1000));
                 up = true;
                 down = false;
                 break;
@@ -195,7 +200,7 @@ public class Enemigo implements IColisionable {
                 down = false;
                 break;
             case 3:
-                sprite.moverY(150 * ((float) delta / 1000));
+                sprite.moverY(velocidad * ((float) delta / 1000));
                 up = false;
                 down = true;
                 break;   
@@ -234,16 +239,16 @@ public class Enemigo implements IColisionable {
             if (!colision.isPlayer()) {
                 this.colision = true;
                 if(up) {
-                    sprite.moverY(150f * (float) delta / 1000);
+                    sprite.moverY(velocidad * (float) delta / 1000);
                 }
                 if(down) {
-                    sprite.moverY(-150f * (float) delta / 1000);
+                    sprite.moverY(-velocidad * (float) delta / 1000);
                 }
                 if(r) {
-                    sprite.moverX(-150f * (float) delta / 1000);
+                    sprite.moverX(-velocidad * (float) delta / 1000);
                 }
                 if(l) {
-                    sprite.moverX(150f * (float) delta / 1000);
+                    sprite.moverX(velocidad * (float) delta / 1000);
                 }
             }
             if (colision.isProyectile() >= 2) {

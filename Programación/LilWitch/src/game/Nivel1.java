@@ -118,6 +118,9 @@ public class Nivel1 extends BasicGameState{
         walls4.add(abismo4_1);
         walls4.add(abismo4_2);
         ArrayList<Puerta> puertas4 = new ArrayList();
+        ArrayList<Image> imagenes4 = new ArrayList<>();
+        imagenes4.add(mapa.getSubImage(2, 0));
+        imagenes4.add(new Image("resources/niveles/Nivel 1_final.png"));
         
         ArrayList<Wall> walls5 = new ArrayList<>();
         walls5.add(limites_5);
@@ -142,11 +145,10 @@ public class Nivel1 extends BasicGameState{
         enemigos1.add(e1);
         enemigos1.add(s1);
 
-        
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, player, proyectiles);
-        SalaBoss sala4 = new SalaBoss(mapa.getSubImage(2, 0), walls4, puertas4, new Objeto(2, 980, 420), player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 1, new Objeto(2, 980, 420), player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, player, proyectiles);
         salas.add(sala1);
