@@ -15,7 +15,7 @@ import org.newdawn.slick.geom.Rectangle;
 public class Murcielago  extends Enemigo{
 
     public Murcielago(String filename, int ancho, int alto, int x, int y, int vida, int ataque) throws SlickException {
-        super(filename, ancho, alto, x, y, vida, ataque);
+        super(filename, ancho, alto, x, y, vida, ataque, 300);
         
     }
 
