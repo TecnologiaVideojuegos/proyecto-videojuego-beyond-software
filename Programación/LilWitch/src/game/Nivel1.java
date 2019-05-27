@@ -53,7 +53,7 @@ public class Nivel1 extends BasicGameState{
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940,1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_4 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
-        Wall limites_5 = new Wall(new float[]{20, 20, 20, 940, 1900, 960, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
+        Wall limites_5 = new Wall(new float[]{20, 20, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_6 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 20});
         Wall abismo1_1 = new Wall(new float[]{600,0, 600,120, 600,240, 480,240, 480,360, 360,360, 360,480, 0,480, 0,960, 1920,960, 1920,0});
         Wall abismo1_2 = new Wall(new float[]{1320, 240,1320,360, 1200,360, 1200,480, 1080,480, 1080,600, 1320,600, 1320,480, 1440,480, 1440,360, 1800,360, 1800,240});
@@ -74,6 +74,7 @@ public class Nivel1 extends BasicGameState{
         Wall abismo5_4 = new Wall(new float[]{1080, 20, 1080, 360, 1320, 360, 1320, 240,1200, 240, 1200, 20});
         Wall abismo5_5 = new Wall(new float[]{720, 20, 720, 120, 840, 120, 840, 20});
         Wall abismo5_6 = new Wall(new float[]{480, 20, 480, 120, 600, 120, 600, 20});
+        Wall abismo6_1 = new Wall(new float[]{900, 460, 900, 540, 1010, 540, 1010, 460});
         Puerta p1_1 = new Puerta(1915, 360, 5, 240, 1, 2, 1);
         Puerta p2_1 = new Puerta(1915, 360, 5, 240, 1, 3, 1);
         Puerta p2_2 = new Puerta(840, 955, 240, 5, 2, 5, 1);
@@ -120,7 +121,7 @@ public class Nivel1 extends BasicGameState{
         ArrayList<Puerta> puertas4 = new ArrayList();
         ArrayList<Image> imagenes4 = new ArrayList<>();
         imagenes4.add(mapa.getSubImage(2, 0));
-        imagenes4.add(new Image("resources/niveles/Nivel 1_final.png"));
+        imagenes4.add(new Image("resources/niveles/Nivel 1_v1_final.png"));
         
         ArrayList<Wall> walls5 = new ArrayList<>();
         walls5.add(limites_5);
@@ -136,6 +137,7 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Wall> walls6 = new ArrayList<>();
         walls6.add(limites_6);
+        walls6.add(abismo6_1);
         ArrayList<Puerta> puertas6 = new ArrayList();
         puertas6.add(p6_1);
         
