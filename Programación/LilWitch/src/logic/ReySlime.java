@@ -29,11 +29,9 @@ public class ReySlime extends Boss {
 
     @Override
     public void atacar(int delta) {
-        avanzar(delta); 
+        //avanzar(delta); 
         float x = super.getPosicion().getX();
-        float y = super.getPosicion().getX();
-        float pX = player.getPosicion().getX();
-        float pY = player.getPosicion().getY();
+        float y = super.getPosicion().getY();
         System.out.println("Posicion jugador: " + player.getPosicion().getX() + " , " + player.getPosicion().getY());
         float dirX = player.getPosicion().getX() - x;
         float dirY = player.getPosicion().getY() - y;
@@ -65,7 +63,7 @@ public class ReySlime extends Boss {
                 super.setDown(false);
         }
         else {
-            super.setUp(true);
+            super.setUp(false);
             super.setDown(false);
         }
         updateAnimacion();
