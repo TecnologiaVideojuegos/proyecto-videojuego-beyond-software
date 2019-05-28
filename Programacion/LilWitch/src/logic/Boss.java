@@ -44,6 +44,10 @@ public class Boss extends Enemigo {
     @Override
     public void draw() {
         if(super.getVida() > 0) {
+            System.out.println("L: " + super.isL());
+            System.out.println("R: " + super.isR());
+            System.out.println("UP: " + super.isUp());
+            System.out.println("DOWN: " + super.isDown());
             super.draw();
             switch((porcentajeVida / 10) + 1) {
                 case 11:

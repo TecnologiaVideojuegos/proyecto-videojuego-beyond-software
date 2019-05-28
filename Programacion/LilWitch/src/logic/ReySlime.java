@@ -28,105 +28,103 @@ public class ReySlime extends Boss {
     }
 
     @Override
-    public void atacar(int delta) {
-        //avanzar(delta); 
-        float x = super.getPosicion().getX();
-        float y = super.getPosicion().getY();
-        System.out.println("Posicion jugador: " + player.getPosicion().getX() + " , " + player.getPosicion().getY());
+    public void atacar(int delta) { 
+        float x = super.getPosicion().getX() + 165;
+        float y = super.getPosicion().getY() + 165;  
         float dirX = player.getPosicion().getX() + 48 - x;
         float dirY = player.getPosicion().getY() + 52 - y;
-        System.out.println("Dir: " + dirX + " , " + dirY);
-                
-        if (dirX > 0) {
-            super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
-                super.setL(false);
-                super.setR(true);
-        }
-        else if (dirX < 0) {
-            super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
-                super.setL(true);
-                super.setR(false);
-        }
-        else {
-            super.setL(false);
-            super.setR(false);
-        }
         
-        if (dirY > 0) {
-            super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
+        if(!super.isColision()) {        
+            if (dirX > 0) {
+                super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
+                    super.setL(false);
+                    super.setR(true);
+            }
+            else if (dirX < 0) {
+                super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
+                    super.setL(true);
+                    super.setR(false);
+            }
+            else {
+                super.setL(false);
+                super.setR(false);
+            }
+
+            if (dirY > 0) {
+                super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
+                    super.setUp(false);
+                    super.setDown(true);
+            }
+            else if (dirY < 0) {
+                super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
+                    super.setUp(true);
+                    super.setDown(false);
+            }
+            else {
                 super.setUp(false);
-                super.setDown(true);
-        }
-        else if (dirY < 0) {
-            super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
-                super.setUp(true);
                 super.setDown(false);
+            }
         }
         else {
-            super.setUp(false);
-            super.setDown(false);
+            avanzar(delta);    
         }
         updateAnimacion();
     }
     
     @Override
     public void avanzar(int delta) {
-        if(super.isColision()) {
-            if(super.isUp()) {
-                movX = (int) (Math.random() * 3 + 1);
-                movY = 1;
-            }
-            if(super.isDown()) {
-                movX = (int) (Math.random() * 3 + 1);
-                movY = 3;
-            }
-            if(super.isR()) {
-                movX = 1;
-                movY = (int) (Math.random() * 3 + 1);
-            }
-            else {
-                movX = 3;
-                movY = (int) (Math.random() * 3 + 1);
-            }
-            super.setColision(false);
-            
-            switch(movX){
-                case 1:
-                    super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
-                    super.setL(true);
-                    super.setR(false);
-                    break;
-                case 2:
-                    super.getSprite().moverX(0);
-                    super.setL(false);
-                    super.setR(false);
-                    break;
-                case 3:
-                    super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
-                    super.setL(false);
-                    super.setR(true);
-                    break;  
-            }
-            
-            switch(movY){
-                case 1:
-                    super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
-                    super.setUp(true);
-                    super.setDown(false);
-                    break;
-                case 2:
-                    super.getSprite().moverY(0);
-                    super.setUp(false);
-                    super.setDown(false);
-                    break;
-                case 3:
-                    super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
-                    super.setUp(false);
-                    super.setDown(true);
-                    break;   
-            }
-            updateAnimacion();
+        if(super.isUp()) {
+            movX = 2;
+            movY = 1;
         }
+        if(super.isDown()) {
+            movX = 2;
+            movY = 3;
+        }
+        if(super.isR()) {
+            movX = 1;
+            movY = 2;
+        }
+        else {
+            movX = 3;
+            movY = 2;
+        }
+
+        switch(movX){
+            case 1:
+                super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
+                super.setL(true);
+                super.setR(false);
+                break;
+            case 2:
+                super.setL(false);
+                super.setR(false);
+                break;
+            case 3:
+                super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
+                super.setL(false);
+                super.setR(true);
+                break;  
+        }
+
+        switch(movY){
+            case 1:
+                super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
+                super.setUp(true);
+                super.setDown(false);
+                break;
+            case 2:
+                super.setUp(false);
+                super.setDown(false);
+                break;
+            case 3:
+                super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
+                super.setUp(false);
+                super.setDown(true);
+                break;   
+        }
+        
+         super.setColision(false);
     }
     
     public void updateAnimacion() {
