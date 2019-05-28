@@ -65,11 +65,11 @@ public class Nivel2 extends BasicGameState{
         Wall fuego3_2 = new Wall(new float[]{480, 120, 720, 120, 720, 360, 480, 360});
         Wall fuego3_3 = new Wall(new float[]{1440, 120, 1800, 120, 1800, 360, 1560, 360, 1560, 240, 1440, 240});
         //Wall fuego3_4 = new Wall(new float[]{1320, 600, 1440, 600, 1440, 720, 1320, 720});
-        Wall fuego4_1 = new Wall(new float[]{120, 120, 600, 120, 600, 240, 480, 240, 480, 360, 240, 360, 240, 480, 120, 480});
-        Wall fuego4_2 = new Wall(new float[]{120, 600, 240, 600, 240, 720, 480, 720, 480, 840, 600, 840, 600, 940, 120, 940});
-        Wall fuego4_3 = new Wall(new float[]{1320, 120, 1800, 120, 1800, 480, 1680, 480, 1680, 360, 1440, 360, 1440, 240, 1320, 240});
-        Wall fuego4_4 = new Wall(new float[]{1680, 600, 1800, 600, 1800, 940, 1320, 940, 1320, 840, 1440, 840, 1440, 720, 1680, 720});
-        Wall fuego4_5 = new Wall(new float[]{840, 240, 1080, 240, 1080, 360, 1200, 360, 1200, 600, 1080, 600, 1080, 720, 840, 720, 840, 600, 720, 600, 720, 360, 840, 360});
+        //Wall fuego4_1 = new Wall(new float[]{120, 120, 600, 120, 600, 240, 480, 240, 480, 360, 240, 360, 240, 480, 120, 480});
+        //Wall fuego4_2 = new Wall(new float[]{120, 600, 240, 600, 240, 720, 480, 720, 480, 840, 600, 840, 600, 940, 120, 940});
+        //Wall fuego4_3 = new Wall(new float[]{1320, 120, 1800, 120, 1800, 480, 1680, 480, 1680, 360, 1440, 360, 1440, 240, 1320, 240});
+        //Wall fuego4_4 = new Wall(new float[]{1680, 600, 1800, 600, 1800, 940, 1320, 940, 1320, 840, 1440, 840, 1440, 720, 1680, 720});
+        //Wall fuego4_5 = new Wall(new float[]{840, 240, 1080, 240, 1080, 360, 1200, 360, 1200, 600, 1080, 600, 1080, 720, 840, 720, 840, 600, 720, 600, 720, 360, 840, 360});
         Wall fuego5_1 = new Wall(new float[]{360, 240, 360, 360, 480, 360, 480, 240});
         Wall fuego5_2 = new Wall(new float[]{360, 480, 360, 600, 460, 600, 480, 480});
         Wall fuego5_3 = new Wall(new float[]{720, 360, 720, 480, 840, 480, 840, 360});
@@ -126,11 +126,11 @@ public class Nivel2 extends BasicGameState{
         
         ArrayList<Wall> walls4 = new ArrayList<>();
         walls4.add(limites_4);
-        walls4.add(fuego4_1);
-        walls4.add(fuego4_2);
-        walls4.add(fuego4_3);
-        walls4.add(fuego4_4);
-        walls4.add(fuego4_5);
+        //walls4.add(fuego4_1);
+        //walls4.add(fuego4_2);
+        //walls4.add(fuego4_3);
+        //walls4.add(fuego4_4);
+        //walls4.add(fuego4_5);
         ArrayList<Puerta> puertas4 = new ArrayList();
         puertas4.add(p4_1);
         

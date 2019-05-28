@@ -59,15 +59,15 @@ public class Nivel3 extends BasicGameState{
         Wall agua3_2 = new Wall(new float[]{120, 720, 480, 720, 480, 840, 120, 840});
         Wall agua3_3 = new Wall(new float[]{840, 480, 840, 600, 960, 600, 960, 480, 1080, 480, 1080, 360, 960, 360, 960, 480});
         Wall agua3_4 = new Wall(new float[]{1560, 360, 1560, 480, 1440, 480, 1440, 720, 1320, 720, 1320, 840, 1800, 840, 1800, 360});
-        Wall agua4_1 = new Wall(new float[]{20, 360, 120, 360, 120, 240, 240, 240, 240, 120, 360, 120, 360, 20, 240, 20, 240, 120, 120, 120, 120, 240, 20, 240});
+        //Wall agua4_1 = new Wall(new float[]{20, 360, 120, 360, 120, 240, 240, 240, 240, 120, 360, 120, 360, 20, 240, 20, 240, 120, 120, 120, 120, 240, 20, 240});
         //Wall agua4_2 = new Wall(new float[]{120, 480, 480, 480, 480, 600, 120, 600});
-        Wall agua4_3 = new Wall(new float[]{20, 720, 120, 720, 120, 840, 20, 840});
-        Wall agua4_4 = new Wall(new float[]{240, 840, 360, 840, 360, 940, 240, 940});
-        Wall agua4_5 = new Wall(new float[]{1590, 840, 1680, 840, 1680, 940, 1560, 940});
-        Wall agua4_6 = new Wall(new float[]{1800, 720, 1900, 720, 1900, 840, 1800, 840});
+        //Wall agua4_3 = new Wall(new float[]{20, 720, 120, 720, 120, 840, 20, 840});
+        //Wall agua4_4 = new Wall(new float[]{240, 840, 360, 840, 360, 940, 240, 940});
+        //Wall agua4_5 = new Wall(new float[]{1590, 840, 1680, 840, 1680, 940, 1560, 940});
+        //Wall agua4_6 = new Wall(new float[]{1800, 720, 1900, 720, 1900, 840, 1800, 840});
         //Wall agua4_7 = new Wall(new float[]{1440, 480, 1800, 480, 1800, 600, 1440, 600});
-        Wall agua4_8 = new Wall(new float[]{1560, 20, 1560, 120, 1680, 120, 1680, 240, 1800, 240, 1800, 360, 1900, 360, 1900, 240, 1800, 240, 1800, 120, 1680, 120, 1680, 20});
-        Wall agua4_9 = new Wall(new float[]{720, 240, 1200, 240, 1200, 720, 720, 720});
+        //Wall agua4_8 = new Wall(new float[]{1560, 20, 1560, 120, 1680, 120, 1680, 240, 1800, 240, 1800, 360, 1900, 360, 1900, 240, 1800, 240, 1800, 120, 1680, 120, 1680, 20});
+        //Wall agua4_9 = new Wall(new float[]{720, 240, 1200, 240, 1200, 720, 720, 720});
         Wall agua5_1 = new Wall(new float[]{240, 240, 240, 360, 360, 360, 360, 240});
         Wall agua5_2 = new Wall(new float[]{240, 480, 240, 600, 360, 600, 360, 480});
         Wall agua5_3 = new Wall(new float[]{240, 720, 240, 840, 360, 840, 360, 720});
@@ -117,15 +117,15 @@ public class Nivel3 extends BasicGameState{
         
         ArrayList<Wall> walls4 = new ArrayList<>();
         walls4.add(limites_4);
-        walls4.add(agua4_1);
+        //walls4.add(agua4_1);
         //walls4.add(agua4_2);
-        walls4.add(agua4_3);
-        walls4.add(agua4_4);
-        walls4.add(agua4_5);
-        walls4.add(agua4_6);
+        //walls4.add(agua4_3);
+        //walls4.add(agua4_4);
+        //walls4.add(agua4_5);
+        //walls4.add(agua4_6);
         //walls4.add(agua4_7);
-        walls4.add(agua4_8);
-        walls4.add(agua4_9);
+        //walls4.add(agua4_8);
+        //walls4.add(agua4_9);
         ArrayList<Puerta> puertas4 = new ArrayList();
         puertas4.add(p4_1);
         

@@ -59,14 +59,14 @@ public class Nivel4 extends BasicGameState{
         Wall pinchos3_1 = new Wall(new float[]{20, 620, 110, 620, 110, 740, 220, 740, 220, 850, 340, 850, 340, 940, 20, 940});
         Wall pinchos3_2 = new Wall(new float[]{1460, 620, 1540, 620, 1540, 700, 1460, 700});
         Wall pinchos3_3 = new Wall(new float[]{1460, 20, 1460, 110, 1700, 110, 1700, 220, 1810, 220, 1810, 460, 1900, 460, 1900, 20});
-        Wall pinchos4_1 = new Wall(new float[]{20, 20, 20, 220, 110, 220, 110, 110, 220, 110, 220, 20});
-        Wall pinchos4_2 = new Wall(new float[]{20, 740, 110, 740, 110, 850, 220, 850, 220, 940, 20, 940});
-        Wall pinchos4_3 = new Wall(new float[]{1700, 940, 1700, 850, 1810, 850, 1810, 740, 1900, 740, 1900, 940});
-        Wall pinchos4_4 = new Wall(new float[]{1700, 20, 1700, 110, 1810, 110, 1810, 220, 1900, 220, 1900, 20});
-        Wall pinchos4_5 = new Wall(new float[]{620, 260, 700, 260, 700, 340, 620, 340});
-        Wall pinchos4_6 = new Wall(new float[]{1220, 260, 1300, 260, 1300, 340, 1220, 340});
-        Wall pinchos4_7 = new Wall(new float[]{1220, 740, 1300, 740, 1300, 820, 1220, 820});
-        Wall pinchos4_8 = new Wall(new float[]{620, 740, 700, 740, 700, 820, 620, 820});
+        //Wall pinchos4_1 = new Wall(new float[]{20, 20, 20, 220, 110, 220, 110, 110, 220, 110, 220, 20});
+        //Wall pinchos4_2 = new Wall(new float[]{20, 740, 110, 740, 110, 850, 220, 850, 220, 940, 20, 940});
+        //Wall pinchos4_3 = new Wall(new float[]{1700, 940, 1700, 850, 1810, 850, 1810, 740, 1900, 740, 1900, 940});
+        //Wall pinchos4_4 = new Wall(new float[]{1700, 20, 1700, 110, 1810, 110, 1810, 220, 1900, 220, 1900, 20});
+        //Wall pinchos4_5 = new Wall(new float[]{620, 260, 700, 260, 700, 340, 620, 340});
+        //Wall pinchos4_6 = new Wall(new float[]{1220, 260, 1300, 260, 1300, 340, 1220, 340});
+        //Wall pinchos4_7 = new Wall(new float[]{1220, 740, 1300, 740, 1300, 820, 1220, 820});
+        //Wall pinchos4_8 = new Wall(new float[]{620, 740, 700, 740, 700, 820, 620, 820});
         Wall pinchos5_1 = new Wall(new float[]{140, 620, 220, 620, 220, 700, 140, 700});
         Wall pinchos5_2 = new Wall(new float[]{1820, 740, 1820, 860, 1700, 860, 1700, 940, 1900, 940,  1900, 740, 1820, 740});
         Wall pinchos5_3 = new Wall(new float[]{1690, 620, 1690, 700, 1780, 700, 1780, 620});
@@ -115,14 +115,14 @@ public class Nivel4 extends BasicGameState{
         
         ArrayList<Wall> walls4 = new ArrayList<>();
         walls4.add(limites_4);
-        walls4.add(pinchos4_1);
-        walls4.add(pinchos4_2);
-        walls4.add(pinchos4_3);
-        walls4.add(pinchos4_4);
-        walls4.add(pinchos4_5);
-        walls4.add(pinchos4_6);
-        walls4.add(pinchos4_7);
-        walls4.add(pinchos4_8);
+        //walls4.add(pinchos4_1);
+        //walls4.add(pinchos4_2);
+        //walls4.add(pinchos4_3);
+        //walls4.add(pinchos4_4);
+        //walls4.add(pinchos4_5);
+        //walls4.add(pinchos4_6);
+        //walls4.add(pinchos4_7);
+        //walls4.add(pinchos4_8);
         ArrayList<Puerta> puertas4 = new ArrayList();
         //puertas4.add(p4_1);
         
