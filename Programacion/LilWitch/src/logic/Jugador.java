@@ -15,9 +15,9 @@ import org.newdawn.slick.geom.Shape;
 public class Jugador implements IColisionable {
     private SpriteAnimado personaje;
     private Rectangle hitbox;
-    private boolean up, down, r, l, stop;
+    private boolean up, down, r, l, stop, hit;
     private ControladorProyectiles proyectiles;
-    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad;
+    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime;
     private Image corazonVacio, corazonLleno, corazonMedio;
     private Inventario inventario;
 
@@ -57,33 +57,37 @@ public class Jugador implements IColisionable {
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
         this.inventario = new Inventario(true);
+        this.hit = false;
+        this.flickerTime = 0;
     }
     
     public void draw(Input entrada, Graphics g) {
-        if(entrada.isKeyDown(Input.KEY_A)) {
-            personaje.drawL();
+        if(!hit) {
+            if(entrada.isKeyDown(Input.KEY_A)) {
+                personaje.drawL();
+            }
+            else if(entrada.isKeyDown(Input.KEY_D)) {
+                personaje.drawR();
+            }
+            else if(entrada.isKeyDown(Input.KEY_W)) {
+                personaje.drawUp();
+            }
+            else if(entrada.isKeyDown(Input.KEY_S)) {
+               personaje.drawDown();
+            }
+            else if(r) {
+                personaje.drawStaticR();
+            }
+            else if(l) {
+                personaje.drawStaticL();
+            }
+            else if(up) {
+                personaje.drawStaticUp();
+            }
+            else {
+                personaje.draw();
+            } 
         }
-        else if(entrada.isKeyDown(Input.KEY_D)) {
-            personaje.drawR();
-        }
-        else if(entrada.isKeyDown(Input.KEY_W)) {
-            personaje.drawUp();
-        }
-        else if(entrada.isKeyDown(Input.KEY_S)) {
-           personaje.drawDown();
-        }
-        else if(r) {
-            personaje.drawStaticR();
-        }
-        else if(l) {
-            personaje.drawStaticL();
-        }
-        else if(up) {
-            personaje.drawStaticUp();
-        }
-        else {
-            personaje.draw();
-        } 
         drawCorazones();
         inventario.draw(g);
     }
@@ -120,6 +124,13 @@ public class Jugador implements IColisionable {
     }
     
     public void update(Input entrada, int delta) {
+        if(hit) {
+            flickerTime += delta;
+            if(flickerTime > 50) {
+                hit = false;
+                flickerTime = 0;
+            }
+        }
         cooldown += delta;
         tiempoInvencibilidad += delta;
         updateTeclado(entrada, delta);
@@ -415,10 +426,12 @@ public class Jugador implements IColisionable {
                 if (colision.isEnemy()) {
                     if(colision.isProyectile() == 1) {
                         vida -= colision.getAtaque();
+                        hit = true;
                     }
                     else {
                         if(tiempoInvencibilidad > 350) {
                             vida -= colision.getAtaque();
+                            hit = true;
                             tiempoInvencibilidad = 0;
                         }
                     }    

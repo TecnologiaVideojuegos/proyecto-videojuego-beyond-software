@@ -151,7 +151,7 @@ public class Enemigo implements IColisionable {
     public void update(int delta) {
         if(hit) {
             flickerTime += delta;
-            if(flickerTime > 100) {
+            if(flickerTime > 50) {
                 hit = false;
                 flickerTime = 0;
             }
