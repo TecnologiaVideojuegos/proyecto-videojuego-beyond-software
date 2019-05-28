@@ -20,6 +20,7 @@ public class Jugador implements IColisionable {
     private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime;
     private Image corazonVacio, corazonLleno, corazonMedio;
     private Inventario inventario;
+    private Sound sonido;
 
     public Jugador(ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -59,6 +60,8 @@ public class Jugador implements IColisionable {
         this.inventario = new Inventario(true);
         this.hit = false;
         this.flickerTime = 0;
+        
+        sonido = new Sound("resources/sonidos/Select.ogg");
     }
     
     public void draw(Input entrada, Graphics g) {
@@ -140,9 +143,11 @@ public class Jugador implements IColisionable {
     private void updateTeclado(Input entrada, int delta) {
         if(!stop){
             if(entrada.isKeyPressed(Input.KEY_LCONTROL)) {
+                sonido.play();
                 inventario.cambiarVaritaL();
             }
             if(entrada.isKeyPressed(Input.KEY_SPACE)) {
+                sonido.play();
                 inventario.cambiarVaritaR();
             }
             if(entrada.isKeyPressed(Input.KEY_E)) {
