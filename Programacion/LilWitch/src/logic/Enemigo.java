@@ -20,8 +20,8 @@ public class Enemigo implements IColisionable {
     private SpriteAnimado sprite;
     private Rectangle hitbox;
     private Circle visionRange;
-    private boolean up, down, r, l, colision;
-    private int vida, ataque, cooldown, distanciaVision, movX, movY, velocidad;
+    private boolean up, down, r, l, colision, hit;
+    private int vida, ataque, cooldown, distanciaVision, movX, movY, velocidad, flickerTime;
     private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad) throws SlickException {    
@@ -61,6 +61,8 @@ public class Enemigo implements IColisionable {
         this.cooldown = 1000;
         this.distanciaVision = 0;
         this.velocidad = velocidad;
+        this.hit = false;
+        this.flickerTime = 0;
         
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
@@ -109,6 +111,8 @@ public class Enemigo implements IColisionable {
         this.cooldown = 1000;
         this.distanciaVision = distanciaVision;
         this.velocidad = velocidad;
+        this.hit = false;
+        this.flickerTime = 0;
         
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
@@ -125,24 +129,33 @@ public class Enemigo implements IColisionable {
     }
     
     public void draw() {
-        if(down) {
-            sprite.drawDown();
-        }
-        else if (up) {
-            sprite.drawUp();
-        }
-        else if (l) {
-            sprite.drawL();
-        }
-        else if (r) {
-            sprite.drawR();
-        }
-        else {
-            sprite.draw(); 
+        if(!hit) {
+            if(down) {
+                sprite.drawDown();
+            }
+            else if (up) {
+                sprite.drawUp();
+            }
+            else if (l) {
+                sprite.drawL();
+            }
+            else if (r) {
+                sprite.drawR();
+            }
+            else {
+                sprite.draw(); 
+            }
         }
     }
     
     public void update(int delta) {
+        if(hit) {
+            flickerTime += delta;
+            if(flickerTime > 100) {
+                hit = false;
+                flickerTime = 0;
+            }
+        }
         cooldown += delta;
         atacar(delta);
         sincronizarArea();
@@ -253,6 +266,7 @@ public class Enemigo implements IColisionable {
             }
             if (colision.isProyectile() >= 2) {
                 vida -= colision.getAtaque();
+                hit = true;
             }
             
         }

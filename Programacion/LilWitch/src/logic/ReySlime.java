@@ -16,7 +16,7 @@ public class ReySlime extends Boss {
     private int movX, movY;
 
     public ReySlime(Jugador player) throws SlickException {
-        super("slime_boss_2.png", 360, 450, 960, 120, 20, 2, 150, player);
+        super("slime_boss_2.png", 360, 450, 960, 120, 20, 1, 100, player);
         this.player = player;
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
@@ -33,8 +33,8 @@ public class ReySlime extends Boss {
         float x = super.getPosicion().getX();
         float y = super.getPosicion().getY();
         System.out.println("Posicion jugador: " + player.getPosicion().getX() + " , " + player.getPosicion().getY());
-        float dirX = player.getPosicion().getX() - x;
-        float dirY = player.getPosicion().getY() - y;
+        float dirX = player.getPosicion().getX() + 48 - x;
+        float dirY = player.getPosicion().getY() + 52 - y;
         System.out.println("Dir: " + dirX + " , " + dirY);
                 
         if (dirX > 0) {

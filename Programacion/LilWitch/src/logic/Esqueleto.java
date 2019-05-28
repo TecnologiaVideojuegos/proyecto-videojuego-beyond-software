@@ -16,6 +16,7 @@ import org.newdawn.slick.geom.Shape;
 public class Esqueleto extends Enemigo {
     private ControladorProyectiles proyectiles;
     private boolean escudo;
+    private IColisionable jugador;
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque, 150);
@@ -33,14 +34,14 @@ public class Esqueleto extends Enemigo {
     @Override
     public void atacar(int delta) {
         avanzar(delta);
-        if (super.getPlayerPosition() != null) {
+        if (jugador != null) {
             if (super.getCooldown() > 2000) {
                 float x = super.getPosicion().getX();
                 float y = super.getPosicion().getY();
-                System.out.println("Jugador en: " + x+ "," +y);
+                
                 int vX, vY;
-                float dirX = super.getPlayerPosition().getX() - x;
-                float dirY = super.getPlayerPosition().getY() - y;
+                float dirX = jugador.getPosicion().getX() + 48 - x;
+                float dirY = jugador.getPosicion().getY() + 52 - y;
                 if (dirX < 0) {
                     vX = -100;
                 }
@@ -58,6 +59,8 @@ public class Esqueleto extends Enemigo {
             }
         }
     }
+    
+    
 
     /*@Override
     public void avanzar(int delta) {
@@ -140,4 +143,9 @@ public class Esqueleto extends Enemigo {
             super.getSprite().stopDown();
         } 
     }*/
+
+    @Override
+    public void alDetectar(IColisionable colision) {
+        jugador = colision;
+    }
 }
