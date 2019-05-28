@@ -47,7 +47,7 @@ public class Nivel5 extends BasicGameState{
         image = new Image("resources/intro/fondo_5.png");
         music = new Music("resources/sonidos/Caves.ogg");
         music.setVolume(0.5f);
-        music.loop();
+        //music.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});

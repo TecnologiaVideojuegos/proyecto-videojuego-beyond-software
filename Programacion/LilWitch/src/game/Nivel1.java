@@ -30,7 +30,7 @@ public class Nivel1 extends BasicGameState{
     private boolean paused = false;
     private Image fondoPausa;
     private Music music;
-    private Sound sound;
+    private Sound select;
     
     @Override
     public int getID() {
@@ -49,6 +49,7 @@ public class Nivel1 extends BasicGameState{
         music = new Music("resources/sonidos/Caves.ogg");
         music.setVolume(0.5f);
         music.loop();
+        select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940,1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
@@ -220,17 +221,19 @@ public class Nivel1 extends BasicGameState{
     public void keyReleased(int key, char c) {
         if(paused) {
             if (key == Input.KEY_DOWN) {
-                    selected++;
-                    if (selected >= options.length) {
-                            selected = 0;
-                    }
-            }
-            if (key == Input.KEY_UP) {
-                    selected--;
-                    if (selected < 0) {
-                            selected = options.length - 1;
-                    }
-            }
+                        select.play();
+			selected++;
+			if (selected >= options.length) {
+				selected = 0;
+			}
+		}
+		if (key == Input.KEY_UP) {
+                        select.play();
+			selected--;
+			if (selected < 0) {
+				selected = options.length - 1;
+			}
+		}
         }
     } 
     
