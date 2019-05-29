@@ -29,6 +29,7 @@ public class Nivel2 extends BasicGameState{
     private int selected;
     private boolean paused = false;
     private Image image;
+    private Music nivel2;
     private Sound select;
     
     @Override
@@ -44,6 +45,8 @@ public class Nivel2 extends BasicGameState{
         player = new Jugador(proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 2_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
+        nivel2 = new Music("resources/sonidos/Caves.ogg");
+        //nivel2.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
@@ -201,6 +204,9 @@ public class Nivel2 extends BasicGameState{
         if(n!=0) salaActual = n;
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE))
         {
+            if(container.isPaused()) {
+                nivel2.resume();
+            }else nivel2.pause();
             container.setPaused(!container.isPaused());
             paused=!paused;
             }
@@ -223,14 +229,14 @@ public class Nivel2 extends BasicGameState{
     public void keyReleased(int key, char c) {
         if(paused)
         {
-		if (key == Input.KEY_DOWN) {
+		if (key == Input.KEY_S) {
                         select.play();
 			selected++;
 			if (selected >= options.length) {
 				selected = 0;
 			}
 		}
-		if (key == Input.KEY_UP) {
+		if (key == Input.KEY_W) {
                         select.play();
 			selected--;
 			if (selected < 0) {

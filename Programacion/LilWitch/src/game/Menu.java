@@ -60,7 +60,7 @@ private Sound sound;
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
-                    game.enterState(3,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(10,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                     break;
                 case 1:
                     container.exit();

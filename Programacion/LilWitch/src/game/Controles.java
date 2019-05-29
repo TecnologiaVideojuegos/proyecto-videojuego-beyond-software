@@ -19,35 +19,30 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
  *
  * @author alvar
  */
-public class Intro2 extends BasicGameState{
+public class Controles extends BasicGameState{
 private Image image;
-private Music nivel1;
     
     @Override
     public int getID() {
-        return 11;
+        return 0;
     }
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/intro/fondo_3_1.png");
-        nivel1 = new Music("resources/sonidos/Caves.ogg");
+        image = new Image("resources/logos/Logo_BeyondSoftware.png");
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
-        g.drawImage(image,0, 0);
-        g.drawString("Pulse ESPACIO para saltar", 840, 20);
+        g.drawString("Logo del equipo", 50, 50);
+        g.setBackground(Color.white);
+        g.drawImage(image,960-(image.getWidth()/2),480-(image.getHeight()/2));
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(12);
-        }
-        if(container.getInput().isKeyPressed(Input.KEY_SPACE)){
-            nivel1.loop();
-            game.enterState(3);
+            game.enterState(1,new FadeOutTransition(Color.white), new FadeInTransition(Color.white));
         }
     }
     

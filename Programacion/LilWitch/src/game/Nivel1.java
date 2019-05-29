@@ -25,11 +25,12 @@ public class Nivel1 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual;
     private ControladorProyectiles proyectiles;
-    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private String[] options = new String[] {"Volver al juego","Controles", "Menú Principal"};
     private int selected;
     private boolean paused = false;
     private Image fondoPausa;
-    private Music music;
+    private Image controles;
+    private Music nivel1;
     private Sound select;
     
     @Override
@@ -46,9 +47,9 @@ public class Nivel1 extends BasicGameState{
         player = new Jugador(proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 1_v1.png", 1920, 1080);
         fondoPausa = new Image("resources/intro/fondo_5.png");
-        music = new Music("resources/sonidos/Caves.ogg");
-        music.setVolume(0.5f);
-        music.loop();
+        controles = new Image("resources/intro/controles.png");
+        nivel1 = new Music("resources/sonidos/Caves.ogg");
+        //music.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
@@ -180,12 +181,15 @@ public class Nivel1 extends BasicGameState{
         } 
         else{
             salas.get(salaActual-1).draw(g, entrada);
-        }   
+        } 
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+            if(container.isPaused()) {
+                nivel1.resume();
+            }else nivel1.pause();
             container.setPaused(!container.isPaused());
             paused=!paused;
         }
@@ -197,7 +201,7 @@ public class Nivel1 extends BasicGameState{
                     container.setPaused(!container.isPaused());
                     paused=!paused;
                     break;
-                case 1:
+                case 2:
                     game.enterState(2);
                     break;
                 }
@@ -220,20 +224,21 @@ public class Nivel1 extends BasicGameState{
     @Override
     public void keyReleased(int key, char c) {
         if(paused) {
-            if (key == Input.KEY_DOWN) {
+            if (key == Input.KEY_S) {
                         select.play();
 			selected++;
 			if (selected >= options.length) {
 				selected = 0;
 			}
 		}
-		if (key == Input.KEY_UP) {
+		if (key == Input.KEY_W) {
                         select.play();
 			selected--;
 			if (selected < 0) {
 				selected = options.length - 1;
 			}
 		}
+                
         }
     } 
     

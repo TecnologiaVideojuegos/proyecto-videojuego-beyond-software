@@ -32,7 +32,6 @@ private Music historia;
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/logos/logo_1.png");
         historia = new Music("resources/sonidos/historia.ogg");
-        historia.loop();
     }
 
     @Override
@@ -45,6 +44,7 @@ private Music historia;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
+            historia.loop();
             game.enterState(2,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
     }
