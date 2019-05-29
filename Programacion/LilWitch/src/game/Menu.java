@@ -23,7 +23,7 @@ import org.newdawn.slick.tests.states.TestState2;
  */
 public class Menu extends BasicGameState{
 private int selected;
-private String[] options = new String[] {"",""};
+private String[] options = new String[] {"","",""};
 private StateBasedGame game;
 private Image image;
 private Sound sound;
@@ -35,7 +35,7 @@ private Sound sound;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/intro/fondo_1.png");
+        image = new Image("resources/intro/fondo_1_v1.png");
         sound = new Sound("resources/sonidos/Select.ogg");
     }
 
@@ -48,9 +48,9 @@ private Sound sound;
         g.setColor(Color.white);
         
         for (int i=0;i<options.length;i++) {
-			g.drawString(options[i], 1510, 920+(i*50));
+			g.drawString(options[i], 1480, 870+(i*50));
 			if (selected == i) {
-				g.drawRect(1510, 920+(i*50),300,50);
+				g.drawRect(1480, 865+(i*50),360,50);
 			}
 		}
     }
@@ -60,9 +60,11 @@ private Sound sound;
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
-                    game.enterState(10,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(3,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                     break;
                 case 1:
+                    break;
+                case 2:
                     container.exit();
                     break;
             }
