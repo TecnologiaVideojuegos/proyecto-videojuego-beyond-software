@@ -47,6 +47,7 @@ public class Nivel1 extends BasicGameState{
         salas = new ArrayList<>();
         entrada = container.getInput();
         player = new Jugador(1000, 400, proyectiles);
+        UtilJugador.guardarDatos(player, 1);
         mapa = new SpriteSheet("resources/niveles/Nivel 1_v1.png", 1920, 1080);
         fondoPausa = new Image("resources/intro/fondo_5.png");
         controles = new Image("resources/intro/controles.png");

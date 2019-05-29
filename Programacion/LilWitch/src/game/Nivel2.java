@@ -12,6 +12,8 @@ import logic.*;
 import org.newdawn.slick.geom.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 /**
@@ -42,6 +44,7 @@ public class Nivel2 extends BasicGameState{
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
+        UtilJugador.cargarDatos();
         player = UtilJugador.retrieveJugador(1000, 400, proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 2_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
@@ -199,30 +202,45 @@ public class Nivel2 extends BasicGameState{
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        int n = salas.get(salaActual-1).update(entrada, delta);
-        System.out.println(n);
-        if(n!=0) salaActual = n;
-        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE))
-        {
+        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             if(container.isPaused()) {
                 nivel2.resume();
             }else nivel2.pause();
             container.setPaused(!container.isPaused());
             paused=!paused;
-            }
-         if(container.isPaused())
-        {
+        }
+        
+        if(container.isPaused()) {
             if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
                     container.setPaused(!container.isPaused());
                     paused=!paused;
                     break;
-                case 1:
+                case 2:
                     game.enterState(2);
                     break;
                 }
             }   
+        }
+        if(player.getVida() <= 0) {
+            game.enterState(17);
+        }
+        else {
+            int n = salas.get(salaActual-1).update(entrada, delta);
+            if(n!=0) {
+                if(n != salaActual) {
+                    salas.get(salaActual-1).getGestor().resetProyectiles();
+                }
+                if(n == 99){
+                    UtilJugador.guardarDatos(player, 3);
+                    game.addState(new Nivel3());
+                    game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                }
+                else {
+                    salaActual = n;
+                }
+            }
         }
     }
     

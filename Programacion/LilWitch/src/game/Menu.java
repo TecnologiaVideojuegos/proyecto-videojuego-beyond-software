@@ -60,9 +60,33 @@ private Sound sound;
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             switch(selected) {
                 case 0:
-                    game.enterState(3,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                     break;
                 case 1:
+                    if(UtilJugador.cargarDatos()) {
+                        switch(UtilJugador.getNivelGuardado()) {
+                            case 1:
+                                game.addState(new Nivel2());
+                                game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                                break;
+                            case 2:
+                                game.addState(new Nivel2());
+                                game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                                break;
+                            case 3:
+                                game.addState(new Nivel3());
+                                game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                                break;
+                            case 4:
+                                game.addState(new Nivel4());
+                                game.enterState(6, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                                break;
+                            case 5:
+                                game.addState(new Nivel5());
+                                game.enterState(7, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                                break;
+                        }
+                    }
                     break;
                 case 2:
                     container.exit();

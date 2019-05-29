@@ -16,7 +16,6 @@ public class UtilJugador {
     private static DatosJugador datos;
     
     public static Jugador retrieveJugador(float x, float y, ControladorProyectiles proyectiles) throws SlickException {
-        cargarDatos();
         Jugador j = new Jugador(x, y, proyectiles);
         if(datos.isVaritaFuego()) {
             j.getInventario().setVaritaFuego(true);
@@ -36,19 +35,21 @@ public class UtilJugador {
 
     /** Carga los datos del archivo
      * @return l archivo */
-    public static DatosJugador cargarDatos() {
+    public static boolean cargarDatos() {
         try {
             FileInputStream fis = new FileInputStream("./savedata/save.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
             datos = (DatosJugador) ois.readObject();
             ois.close();
             fis.close();
+            return true;
         } catch(IOException ioe) {
             System.out.println("Error al cargar los datos");
+            return false;
         } catch(ClassNotFoundException c) {
             System.out.println("Clase no encontrada");
-        }
-        return datos;   
+            return false;
+        }  
     }
 
     /** Guarda los datos en el archivo */
@@ -67,5 +68,13 @@ public class UtilJugador {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    public static DatosJugador getDatos() {
+        return datos;
+    }
+    
+    public static int getNivelGuardado() {
+        return datos.getNivel();
     }
 }

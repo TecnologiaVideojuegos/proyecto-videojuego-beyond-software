@@ -90,4 +90,12 @@ public class DatosJugador implements Serializable {
     public void setPocionesG(int pocionesG) {
         this.pocionesG = pocionesG;
     }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
 }
