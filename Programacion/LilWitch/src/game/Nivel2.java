@@ -8,8 +8,6 @@ package game;
 
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import logic.*;
 import org.newdawn.slick.geom.*;
 import org.newdawn.slick.*;
@@ -33,14 +31,6 @@ public class Nivel2 extends BasicGameState{
     private Image image;
     private Music nivel2;
     private Sound select;
-
-    public Nivel2() {
-        try {
-            UtilJugador.retrieveJugador(1000, 400, proyectiles);
-        } catch (SlickException ex) {
-            System.out.println("Error al cargar el jugador");;
-        }
-    }
     
     @Override
     public int getID() {
@@ -48,11 +38,11 @@ public class Nivel2 extends BasicGameState{
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame game) throws SlickException { 
+    public void init(GameContainer container, StateBasedGame game) throws SlickException {
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
-        player = new Jugador(1000, 400, proyectiles);
+        player = UtilJugador.retrieveJugador(1000, 400, proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 2_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         nivel2 = new Music("resources/sonidos/Caves.ogg");
@@ -235,6 +225,13 @@ public class Nivel2 extends BasicGameState{
             }   
         }
     }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game);     
+    }
+    
     @Override
     public void keyReleased(int key, char c) {
         if(paused)

@@ -16,7 +16,7 @@ public class ReySlime extends Boss {
     private int movX, movY;
 
     public ReySlime(Jugador player) throws SlickException {
-        super("slime_boss_2.png", 330, 330, 960, 120, 20, 1, 100, player);
+        super("slime_boss_2.png", 330, 330, 960, 120, 2, 1, 100, player);
         this.player = player;
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);

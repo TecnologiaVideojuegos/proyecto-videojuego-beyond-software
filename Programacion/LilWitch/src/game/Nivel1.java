@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import logic.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 /**
@@ -84,7 +86,7 @@ public class Nivel1 extends BasicGameState{
         Puerta p3_1 = new Puerta(0, 360, 5, 240, 3, 2, 1);
         Puerta p3_2 = new Puerta(840, 0, 240, 5, 0, 4, 2);
         Puerta p4_1 = new Puerta(840, 955, 240, 5, 2, 3, 1);
-        Puerta p4_2 = new Puerta(840, 0, 240, 5, 0, 99, 1);
+        Puerta p4_2 = new Puerta(840, 0, 240, 5, 5, 99, 1);
         Puerta p5_1 = new Puerta(840, 0, 240, 5, 0, 2, 1);
         Puerta p5_2 = new Puerta(1915, 360, 5, 240, 1, 6, 1);
         Puerta p6_1 = new Puerta(0, 360, 5, 240, 3, 5, 1);
@@ -223,7 +225,7 @@ public class Nivel1 extends BasicGameState{
                 if(n == 99){
                     UtilJugador.guardarDatos(player, 2);
                     game.addState(new Nivel2());
-                    game.enterState(4);
+                    game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {
                     salaActual = n;
