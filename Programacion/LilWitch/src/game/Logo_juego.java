@@ -21,6 +21,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
  */
 public class Logo_juego extends BasicGameState{
 private Image image;
+private Music historia;
     
     @Override
     public int getID() {
@@ -29,7 +30,9 @@ private Image image;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        image = new Image("resources/logos/logo.png");
+        image = new Image("resources/logos/logo_1.png");
+        historia = new Music("resources/sonidos/historia.ogg");
+        historia.loop();
     }
 
     @Override
