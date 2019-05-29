@@ -23,7 +23,7 @@ public class Jugador implements IColisionable {
     private Sound select;
     private Sound pocion;
 
-    public Jugador(ControladorProyectiles proyectiles) throws SlickException {
+    public Jugador(float x, float y, ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
         Image[] i1 = new Image[10];
         Image[] i2 = new Image[10];
@@ -43,7 +43,7 @@ public class Jugador implements IColisionable {
         r = new Animation(i4, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), 1000, 400);
+        personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), x, y);
         hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth()-40, personaje.getStaticDown().getHeight()-15);
         this.up = false;
         this.down = false;
@@ -58,7 +58,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario(true);
+        this.inventario = new Inventario(false);
         this.hit = false;
         this.flickerTime = 0;
         
@@ -595,5 +595,13 @@ public class Jugador implements IColisionable {
     @Override
     public int isObjeto() {
         return 0;
+    }
+
+    public int getVidaTotal() {
+        return vidaTotal;
+    }
+
+    public void setVidaTotal(int vidaTotal) {
+        this.vidaTotal = vidaTotal;
     }
 }

@@ -42,7 +42,7 @@ public class Nivel5 extends BasicGameState{
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
-        player = new Jugador(proyectiles);
+        player = new Jugador(1000, 400, proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 5_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         nivel5 = new Music("resources/sonidos/oscuridad.ogg");

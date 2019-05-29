@@ -44,7 +44,7 @@ public class Nivel1 extends BasicGameState{
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
-        player = new Jugador(proyectiles);
+        player = new Jugador(1000, 400, proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 1_v1.png", 1920, 1080);
         fondoPausa = new Image("resources/intro/fondo_5.png");
         controles = new Image("resources/intro/controles.png");
@@ -83,6 +83,8 @@ public class Nivel1 extends BasicGameState{
         Puerta p2_3 = new Puerta(0, 360, 5, 240, 3, 1, 1);
         Puerta p3_1 = new Puerta(0, 360, 5, 240, 3, 2, 1);
         Puerta p3_2 = new Puerta(840, 0, 240, 5, 0, 4, 2);
+        Puerta p4_1 = new Puerta(840, 955, 240, 5, 2, 3, 1);
+        Puerta p4_2 = new Puerta(840, 0, 240, 5, 0, 99, 1);
         Puerta p5_1 = new Puerta(840, 0, 240, 5, 0, 2, 1);
         Puerta p5_2 = new Puerta(1915, 360, 5, 240, 1, 6, 1);
         Puerta p6_1 = new Puerta(0, 360, 5, 240, 3, 5, 1);
@@ -121,6 +123,8 @@ public class Nivel1 extends BasicGameState{
         //walls4.add(abismo4_1);
         //walls4.add(abismo4_2);
         ArrayList<Puerta> puertas4 = new ArrayList();
+        puertas4.add(p4_1);
+        puertas4.add(p4_2);
         ArrayList<Image> imagenes4 = new ArrayList<>();
         imagenes4.add(mapa.getSubImage(2, 0));
         imagenes4.add(new Image("resources/niveles/Nivel 1_v1_final.png"));
@@ -216,7 +220,14 @@ public class Nivel1 extends BasicGameState{
                 if(n != salaActual) {
                     salas.get(salaActual-1).getGestor().resetProyectiles();
                 }
-                salaActual = n;
+                if(n == 99){
+                    UtilJugador.guardarDatos(player, 2);
+                    game.addState(new Nivel2());
+                    game.enterState(4);
+                }
+                else {
+                    salaActual = n;
+                }
             }
         }
     }
