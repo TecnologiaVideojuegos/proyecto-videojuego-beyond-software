@@ -24,7 +24,7 @@ public class SalaBoss extends Sala {
     private Boss jefe;
 
     public SalaBoss(ArrayList<Image> imagenes, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, int tipo, Objeto objeto, Jugador jugador, ControladorProyectiles proyectiles) {
-        super(imagenes.get(0), paredes, null, null, jugador, proyectiles);
+        super(imagenes.get(0), paredes, null, null, null, jugador, proyectiles);
         this.puertas = puertas;
         this.imagenes = imagenes;
         this.cofres = new ArrayList<>();
@@ -61,7 +61,7 @@ public class SalaBoss extends Sala {
     
     public void crearCofres(Objeto obj, int tipo) {
         try {
-            cofres.add(new Cofre(new Objeto(8, 840, 420), 840, 420, 0));
+            cofres.add(new Cofre(new Objeto(9, 840, 420), 840, 420, 0));
             cofres.add(new Cofre(obj, obj.getPosicion().getX(), obj.getPosicion().getY(), 0));
         } catch (SlickException ex) {
             System.out.println("Error al generar los cofres");

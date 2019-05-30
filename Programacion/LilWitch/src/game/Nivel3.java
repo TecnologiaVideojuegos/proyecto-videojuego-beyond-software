@@ -158,12 +158,12 @@ public class Nivel3 extends BasicGameState{
         puertas6.add(p6_1);
         puertas6.add(p6_2);
         
-        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, player, proyectiles);
-        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, null, player, proyectiles);
-        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, player, proyectiles);
-        Sala sala4 = new Sala(mapa.getSubImage(0, 0), walls4, puertas4, null, player, proyectiles);
-        Sala sala5 = new Sala(mapa.getSubImage(1, 0), walls5, puertas5, null, player, proyectiles);
-        Sala sala6 = new Sala(mapa.getSubImage(2, 0), walls6, puertas6, null, player, proyectiles);
+        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
+        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, null, null, player, proyectiles);
+        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
+        Sala sala4 = new Sala(mapa.getSubImage(0, 0), walls4, puertas4, null, null, player, proyectiles);
+        Sala sala5 = new Sala(mapa.getSubImage(1, 0), walls5, puertas5, null, null, player, proyectiles);
+        Sala sala6 = new Sala(mapa.getSubImage(2, 0), walls6, puertas6, null, null, player, proyectiles);
         salas.add(sala1);
         salas.add(sala2);
         salas.add(sala3);

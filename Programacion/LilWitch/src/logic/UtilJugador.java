@@ -17,6 +17,9 @@ public class UtilJugador {
     
     public static Jugador retrieveJugador(float x, float y, ControladorProyectiles proyectiles) throws SlickException {
         Jugador j = new Jugador(x, y, proyectiles);
+        if(datos.isVaritaNormal()) {
+            j.getInventario().setVaritaNormal(true);
+        }
         if(datos.isVaritaFuego()) {
             j.getInventario().setVaritaFuego(true);
         }
@@ -56,7 +59,7 @@ public class UtilJugador {
     public static void guardarDatos(Jugador j, int nivel) {
         try {
             Inventario i = j.getInventario();
-            datos = new DatosJugador(i.isVaritaFuego(), i.isVaritaAgua(), i.isVaritaLuz(), i.isBotas(), i.isBotasFuego(), j.getVidaTotal(), i.getPociones(), i.getPocionesG(), nivel);
+            datos = new DatosJugador(i.isVaritaNormal(), i.isVaritaFuego(), i.isVaritaAgua(), i.isVaritaLuz(), i.isBotas(), i.isBotasFuego(), j.getVidaTotal(), i.getPociones(), i.getPocionesG(), nivel);
             FileOutputStream fos = new FileOutputStream("./savedata/save.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(datos);

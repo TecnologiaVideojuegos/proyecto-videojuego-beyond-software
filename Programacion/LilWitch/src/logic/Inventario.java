@@ -16,7 +16,7 @@ import org.newdawn.slick.SlickException;
  * @author alvar
  */
 public class Inventario {
-    private boolean varitaFuego, varitaAgua, varitaLuz, botas, botasFuego;
+    private boolean varitaNormal, varitaFuego, varitaAgua, varitaLuz, botas, botasFuego;
     private int pociones, pocionesG, varitaActiva;
     private ArrayList<Sprite> sprites;
     /*varitaActiva
@@ -25,6 +25,7 @@ public class Inventario {
         2 -> varita de agua
     */
     public Inventario() throws SlickException {
+        this.varitaNormal = false;
         this.varitaFuego = false;
         this.varitaAgua = false;
         this.varitaLuz = false;
@@ -40,6 +41,7 @@ public class Inventario {
     
     public Inventario(boolean debug)  throws SlickException {
         if (debug) {
+            this.varitaNormal = true;
             this.varitaFuego = true;
             this.varitaAgua = true;
             this.varitaLuz = true;
@@ -50,6 +52,7 @@ public class Inventario {
             this.varitaActiva = 0;
         }
         else {
+            this.varitaNormal = false;
             this.varitaFuego = false;
             this.varitaAgua = false;
             this.varitaLuz = false;
@@ -126,11 +129,11 @@ public class Inventario {
         }
         switch(varitaActiva) {
             case 0:
-                if(varitaLuz) {
-                    sprites.get(3).draw(); 
-                }
-                else {
+                if(varitaNormal) {
                     sprites.get(0).draw();
+                }
+                else if(varitaLuz) {
+                    sprites.get(3).draw(); 
                 }
                 break;
             case 1:
@@ -256,5 +259,13 @@ public class Inventario {
 
     public void setPocionesG(int pocionesG) {
         this.pocionesG = pocionesG;
+    }
+
+    public boolean isVaritaNormal() {
+        return varitaNormal;
+    }
+
+    public void setVaritaNormal(boolean varitaNormal) {
+        this.varitaNormal = varitaNormal;
     }
 }

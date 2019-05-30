@@ -12,10 +12,11 @@ import java.io.Serializable;
  * @author alvar
  */
 public class DatosJugador implements Serializable {
-    private boolean varitaFuego, varitaAgua, varitaLuz, botas, botasFuego;
+    private boolean varitaNormal, varitaFuego, varitaAgua, varitaLuz, botas, botasFuego;
     private int nivel, vida, pociones, pocionesG;
 
-    public DatosJugador(boolean varitaFuego, boolean varitaAgua, boolean varitaLuz, boolean botas, boolean botasFuego, int vida, int pociones, int pocionesG, int nivel) {
+    public DatosJugador(boolean varitaNormal, boolean varitaFuego, boolean varitaAgua, boolean varitaLuz, boolean botas, boolean botasFuego, int vida, int pociones, int pocionesG, int nivel) {
+        this.varitaNormal = varitaNormal;
         this.varitaFuego = varitaFuego;
         this.varitaAgua = varitaAgua;
         this.varitaLuz = varitaLuz;
@@ -97,5 +98,13 @@ public class DatosJugador implements Serializable {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    public boolean isVaritaNormal() {
+        return varitaNormal;
+    }
+
+    public void setVaritaNormal(boolean varitaNormal) {
+        this.varitaNormal = varitaNormal;
     }
 }

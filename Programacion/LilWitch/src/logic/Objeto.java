@@ -24,27 +24,30 @@ public class Objeto implements IColisionable{
         
         switch(tipo) {
             case 1:
-               imagen = new Image("/resources/varitas/varita_1.png"); 
+               imagen = new Image("/resources/varitas/varita_normal.png"); 
                break;
             case 2:
+               imagen = new Image("/resources/varitas/varita_1.png"); 
+               break;
+            case 3:
                 imagen = new Image("/resources/varitas/varita_2.png"); 
                 break;
-            case 3:
+            case 4:
                 imagen = new Image("/resources/varitas/varita_3.png");
                 break;
-            case 4:
+            case 5:
                 imagen = new Image("/resources/objetos/botas.png");
                 break;
-            case 5:
+            case 6:
                 imagen = new Image("/resources/objetos/botas-rojo.png");
                 break;
-            case 6:
+            case 7:
                 imagen = new Image("/resources/objetos/pocion_1.png");
                 break;
-            case 7:
+            case 8:
                 imagen = new Image("/resources/objetos/pocion_2.png");
                 break;
-            case 8:
+            case 9:
                 imagen = new Image("/resources/objetos/corazon-lleno.png");
                 break;
             default:

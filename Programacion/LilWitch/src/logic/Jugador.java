@@ -367,14 +367,14 @@ public class Jugador implements IColisionable {
     public void crearProyectil(float x, float y, float dirX, float dirY) {
         switch(inventario.getVaritaActiva()) {
             case 0:
-                if(inventario.isVaritaLuz()) {
+                if (inventario.isVaritaNormal()) {
+                    proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
+                }
+                else if(inventario.isVaritaLuz()) {
                     if(dirX == 0) {
                         x -= 25;
                     }
                     proyectiles.addProyectil("luz_2_110_110.png", x, y, 110, 110, 1f, 600*dirX, 600*dirY, 5, 5);
-                }
-                else {
-                    proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
                 }
                 break;
             case 1:
@@ -405,27 +405,29 @@ public class Jugador implements IColisionable {
                 if(colision.isObjeto() > 0) {
                     switch(colision.isObjeto()) {
                         case 1:
+                           inventario.setVaritaNormal(true);
+                        case 2:
                            inventario.setVaritaLuz(true);
                            break;
-                        case 2:
+                        case 3:
                             inventario.setVaritaFuego(true);
                             break;
-                        case 3:
+                        case 4:
                             inventario.setVaritaAgua(true);
                             break;
-                        case 4:
+                        case 5:
                             inventario.setBotas(true);
                             break;
-                        case 5:
+                        case 6:
                             inventario.setBotasFuego(true);
                             break;
-                        case 6:
+                        case 7:
                             inventario.setPociones(inventario.getPociones() + 1);
                             break;
-                        case 7:
+                        case 8:
                             inventario.setPocionesG(inventario.getPocionesG() + 1);
                             break;
-                        case 8:
+                        case 9:
                             vidaTotal += 2;
                             vida = vidaTotal;
                             break;
