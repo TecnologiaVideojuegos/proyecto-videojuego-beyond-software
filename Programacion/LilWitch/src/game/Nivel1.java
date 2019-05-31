@@ -42,7 +42,7 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        salaActual = 6;
+        salaActual = 3;
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
