@@ -13,120 +13,77 @@ import org.newdawn.slick.SlickException;
  */
 public class ReySlime extends Boss {
     private Jugador player;
-    private int movX, movY;
+    private int movX, movY, tiempoColision, opcion;
+    private boolean colisionAnterior;
 
     public ReySlime(Jugador player) throws SlickException {
-        super("slime_boss_2.png", 330, 330, 960, 120, 2, 1, 100, player);
+        super("slime_boss_2.png", 330, 330, 960, 120, 2, 1, 100, player, 30, 30, 60, 35);
         this.player = player;
-        this.movX = (int) (Math.random() * 3+1);
-        this.movY = (int) (Math.random() * 3+1);
-        
-        while(movX == 2 && movY == 2) {
-            this.movX = (int) (Math.random() * 3+1);
-            this.movY = (int) (Math.random() * 3+1);
-        }
+        this.movX = 2;
+        this.movY = 2;
+        this.tiempoColision = 0;
+        this.opcion = 0;
+        this.colisionAnterior = false;
     }
 
     @Override
     public void atacar(int delta) { 
-        float x = super.getPosicion().getX() + 165;
-        float y = super.getPosicion().getY() + 165;  
-        int dirX = (int) (player.getPosicion().getX() + 48 - x);
-        int dirY = (int) (player.getPosicion().getY() + 52 - y);
-        System.out.println("DirX: " + dirX);
-        System.out.println("DirY: " + dirY);
+        float x = super.getHitbox().getCenterX();
+        float y = super.getHitbox().getCenterY(); 
+        int dirX;
+        int dirY;
         
         if(!super.isColision()) {        
-            if (dirX > 0) {
-                super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
-                    super.setL(false);
-                    super.setR(true);
-            }
-            else if (dirX < 0) {
-                super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
-                    super.setL(true);
-                    super.setR(false);
-            }
-            else {
-                super.setL(false);
-                super.setR(false);
-            }
-
-            if (dirY > 0) {
-                super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
-                    super.setUp(false);
-                    super.setDown(true);
-            }
-            else if (dirY < 0) {
-                super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
-                    super.setUp(true);
-                    super.setDown(false);
-            }
-            else {
-                super.setUp(false);
-                super.setDown(false);
-            }
+            dirX = (int) (player.getPosicion().getX() + 48 - x);
+            dirY = (int) (player.getPosicion().getY() + 52 - y);
         }
         else {
-            avanzar(delta);    
-        }
-        updateAnimacion();
-    }
-    
-    @Override
-    public void avanzar(int delta) {
-        if(super.isUp()) {
-            movX = 2;
-            movY = 1;
-        }
-        if(super.isDown()) {
-            movX = 2;
-            movY = 3;
-        }
-        if(super.isR()) {
-            movX = 1;
-            movY = 2;
-        }
-        else {
-            movX = 3;
-            movY = 2;
-        }
-
-        switch(movX){
-            case 1:
-                super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
-                super.setL(true);
-                super.setR(false);
-                break;
-            case 2:
-                super.setL(false);
-                super.setR(false);
-                break;
-            case 3:
-                super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
-                super.setL(false);
-                super.setR(true);
-                break;  
-        }
-
-        switch(movY){
-            case 1:
-                super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
-                super.setUp(true);
-                super.setDown(false);
-                break;
-            case 2:
-                super.setUp(false);
-                super.setDown(false);
-                break;
-            case 3:
-                super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
-                super.setUp(false);
-                super.setDown(true);
-                break;   
+            if(x <= 21 + super.getHitbox().getWidth() / 2 || x >= 1899 - super.getHitbox().getWidth() / 2) {
+                dirX = 0;
+            }
+            else {
+                dirX = (int) (player.getPosicion().getX() + 48 - x); 
+            }
+            
+            if(y <= 21 + super.getHitbox().getHeight() / 2 || y >= 939 - super.getHitbox().getHeight() / 2) {
+                dirY = 0;
+            }
+            else {
+                dirY = (int) (player.getPosicion().getY() + 52 - y);
+            }
+            super.setColision(false);
         }
         
-        super.setColision(false);
+        if (dirX > 0) {
+            super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
+                super.setL(false);
+                super.setR(true);
+        }
+        else if (dirX < 0) {
+            super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
+                super.setL(true);
+                super.setR(false);
+        }
+        else {
+            super.setL(false);
+            super.setR(false);
+        }
+
+        if (dirY > 0) {
+            super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
+                super.setUp(false);
+                super.setDown(true);
+        }
+        else if (dirY < 0) {
+            super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
+                super.setUp(true);
+                super.setDown(false);
+        }
+        else {
+            super.setUp(false);
+            super.setDown(false);
+        }
+        updateAnimacion();
     }
     
     public void updateAnimacion() {

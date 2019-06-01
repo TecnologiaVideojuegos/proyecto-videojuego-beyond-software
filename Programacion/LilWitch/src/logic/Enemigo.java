@@ -21,7 +21,7 @@ public class Enemigo implements IColisionable {
     private Rectangle hitbox;
     private Circle visionRange;
     private boolean up, down, r, l, colision, hit;
-    private int vida, ataque, cooldown, distanciaVision, movX, movY, velocidad, flickerTime;
+    private int vida, ataque, cooldown, distanciaVision, movX, movY, velocidad, flickerTime, offsetX, offsetY, offsetHeight, offsetWidth;
     private Punto playerPosition;
 
     public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad) throws SlickException {    
@@ -63,6 +63,63 @@ public class Enemigo implements IColisionable {
         this.velocidad = velocidad;
         this.hit = false;
         this.flickerTime = 0;
+        this.offsetX = 0;
+        this.offsetY = 0;
+        this.offsetHeight = 0;
+        this.offsetWidth = 0;
+        
+        this.movX = (int) (Math.random() * 3+1);
+        this.movY = (int) (Math.random() * 3+1);
+        
+        while(movX == 2 && movY == 2) {
+            this.movX = (int) (Math.random() * 3+1);
+            this.movY = (int) (Math.random() * 3+1);
+        }
+    }
+    
+    public Enemigo(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad, int offsetX, int offsetY, int offsetWidth, int offsetHeight) throws SlickException {    
+        SpriteSheet tileSet;
+        Animation up, down, l, r;
+        tileSet = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
+        int numSprites = tileSet.getHorizontalCount();
+        
+        Image[] i1 = new Image[numSprites];
+        Image[] i2 = new Image[numSprites];
+        Image[] i3 = new Image[numSprites];
+        Image[] i4 = new Image[numSprites];
+        
+        for (int i = 0; i < numSprites; i++) {
+            i1[i] = tileSet.getSprite(i, 0);
+            i2[i] = tileSet.getSprite(i, 1);
+            i3[i] = tileSet.getSprite(i, 2);
+            i4[i] = tileSet.getSprite(i, 3);
+        }
+        
+        up = new Animation(i1, 100);
+        down = new Animation(i3, 100);
+        l = new Animation(i4, 100);
+        r = new Animation(i2, 100);
+        ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
+        
+        this.sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
+        this.hitbox = new Rectangle(x + offsetX, y + offsetY, ancho - offsetWidth, alto - offsetHeight);
+              
+        this.up = false;
+        this.down = false;
+        this.r = false;
+        this.l = false;
+        this.colision = false;
+        this.vida = vida;
+        this.ataque = ataque;
+        this.cooldown = 1000;
+        this.distanciaVision = 0;
+        this.velocidad = velocidad;
+        this.hit = false;
+        this.flickerTime = 0;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.offsetHeight = offsetHeight;
+        this.offsetWidth = offsetWidth;
         
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
@@ -113,6 +170,10 @@ public class Enemigo implements IColisionable {
         this.velocidad = velocidad;
         this.hit = false;
         this.flickerTime = 0;
+        this.offsetX = 0;
+        this.offsetY = 0;
+        this.offsetHeight = 0;
+        this.offsetWidth = 0;
         
         this.movX = (int) (Math.random() * 3+1);
         this.movY = (int) (Math.random() * 3+1);
@@ -330,8 +391,8 @@ public class Enemigo implements IColisionable {
     
     @Override
     public void sincronizarArea() {
-        hitbox.setX(sprite.getPosicion().getX());
-        hitbox.setY(sprite.getPosicion().getY());
+        hitbox.setX(sprite.getPosicion().getX() + offsetX);
+        hitbox.setY(sprite.getPosicion().getY() + offsetY);
         if(distanciaVision != 0) {
             visionRange.setCenterX(hitbox.getX() + hitbox.getWidth() / 2);
             visionRange.setCenterY(hitbox.getY() + hitbox.getHeight() / 2);

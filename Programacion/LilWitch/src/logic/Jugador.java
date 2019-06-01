@@ -145,6 +145,8 @@ public class Jugador implements IColisionable {
     private void updateTeclado(Input entrada, int delta) {
         if(!stop){
             if(entrada.isKeyPressed(Input.KEY_LCONTROL)) {
+                System.out.println("JugadorX: " + (int) (personaje.getPosicion().getX() + 48));
+                System.out.println("JugadorY: " + (int) (personaje.getPosicion().getY() + 52));
                 select.play();
                 inventario.cambiarVaritaL();
             }
