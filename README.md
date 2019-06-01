@@ -12,9 +12,9 @@ Lil'Witch es un RPG de acción con vista desde arriba.
 ![alt text](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/logos/Logo_BeyondSoftware.png "Logo")
 
 ## El equipo
-* Guillermo Palacios Limón **_(Jefe de proyecto)_**
-* Álvaro Barchín Rubio **_(Programador)_**
-* Eloy Rodriguez Jañez **_(Diseñador web)_**
-* Miguel Matellanes Ramón **_(Diseñador gráfico)_**
-* Xabier Pérez López **_(Tester)_**
+* Guillermo Palacios Limón  **_(Jefe de proyecto)_**
+* Álvaro Barchín Rubio  **_(Programador)_**
+* Eloy Rodriguez Jañez  **_(Diseñador web)_**
+* Miguel Matellanes Ramón  **_(Diseñador gráfico)_**
+* Xabier Pérez López  **_(Tester)_**
 
