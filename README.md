@@ -17,4 +17,3 @@ Lil'Witch es un RPG de acción con vista desde arriba en el que el jugador contr
 * Eloy Rodriguez Jañez  **_( Diseñador web )_**
 * Miguel Matellanes Ramón  **_( Diseñador gráfico )_**
 * Xabier Pérez López  **_( Diseñador gráfico )_**
-
