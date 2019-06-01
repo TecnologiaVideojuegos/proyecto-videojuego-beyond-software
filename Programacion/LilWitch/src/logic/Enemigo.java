@@ -503,4 +503,12 @@ public class Enemigo implements IColisionable {
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
+
+    public boolean isHit() {
+        return hit;
+    }
+
+    public void setHit(boolean hit) {
+        this.hit = hit;
+    }
 }

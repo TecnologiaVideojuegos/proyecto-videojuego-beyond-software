@@ -154,9 +154,11 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
         Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
+        Murcielago m1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
         Slime s1 = new Slime("slime.png", 120, 150, 1000, 200, 5, 1);
         enemigos1.add(e1);
         enemigos1.add(s1);
+        enemigos1.add(m1);
 
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, null, player, proyectiles);
