@@ -7,10 +7,12 @@ Lil'Witch es un RPG de acción con vista desde arriba en el que el jugador contr
 
 ## Enlaces de interés
 [Website oficial del estudio](https://guillermopalacios97.wixsite.com/beyond-software)
+
 [Website del juego](https://tecnologiavideojuegos.github.io/proyecto-videojuego-beyond-software/)
 
 ## Recursos usados en el proyecto
 Hacemos una especial mención a la web **OpenGameArt** y a todos los recursos con _licencia libre_ que hemos usado en el proyecto ya que sin ellos no habríamos conseguido un apartado artístico tan sobresaliente
+
 * [OpenGameArt](https://opengameart.org/)
 * [SpriteSheet usado como base para el diseño de la protagonista](https://www.deviantart.com/tiozacdasgalaxias/art/Link-Sprite-Sheet-662562870)
 
