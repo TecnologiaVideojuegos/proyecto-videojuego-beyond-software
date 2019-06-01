@@ -14,3 +14,5 @@ Lil'Witch es un RPG de acción con vista desde arriba.
 * Eloy Rodriguez Jañez (Diseñador web)
 * Miguel Matellanes Ramón (Diseñador gráfico)
 * Xabier Pérez López (Tester)
+
+![alt text](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/logos/Logo_BeyondSoftware.png "Logo")
