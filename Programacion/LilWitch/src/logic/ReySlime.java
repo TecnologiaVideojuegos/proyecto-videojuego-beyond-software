@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
  */
 public class ReySlime extends Boss {
     private Jugador player;
-    private int movX, movY, tiempoColision, opcion;
+    private int movX, movY, tiempoColision, opcion, dirXo, dirYo;
     private boolean colisionAnterior;
 
     public ReySlime(Jugador player) throws SlickException {
@@ -24,6 +24,8 @@ public class ReySlime extends Boss {
         this.tiempoColision = 0;
         this.opcion = 0;
         this.colisionAnterior = false;
+        this.dirXo = 0;
+        this.dirYo = 0;
     }
 
     @Override
@@ -38,20 +40,65 @@ public class ReySlime extends Boss {
             dirY = (int) (player.getPosicion().getY() + 52 - y);
         }
         else {
-            if(x <= 21 + super.getHitbox().getWidth() / 2 || x >= 1899 - super.getHitbox().getWidth() / 2) {
-                dirX = 0;
+            if(x <= 21 + super.getHitbox().getWidth() / 2) {
+                if(dirXo == 0) {
+                    dirXo = signo((int) (player.getPosicion().getX() + 48 - x)); 
+                }
+                dirX = (int) (player.getPosicion().getX() + 48 - x);
+                if(signo(dirX) == dirXo) {
+                    dirX = 0;
+                }
+                else {
+                    dirXo = 0;
+                    super.setColision(false);
+                }
+            }
+            else if(x >= 1899 - super.getHitbox().getWidth() / 2) {
+                if(dirXo == 0) {
+                    dirXo = signo((int) (player.getPosicion().getX() + 48 - x)); 
+                }
+                dirX = (int) (player.getPosicion().getX() + 48 - x);
+                if(signo(dirX) == dirXo) {
+                    dirX = 0;
+                }
+                else {
+                    dirXo = 0;
+                    super.setColision(false);
+                }
             }
             else {
                 dirX = (int) (player.getPosicion().getX() + 48 - x); 
             }
             
-            if(y <= 21 + super.getHitbox().getHeight() / 2 || y >= 939 - super.getHitbox().getHeight() / 2) {
-                dirY = 0;
+            if(y <= 21 + super.getHitbox().getHeight() / 2) {
+                if(dirYo == 0) {
+                    dirYo = signo((int) (player.getPosicion().getY() + 52 - y)); 
+                }
+                dirY = (int) (player.getPosicion().getY() + 52 - y);
+                if(signo(dirY) == dirYo) {
+                    dirY = 0;
+                }
+                else {
+                    dirYo = 0;
+                    super.setColision(false);
+                }
+            }
+            else if(y >= 939 - super.getHitbox().getHeight() / 2) {
+                if(dirYo == 0) {
+                    dirYo = signo((int) (player.getPosicion().getY() + 52 - y)); 
+                }
+                dirY = (int) (player.getPosicion().getY() + 52 - y);
+                if(signo(dirY) == dirYo) {
+                    dirY = 0;
+                }
+                else {
+                    dirYo = 0;
+                    super.setColision(false);
+                }
             }
             else {
                 dirY = (int) (player.getPosicion().getY() + 52 - y);
             }
-            super.setColision(false);
         }
         
         if (dirX > 0) {
@@ -111,5 +158,14 @@ public class ReySlime extends Boss {
             super.getSprite().stopUp();
             super.getSprite().stopDown();
         } 
+    }
+    
+    public int signo(int num) {
+        if(num >= 0) {
+            return 1;
+        }
+        else {
+            return -1;
+        }
     }
 }
