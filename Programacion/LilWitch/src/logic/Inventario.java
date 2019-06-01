@@ -129,11 +129,11 @@ public class Inventario {
         }
         switch(varitaActiva) {
             case 0:
-                if(varitaNormal) {
-                    sprites.get(0).draw();
-                }
-                else if(varitaLuz) {
+                if(varitaLuz) {
                     sprites.get(3).draw(); 
+                }
+                else if(varitaNormal) {
+                    sprites.get(0).draw();
                 }
                 break;
             case 1:

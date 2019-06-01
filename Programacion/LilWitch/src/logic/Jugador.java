@@ -58,7 +58,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario(false);
+        this.inventario = new Inventario();
         this.hit = false;
         this.flickerTime = 0;
         
@@ -367,14 +367,14 @@ public class Jugador implements IColisionable {
     public void crearProyectil(float x, float y, float dirX, float dirY) {
         switch(inventario.getVaritaActiva()) {
             case 0:
-                if (inventario.isVaritaNormal()) {
-                    proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
-                }
-                else if(inventario.isVaritaLuz()) {
+                if(inventario.isVaritaLuz()) {
                     if(dirX == 0) {
                         x -= 25;
                     }
                     proyectiles.addProyectil("luz_2_110_110.png", x, y, 110, 110, 1f, 600*dirX, 600*dirY, 5, 5);
+                }
+                else if (inventario.isVaritaNormal()) {
+                    proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
                 }
                 break;
             case 1:
@@ -406,6 +406,7 @@ public class Jugador implements IColisionable {
                     switch(colision.isObjeto()) {
                         case 1:
                            inventario.setVaritaNormal(true);
+                           break;
                         case 2:
                            inventario.setVaritaLuz(true);
                            break;

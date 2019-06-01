@@ -42,7 +42,7 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        salaActual = 6;
+        salaActual = 3;
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
@@ -161,7 +161,7 @@ public class Nivel1 extends BasicGameState{
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
-        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 1, new Objeto(2, 980, 420), player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 1, new Objeto(3, 980, 420), player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, objetos, player, proyectiles);
         salas.add(sala1);
