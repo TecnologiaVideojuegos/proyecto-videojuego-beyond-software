@@ -3,7 +3,7 @@
 ![alt text](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/logos/logo_1.png "Logo")
 
 ## ¿Qué es Lil'Witch?
-Lil'Witch es un RPG de acción con vista desde arriba en el que el jugador controlará a una niña que está a punto de vivir la mayor aventura de su vida. A lo largo de su aventura irá encontrando varitas que incrementarán sus poderes y objetos que la ayudarán a hacerle frente a lo desconocido. 
+Lil'Witch es un RPG de acción con vista desde arriba en el que el jugador controlará a una niña que está a punto de vivir la mayor aventura de su vida. A lo largo de su aventura irá encontrando varitas que incrementarán sus poderes y objetos que la ayudarán a hacerle frente a lo desconocido. Está inspirado por juegos como _The Legend of Zelda_ y _The Binding of Isaac_.
 
 ## Enlaces de interés
 [Website oficial del estudio](https://guillermopalacios97.wixsite.com/beyond-software)
