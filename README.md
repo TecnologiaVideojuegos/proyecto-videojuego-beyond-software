@@ -1,1 +1,4 @@
-![alt text](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/logos/logo_1.png "Logo")
+# Lil'Witch
+...
+## Quiénes somos
+* 
