@@ -57,7 +57,7 @@ public class Nivel1 extends BasicGameState{
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940,1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
-        Wall limites_4 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
+        Wall limites_4 = new Wall(new float[]{20,20, 20,940, 840,940, 840,960, 1080,960, 1080,940, 1900,940, 1900,20, 1080,20, 1080,0, 840,0, 840,20});
         Wall limites_5 = new Wall(new float[]{20, 20, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_6 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 20});
         Wall abismo1_1 = new Wall(new float[]{600,0, 600,120, 600,240, 480,240, 480,360, 360,360, 360,480, 0,480, 0,960, 1920,960, 1920,0});
@@ -154,14 +154,16 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
         Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
+        Murcielago m1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
         Slime s1 = new Slime("slime.png", 120, 150, 1000, 200, 5, 1);
         enemigos1.add(e1);
         enemigos1.add(s1);
+        enemigos1.add(m1);
 
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
-        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 1, new Objeto(3, 980, 420), player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 2, new Objeto(3, 980, 420), player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, objetos, player, proyectiles);
         salas.add(sala1);
@@ -227,7 +229,7 @@ public class Nivel1 extends BasicGameState{
                 }
                 if(n == 99){
                     UtilJugador.guardarDatos(player, 2);
-                    game.addState(new Nivel2());
+                    game.addState(new Nivel4());
                     game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {

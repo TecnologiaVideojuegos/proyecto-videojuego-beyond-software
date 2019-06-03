@@ -19,63 +19,47 @@ public class Murcielago  extends Enemigo{
         
     }
 
-    /*@Override
-    public void atacar(int delta) {
-        super.setCooldown(0);
-        avanzar(delta);
-    }
-
     @Override
     public void avanzar(int delta) {
         if(super.isColision()) {
             if(super.isUp()) {
-                movX = (int) (Math.random() * 3 + 1);
-                movY = 1;
+                super.setMovX((int) (Math.random()*2 + 1));
+                super.setMovY(1);
             }
             if(super.isDown()) {
-                movX = (int) (Math.random() * 3 + 1);
-                movY = 3;
+                super.setMovX((int) (Math.random()*2 + 1));
+                super.setMovY(2);
             }
             if(super.isR()) {
-                movX = 1;
-                movY = (int) (Math.random() * 3 + 1);
+                super.setMovX(1);
+                super.setMovY((int) (Math.random()*2 + 1));
             }
             else {
-                movX = 3;
-                movY = (int) (Math.random() * 3 + 1);
+                super.setMovX(2);
+                super.setMovY((int) (Math.random()*2 + 1));
             }
             super.setColision(false);
         }
-        switch(movX){
+        switch(super.getMovX()){
             case 1:
-                super.getSprite().moverX(-150 * ((float) delta / 1000));
+                super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
                 super.setL(true);
                 super.setR(false);
                 break;
             case 2:
-                super.getSprite().moverX(0);
-                super.setL(false);
-                super.setR(false);
-                break;
-            case 3:
-                super.getSprite().moverX(150 * ((float) delta / 1000));
+                super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
                 super.setL(false);
                 super.setR(true);
                 break;  
         }
-        switch(movY){
+        switch(super.getMovY()){
             case 1:
-                super.getSprite().moverY(-150 * ((float) delta / 1000));
+                super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
                 super.setUp(true);
                 super.setDown(false);
                 break;
             case 2:
-                super.getSprite().moverY(0);
-                super.setUp(false);
-                super.setDown(false);
-                break;
-            case 3:
-                super.getSprite().moverY(150 * ((float) delta / 1000));
+                super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   
@@ -105,5 +89,5 @@ public class Murcielago  extends Enemigo{
             super.getSprite().stopUp();
             super.getSprite().stopDown();
         } 
-    }*/
+    }
 }

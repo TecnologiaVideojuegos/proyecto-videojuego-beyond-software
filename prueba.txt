@@ -1,4 +1,0 @@
-nombre 
-dia 
-fecha 
-hola 

@@ -30,6 +30,17 @@ public class Boss extends Enemigo {
         }
     }
     
+    public Boss(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad, Jugador player, int offsetX, int offsetY, int offsetWidth, int offsetHeight) throws SlickException {
+        super(filename, ancho, alto, x, y, vida, ataque, velocidad, offsetX, offsetY, offsetWidth, offsetHeight);
+        this.vidaTotal = vida;
+        this.porcentajeVida = 100;
+        this.barraVida = new ArrayList<>();
+        SpriteSheet sprites = new SpriteSheet("resources/enemigos/barra_vida_2.png", 480, 30);
+        for (int i = 0; i < 11; i++) {
+            barraVida.add(sprites.getSubImage(0, i));
+        }
+    }
+    
     public void updatePorcentajeVida() {
         porcentajeVida = super.getVida() * 100 / vidaTotal;
     }

@@ -11,21 +11,40 @@ import org.newdawn.slick.SlickException;
  *
  * @author alvar
  */
-public class ReySlime extends Boss {
+public class Spider extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo;
+    private int movX, movY, dirXo, dirYo, tiempo;
 
-    public ReySlime(Jugador player) throws SlickException {
-        super("slime_boss_2.png", 330, 330, 960, 120, 2, 1, 100, player, 30, 30, 60, 35);
+    public Spider(Jugador player) throws SlickException {
+        super("arana.png", 125, 125, 960, 120, 2, 1, 100, player, 30, 30, 60, 35);
         this.player = player;
         this.movX = 2;
         this.movY = 2;
         this.dirXo = 0;
         this.dirYo = 0;
+        this.tiempo = 0;
     }
 
     @Override
-    public void atacar(int delta) { 
+    public void update(int delta) {
+        super.update(delta);
+        tiempo += delta;
+    }
+
+    @Override
+    public void atacar(int delta) {
+        if(tiempo < 5000) {
+            perseguir(delta);
+        }
+        else if(tiempo < 10000) {
+            super.atacar(delta);
+        }
+        else {
+            tiempo = 0;
+        }
+    }
+    
+    public void perseguir(int delta) { 
         float x = super.getHitbox().getCenterX();
         float y = super.getHitbox().getCenterY(); 
         int dirX;
@@ -128,6 +147,8 @@ public class ReySlime extends Boss {
         }
         updateAnimacion();
     }
+    
+    
     
     public void updateAnimacion() {
         if (super.isUp()) {
