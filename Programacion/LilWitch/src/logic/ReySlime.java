@@ -13,17 +13,13 @@ import org.newdawn.slick.SlickException;
  */
 public class ReySlime extends Boss {
     private Jugador player;
-    private int movX, movY, tiempoColision, opcion, dirXo, dirYo;
-    private boolean colisionAnterior;
+    private int movX, movY, dirXo, dirYo;
 
     public ReySlime(Jugador player) throws SlickException {
         super("slime_boss_2.png", 330, 330, 960, 120, 2, 1, 100, player, 30, 30, 60, 35);
         this.player = player;
         this.movX = 2;
         this.movY = 2;
-        this.tiempoColision = 0;
-        this.opcion = 0;
-        this.colisionAnterior = false;
         this.dirXo = 0;
         this.dirYo = 0;
     }
