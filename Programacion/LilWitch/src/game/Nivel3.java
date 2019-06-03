@@ -229,7 +229,7 @@ public class Nivel3 extends BasicGameState{
                 }
                 if(n == 99){
                     UtilJugador.guardarDatos(player, 4);
-                    game.addState(new Nivel4());
+                    game.addState(new Nivel2());
                     game.enterState(6, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {
