@@ -46,11 +46,11 @@ public class Nivel2 extends BasicGameState{
         entrada = container.getInput();
         UtilJugador.cargarDatos();
         player = UtilJugador.retrieveJugador(1000, 400, proyectiles);
-        mapa = new SpriteSheet("resources/niveles/Nivel 4_v1.png", 1920, 1080);
+        mapa = new SpriteSheet("resources/niveles/Nivel 2_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         select = new Sound("resources/sonidos/Select.ogg");
         nivel2 = new Music("resources/sonidos/planta.ogg");
-        //nivel4.loop();
+        nivel2.loop();
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840,20});
