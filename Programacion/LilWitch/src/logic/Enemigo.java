@@ -332,6 +332,14 @@ public class Enemigo implements IColisionable {
             
         }
     }
+    
+    public void resetDirecciones() {
+        up = false;
+        down = false;
+        l = false;
+        r = false;
+        colision = false;
+    }
 
     public SpriteAnimado getSprite() {
         return sprite;

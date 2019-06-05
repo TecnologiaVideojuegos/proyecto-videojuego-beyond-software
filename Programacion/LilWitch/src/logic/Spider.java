@@ -13,16 +13,19 @@ import org.newdawn.slick.SlickException;
  */
 public class Spider extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones;
+    private boolean primerTurno;
 
     public Spider(Jugador player) throws SlickException {
-        super("arana_2.png", 300, 300, 960, 120, 2, 1, 100, player, 30, 30, 60, 35);
+        super("arana_2.png", 300, 300, 960, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
-        this.movX = 2;
-        this.movY = 2;
+        this.movX = 3;
+        this.movY = 3;
         this.dirXo = 0;
         this.dirYo = 0;
         this.tiempo = 0;
+        this.primerTurno = true;
+        this.numColisiones = 0;
     }
 
     @Override
@@ -36,12 +39,75 @@ public class Spider extends Boss {
         if(tiempo < 5000) {
             perseguir(delta);
         }
-        else if(tiempo < 10000) {
-            super.atacar(delta);
+        else if(tiempo < 50000) {
+            ataque1(delta);
         }
+//        else if(tiempo < 15000) {
+//            super.atacar(delta);
+//        }
         else {
+            primerTurno = true;
             tiempo = 0;
         }
+        updateAnimacion();
+    }
+    
+    public void ataque1(int delta) {
+        if(primerTurno) {
+            super.getSprite().setPosicion(20, 20);
+            super.resetDirecciones();
+            primerTurno = false;
+            
+        }
+        if(super.isColision()) {
+            if(super.isUp()) {
+                movY = 3;
+            }
+            if(super.isDown()) {
+                movY = 1;
+            }
+            if(super.isR() && numColisiones == 3) {
+                movX = 1;
+            }
+            else if(super.isL() && numColisiones == 3) {
+                movX = 3;
+            }
+            super.setColision(false);
+        }
+        switch(movX){
+            case 1:
+                super.getSprite().moverX(-super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.setL(true);
+                super.setR(false);
+                break;
+            case 2:
+                super.getSprite().moverX(0);
+                super.setL(false);
+                super.setR(false);
+                break;
+            case 3:
+                super.getSprite().moverX(super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.setL(false);
+                super.setR(true);
+                break;  
+        }
+        switch(movY){
+            case 1:
+                super.getSprite().moverY(-super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.setUp(true);
+                super.setDown(false);
+                break;
+            case 2:
+                super.getSprite().moverY(0);
+                super.setUp(false);
+                super.setDown(false);
+                break;
+            case 3:
+                super.getSprite().moverY(super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.setUp(false);
+                super.setDown(true);
+                break;   
+        }  
     }
     
     public void perseguir(int delta) { 
@@ -145,7 +211,6 @@ public class Spider extends Boss {
             super.setUp(false);
             super.setDown(false);
         }
-        updateAnimacion();
     }
     
     
@@ -176,6 +241,16 @@ public class Spider extends Boss {
             super.getSprite().stopDown();
         } 
     }
+
+    @Override
+    public void alColisionar(IColisionable colision, int delta) {
+        super.alColisionar(colision, delta); 
+        if (!colision.isPlayer()) {
+            numColisiones += 1;
+        }
+    }
+    
+    
     
     public int signo(int num) {
         if(num >= 0) {
