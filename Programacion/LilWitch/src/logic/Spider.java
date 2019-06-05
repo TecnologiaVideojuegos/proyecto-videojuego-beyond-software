@@ -13,14 +13,13 @@ import org.newdawn.slick.SlickException;
  */
 public class Spider extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo, numColisiones;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2;
     private boolean primerTurno;
 
     public Spider(Jugador player) throws SlickException {
-        super("arana_2.png", 300, 300, 960, 120, 2, 1, 200, player, 30, 30, 60, 35);
+        super("arana_2.png", 300, 300, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
-        this.movX = 3;
-        this.movY = 3;
+        this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;
         this.dirYo = 0;
         this.tiempo = 0;
@@ -36,32 +35,40 @@ public class Spider extends Boss {
 
     @Override
     public void atacar(int delta) {
-        if(tiempo < 5000) {
+        if(tiempo < 7500) {
             perseguir(delta);
         }
-        else if(tiempo < 50000) {
+        else if(eleccion == 1 && numColisiones < 6) {
             ataque1(delta);
         }
-//        else if(tiempo < 15000) {
-//            super.atacar(delta);
-//        }
+        else if(eleccion == 2 && numColisiones < 7) {
+            ataque2(delta);
+        }
+        else if((eleccion == 3 || eleccion == 4) && numColisiones < 2) {
+            ataque3(delta);
+        }
         else {
             primerTurno = true;
             tiempo = 0;
+            numColisiones = 0;
+            super.getSprite().setPosicion(840, 120);
+            eleccion = (int) (Math.random() * 3+1);
         }
         updateAnimacion();
     }
     
     public void ataque1(int delta) {
         if(primerTurno) {
+            super.setColision(false);
+            movX = 2;
+            movY = 2;
             super.getSprite().setPosicion(20, 20);
             super.resetDirecciones();
-            primerTurno = false;
-            
+            primerTurno = false;  
         }
         if(super.isColision()) {
             if(super.isUp()) {
-                movY = 3;
+                movY = 2;
             }
             if(super.isDown()) {
                 movY = 1;
@@ -70,10 +77,78 @@ public class Spider extends Boss {
                 movX = 1;
             }
             else if(super.isL() && numColisiones == 3) {
-                movX = 3;
+                movX = 2;
             }
             super.setColision(false);
         }
+        avanzar(delta);
+    }
+    
+    public void ataque2(int delta) {
+        if(primerTurno) {
+            super.setColision(false);
+            movX = 1;
+            movY = 2;
+            super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
+            super.resetDirecciones();
+            primerTurno = false;  
+        }
+        if(super.isColision()) {
+            if(super.isUp()) {
+                movY = 2;
+            }
+            if(super.isDown()) {
+                movY = 1;
+            }
+            if(super.isR() && numColisiones == 4) {
+                movX = 1;
+            }
+            else if(super.isL() && numColisiones == 4) {
+                movX = 2;
+            }
+            super.setColision(false);
+        }
+        avanzar(delta);  
+    }
+    
+    public void ataque3(int delta) {
+        if(primerTurno) {
+            eleccion2 = (int) (Math.random() * 2+1);
+            super.setColision(false);
+            if(eleccion == 3) {
+                super.getSprite().setPosicion(800, 21);
+                movX = 3;
+                movY = 2;
+            }
+            else {
+                super.getSprite().setPosicion(800, 900 - super.getHitbox().getHeight());
+                movX = 3;
+                movY = 1;
+            }
+            super.resetDirecciones();
+            primerTurno = false;  
+        }
+        if(super.isColision()) {
+            if(super.isUp() || super.isDown()) {
+                if(eleccion2 == 1) {
+                    super.getSprite().setPosicion(21, 350);
+                    movX = 2;
+                    movY = 3;
+                }
+                else {
+                    super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 350);
+                    movX = 1;
+                    movY = 3;
+                }
+                
+            }
+            super.setColision(false);
+        }
+        avanzar(delta);
+    }
+    
+    @Override
+    public void avanzar(int delta) {
         switch(movX){
             case 1:
                 super.getSprite().moverX(-super.getVelocidad() * 3 * ((float) delta / 1000));
@@ -81,15 +156,15 @@ public class Spider extends Boss {
                 super.setR(false);
                 break;
             case 2:
+                super.getSprite().moverX(super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.setL(false);
+                super.setR(true);
+                break; 
+            case 3:
                 super.getSprite().moverX(0);
                 super.setL(false);
                 super.setR(false);
                 break;
-            case 3:
-                super.getSprite().moverX(super.getVelocidad() * 3 * ((float) delta / 1000));
-                super.setL(false);
-                super.setR(true);
-                break;  
         }
         switch(movY){
             case 1:
@@ -98,16 +173,16 @@ public class Spider extends Boss {
                 super.setDown(false);
                 break;
             case 2:
-                super.getSprite().moverY(0);
-                super.setUp(false);
-                super.setDown(false);
-                break;
-            case 3:
                 super.getSprite().moverY(super.getVelocidad() * 3 * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   
-        }  
+            case 3:
+                super.getSprite().moverY(0);
+                super.setUp(false);
+                super.setDown(false);
+                break;
+        }     
     }
     
     public void perseguir(int delta) { 
@@ -245,7 +320,7 @@ public class Spider extends Boss {
     @Override
     public void alColisionar(IColisionable colision, int delta) {
         super.alColisionar(colision, delta); 
-        if (!colision.isPlayer()) {
+        if (!colision.isPlayer() && tiempo > 7500) {
             numColisiones += 1;
         }
     }
