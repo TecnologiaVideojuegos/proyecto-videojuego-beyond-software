@@ -5,7 +5,10 @@
  */
 package logic;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 /**
  *
@@ -13,8 +16,9 @@ import org.newdawn.slick.SlickException;
  */
 public class Spider extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2;
-    private boolean primerTurno;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador;
+    private boolean primerTurno, saltando;
+    private Animation sombra;
 
     public Spider(Jugador player) throws SlickException {
         super("arana_2.png", 300, 300, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
@@ -25,7 +29,27 @@ public class Spider extends Boss {
         this.tiempo = 0;
         this.primerTurno = true;
         this.numColisiones = 0;
+        SpriteSheet tileSet;
+        Image[] img = new Image[5];
+        tileSet = new SpriteSheet("resources/sprites/Sombra.png", 330, 330);
+        for (int i = 0; i < 5; i++) {
+            img[i] = tileSet.getSprite(i, 0);
+        }
+        this.sombra = new Animation(img, 150);
+        sombra.setLooping(false);
+        this.saltando = false;
+        this.contador = 0;
     }
+
+    @Override
+    public void draw() {
+        super.draw(); 
+        if(saltando) {
+            sombra.draw(840, 120);
+        }
+    }
+    
+    
 
     @Override
     public void update(int delta) {
@@ -48,11 +72,24 @@ public class Spider extends Boss {
             ataque3(delta);
         }
         else {
-            primerTurno = true;
-            tiempo = 0;
-            numColisiones = 0;
-            super.getSprite().setPosicion(840, 120);
-            eleccion = (int) (Math.random() * 3+1);
+            if(contador == 0) {
+                contador ++;
+                super.getSprite().setPosicion(2000, 2000);
+                sombra.start();
+                //sombra.stopAt(4);
+                saltando = true;
+            }
+            System.out.println("Saltando: " + sombra.isStopped());
+            if(sombra.isStopped()) {
+                sombra.restart();
+                contador = 0;
+                saltando = false;
+                primerTurno = true;
+                tiempo = 0;
+                numColisiones = 0;
+                super.getSprite().setPosicion(840, 120);
+                eleccion = (int) (Math.random() * 3+1);
+            }
         }
         updateAnimacion();
     }
