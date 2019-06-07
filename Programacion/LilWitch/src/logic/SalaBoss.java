@@ -39,7 +39,7 @@ public class SalaBoss extends Sala {
                     crearCofres(objeto, 0);
                     break;
                 case 3:
-                    this.jefe = new ReySlime(jugador); 
+                    this.jefe = new Cangrejo(jugador); 
                     crearCofres(objeto, 0);
                     break;
                 case 4:

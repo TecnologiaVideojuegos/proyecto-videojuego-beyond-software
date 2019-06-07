@@ -14,14 +14,14 @@ import org.newdawn.slick.SpriteSheet;
  *
  * @author alvar
  */
-public class Spider extends Boss {
+public class Cangrejo extends Boss {
     private Jugador player;
     private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador;
     private boolean primerTurno, saltando;
     private Animation sombra;
 
-    public Spider(Jugador player) throws SlickException {
-        super("arana_2.png", 300, 300, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
+    public Cangrejo(Jugador player) throws SlickException {
+        super("cangrejo.png", 330, 330, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;

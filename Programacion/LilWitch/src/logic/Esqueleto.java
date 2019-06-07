@@ -15,19 +15,12 @@ import org.newdawn.slick.geom.Shape;
  */
 public class Esqueleto extends Enemigo {
     private ControladorProyectiles proyectiles;
-    private boolean escudo;
     private IColisionable jugador;
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque, 150);
         this.proyectiles = proyectiles;
         
-        if(x == 120) {
-            escudo = false;
-        }
-        else {
-            escudo = true;
-        }
         //Normal 120x150 Escudo 130x180
     }
 
