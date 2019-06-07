@@ -6,6 +6,7 @@
 package logic;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -19,9 +20,10 @@ public class Demonio extends Boss {
     private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador;
     private boolean primerTurno, saltando;
     private Animation sombra;
+    private ControladorProyectiles proyectiles;
 
-    public Demonio(Jugador player) throws SlickException {
-        super("demonio.png", 300, 300, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
+    public Demonio(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
+        super("Demonio Infernal", "demonio.png", 400, 400, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;
@@ -39,17 +41,16 @@ public class Demonio extends Boss {
         sombra.setLooping(false);
         this.saltando = false;
         this.contador = 0;
+        this.proyectiles = proyectiles;
     }
 
     @Override
-    public void draw() {
-        super.draw(); 
+    public void draw(Graphics g) {
+        super.draw(g); 
         if(saltando) {
             sombra.draw(840, 120);
         }
     }
-    
-    
 
     @Override
     public void update(int delta) {

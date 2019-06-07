@@ -6,6 +6,7 @@
 package logic;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -22,7 +23,7 @@ public class Cangrejo extends Boss {
     private SpriteAnimado spriteSecundario;
 
     public Cangrejo(Jugador player) throws SlickException {
-        super("cangrejo.png", 330, 330, 840, 120, 100, 1, 200, player, 30, 30, 60, 35);
+        super("Cangrejo Blindado", "cangrejo.png", 330, 330, 840, 120, 100, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;
@@ -71,8 +72,8 @@ public class Cangrejo extends Boss {
     }
 
     @Override
-    public void draw() {
-        super.draw(); 
+    public void draw(Graphics g) {
+        super.draw(g); 
         if(saltando) {
             sombra.draw(840, 120);
         }

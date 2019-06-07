@@ -6,6 +6,7 @@
 package logic;
 
 import java.util.ArrayList;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -17,10 +18,12 @@ import org.newdawn.slick.SpriteSheet;
 public class Boss extends Enemigo {
     private ArrayList<Image> barraVida;
     private int porcentajeVida, vidaTotal;
+    private String nombre;
     
     
-    public Boss(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad, Jugador player) throws SlickException {
+    public Boss(String nombre, String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad, Jugador player) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque, velocidad);
+        this.nombre = nombre;
         this.vidaTotal = vida;
         this.porcentajeVida = 100;
         this.barraVida = new ArrayList<>();
@@ -30,8 +33,9 @@ public class Boss extends Enemigo {
         }
     }
     
-    public Boss(String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad, Jugador player, int offsetX, int offsetY, int offsetWidth, int offsetHeight) throws SlickException {
+    public Boss(String nombre, String filename, int ancho, int alto, int x, int y, int vida, int ataque, int velocidad, Jugador player, int offsetX, int offsetY, int offsetWidth, int offsetHeight) throws SlickException {
         super(filename, ancho, alto, x, y, vida, ataque, velocidad, offsetX, offsetY, offsetWidth, offsetHeight);
+        this.nombre = nombre;
         this.vidaTotal = vida;
         this.porcentajeVida = 100;
         this.barraVida = new ArrayList<>();
@@ -52,43 +56,43 @@ public class Boss extends Enemigo {
         
     }
 
-    @Override
-    public void draw() {
+    public void draw(Graphics g) {
         if(super.getVida() > 0) {
             super.draw();
+            g.drawString(nombre, 747, 30);
             switch((porcentajeVida / 10) + 1) {
                 case 11:
-                    barraVida.get(0).draw(720, 30);
+                    barraVida.get(0).draw(720, 45);
                     break;
                 case 10:
-                    barraVida.get(0).draw(720, 30);
+                    barraVida.get(0).draw(720, 40);
                     break;
                 case 9:
-                    barraVida.get(1).draw(720, 30);
+                    barraVida.get(1).draw(720, 40);
                     break;
                 case 8:
-                    barraVida.get(2).draw(720, 30);
+                    barraVida.get(2).draw(720, 40);
                     break;
                 case 7:
-                    barraVida.get(3).draw(720, 30);
+                    barraVida.get(3).draw(720, 40);
                     break;
                 case 6:
-                    barraVida.get(4).draw(720, 30);
+                    barraVida.get(4).draw(720, 40);
                     break;
                 case 5:
-                    barraVida.get(5).draw(720, 30);
+                    barraVida.get(5).draw(720, 40);
                     break;
                 case 4:
-                    barraVida.get(6).draw(720, 30);
+                    barraVida.get(6).draw(720, 40);
                     break;
                 case 3:
-                    barraVida.get(7).draw(720, 30);
+                    barraVida.get(7).draw(720, 40);
                     break;
                 case 2:
-                    barraVida.get(8).draw(720, 30);
+                    barraVida.get(8).draw(720, 40);
                     break;
                 case 1:
-                    barraVida.get(9).draw(720, 30);
+                    barraVida.get(9).draw(720, 40);
                     break;
             }
         }

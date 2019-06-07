@@ -43,7 +43,7 @@ public class SalaBoss extends Sala {
                     crearCofres(objeto, 0);
                     break;
                 case 4:
-                    this.jefe = new ReySlime(jugador);
+                    this.jefe = new Demonio(jugador, proyectiles);
                     crearCofres(objeto, 0);
                     break;
                 case 5:
@@ -86,7 +86,7 @@ public class SalaBoss extends Sala {
     @Override
     public void draw(Graphics g, Input entrada) {
         super.draw(g, entrada);
-        jefe.draw();
+        jefe.draw(g);
         if(jefe.getVida() <= 0) {
             for (int i = 0; i < cofres.size(); i++) {
                 cofres.get(i).draw(); 

@@ -6,6 +6,7 @@
 package logic;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -21,7 +22,7 @@ public class Spider extends Boss {
     private Animation sombra;
 
     public Spider(Jugador player) throws SlickException {
-        super("arana_2.png", 300, 300, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
+        super("Araña Gigante", "arana_2.png", 300, 300, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;
@@ -42,14 +43,12 @@ public class Spider extends Boss {
     }
 
     @Override
-    public void draw() {
-        super.draw(); 
+    public void draw(Graphics g) {
+        super.draw(g); 
         if(saltando) {
             sombra.draw(840, 120);
         }
     }
-    
-    
 
     @Override
     public void update(int delta) {
