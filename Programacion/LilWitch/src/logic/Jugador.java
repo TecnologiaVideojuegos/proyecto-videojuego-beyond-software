@@ -443,7 +443,7 @@ public class Jugador implements IColisionable {
                         hit = true;
                     }
                     else {
-                        if(tiempoInvencibilidad > 350) {
+                        if(tiempoInvencibilidad > 500) {
                             vida -= colision.getAtaque();
                             hit = true;
                             tiempoInvencibilidad = 0;

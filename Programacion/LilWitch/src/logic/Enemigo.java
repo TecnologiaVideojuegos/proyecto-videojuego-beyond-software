@@ -329,7 +329,6 @@ public class Enemigo implements IColisionable {
                 vida -= colision.getAtaque();
                 hit = true;
             }
-            
         }
     }
     
@@ -518,5 +517,37 @@ public class Enemigo implements IColisionable {
 
     public void setHit(boolean hit) {
         this.hit = hit;
+    }
+
+    public int getOffsetX() {
+        return offsetX;
+    }
+
+    public void setOffsetX(int offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+    }
+
+    public int getOffsetHeight() {
+        return offsetHeight;
+    }
+
+    public void setOffsetHeight(int offsetHeight) {
+        this.offsetHeight = offsetHeight;
+    }
+
+    public int getOffsetWidth() {
+        return offsetWidth;
+    }
+
+    public void setOffsetWidth(int offsetWidth) {
+        this.offsetWidth = offsetWidth;
     }
 }

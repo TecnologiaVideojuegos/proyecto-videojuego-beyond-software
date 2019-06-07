@@ -16,12 +16,13 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Cangrejo extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador, contadorAtaque, vidaCaparazon, tiempoVulnerable, caparazonRoto, tiempoAtaque;
     private boolean primerTurno, saltando;
     private Animation sombra;
+    private SpriteAnimado spriteSecundario;
 
     public Cangrejo(Jugador player) throws SlickException {
-        super("cangrejo.png", 330, 330, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
+        super("cangrejo.png", 330, 330, 840, 120, 100, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;
@@ -29,16 +30,44 @@ public class Cangrejo extends Boss {
         this.tiempo = 0;
         this.primerTurno = true;
         this.numColisiones = 0;
-        SpriteSheet tileSet;
-        Image[] img = new Image[5];
-        tileSet = new SpriteSheet("resources/sprites/Sombra.png", 330, 330);
-        for (int i = 0; i < 5; i++) {
-            img[i] = tileSet.getSprite(i, 0);
-        }
-        this.sombra = new Animation(img, 150);
-        sombra.setLooping(false);
         this.saltando = false;
         this.contador = 0;
+        this.vidaCaparazon = 4;
+        this.tiempoVulnerable = 0;
+        this.caparazonRoto = 0;
+        this.tiempoAtaque = 0;
+        this.contadorAtaque = 0;
+        
+        SpriteSheet spritesSombra;
+        spritesSombra = new SpriteSheet("resources/sprites/Sombra.png", 330, 330);
+        this.sombra = new Animation(spritesSombra, 150);
+        this.sombra.setLooping(false);
+        
+        SpriteSheet s;
+        Animation up, down, l, r;
+        s = new SpriteSheet("resources/enemigos/cangrejo_2.png", 330, 330);
+        int numSprites = s.getHorizontalCount();
+        
+        Image[] i1 = new Image[numSprites];
+        Image[] i2 = new Image[numSprites];
+        Image[] i3 = new Image[numSprites];
+        Image[] i4 = new Image[numSprites];
+        
+        for (int i = 0; i < numSprites; i++) {
+            i1[i] = s.getSprite(i, 0);
+            i2[i] = s.getSprite(i, 1);
+            i3[i] = s.getSprite(i, 2);
+            i4[i] = s.getSprite(i, 3);
+        }
+        
+        up = new Animation(i1, 100);
+        down = new Animation(i3, 100);
+        l = new Animation(i4, 100);
+        r = new Animation(i2, 100);
+        ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
+        
+        this.spriteSecundario = new SpriteAnimado(animaciones, s.getSprite(1, 2), s.getSprite(1, 0), s.getSprite(1, 1), s.getSprite(1, 3), 840, 120);
+        
     }
 
     @Override
@@ -48,24 +77,49 @@ public class Cangrejo extends Boss {
             sombra.draw(840, 120);
         }
     }
-    
-    
 
     @Override
-    public void update(int delta) {
-        super.update(delta);
-        tiempo += delta;
+    public void sincronizarArea() {
+        super.sincronizarArea(); 
+        spriteSecundario.setPosicion(super.getSprite().getPosicion().getX() + super.getOffsetX(), super.getSprite().getPosicion().getY() + super.getOffsetY());
+    }
+    
+    public void actualizarSprite() {
+        SpriteAnimado aux = super.getSprite();
+        super.setSprite(spriteSecundario);
+        spriteSecundario = aux;
     }
 
     @Override
+    public void update(int delta) {
+        if(vidaCaparazon == 0) {
+            tiempoVulnerable += delta;
+            caparazonRoto ++;
+            if(caparazonRoto == 1) {
+                actualizarSprite();
+            }
+        }
+        if(tiempoVulnerable > 8000) {
+            vidaCaparazon = 4;
+            caparazonRoto = 0;
+            tiempoVulnerable = 0;
+            actualizarSprite();
+        }
+        super.update(delta);
+        tiempo += delta;
+    }
+    
+    
+
+    @Override
     public void atacar(int delta) {
-        if(tiempo < 7500) {
+        if(tiempo < 8000) {
             perseguir(delta);
         }
-        else if(eleccion == 1 && numColisiones < 6) {
+        else if(eleccion == 1) {
             ataque1(delta);
         }
-        else if(eleccion == 2 && numColisiones < 7) {
+        else if(eleccion == 2) {
             ataque2(delta);
         }
         else if((eleccion == 3 || eleccion == 4) && numColisiones < 2) {
@@ -93,26 +147,33 @@ public class Cangrejo extends Boss {
     }
     
     public void ataque1(int delta) {
+        System.out.println("Num colisiones: " + numColisiones);
         if(primerTurno) {
             super.setColision(false);
-            movX = 2;
-            movY = 2;
-            super.getSprite().setPosicion(20, 20);
             super.resetDirecciones();
+            super.getSprite().setPosicion(20, 20);
+            movX = 2;
+            movY = 3;
             primerTurno = false;  
         }
-        if(super.isColision()) {
-            if(super.isUp()) {
-                movY = 2;
-            }
-            if(super.isDown()) {
-                movY = 1;
-            }
-            if(super.isR() && numColisiones == 3) {
+        
+        if(movX == 3) {
+            tiempoAtaque += delta;
+            if(tiempoAtaque > 500) {
                 movX = 1;
+                movY = 3;
+                tiempoAtaque = 0;
             }
-            else if(super.isL() && numColisiones == 3) {
-                movX = 2;
+        }
+        if(super.isColision()) {
+            if(super.isR() || super.isL()) {
+                movX = 3;
+                movY = 2; 
+            }
+            if((super.isDown() || super.isUp()) && numColisiones > 2) {
+                movX = 3;
+                movY = 3;
+                eleccion = 99;
             }
             super.setColision(false);
         }
@@ -120,30 +181,37 @@ public class Cangrejo extends Boss {
     }
     
     public void ataque2(int delta) {
+        System.out.println("Num colisiones: " + numColisiones);
         if(primerTurno) {
             super.setColision(false);
-            movX = 1;
-            movY = 2;
-            super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
             super.resetDirecciones();
+            super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
+            movX = 1;
+            movY = 3;
             primerTurno = false;  
         }
-        if(super.isColision()) {
-            if(super.isUp()) {
-                movY = 2;
-            }
-            if(super.isDown()) {
-                movY = 1;
-            }
-            if(super.isR() && numColisiones == 4) {
-                movX = 1;
-            }
-            else if(super.isL() && numColisiones == 4) {
+        
+        if(movX == 3) {
+            tiempoAtaque += delta;
+            if(tiempoAtaque > 500) {
                 movX = 2;
+                movY = 3;
+                tiempoAtaque = 0;
+            }
+        }
+        if(super.isColision()) {
+            if(super.isR() || super.isL()) {
+                movX = 3;
+                movY = 2; 
+            }
+            else if((super.isDown() || super.isUp()) && numColisiones > 2) {
+                movX = 3;
+                movY = 3;
+                eleccion = 99;
             }
             super.setColision(false);
         }
-        avanzar(delta);  
+        avanzar(delta);
     }
     
     public void ataque3(int delta) {
@@ -354,10 +422,34 @@ public class Cangrejo extends Boss {
 
     @Override
     public void alColisionar(IColisionable colision, int delta) {
-        super.alColisionar(colision, delta); 
-        if (!colision.isPlayer() && tiempo > 7500) {
-            numColisiones += 1;
-        }
+        if(colision.isProyectile() != 1) {
+            if (!colision.isPlayer()) {
+                super.setColision(true);
+                if(super.isUp()) {
+                    super.getSprite().moverY(super.getVelocidad() * 3 * (float) delta / 1000);
+                }
+                if(super.isDown()) {
+                    super.getSprite().moverY(-super.getVelocidad() * 3 * (float) delta / 1000);
+                }
+                if(super.isR()) {
+                    super.getSprite().moverX(-super.getVelocidad() * 3 * (float) delta / 1000);
+                }
+                if(super.isL()) {
+                    super.getSprite().moverX(super.getVelocidad() * 3 * (float) delta / 1000);
+                }
+                if (tiempo > 8000) {
+                    numColisiones += 1;
+                }
+            }
+            if (colision.isProyectile() == 3 && vidaCaparazon != 0) {
+                vidaCaparazon --;
+                super.setHit(true);
+            }
+            if (colision.isProyectile() >= 2 && vidaCaparazon == 0) {
+                super.setVida(super.getVida() - colision.getAtaque());
+                super.setHit(true);
+            }
+        } 
     }
     
     
