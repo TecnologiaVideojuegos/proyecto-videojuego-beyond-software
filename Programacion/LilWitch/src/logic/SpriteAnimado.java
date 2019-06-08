@@ -142,5 +142,28 @@ public class SpriteAnimado {
     public void setStaticDown(Image staticDown) {
         this.staticDown = staticDown;
     }
-    
+
+    public Image getStaticUp() {
+        return staticUp;
+    }
+
+    public void setStaticUp(Image staticUp) {
+        this.staticUp = staticUp;
+    }
+
+    public Image getStaticR() {
+        return staticR;
+    }
+
+    public void setStaticR(Image staticR) {
+        this.staticR = staticR;
+    }
+
+    public Image getStaticL() {
+        return staticL;
+    }
+
+    public void setStaticL(Image staticL) {
+        this.staticL = staticL;
+    }  
 }

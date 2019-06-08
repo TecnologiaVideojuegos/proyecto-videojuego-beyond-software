@@ -101,7 +101,7 @@ public class Enemigo implements IColisionable {
         r = new Animation(i2, 100);
         ControladorAnimacion animaciones = new ControladorAnimacion(up, down, l, r, 1f);
         
-        this.sprite = new SpriteAnimado(animaciones, tileSet.getSprite(1, 2), tileSet.getSprite(1, 0), tileSet.getSprite(1, 1), tileSet.getSprite(1, 3), x, y);
+        this.sprite = new SpriteAnimado(animaciones, tileSet.getSprite(0, 2), tileSet.getSprite(0, 0), tileSet.getSprite(0, 1), tileSet.getSprite(0, 3), x, y);
         this.hitbox = new Rectangle(x + offsetX, y + offsetY, ancho - offsetWidth, alto - offsetHeight);
               
         this.up = false;

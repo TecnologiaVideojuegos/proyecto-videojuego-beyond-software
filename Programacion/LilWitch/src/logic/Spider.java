@@ -17,7 +17,7 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Spider extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador, posSombra;
     private boolean primerTurno, saltando;
     private Animation sombra;
 
@@ -40,13 +40,36 @@ public class Spider extends Boss {
         sombra.setLooping(false);
         this.saltando = false;
         this.contador = 0;
+        this.posSombra = 7;
     }
 
     @Override
     public void draw(Graphics g) {
         super.draw(g); 
         if(saltando) {
-            sombra.draw(840, 120);
+            switch(posSombra) {
+                case 1:
+                    sombra.draw(20, 20);
+                    break;
+                case 2:
+                    sombra.draw(1850 - super.getHitbox().getWidth(), 20);
+                    break;
+                case 3:
+                    sombra.draw(800, 21);
+                    break;
+                case 4:
+                    sombra.draw(800, 900 - super.getHitbox().getHeight());
+                    break;
+                case 5:
+                    sombra.draw(21, 350);
+                    break; 
+                case 6:
+                    sombra.draw(1850 - super.getHitbox().getWidth(), 350);
+                    break;   
+                case 7:
+                    sombra.draw(840, 120);
+                    break;   
+            }
         }
     }
 
@@ -72,6 +95,7 @@ public class Spider extends Boss {
         }
         else {
             if(contador == 0) {
+                posSombra = 7;
                 contador ++;
                 super.getSprite().setPosicion(2000, 2000);
                 sombra.start();
@@ -85,7 +109,7 @@ public class Spider extends Boss {
                 tiempo = 0;
                 numColisiones = 0;
                 super.getSprite().setPosicion(840, 120);
-                eleccion = (int) (Math.random() * 3+1);
+                eleccion = (int) (Math.random() * 4+1);
             }
         }
         updateAnimacion();
@@ -93,12 +117,25 @@ public class Spider extends Boss {
     
     public void ataque1(int delta) {
         if(primerTurno) {
-            super.setColision(false);
-            movX = 2;
-            movY = 2;
-            super.getSprite().setPosicion(20, 20);
-            super.resetDirecciones();
-            primerTurno = false;  
+            if(contador == 0) {
+                posSombra = 1;
+                contador ++;
+                super.getSprite().setPosicion(2000, 2000);
+                sombra.start();
+                saltando = true;
+            }
+            if(sombra.isStopped()) {
+                super.resetDirecciones();
+                sombra.restart();
+                contador = 0;
+                saltando = false;
+                super.setColision(false);
+                movX = 2;
+                movY = 2;
+                super.getSprite().setPosicion(20, 20);
+                super.resetDirecciones();
+                primerTurno = false;
+            }  
         }
         if(super.isColision()) {
             if(super.isUp()) {
@@ -120,12 +157,25 @@ public class Spider extends Boss {
     
     public void ataque2(int delta) {
         if(primerTurno) {
-            super.setColision(false);
-            movX = 1;
-            movY = 2;
-            super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
-            super.resetDirecciones();
-            primerTurno = false;  
+            if(contador == 0) {
+                posSombra = 2;
+                contador ++;
+                super.getSprite().setPosicion(2000, 2000);
+                sombra.start();
+                saltando = true;
+            }
+            if(sombra.isStopped()) {
+                super.resetDirecciones();
+                sombra.restart();
+                contador = 0;
+                saltando = false;
+                super.setColision(false);
+                movX = 1;
+                movY = 2;
+                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
+                super.resetDirecciones();
+                primerTurno = false;
+            }  
         }
         if(super.isColision()) {
             if(super.isUp()) {
@@ -147,37 +197,72 @@ public class Spider extends Boss {
     
     public void ataque3(int delta) {
         if(primerTurno) {
-            eleccion2 = (int) (Math.random() * 2+1);
-            super.setColision(false);
-            if(eleccion == 3) {
-                super.getSprite().setPosicion(800, 21);
-                movX = 3;
-                movY = 2;
+            if(contador == 0) {
+                eleccion2 = (int) (Math.random() * 2+1);
+                contador ++;
+                super.getSprite().setPosicion(2000, 2000);
+                sombra.start();
+                saltando = true;
             }
-            else {
-                super.getSprite().setPosicion(800, 900 - super.getHitbox().getHeight());
-                movX = 3;
-                movY = 1;
-            }
-            super.resetDirecciones();
-            primerTurno = false;  
-        }
-        if(super.isColision()) {
-            if(super.isUp() || super.isDown()) {
-                if(eleccion2 == 1) {
-                    super.getSprite().setPosicion(21, 350);
-                    movX = 2;
-                    movY = 3;
+            if(sombra.isStopped()) {
+                super.resetDirecciones();
+                sombra.restart();
+                contador = 0;
+                saltando = false;
+                super.setColision(false);
+                if(eleccion == 3) {
+                    posSombra = 3;
+                    super.getSprite().setPosicion(800, 21);
+                    movX = 3;
+                    movY = 2;
                 }
                 else {
-                    super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 350);
-                    movX = 1;
-                    movY = 3;
+                    posSombra = 4;
+                    super.getSprite().setPosicion(800, 900 - super.getHitbox().getHeight());
+                    movX = 3;
+                    movY = 1;
                 }
-                
+                super.resetDirecciones();
+                primerTurno = false;  
+            }     
+        }
+        
+        if(super.isColision()) {
+            if(super.isUp() || super.isDown()) {
+                if(contador == 0) {
+                    if(eleccion2 == 1) {
+                        posSombra = 5;
+                    }
+                    else {
+                        posSombra = 6;
+                    }
+                    contador ++;
+                    super.getSprite().setPosicion(2000, 2000);
+                    sombra.start();
+                    saltando = true;
+                } 
             }
             super.setColision(false);
         }
+        if(sombra.isStopped()) {
+            super.resetDirecciones();
+            sombra.restart();
+            contador = 0;
+            saltando = false;
+            super.setColision(false);
+            if(eleccion2 == 1) {
+                super.getSprite().setPosicion(21, 350);
+                movX = 2;
+                movY = 3;
+            }
+            else {
+                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 350);
+                movX = 1;
+                movY = 3;
+            }
+            super.resetDirecciones();
+            primerTurno = false;
+        }  
         avanzar(delta);
     }
     

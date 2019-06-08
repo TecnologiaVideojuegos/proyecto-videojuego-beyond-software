@@ -6,6 +6,7 @@
 package logic;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -20,7 +21,11 @@ public class Esqueleto extends Enemigo {
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque, 150);
         this.proyectiles = proyectiles;
-        
+        SpriteSheet s = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
+        super.getSprite().setStaticDown(s.getSprite(1, 2));
+        super.getSprite().setStaticUp(s.getSprite(1, 0));
+        super.getSprite().setStaticL(s.getSprite(1, 1));
+        super.getSprite().setStaticR(s.getSprite(1, 3));
         //Normal 120x150 Escudo 130x180
     }
 

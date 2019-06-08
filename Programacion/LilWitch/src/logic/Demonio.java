@@ -17,15 +17,15 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Demonio extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador;
-    private boolean primerTurno, saltando;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador, posSombra;
+    private boolean primerTurno, saltando, start;
     private Animation sombra;
     private ControladorProyectiles proyectiles;
 
     public Demonio(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
         super("Ignis, Guardián del Infierno", "demonio.png", 400, 400, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
-        this.eleccion = (int) (Math.random() * 4+1);
+        this.eleccion = (int) (Math.random() * 2+1);
         this.dirXo = 0;
         this.dirYo = 0;
         this.tiempo = 0;
@@ -42,13 +42,25 @@ public class Demonio extends Boss {
         this.saltando = false;
         this.contador = 0;
         this.proyectiles = proyectiles;
+        this.start = true;
+        this.posSombra = 3;
     }
 
     @Override
     public void draw(Graphics g) {
         super.draw(g); 
         if(saltando) {
-            sombra.draw(840, 120);
+            switch(posSombra) {
+                case 1:
+                    sombra.draw(20, 20);
+                    break;
+                case 2:
+                    sombra.draw(1850 - super.getHitbox().getWidth(), 20);
+                    break;
+                case 3:
+                    sombra.draw(800, 300);
+                    break;         
+            }
         }
     }
 
@@ -60,34 +72,41 @@ public class Demonio extends Boss {
 
     @Override
     public void atacar(int delta) {
-        if(tiempo < 7500) {
-            perseguir(delta);
+        if(tiempo < 5000) {
+            if(tiempo > 500 || start) {
+                perseguir(delta);
+            }
         }
         else if(eleccion == 1 && numColisiones < 6) {
             ataque1(delta);
+            lanzarHechizo();
         }
         else if(eleccion == 2 && numColisiones < 7) {
             ataque2(delta);
-        }
-        else if((eleccion == 3 || eleccion == 4) && numColisiones < 2) {
-            ataque3(delta);
+            lanzarHechizo();
         }
         else {
+            if(start) {
+                start = false;
+            }
             if(contador == 0) {
+                posSombra = 3;
                 contador ++;
                 super.getSprite().setPosicion(2000, 2000);
                 sombra.start();
                 saltando = true;
             }
             if(sombra.isStopped()) {
+                super.resetDirecciones();
                 sombra.restart();
                 contador = 0;
                 saltando = false;
                 primerTurno = true;
                 tiempo = 0;
                 numColisiones = 0;
-                super.getSprite().setPosicion(840, 120);
+                super.getSprite().setPosicion(800, 300);
                 eleccion = (int) (Math.random() * 3+1);
+                disparoCircular();
             }
         }
         updateAnimacion();
@@ -95,12 +114,25 @@ public class Demonio extends Boss {
     
     public void ataque1(int delta) {
         if(primerTurno) {
-            super.setColision(false);
-            movX = 2;
-            movY = 2;
-            super.getSprite().setPosicion(20, 20);
-            super.resetDirecciones();
-            primerTurno = false;  
+            if(contador == 0) {
+                posSombra = 1;
+                contador ++;
+                super.getSprite().setPosicion(2000, 2000);
+                sombra.start();
+                saltando = true;
+            }
+            if(sombra.isStopped()) {
+                super.resetDirecciones();
+                sombra.restart();
+                contador = 0;
+                saltando = false;
+                super.setColision(false);
+                movX = 2;
+                movY = 2;
+                super.getSprite().setPosicion(20, 20);
+                super.resetDirecciones();
+                primerTurno = false;
+            }  
         }
         if(super.isColision()) {
             if(super.isUp()) {
@@ -122,12 +154,25 @@ public class Demonio extends Boss {
     
     public void ataque2(int delta) {
         if(primerTurno) {
-            super.setColision(false);
-            movX = 1;
-            movY = 2;
-            super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
-            super.resetDirecciones();
-            primerTurno = false;  
+            if(contador == 0) {
+                posSombra = 2;
+                contador ++;
+                super.getSprite().setPosicion(2000, 2000);
+                sombra.start();
+                saltando = true;
+            }
+            if(sombra.isStopped()) {
+                super.resetDirecciones();
+                sombra.restart();
+                contador = 0;
+                saltando = false;
+                super.setColision(false);
+                movX = 1;
+                movY = 2;
+                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
+                super.resetDirecciones();
+                primerTurno = false;
+            }  
         }
         if(super.isColision()) {
             if(super.isUp()) {
@@ -147,52 +192,44 @@ public class Demonio extends Boss {
         avanzar(delta);  
     }
     
-    public void ataque3(int delta) {
-        if(primerTurno) {
-            eleccion2 = (int) (Math.random() * 2+1);
-            super.setColision(false);
-            if(eleccion == 3) {
-                super.getSprite().setPosicion(800, 21);
-                movX = 3;
-                movY = 2;
-            }
-            else {
-                super.getSprite().setPosicion(800, 900 - super.getHitbox().getHeight());
-                movX = 3;
-                movY = 1;
-            }
-            super.resetDirecciones();
-            primerTurno = false;  
-        }
-        if(super.isColision()) {
-            if(super.isUp() || super.isDown()) {
-                if(eleccion2 == 1) {
-                    super.getSprite().setPosicion(21, 350);
-                    movX = 2;
-                    movY = 3;
-                }
-                else {
-                    super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 350);
-                    movX = 1;
-                    movY = 3;
-                }
+    public void lanzarHechizo() {
+        if (super.getCooldown() > 1000) {
+                float x = super.getPosicion().getX() + 200;
+                float y = super.getPosicion().getY() + 200;
                 
+                int dirX = signo(player.getPosicion().getX() + 48 - x);
+                int dirY = signo(player.getPosicion().getY() + 52 - y);
+     
+                crearProyectil(x, y, dirX, dirY);
+                super.setCooldown(0);
             }
-            super.setColision(false);
-        }
-        avanzar(delta);
     }
+    
+    public void disparoCircular() {
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 0, -1);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, -1, -1);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, -1, 0);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, -1, 1);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 0, 1);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 1, 1);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 1, 0);  
+        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 1, -1);  
+    }
+    
+    public void crearProyectil(float x, float y, float dirX, float dirY) {
+        proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 1, 1);
+        }
     
     @Override
     public void avanzar(int delta) {
         switch(movX){
             case 1:
-                super.getSprite().moverX(-super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.getSprite().moverX(-super.getVelocidad() * ((float) delta / 1000));
                 super.setL(true);
                 super.setR(false);
                 break;
             case 2:
-                super.getSprite().moverX(super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.getSprite().moverX(super.getVelocidad() * ((float) delta / 1000));
                 super.setL(false);
                 super.setR(true);
                 break; 
@@ -204,12 +241,12 @@ public class Demonio extends Boss {
         }
         switch(movY){
             case 1:
-                super.getSprite().moverY(-super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.getSprite().moverY(-super.getVelocidad() * ((float) delta / 1000));
                 super.setUp(true);
                 super.setDown(false);
                 break;
             case 2:
-                super.getSprite().moverY(super.getVelocidad() * 3 * ((float) delta / 1000));
+                super.getSprite().moverY(super.getVelocidad() * ((float) delta / 1000));
                 super.setUp(false);
                 super.setDown(true);
                 break;   
@@ -356,7 +393,7 @@ public class Demonio extends Boss {
     @Override
     public void alColisionar(IColisionable colision, int delta) {
         super.alColisionar(colision, delta); 
-        if (!colision.isPlayer() && tiempo > 7500) {
+        if (!colision.isPlayer() && colision.isProyectile() == 0 && tiempo > 5000) {
             numColisiones += 1;
         }
     }
@@ -364,6 +401,15 @@ public class Demonio extends Boss {
     
     
     public int signo(int num) {
+        if(num >= 0) {
+            return 1;
+        }
+        else {
+            return -1;
+        }
+    }
+    
+    public int signo(float num) {
         if(num >= 0) {
             return 1;
         }
