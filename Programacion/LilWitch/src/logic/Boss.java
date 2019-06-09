@@ -97,7 +97,12 @@ public class Boss extends Enemigo {
             }
         }
     }
-    
-    
-    
+
+    public int getVidaTotal() {
+        return vidaTotal;
+    }
+
+    public void setVidaTotal(int vidaTotal) {
+        this.vidaTotal = vidaTotal;
+    }
 }

@@ -47,6 +47,10 @@ public class SalaBoss extends Sala {
                     crearCofres(objeto, 0);
                     break;
                 case 5:
+                    this.jefe = new Doppelganger(jugador, proyectiles); 
+                    crearCofres(objeto, 0);
+                    break;
+                case 6:
                     this.jefe = new ReySlime(jugador); 
                     crearCofres(objeto, 0);
                     break;
@@ -78,7 +82,9 @@ public class SalaBoss extends Sala {
                 cofres.get(i).update(delta);   
             }
         }
-        jefe.update(delta);
+        else {
+            jefe.update(delta);
+        }
         int n = super.update(entrada, delta);
         return n;
     }
@@ -86,11 +92,13 @@ public class SalaBoss extends Sala {
     @Override
     public void draw(Graphics g, Input entrada) {
         super.draw(g, entrada);
-        jefe.draw(g);
         if(jefe.getVida() <= 0) {
             for (int i = 0; i < cofres.size(); i++) {
                 cofres.get(i).draw(); 
             }
+        }
+        else {
+            jefe.draw(g);
         }
     }
     

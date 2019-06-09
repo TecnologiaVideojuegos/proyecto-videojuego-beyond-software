@@ -209,6 +209,42 @@ public class Enemigo implements IColisionable {
         }
     }
     
+    public void draw(int dir) {
+        if(!hit) {
+            if(down) {
+                sprite.drawDown();
+            }
+            else if (up) {
+                sprite.drawUp();
+            }
+            else if (l) {
+                sprite.drawL();
+            }
+            else if (r) {
+                sprite.drawR();
+            }
+            else {
+                switch(dir) {
+                    case 1:
+                        sprite.drawStaticR();
+                        break;
+                    case 2:
+                        sprite.drawStaticL();
+                        break;
+                    case 3:
+                        sprite.drawStaticUp();
+                        break;
+                    case 4:
+                        sprite.draw(); 
+                        break;
+                    default:
+                        sprite.draw();
+                        break;
+                }
+            }
+        }
+    }
+    
     public void update(int delta) {
         if(hit) {
             flickerTime += delta;
@@ -549,5 +585,9 @@ public class Enemigo implements IColisionable {
 
     public void setOffsetWidth(int offsetWidth) {
         this.offsetWidth = offsetWidth;
+    }
+    
+    public void setHitbox(Rectangle r) {
+        this.hitbox = r;
     }
 }

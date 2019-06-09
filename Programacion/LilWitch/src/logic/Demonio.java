@@ -17,7 +17,7 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Demonio extends Boss {
     private Jugador player;
-    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador, posSombra;
+    private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador, posSombra, tiempoAtaque, contadorAtaque, eleccionBarrera;
     private boolean primerTurno, saltando, start;
     private Animation sombra;
     private ControladorProyectiles proyectiles;
@@ -26,6 +26,7 @@ public class Demonio extends Boss {
         super("Ignis, Guardián del Infierno", "demonio.png", 400, 400, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 2+1);
+        this.eleccionBarrera = (int) (Math.random() * 2+1);
         this.dirXo = 0;
         this.dirYo = 0;
         this.tiempo = 0;
@@ -44,18 +45,25 @@ public class Demonio extends Boss {
         this.proyectiles = proyectiles;
         this.start = true;
         this.posSombra = 3;
+        this.tiempoAtaque = 1250;
+        this.contadorAtaque = 0;
     }
 
     @Override
     public void draw(Graphics g) {
-        super.draw(g); 
+        if(tiempo > 5000) {
+            super.draw(eleccion);
+        }
+        else {
+            super.draw();
+        } 
         if(saltando) {
             switch(posSombra) {
                 case 1:
-                    sombra.draw(20, 20);
+                    sombra.draw(20, 300);
                     break;
                 case 2:
-                    sombra.draw(1850 - super.getHitbox().getWidth(), 20);
+                    sombra.draw(1850 - super.getHitbox().getWidth(), 300);
                     break;
                 case 3:
                     sombra.draw(800, 300);
@@ -72,18 +80,16 @@ public class Demonio extends Boss {
 
     @Override
     public void atacar(int delta) {
-        if(tiempo < 5000) {
-            if(tiempo > 500 || start) {
+        if(tiempo < 7000) {
+            if(tiempo > 2000 || start) {
                 perseguir(delta);
             }
         }
-        else if(eleccion == 1 && numColisiones < 6) {
+        else if(eleccion == 1) {
             ataque1(delta);
-            lanzarHechizo();
         }
-        else if(eleccion == 2 && numColisiones < 7) {
+        else if(eleccion == 2) {
             ataque2(delta);
-            lanzarHechizo();
         }
         else {
             if(start) {
@@ -103,16 +109,19 @@ public class Demonio extends Boss {
                 saltando = false;
                 primerTurno = true;
                 tiempo = 0;
+                tiempoAtaque = 1600;
                 numColisiones = 0;
                 super.getSprite().setPosicion(800, 300);
-                eleccion = (int) (Math.random() * 3+1);
+                eleccion = (int) (Math.random() * 2+1);
+                eleccionBarrera = (int) (Math.random() * 2+1);
                 disparoCircular();
             }
         }
         updateAnimacion();
     }
-    
+        
     public void ataque1(int delta) {
+        tiempoAtaque += delta;
         if(primerTurno) {
             if(contador == 0) {
                 posSombra = 1;
@@ -127,32 +136,26 @@ public class Demonio extends Boss {
                 contador = 0;
                 saltando = false;
                 super.setColision(false);
-                movX = 2;
-                movY = 2;
-                super.getSprite().setPosicion(20, 20);
+                super.getSprite().setPosicion(20, 300);
                 super.resetDirecciones();
                 primerTurno = false;
             }  
         }
-        if(super.isColision()) {
-            if(super.isUp()) {
-                movY = 2;
-            }
-            if(super.isDown()) {
-                movY = 1;
-            }
-            if(super.isR() && numColisiones == 3) {
-                movX = 1;
-            }
-            else if(super.isL() && numColisiones == 3) {
-                movX = 2;
-            }
-            super.setColision(false);
+        else if(tiempoAtaque > 1250 && contadorAtaque < 5) {
+            System.out.println("Contador: " + contador);
+            disparoBarreraR();
+            cambiarEleccionBarrera();
+            tiempoAtaque = 0;
+            contadorAtaque ++;
         }
-        avanzar(delta);
+        else if(contadorAtaque == 5 && tiempoAtaque > 3750) {
+            eleccion = 99;
+            contadorAtaque = 0;
+        }
     }
     
     public void ataque2(int delta) {
+        tiempoAtaque += delta;
         if(primerTurno) {
             if(contador == 0) {
                 posSombra = 2;
@@ -167,29 +170,22 @@ public class Demonio extends Boss {
                 contador = 0;
                 saltando = false;
                 super.setColision(false);
-                movX = 1;
-                movY = 2;
-                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 20);
+                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 300);
                 super.resetDirecciones();
                 primerTurno = false;
             }  
         }
-        if(super.isColision()) {
-            if(super.isUp()) {
-                movY = 2;
-            }
-            if(super.isDown()) {
-                movY = 1;
-            }
-            if(super.isR() && numColisiones == 4) {
-                movX = 1;
-            }
-            else if(super.isL() && numColisiones == 4) {
-                movX = 2;
-            }
-            super.setColision(false);
+        else if(tiempoAtaque > 1250 && contadorAtaque < 5) {
+            System.out.println("Contador: " + contador);
+            disparoBarreraL();
+            cambiarEleccionBarrera();
+            tiempoAtaque = 0;
+            contadorAtaque ++;
         }
-        avanzar(delta);  
+        else if(contadorAtaque == 5 && tiempoAtaque > 3750) {
+            eleccion = 99;
+            contadorAtaque = 0;
+        }
     }
     
     public void lanzarHechizo() {
@@ -206,19 +202,59 @@ public class Demonio extends Boss {
     }
     
     public void disparoCircular() {
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 0, -1);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, -1, -1);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, -1, 0);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, -1, 1);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 0, 1);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 1, 1);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 1, 0);  
-        crearProyectil(super.getSprite().getPosicion().getX() + 200, super.getSprite().getPosicion().getY() + 200, 1, -1);  
+        float x = super.getSprite().getPosicion().getX() + 200 - 58;
+        float y = super.getSprite().getPosicion().getY() + 200 - 72;
+        crearProyectilG(x, y, 0, -1);  
+        crearProyectilG(x, y, -1, -1);  
+        crearProyectilG(x, y, -1, 0);  
+        crearProyectilG(x, y, -1, 1);  
+        crearProyectilG(x, y, 0, 1);  
+        crearProyectilG(x, y, 1, 1);  
+        crearProyectilG(x, y, 1, 0);  
+        crearProyectilG(x, y, 1, -1);  
+    }
+    
+    public void disparoBarreraR() {
+        float x = super.getSprite().getPosicion().getX() + 100;
+        int inicio;
+        int fin;
+        if(eleccionBarrera == 1) {
+            inicio = 0;
+            fin = 8;
+        }
+        else {
+            inicio = 1;
+            fin = 9;
+        }
+        for (int i = inicio; i < fin; i++) {
+            crearProyectil(x, 45 + 100*i, 1, 0); 
+        }
+    }
+    
+    public void disparoBarreraL() {
+        float x = super.getSprite().getPosicion().getX() + 100;
+        int inicio;
+        int fin;
+        if(eleccionBarrera == 1) {
+            inicio = 0;
+            fin = 8;
+        }
+        else {
+            inicio = 1;
+            fin = 9;
+        }
+        for (int i = inicio; i < fin; i++) {
+            crearProyectil(x, 45 + 100*i, -1, 0); 
+        }
     }
     
     public void crearProyectil(float x, float y, float dirX, float dirY) {
         proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 1, 1);
-        }
+    }
+    
+    public void crearProyectilG(float x, float y, float dirX, float dirY) {
+        proyectiles.addProyectil("Fire_3.png", x, y, 2*58, 2*72, 1f, 300*dirX, 300*dirY, 1, 1);
+    }
     
     @Override
     public void avanzar(int delta) {
@@ -397,12 +433,13 @@ public class Demonio extends Boss {
             numColisiones += 1;
         }
     }
-    
-    
-    
+  
     public int signo(int num) {
-        if(num >= 0) {
+        if(num > 0) {
             return 1;
+        }
+        else if(num == 0) {
+            return 0;
         }
         else {
             return -1;
@@ -410,11 +447,15 @@ public class Demonio extends Boss {
     }
     
     public int signo(float num) {
-        if(num >= 0) {
-            return 1;
+        return signo((int) num);
+    }
+    
+    public void cambiarEleccionBarrera() {
+        if(eleccionBarrera == 1) {
+            eleccionBarrera = 2;
         }
         else {
-            return -1;
+            eleccionBarrera = 1;
         }
     }
 }
