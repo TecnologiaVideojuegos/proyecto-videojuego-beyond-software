@@ -153,18 +153,46 @@ public class Nivel1 extends BasicGameState{
         objetos.add(new Objeto(1, 910, 420));
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
-        Esqueleto e1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
-        Murcielago m1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
-        Slime s1 = new Slime("slime.png", 120, 150, 1000, 200, 5, 1);
-        enemigos1.add(e1);
-        enemigos1.add(s1);
-        enemigos1.add(m1);
+        Murcielago m1_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
+        Murcielago m1_2 = new Murcielago("bat.png", 120, 120, 200, 800, 5, 1);
+        Murcielago m1_3 = new Murcielago("bat.png", 120, 120, 1080, 800, 5, 1);
+        Slime s1_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 5, 1);
+        enemigos1.add(s1_1);
+        enemigos1.add(m1_1);
+        enemigos1.add(m1_2);
+        enemigos1.add(m1_3);
+        
+        ArrayList<Enemigo> enemigos2 = new ArrayList<>();
+        //Esqueleto e2_1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
+        Murcielago m2_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
+        Murcielago m2_2 = new Murcielago("bat.png", 120, 120, 200, 200, 5, 1);
+        Slime s2_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 5, 1);
+        //enemigos2.add(e2_1);
+        enemigos2.add(s2_1);
+        enemigos2.add(m2_1);
+        enemigos2.add(m2_2);
+        
+        ArrayList<Enemigo> enemigos3 = new ArrayList<>();
+        Murcielago m3_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
+        Murcielago m3_2 = new Murcielago("bat.png", 120, 120, 1160, 720, 5, 1);
+        Slime s3_1 = new Slime("slime_gris.png", 120, 150, 120, 200, 5, 1);
+        Slime s3_2 = new Slime("slime_gris.png", 120, 150, 720, 720, 5, 1);
+        Slime s3_3 = new Slime("slime_gris.png", 120, 150, 960, 200, 5, 1);        
+        enemigos3.add(s3_1);
+        enemigos3.add(s3_2);
+        enemigos3.add(s3_3);
+        enemigos3.add(m3_1);
+        enemigos3.add(m3_2);
+        
+        ArrayList<Enemigo> enemigos5 = new ArrayList<>();
+        Murcielago m5_1 = new Murcielago("bat.png", 120, 120, 720, 720, 5, 1);
+         enemigos5.add(m5_1);
 
-        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
-        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos1, null, player, proyectiles);
-        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
+        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, null, player, proyectiles);
+        Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos2, null, player, proyectiles);
+        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, enemigos3, null, player, proyectiles);
         SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 4, new Objeto(3, 980, 420), player, proyectiles);
-        Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, null, player, proyectiles);
+        Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, enemigos5, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, objetos, player, proyectiles);
         salas.add(sala1);
         salas.add(sala2);
