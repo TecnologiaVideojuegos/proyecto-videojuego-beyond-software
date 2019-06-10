@@ -12,7 +12,21 @@ Existen distintas varitas que proporcionan distintos poderes:
 
 _Pociones_
 
+Puesto que recibiremos daño a lo largo del juego, es necesario usar este consumible para restaurar salud.
+
+- Poción normal: cura medio corazón.
+- Poción fuerte: cura un corazón completo.
+
+* Nota: tras derrotar a un jefe final, es un cofre aparecerá un contenedor de corazón que aumentará el número de corazones en 1 y restaurará toda la vida.
+
+
 _Botas_
+
+Existen dos tipos de botas que conseguiremos a lo largo del juego.
+
+- Botas de velocidad: podremos aumentar nuestra velocidad pulsando el botón Shift izquierdo para poder escapar de los enemigos.
+- Botas de fuego: nos permiten caminar por el fuego sin sufrir daño.
+
 
 ---
 [volver](./../lilWhich.html)
