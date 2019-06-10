@@ -463,6 +463,11 @@ public class Jugador implements IColisionable {
                     if(l) {
                         personaje.moverX(500f * (float) delta / 1000);
                     }
+                    if(colision.isWall() && colision.getAtaque() > 0 && tiempoInvencibilidad > 500 && !inventario.isBotasFuego()) {
+                            vida -= colision.getAtaque();
+                            hit = true;
+                            tiempoInvencibilidad = 0;
+                    } 
                 }
             }
         }
@@ -608,5 +613,10 @@ public class Jugador implements IColisionable {
 
     public void setVidaTotal(int vidaTotal) {
         this.vidaTotal = vidaTotal;
+    }
+    
+    @Override
+    public boolean isWall() {
+        return false;
     }
 }

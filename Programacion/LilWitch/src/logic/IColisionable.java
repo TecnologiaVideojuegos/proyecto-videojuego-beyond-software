@@ -19,6 +19,7 @@ public interface IColisionable {
     public void sincronizarArea();
     public boolean isHostile();
     public boolean isGate();
+    public boolean isWall();
     public boolean isPlayer();
     public boolean isEnemy();
     public int isProyectile(); //0 si no es un proyectil, 1 si el pryectil es enemigo, 2 si el proyectil es del jugador

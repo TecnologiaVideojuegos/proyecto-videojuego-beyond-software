@@ -148,4 +148,9 @@ public class Objeto implements IColisionable{
     public int isObjeto() {
         return tipo;
     }
+    
+    @Override
+    public boolean isWall() {
+        return false;
+    }
 }

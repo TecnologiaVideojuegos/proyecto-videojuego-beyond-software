@@ -165,4 +165,9 @@ public class Cofre implements IColisionable {
             return 0;
         }
     }
+    
+    @Override
+    public boolean isWall() {
+        return false;
+    }
 }

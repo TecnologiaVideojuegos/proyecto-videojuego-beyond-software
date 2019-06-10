@@ -590,4 +590,9 @@ public class Enemigo implements IColisionable {
     public void setHitbox(Rectangle r) {
         this.hitbox = r;
     }
+    
+    @Override
+    public boolean isWall() {
+        return false;
+    }
 }
