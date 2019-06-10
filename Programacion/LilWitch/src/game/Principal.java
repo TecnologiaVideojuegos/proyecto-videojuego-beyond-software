@@ -38,12 +38,12 @@ public class Principal extends StateBasedGame{
         this.addState(new Intro4());
         this.addState(new Intro5());
         this.addState(new Intro6());
-        this.addState(new Intro7());
+        this.addState(new Intro7());*/
         this.addState(new Historia5());
         this.addState(new Historia6());
         this.addState(new Historia7());
         this.addState(new Historia8());
-        this.addState(new Historia9());*/
+        this.addState(new Historia9());
         this.addState(new Nivel1());
         this.addState(new GameOver());
         this.addState(new Menu());
