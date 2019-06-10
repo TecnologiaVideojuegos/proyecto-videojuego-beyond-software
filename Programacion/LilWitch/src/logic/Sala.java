@@ -58,7 +58,19 @@ public class Sala {
     
     public void draw(Graphics g, Input entrada) {
         imagen.draw(0, 0);
+        if(enemigos != null) {
+            drawEnemigos();
+        }
+        if(objetos != null) {
+            drawObjetos();
+        }
         player.draw(entrada, g);
+        gestor.drawProyectiles();
+        gestor.drawHitboxes(g);
+    }
+    
+    public void draw(Graphics g) {
+        imagen.draw(0, 0);
         if(enemigos != null) {
             drawEnemigos();
         }
