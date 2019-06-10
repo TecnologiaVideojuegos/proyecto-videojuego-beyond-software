@@ -3,18 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Doppelganger.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Objeto.java</file>
             <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Cangrejo.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Puerta.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/game/Nivel1.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Sala.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/game/Principal.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Wall.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Cofre.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/ReySlime.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Doppelganger.java</file>
             <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Boss.java</file>
             <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/SalaBoss.java</file>
-            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/game/Nivel1.java</file>
             <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Spider.java</file>
             <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Jugador.java</file>
-            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/SpriteAnimado.java</file>
-            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Sala.java</file>
-            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Enemigo.java</file>
             <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/Demonio.java</file>
-            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/ReySlime.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/FireWall.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/logic/IColisionable.java</file>
         </group>
     </open-files>
 </project-private>

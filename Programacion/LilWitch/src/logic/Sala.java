@@ -6,9 +6,12 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 /**
  *
@@ -25,7 +28,7 @@ public class Sala {
         this.imagen = imagen;
         this.player = jugador;
         this.enemigos = enemigos;
-        this.objetos = objetos;
+        
         gestor = new GestorColision(proyectiles);
         gestor.registrarCuerpo(jugador);
         
@@ -42,9 +45,9 @@ public class Sala {
         }
         
         if(objetos != null) {
-            for (int k = 0; k < objetos.size(); k++) {
-                gestor.registrarCuerpo(objetos.get(k));
-
+            this.objetos = objetos;
+            for (int k = 0; k < this.objetos.size(); k++) {
+                gestor.registrarCuerpo(this.objetos.get(k));
             }
         }
         
@@ -96,6 +99,20 @@ public class Sala {
     public void updateEnemigos(int delta) {
         for (int i = 0; i < enemigos.size(); i++) {
             if(enemigos.get(i).getVida() <= 0) {
+                if((int) (Math.random() * 10+1) <= 3) {
+                    int x = (int) enemigos.get(i).getPosicion().getX();
+                    int y = (int)enemigos.get(i).getPosicion().getY();
+                    try {
+                        if(objetos == null) {
+                            objetos = new ArrayList<>();
+                        }
+                        Objeto obj = new Objeto(7, x, y);
+                        objetos.add(obj);
+                        gestor.registrarCuerpo(obj);
+                    } catch (SlickException ex) {
+                        System.out.println("Error al crear el objeto");;
+                    }
+                }
                 enemigos.remove(i);
             }    
         }
@@ -113,8 +130,11 @@ public class Sala {
     }
     
     public void updateObjetos() {
+        //System.out.println("Tamaño: " + objetos.size());
         for (int i = 0; i < objetos.size(); i++) {
+            //System.out.println("Objeto " + i + ": " + objetos.get(i).getVida());
             if(objetos.get(i).getVida() <= 0) {
+                
                 objetos.remove(i);
             }    
         }
