@@ -153,4 +153,16 @@ public class Objeto implements IColisionable{
     public boolean isWall() {
         return false;
     }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+    
+    public void setImage(Image img) {
+        sprite.setImagen(img);
+    }
 }

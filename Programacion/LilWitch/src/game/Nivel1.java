@@ -154,12 +154,12 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
         Murcielago m1_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
-        Murcielago m1_2 = new Murcielago("bat.png", 120, 120, 200, 800, 5, 1);
+        //Murcielago m1_2 = new Murcielago("bat.png", 120, 120, 200, 800, 5, 1);
         Murcielago m1_3 = new Murcielago("bat.png", 120, 120, 1080, 800, 5, 1);
         Slime s1_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 5, 1);
         enemigos1.add(s1_1);
         enemigos1.add(m1_1);
-        enemigos1.add(m1_2);
+        //enemigos1.add(m1_2);
         enemigos1.add(m1_3);
         
         ArrayList<Enemigo> enemigos2 = new ArrayList<>();
@@ -188,7 +188,7 @@ public class Nivel1 extends BasicGameState{
         Murcielago m5_1 = new Murcielago("bat.png", 120, 120, 720, 720, 5, 1);
          enemigos5.add(m5_1);
 
-        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, null, player, proyectiles);
+        SalaCofre sala1 = new SalaCofre(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, player, proyectiles, 8, 0, 120, 720);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos2, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, enemigos3, null, player, proyectiles);
         SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 5, new Objeto(3, 980, 420), player, proyectiles);

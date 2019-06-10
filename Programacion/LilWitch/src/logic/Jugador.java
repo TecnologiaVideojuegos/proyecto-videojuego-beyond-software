@@ -163,7 +163,7 @@ public class Jugador implements IColisionable {
             if(entrada.isKeyPressed(Input.KEY_R)) {
                 if(inventario.usarPocionG()) {
                     pocion.play();
-                    heal(4);
+                    heal(6);
                 }
                 
             }

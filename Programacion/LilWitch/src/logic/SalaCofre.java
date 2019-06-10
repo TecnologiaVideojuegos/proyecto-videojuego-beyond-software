@@ -6,16 +6,43 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 /**
  *
  * @author alvar
  */
 public class SalaCofre extends Sala {
+    private Cofre cofre;
     
-    public SalaCofre(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, ArrayList<Enemigo> enemigos, Objeto objeto, Jugador jugador, ControladorProyectiles proyectiles) {
+    public SalaCofre(Image imagen, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, ArrayList<Enemigo> enemigos, Jugador jugador, ControladorProyectiles proyectiles, int tipoObj, int tipoCofre, int x, int y) {
         super(imagen, paredes, puertas, enemigos, null, jugador, proyectiles);
+        try {
+            this.cofre = new Cofre(new Objeto(tipoObj, x ,y), x, y, tipoCofre);
+            super.getGestor().registrarCuerpo(cofre);
+        } catch (SlickException ex) {
+            System.out.println("Error al crear el cofre");;
+        }
     }
+
+    @Override
+    public int update(Input entrada, int delta) {
+        int n = super.update(entrada, delta); 
+        cofre.update(delta);
+        return n;
+    }
+
+    @Override
+    public void draw(Graphics g, Input entrada) {
+        super.draw(g, entrada); 
+        cofre.draw();
+    }
+    
+    
     
 }

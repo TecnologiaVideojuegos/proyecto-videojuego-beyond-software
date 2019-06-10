@@ -58,6 +58,12 @@ public class Cofre implements IColisionable {
         this.hitbox = new Rectangle(x, y, imagenCerrado.getWidth(), imagenCerrado.getHeight());
         
         this.vida = 99;
+        if(contenido.isObjeto() == 7) {
+            contenido.setImage(new Image("/resources/objetos/pocion_1.png"));
+        }
+        else if(contenido.isObjeto() == 8) {
+            contenido.setImage(new Image("/resources/objetos/pocion_2.png"));
+        }
         this.contenido = contenido;
         this.abierto = false;
         this.hitbox = hitbox;
