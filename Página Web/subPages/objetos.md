@@ -1,10 +1,10 @@
 
 #		_OBJETOS Y POWER UPS_
-##Varitas
+#Varitas
 
-##Pociones
+#Pociones
 
-##Botas
+#Botas
 
 ---
 [volver](./../lilWhich.html)
