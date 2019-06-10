@@ -76,7 +76,7 @@ public class Doppelganger extends Boss {
 
     @Override
     public void draw(Graphics g) {
-        super.draw();
+        super.draw(g);
         if(saltando) {
             switch(posSombra) {
                 case 1:

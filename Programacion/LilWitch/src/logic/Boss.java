@@ -97,6 +97,48 @@ public class Boss extends Enemigo {
             }
         }
     }
+    
+    public void draw(Graphics g, int dir) {
+        if(super.getVida() > 0) {
+            super.draw(dir);
+            g.drawString(nombre, 747, 30);
+            switch((porcentajeVida / 10) + 1) {
+                case 11:
+                    barraVida.get(0).draw(720, 45);
+                    break;
+                case 10:
+                    barraVida.get(0).draw(720, 40);
+                    break;
+                case 9:
+                    barraVida.get(1).draw(720, 40);
+                    break;
+                case 8:
+                    barraVida.get(2).draw(720, 40);
+                    break;
+                case 7:
+                    barraVida.get(3).draw(720, 40);
+                    break;
+                case 6:
+                    barraVida.get(4).draw(720, 40);
+                    break;
+                case 5:
+                    barraVida.get(5).draw(720, 40);
+                    break;
+                case 4:
+                    barraVida.get(6).draw(720, 40);
+                    break;
+                case 3:
+                    barraVida.get(7).draw(720, 40);
+                    break;
+                case 2:
+                    barraVida.get(8).draw(720, 40);
+                    break;
+                case 1:
+                    barraVida.get(9).draw(720, 40);
+                    break;
+            }
+        }
+    }
 
     public int getVidaTotal() {
         return vidaTotal;

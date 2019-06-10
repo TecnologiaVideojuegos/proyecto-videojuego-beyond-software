@@ -52,10 +52,10 @@ public class Demonio extends Boss {
     @Override
     public void draw(Graphics g) {
         if(tiempo > 5000) {
-            super.draw(eleccion);
+            super.draw(g, eleccion);
         }
         else {
-            super.draw();
+            super.draw(g);
         } 
         if(saltando) {
             switch(posSombra) {
