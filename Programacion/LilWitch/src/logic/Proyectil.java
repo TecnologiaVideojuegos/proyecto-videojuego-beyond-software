@@ -132,4 +132,9 @@ public class Proyectil implements IColisionable {
     public int isObjeto() {
         return 0;
     }
+    
+    @Override
+    public boolean isWall() {
+        return false;
+    }
 }

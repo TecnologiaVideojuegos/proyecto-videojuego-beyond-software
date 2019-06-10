@@ -173,16 +173,16 @@ public class Nivel1 extends BasicGameState{
         enemigos2.add(m2_2);
         
         ArrayList<Enemigo> enemigos3 = new ArrayList<>();
-        Murcielago m3_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
-        Murcielago m3_2 = new Murcielago("bat.png", 120, 120, 1160, 720, 5, 1);
-        Slime s3_1 = new Slime("slime_gris.png", 120, 150, 120, 200, 5, 1);
-        Slime s3_2 = new Slime("slime_gris.png", 120, 150, 720, 720, 5, 1);
-        Slime s3_3 = new Slime("slime_gris.png", 120, 150, 960, 200, 5, 1);        
-        enemigos3.add(s3_1);
-        enemigos3.add(s3_2);
-        enemigos3.add(s3_3);
-        enemigos3.add(m3_1);
-        enemigos3.add(m3_2);
+//        Murcielago m3_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
+//        Murcielago m3_2 = new Murcielago("bat.png", 120, 120, 1160, 720, 5, 1);
+//        Slime s3_1 = new Slime("slime_gris.png", 120, 150, 120, 200, 5, 1);
+//        Slime s3_2 = new Slime("slime_gris.png", 120, 150, 720, 720, 5, 1);
+//        Slime s3_3 = new Slime("slime_gris.png", 120, 150, 960, 200, 5, 1);        
+//        enemigos3.add(s3_1);
+//        enemigos3.add(s3_2);
+//        enemigos3.add(s3_3);
+//        enemigos3.add(m3_1);
+//        enemigos3.add(m3_2);
         
         ArrayList<Enemigo> enemigos5 = new ArrayList<>();
         Murcielago m5_1 = new Murcielago("bat.png", 120, 120, 720, 720, 5, 1);
