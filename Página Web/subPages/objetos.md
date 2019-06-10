@@ -1,6 +1,6 @@
 
 #		_OBJETOS Y POWER UPS_
-#Varitas
+_Varitas_
 
 #Pociones
 
