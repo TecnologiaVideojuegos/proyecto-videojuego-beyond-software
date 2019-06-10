@@ -147,4 +147,12 @@ public class Boss extends Enemigo {
     public void setVidaTotal(int vidaTotal) {
         this.vidaTotal = vidaTotal;
     }
+
+    public int getPorcentajeVida() {
+        return porcentajeVida;
+    }
+
+    public void setPorcentajeVida(int porcentajeVida) {
+        this.porcentajeVida = porcentajeVida;
+    }
 }
