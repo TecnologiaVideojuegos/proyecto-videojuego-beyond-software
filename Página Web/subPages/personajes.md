@@ -21,6 +21,8 @@ Será el segundo jefe que nos encontremos, encargado de representar la tierra.
 -	Diseño: el diseño se ha obtenido modificando tanto en tamaño como en color el sprite disponible en la página web www.opengameart.org
 -	Poderes: dispone de varias fases de ataque. En la primera se limitará a perseguir al jugador pero en las siguientes hará distintos barridos por toda la pantalla en diagonal o en cruz, dependiendo del tiempo que haya pasado desde que comenzó el combate.
 
+[Lignum](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/enemigos/arana_2.png)
+
 
 ## Aequor
 
