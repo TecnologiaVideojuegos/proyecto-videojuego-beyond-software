@@ -142,7 +142,6 @@ public class Demonio extends Boss {
             }  
         }
         else if(tiempoAtaque > 1250 && contadorAtaque < 5) {
-            System.out.println("Contador: " + contador);
             disparoBarreraR();
             cambiarEleccionBarrera();
             tiempoAtaque = 0;
