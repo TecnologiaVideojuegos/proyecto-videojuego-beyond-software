@@ -86,10 +86,10 @@ public class Doppelganger extends Boss {
                     sombra.draw(21, 825, 110, 110);
                     break;
                 case 3:
-                    sombra.draw(20, 800, 110, 110);
+                    sombra.draw(1850 - super.getHitbox().getWidth(), 950 - super.getHitbox().getHeight(), 110, 110);
                     break;
                 case 4:
-                    sombra.draw(1850 - super.getHitbox().getWidth(), 800, 110, 110);
+                    sombra.draw(21, 950 - super.getHitbox().getHeight(), 110, 110);
                     break;
                 case 5:
                     sombra.draw(900, 300, 110, 110);
@@ -120,10 +120,11 @@ public class Doppelganger extends Boss {
             ataque2(delta);
         }
         else if(eleccion == 3) {
+            ataque3(delta);
             tiempo += delta;
-            if(tiempo < 8000){
-                ataque3(delta);
-            } 
+            if(tiempo > 10000) {
+                        eleccion = 99;
+            }
         }
         else {
             if(start) {
@@ -173,7 +174,7 @@ public class Doppelganger extends Boss {
                 super.setColision(false);
                 movX = 2;
                 movY = 2;
-                super.getSprite().setPosicion(20, 20);
+                super.getSprite().setPosicion(100, 100);
                 super.resetDirecciones();
                 primerTurno = false;
                 disparoDireccional(6, 100, 100);
@@ -245,7 +246,7 @@ public class Doppelganger extends Boss {
     public void ataque3(int delta) {
         if(primerTurno) {
             if(contador == 0) {
-                posSombra = 2;
+                posSombra = 1;
                 contador ++;
                 super.getSprite().setPosicion(2000, 2000);
                 sombra.start();
@@ -254,18 +255,41 @@ public class Doppelganger extends Boss {
             if(sombra.isStopped()) {
                 super.resetDirecciones();
                 sombra.restart();
-                contador = 0;
                 saltando = false;
                 super.setColision(false);
-                movX = 1;
-                movY = 2;
-                super.getSprite().setPosicion(50, 50);
+                super.getSprite().setPosicion(100, 100);
                 disparoDireccional(6, 100, 100);
-                super.resetDirecciones();
+                posSombra = 2;
+                contador = 0;
+                eleccion2++; 
                 primerTurno = false;
-                disparoDireccional(4, 1800, 100);
-            }  
+            }
         }
+//            else if(eleccion2 == 1 && tiempo > 8000) {
+//                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 21);
+//                disparoDireccional(4, 1800, 100);
+//                posSombra = 3;
+//                contador = 0;
+//                tiempo = 7001;
+//                eleccion2++;
+//            }
+//            else if(eleccion2 == 2 && tiempo > 8000) {
+//                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 950 - super.getHitbox().getHeight());
+//                disparoDireccional(2, 1800, 100);
+//                posSombra = 4;
+//                contador = 0;
+//                tiempo = 7001;
+//                eleccion2++;
+//            }
+//            else if(eleccion2 == 3 && tiempo > 8000) {
+//                super.getSprite().setPosicion(21, 950 - super.getHitbox().getHeight());
+//                disparoDireccional(8, 100, 100);
+//                contador = 0;
+//                eleccion2++;
+//            }
+
+         
+        
                 
                 //eleccion = 99;
                 //eleccion2++;
