@@ -1,7 +1,8 @@
 
 #		_OBJETOS Y POWER UPS_
 _Varitas_
-Existen distintas varitas que proporcionan distintos poderes:
+
+- Existen distintas varitas que proporcionan distintos poderes:
 
 •	Varita normal: primera varita que encontramos. Lanza pequeñas bolas de energía. Será la más débil de todas.
 
