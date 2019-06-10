@@ -46,8 +46,8 @@ public class Doppelganger extends Boss {
         super.setSprite(new SpriteAnimado(animaciones, s.getSprite(0, 0), s.getSprite(0, 2), s.getSprite(0, 3), s.getSprite(0, 1), 840, 120));
         super.setHitbox(new Rectangle(840 + super.getOffsetX(), 120 + super.getOffsetY(), 96 - super.getOffsetWidth(), 104 - super.getOffsetHeight()));
         this.player = player;
-        this.eleccion = 4;//(int) (Math.random() * 4+1);
-        this.eleccionBarrera = (int) (Math.random() * 2+1);
+        this.eleccion = (int) (Math.random() * 4+1);
+        this.eleccionBarrera = 0;
         this.eleccionCirculo = 1;
         this.eleccion2 = 0;
         this.dirXo = 0;
@@ -80,7 +80,7 @@ public class Doppelganger extends Boss {
             super.draw(g);
         }
         else {
-            super.draw(g, eleccion);
+            super.draw(g, 4);
         } 
         if(saltando) {
             switch(posSombra) {
@@ -171,7 +171,6 @@ public class Doppelganger extends Boss {
                     super.getSprite().setPosicion(900, 450);
                     eleccion = (int) (Math.random() * 4+1);
                     eleccion2 = 0;  
-                    eleccionBarrera = (int) (Math.random() * 2+1);
                     eleccionCirculo = 1;
                     disparoCircular();
                 }
@@ -181,6 +180,7 @@ public class Doppelganger extends Boss {
         else {
             if(primerTurno) {
                 if(contador == 0) {
+                    super.setCooldown(1001);
                     posSombra = 5;
                     contador ++;
                     super.getSprite().setPosicion(2000, 2000);
@@ -201,7 +201,7 @@ public class Doppelganger extends Boss {
                 }
             }
             else {
-                if(super.getCooldown() > 2000) {
+                if(super.getCooldown() > 1000) {
                     disparoBarreraR();
                     disparoBarreraL();
                     cambiarEleccionBarrera();
@@ -544,7 +544,7 @@ public class Doppelganger extends Boss {
         float x = super.getSprite().getPosicion().getX() + super.getHitbox().getWidth();
  
         for (int i = 0; i < 9; i++) {
-            if(i != eleccionBarrera && i+1 != eleccionBarrera ) {
+            if(i != eleccionBarrera && i+1 != eleccionBarrera) {
                 crearProyectilLento(x, 45 + 100*i, 1, 0); 
             }
         }
@@ -554,7 +554,7 @@ public class Doppelganger extends Boss {
         float x = super.getSprite().getPosicion().getX();
         
         for (int i = 0; i < 9; i++) {
-            if(i != eleccionBarrera && i+1 != eleccionBarrera ) {
+            if(i != eleccionBarrera && i+1 != eleccionBarrera) {
                 crearProyectilLento(x, 45 + 100*i, -1, 0); 
             }
         }
@@ -564,7 +564,7 @@ public class Doppelganger extends Boss {
         proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 500*dirX, 500*dirY, 1, 1);
     }
     public void crearProyectilLento(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 200*dirX, 200*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 1, 1);
     }
     
     public void crearProyectilG(float x, float y, float dirX, float dirY) {
@@ -770,7 +770,7 @@ public class Doppelganger extends Boss {
     }
     
     public void cambiarEleccionBarrera() {
-        if(subiendo) {
+        /*if(subiendo) {
             eleccionBarrera ++;
         }
         else {
@@ -783,7 +783,14 @@ public class Doppelganger extends Boss {
         else if(eleccionBarrera == -1) {
             eleccionBarrera ++;
             subiendo = true;
+        }*/
+        eleccionBarrera = (int) (Math.random() * 7);
+        /*if(eleccionBarrera == 0) {
+            eleccionBarrera = 8;
         }
+        else {
+            eleccionBarrera = 0;
+        }*/
     }
     
     public void cambiarEleccionCirculo() {
