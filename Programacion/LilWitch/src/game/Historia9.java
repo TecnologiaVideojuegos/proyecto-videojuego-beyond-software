@@ -38,7 +38,9 @@ public class Historia9 extends BasicGameState{
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
         //g.drawImage(image,0, 0);
-        g.drawString("FIN", 840, 720);
+        g.setBackground(Color.black);
+        g.setColor(Color.white);
+        g.drawString("FIN", 930, 480);
     }
 
     @Override
