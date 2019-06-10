@@ -54,7 +54,6 @@ Antes de enfrentarnos al último jefe final, debemos hacer frente a Ignis, repre
 -	Etimología: al tratarse de la oscuridad y tomar la forma oscura del personaje principal, recibirá el nombre de Anaid, que no es más que Diana al revés.
 -	Diseño: el diseño se ha obtenido modificando el personaje del juego “The Legend of Zelda: Minish Cap”.
 -	Poderes:
-
 [Anaid spritesheet](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/enemigos/boss_final.png)
 ---
 [volver](./../lilWhich.html)
