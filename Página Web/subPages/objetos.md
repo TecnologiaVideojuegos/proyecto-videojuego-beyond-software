@@ -1,6 +1,6 @@
 
 #		_OBJETOS Y POWER UPS_
-_Varitas_
+## _Varitas_
 
 Existen distintas varitas que proporcionan distintos poderes:
 
@@ -10,7 +10,7 @@ Existen distintas varitas que proporcionan distintos poderes:
 - Varita de luz: la más poderosa de todas, lanza una gran bola de luz. Será necesaria para derrotar a la oscuridad.
 
 
-_Pociones_
+## _Pociones_
 
 Puesto que recibiremos daño a lo largo del juego, es necesario usar este consumible para restaurar salud.
 
@@ -20,7 +20,7 @@ Puesto que recibiremos daño a lo largo del juego, es necesario usar este consum
 * Nota: tras derrotar a un jefe final, es un cofre aparecerá un contenedor de corazón que aumentará el número de corazones en 1 y restaurará toda la vida.
 
 
-_Botas_
+## _Botas_
 
 Existen dos tipos de botas que conseguiremos a lo largo del juego.
 
