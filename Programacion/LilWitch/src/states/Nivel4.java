@@ -181,35 +181,35 @@ public class Nivel4 extends BasicGameState{
         puertas6.add(p6_2);
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
-        Slime s1_1 = new Slime("slime.png", 120, 150, 365, 400, 4, 1);
-        Slime s1_2 = new Slime("slime.png", 120, 150, 1200, 480, 4, 1);
+        Slime s1_1 = new Slime("slime.png", 120, 150, 365, 400, 8, 1);
+        Slime s1_2 = new Slime("slime.png", 120, 150, 1200, 480, 8, 1);
         enemigos1.add(s1_1);
         enemigos1.add(s1_2);
         
         ArrayList<Enemigo> enemigos2 = new ArrayList<>();
         Esqueleto e2_1 = new Esqueleto("skeleton.png", 120, 150, 1200, 360, 1000, 5, 1, proyectiles);
-        Slime s2_1 = new Slime("slime.png", 120, 150, 120, 240, 4, 1);
-        Slime s2_2 = new Slime("slime.png", 120, 150, 360, 720, 4, 1);
-        Slime s2_3 = new Slime("slime.png", 120, 150, 1440, 360, 4, 1);
+        Slime s2_1 = new Slime("slime.png", 120, 150, 120, 240, 8, 1);
+        Slime s2_2 = new Slime("slime.png", 120, 150, 360, 720, 8, 1);
+        Slime s2_3 = new Slime("slime.png", 120, 150, 1440, 360, 8, 1);
         enemigos2.add(s2_1);
         enemigos2.add(s2_2);
         enemigos2.add(s2_3);
         enemigos2.add(e2_1);
         
         ArrayList<Enemigo> enemigos5 = new ArrayList<>();
-        Slime s5_1 = new Slime("slime.png", 120, 150, 120, 120, 4, 1);
-        Slime s5_2 = new Slime("slime.png", 120, 150, 360, 720, 4, 1);
-        Slime s5_3 = new Slime("slime.png", 120, 150, 960, 360, 4, 1);
-        Slime s5_4 = new Slime("slime.png", 120, 150, 1560, 720, 4, 1);
+        Slime s5_1 = new Slime("slime.png", 120, 150, 120, 120, 8, 1);
+        Slime s5_2 = new Slime("slime.png", 120, 150, 360, 720, 8, 1);
+        Slime s5_3 = new Slime("slime.png", 120, 150, 960, 360, 8, 1);
+        Slime s5_4 = new Slime("slime.png", 120, 150, 1560, 720, 8, 1);
         enemigos5.add(s5_1);
         enemigos5.add(s5_2);
         enemigos5.add(s5_3);
         enemigos5.add(s5_4);
         
         ArrayList<Enemigo> enemigos6 = new ArrayList<>();
-        Esqueleto e6_1 = new Esqueleto("skeleton.png", 120, 150, 600, 240, 1000, 5, 1, proyectiles);
-        Esqueleto e6_2 = new Esqueleto("skeleton.png", 120, 150, 1200, 240, 1000, 5, 1, proyectiles);
-        Esqueleto e6_3 = new Esqueleto("skeleton.png", 120, 150, 960, 720, 1000, 5, 1, proyectiles);
+        Esqueleto e6_1 = new Esqueleto("skeleton_2.png", 120, 150, 600, 240, 1000, 10, 1, proyectiles);
+        Esqueleto e6_2 = new Esqueleto("skeleton_2.png", 120, 150, 1200, 240, 1000, 10, 1, proyectiles);
+        Esqueleto e6_3 = new Esqueleto("skeleton_2.png", 120, 150, 960, 720, 1000, 10, 1, proyectiles);
         enemigos6.add(e6_1);
         enemigos6.add(e6_2);
         enemigos6.add(e6_3);

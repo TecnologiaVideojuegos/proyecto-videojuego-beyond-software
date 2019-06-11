@@ -64,7 +64,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario(true);
+        this.inventario = new Inventario();
         this.hit = false;
         this.flickerTime = 0;
         
@@ -151,8 +151,6 @@ public class Jugador implements IColisionable {
     private void updateTeclado(Input entrada, int delta) {
         if(!stop){
             if(entrada.isKeyPressed(Input.KEY_LCONTROL)) {
-                System.out.println("JugadorX: " + (int) (personaje.getPosicion().getX() + 48));
-                System.out.println("JugadorY: " + (int) (personaje.getPosicion().getY() + 52));
                 select.play();
                 inventario.cambiarVaritaL();
             }
@@ -364,7 +362,7 @@ public class Jugador implements IColisionable {
             case 0:
                 return 750;
             case 1:
-                return 1500;
+                return 1250;
             case 2:
                 return 1000;
             default:
@@ -382,14 +380,14 @@ public class Jugador implements IColisionable {
                     proyectiles.addProyectil("luz_2_110_110.png", x, y, 110, 110, 1f, 600*dirX, 600*dirY, 5, 5);
                 }
                 else if (inventario.isVaritaNormal()) {
-                    proyectiles.addProyectil("luz_1.png", x, y, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
+                    proyectiles.addProyectil("luz_1.png", hitbox.getCenterX()-20, hitbox.getCenterY()-20, 45, 45, 1f, 600*dirX, 600*dirY, 2, 2);
                 }
                 break;
             case 1:
-                proyectiles.addProyectil("Fire.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 4, 3);
+                proyectiles.addProyectil("Fire.png", x, y, 58, 72, 1f, 400*dirX, 400*dirY, 4, 3);
                 break;
             case 2:
-                proyectiles.addProyectil("tornado.png", x, y, 50, 60, 1f, 450*dirX, 450*dirY, 3, 4);
+                proyectiles.addProyectil("tornado.png", x, y, 50, 60, 1f, 500*dirX, 500*dirY, 3, 4);
                 break;
         }
     }

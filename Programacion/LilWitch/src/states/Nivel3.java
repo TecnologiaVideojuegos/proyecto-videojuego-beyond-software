@@ -165,23 +165,23 @@ public class Nivel3 extends BasicGameState{
         enemigos1.add(s1_2);
         
         ArrayList<Enemigo> enemigos3 = new ArrayList<>();
-        Esqueleto e3_1 = new Esqueleto("skeleton.png", 120, 150, 480, 360, 1000, 5, 1, proyectiles);
-        Esqueleto e3_2 = new Esqueleto("skeleton.png", 120, 150, 1200, 480, 1000, 5, 1, proyectiles);
+        Esqueleto e3_1 = new Esqueleto("skeleton_3.png", 120, 150, 480, 360, 1000, 10, 1, proyectiles);
+        Esqueleto e3_2 = new Esqueleto("skeleton_3.png", 120, 150, 1200, 480, 1000, 10, 1, proyectiles);
         enemigos3.add(e3_1);
         enemigos3.add(e3_2);
         
         ArrayList<Enemigo> enemigos5 = new ArrayList<>();
-        Esqueleto e5_1 = new Esqueleto("skeleton.png", 120, 150, 480, 360, 1000, 5, 1, proyectiles);
-        Esqueleto e5_2 = new Esqueleto("skeleton.png", 120, 150, 480, 600, 1000, 5, 1, proyectiles);
+        Esqueleto e5_1 = new Esqueleto("skeleton_3.png", 120, 150, 480, 360, 1000, 10, 1, proyectiles);
+        Esqueleto e5_2 = new Esqueleto("skeleton_3.png", 120, 150, 480, 600, 1000, 10, 1, proyectiles);
         Slime s5_1 = new Slime("slime_2.png", 120, 150, 1200, 480, 4, 1);
         enemigos5.add(e5_1);
         enemigos5.add(e5_2);
         enemigos5.add(s5_1);
         
         ArrayList<Enemigo> enemigos6 = new ArrayList<>();
-        Esqueleto e6_1 = new Esqueleto("skeleton.png", 120, 150, 600, 480, 1000, 5, 1, proyectiles);
-        Esqueleto e6_2 = new Esqueleto("skeleton.png", 120, 150, 1440, 240, 1000, 5, 1, proyectiles);
-        Esqueleto e6_3 = new Esqueleto("skeleton.png", 120, 150, 1440, 600, 1000, 5, 1, proyectiles);
+        Esqueleto e6_1 = new Esqueleto("skeleton_3.png", 120, 150, 600, 480, 1000, 10, 1, proyectiles);
+        Esqueleto e6_2 = new Esqueleto("skeleton_3.png", 120, 150, 1440, 240, 1000, 10, 1, proyectiles);
+        Esqueleto e6_3 = new Esqueleto("skeleton_3.png", 120, 150, 1440, 600, 1000, 10, 1, proyectiles);
         enemigos6.add(e6_1);
         enemigos6.add(e6_2);
         enemigos6.add(e6_3);

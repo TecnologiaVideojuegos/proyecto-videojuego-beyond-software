@@ -198,8 +198,8 @@ public class Nivel2 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos6 = new ArrayList<>();
         Esqueleto e6_1 = new Esqueleto("skeleton.png", 120, 150, 960, 240, 1000, 5, 1, proyectiles);
-        Slime s6_1 = new Slime("slime_gris.png", 120, 150, 600, 600, 5, 1);
-        Slime s6_2 = new Slime("slime_gris.png", 120, 150, 1400, 600, 5, 1);
+        Slime s6_1 = new Slime("slime_3.png", 120, 150, 600, 600, 5, 1);
+        Slime s6_2 = new Slime("slime_3.png", 120, 150, 1400, 600, 5, 1);
         enemigos6.add(e6_1);
         enemigos6.add(s6_1);
         enemigos6.add(s6_2);
