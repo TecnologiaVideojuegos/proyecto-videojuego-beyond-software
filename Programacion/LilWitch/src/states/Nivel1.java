@@ -166,21 +166,19 @@ public class Nivel1 extends BasicGameState{
         objetos.add(new Objeto(1, 910, 420));
         
         ArrayList<Enemigo> enemigos1 = new ArrayList<>();
-        Murcielago m1_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
-        //Murcielago m1_2 = new Murcielago("bat.png", 120, 120, 200, 800, 5, 1);
-        Murcielago m1_3 = new Murcielago("bat.png", 120, 120, 1080, 800, 5, 1);
-        Slime s1_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 5, 1);
+        Murcielago m1_1 = new Murcielago("bat.png", 120, 120, 960, 400, 3, 1);
+        Murcielago m1_3 = new Murcielago("bat.png", 120, 120, 1080, 800, 3, 1);
+        Slime s1_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 4, 1);
         enemigos1.add(s1_1);
         enemigos1.add(m1_1);
-        //enemigos1.add(m1_2);
+        
         enemigos1.add(m1_3);
         
         ArrayList<Enemigo> enemigos2 = new ArrayList<>();
-        //Esqueleto e2_1 = new Esqueleto("skeleton.png", 120, 150, 200, 200, 240, 5, 1, proyectiles);
-        Murcielago m2_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
-        Murcielago m2_2 = new Murcielago("bat.png", 120, 120, 200, 200, 5, 1);
-        Slime s2_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 5, 1);
-        //enemigos2.add(e2_1);
+        Murcielago m2_1 = new Murcielago("bat.png", 120, 120, 960, 400, 3, 1);
+        Murcielago m2_2 = new Murcielago("bat.png", 120, 120, 200, 200, 3, 1);
+        Slime s2_1 = new Slime("slime_gris.png", 120, 150, 1000, 200, 4, 1);
+        
         enemigos2.add(s2_1);
         enemigos2.add(m2_1);
         enemigos2.add(m2_2);
@@ -188,9 +186,9 @@ public class Nivel1 extends BasicGameState{
         ArrayList<Enemigo> enemigos3 = new ArrayList<>();
         Murcielago m3_1 = new Murcielago("bat.png", 120, 120, 960, 400, 5, 1);
         Murcielago m3_2 = new Murcielago("bat.png", 120, 120, 1160, 720, 5, 1);
-        Slime s3_1 = new Slime("slime_gris.png", 120, 150, 120, 200, 5, 1);
-        Slime s3_2 = new Slime("slime_gris.png", 120, 150, 720, 720, 5, 1);
-        Slime s3_3 = new Slime("slime_gris.png", 120, 150, 960, 200, 5, 1);        
+        Slime s3_1 = new Slime("slime_gris.png", 120, 150, 120, 200, 4, 1);
+        Slime s3_2 = new Slime("slime_gris.png", 120, 150, 720, 720, 4, 1);
+        Slime s3_3 = new Slime("slime_gris.png", 120, 150, 960, 200, 4, 1);        
         enemigos3.add(s3_1);
         enemigos3.add(s3_2);
         enemigos3.add(s3_3);
