@@ -21,13 +21,14 @@ import org.newdawn.slick.geom.Shape;
 public class Jugador implements IColisionable {
     private SpriteAnimado personaje;
     private Rectangle hitbox;
-    private boolean up, down, r, l, stop, hit;
+    private boolean up, down, r, l, stop, stopDialogo, hit;
     private ControladorProyectiles proyectiles;
-    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime;
+    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime, tiempoDialogo;
     private Image corazonVacio, corazonLleno, corazonMedio;
     private Inventario inventario;
     private Sound select;
     private Sound pocion;
+    private SpriteSheet dialogos;
 
     public Jugador(float x, float y, ControladorProyectiles proyectiles) throws SlickException {
         SpriteSheet tileSet;
@@ -67,13 +68,16 @@ public class Jugador implements IColisionable {
         this.inventario = new Inventario(true);
         this.hit = false;
         this.flickerTime = 0;
+        this.stopDialogo = false;
+        this.tiempoDialogo = 0;
+        dialogos = new SpriteSheet("resources/historia/Dialogo_1.png", 700, 70);
         
         select = new Sound("resources/sonidos/Select.ogg");
         pocion = new Sound("resources/sonidos/pocion.ogg");
     }
     
     public void draw(Input entrada, Graphics g) {
-        if(!hit) {
+        if(!hit && !stopDialogo) {
             if(entrada.isKeyDown(Input.KEY_A)) {
                 personaje.drawL();
             }
@@ -98,6 +102,21 @@ public class Jugador implements IColisionable {
             else {
                 personaje.draw();
             } 
+        }
+        if(stopDialogo) {
+            personaje.draw();
+            if(tiempoDialogo < 1000) {
+                dialogos.getSubImage(0, 0).draw(610, 840);
+            }
+            else if(tiempoDialogo < 2000) {
+                dialogos.getSubImage(0, 1).draw(610, 840);
+            }
+            else if(tiempoDialogo < 3000) {
+                dialogos.getSubImage(0, 2).draw(610, 840);
+            }
+            else if(tiempoDialogo < 4000) {
+                dialogos.getSubImage(0, 3).draw(610, 840);
+            }
         }
         drawCorazones();
         inventario.draw(g);
@@ -135,6 +154,12 @@ public class Jugador implements IColisionable {
     }
     
     public void update(Input entrada, int delta) {
+        if(stopDialogo) {
+            tiempoDialogo += delta;
+            if(tiempoDialogo >  4000) {
+                stopDialogo = false;
+            }
+        }
         if(hit) {
             flickerTime += delta;
             if(flickerTime > 50) {
@@ -149,7 +174,7 @@ public class Jugador implements IColisionable {
     }
     
     private void updateTeclado(Input entrada, int delta) {
-        if(!stop){
+        if(!stop && !stopDialogo){
             if(entrada.isKeyPressed(Input.KEY_LCONTROL)) {
                 select.play();
                 inventario.cambiarVaritaL();
@@ -412,6 +437,7 @@ public class Jugador implements IColisionable {
                     switch(colision.isObjeto()) {
                         case 1:
                            inventario.setVaritaNormal(true);
+                           stopDialogo = true;
                            break;
                         case 2:
                            inventario.setVaritaLuz(true);
