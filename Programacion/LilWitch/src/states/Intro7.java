@@ -43,21 +43,21 @@ private Music nivel1;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            nivel1.loop();
+            //nivel1.loop();
             try {
                 game.enterState(3,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             } catch (Exception e) {
                 game.addState(new Nivel1());
-                game.enterState(3,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                game.enterState(18,new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
         }
         if(container.getInput().isKeyPressed(Input.KEY_SPACE)){
-            nivel1.loop();
+            //nivel1.loop();
             try {
-                game.enterState(3);
+                game.enterState(18);
             } catch (Exception e) {
                 game.addState(new Nivel1());
-                game.enterState(3);
+                game.enterState(18);
             }
         }
     }

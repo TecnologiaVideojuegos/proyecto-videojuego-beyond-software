@@ -23,7 +23,7 @@ public class Principal extends StateBasedGame{
     public Principal() throws SlickException {
         super("Lil'Witch");
         contenedor = new AppGameContainer(this);
-        contenedor.setDisplayMode(1920, 1080, false);
+        contenedor.setDisplayMode(1920, 1080, true);
         //contenedor.setTargetFrameRate(10);
         contenedor.start();
     }
@@ -39,6 +39,11 @@ public class Principal extends StateBasedGame{
         this.addState(new Intro5());
         this.addState(new Intro6());
         this.addState(new Intro7());
+        this.addState(new Controles());
+        this.addState(new Historia1());
+        this.addState(new Historia2());
+        this.addState(new Historia3());
+        this.addState(new Historia4());
         this.addState(new Historia5());
         this.addState(new Historia6());
         this.addState(new Historia7());

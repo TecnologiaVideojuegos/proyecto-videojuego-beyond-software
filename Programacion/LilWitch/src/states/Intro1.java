@@ -45,12 +45,12 @@ public class Intro1 extends BasicGameState{
             game.enterState(11);
         }
         if(container.getInput().isKeyPressed(Input.KEY_SPACE)){
-            nivel1.loop();
+            //nivel1.loop();
             try {
-                game.enterState(3);
+                game.enterState(18);
             } catch (Exception e) {
                 game.addState(new Nivel1());
-                game.enterState(3);
+                game.enterState(18);
             }
         }
     }

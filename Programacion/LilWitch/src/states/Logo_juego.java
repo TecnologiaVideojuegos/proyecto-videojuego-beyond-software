@@ -36,9 +36,9 @@ private Music historia;
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
-        //g.drawString("Logo del juego", 50, 50);
-        g.setBackground(Color.white);
-        g.drawImage(image,960-(image.getWidth()/2),480-(image.getHeight()/2));
+        g.drawImage(image, 0, 0);
+        g.setColor(Color.black);
+        g.drawString("(c)Copyright. All Right Reserved.  Thanks for playing!", 20, 1060);
     }
 
     @Override
