@@ -114,9 +114,10 @@ public class Doppelganger extends Boss {
         if(super.getPorcentajeVida() > 25) {
             if(tiempo < 7000) {
                 if(!start && tiempo < 4000) {
-                    for (int i = 0; i < 3; i++) {
+                    if(super.getCooldown() > 500) {
+                        disparoCircular();   
                         cambiarEleccionCirculo();
-                        disparoCircular();       
+                        super.setCooldown(0);
                     }
                 }
                 if(tiempo > 4000 || start) {
@@ -172,7 +173,7 @@ public class Doppelganger extends Boss {
                     eleccion = (int) (Math.random() * 4+1);
                     eleccion2 = 0;  
                     eleccionCirculo = 1;
-                    disparoCircular();
+                    //disparoCircular();
                 }
             }
             updateAnimacion();
@@ -409,7 +410,6 @@ public class Doppelganger extends Boss {
     }
     
     public void disparoCircular() {
-        if(super.getCooldown() > 1000) {
             float x = super.getSprite().getPosicion().getX() + 48 - 58;
             float y = super.getSprite().getPosicion().getY() + 52 - 72;
             if(eleccionCirculo == 1) {
@@ -424,8 +424,6 @@ public class Doppelganger extends Boss {
                 crearProyectilG(x, y, 1, 1); 
                 crearProyectilG(x, y, 1, -1); 
             }
-            super.setCooldown(0);
-        }
     }
     
     public void disparoDireccional(int tipo) {
@@ -561,18 +559,18 @@ public class Doppelganger extends Boss {
     }
     
     public void crearProyectil(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 500*dirX, 500*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_5.png", x, y, 58, 72, 1f, 500*dirX, 500*dirY, 1, 1);
     }
     public void crearProyectilLento(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_2.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_5.png", x, y, 58, 72, 1f, 300*dirX, 300*dirY, 1, 1);
     }
     
     public void crearProyectilG(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_3.png", x, y, 2*58, 2*72, 1f, 300*dirX, 300*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_4.png", x, y, 2*58, 2*72, 1f, 300*dirX, 300*dirY, 1, 1);
     }
     
     public void crearProyectilG2(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_3.png", x, y, 2*58, 2*72, 1f, 500*dirX, 500*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_4.png", x, y, 2*58, 2*72, 1f, 500*dirX, 500*dirY, 1, 1);
     }
     
     @Override
@@ -797,7 +795,7 @@ public class Doppelganger extends Boss {
         if(eleccionCirculo == 1) {
             eleccionCirculo = 2;
         }
-        else {
+        else if(eleccionCirculo == 2){
             eleccionCirculo = 1;
         }
     }
