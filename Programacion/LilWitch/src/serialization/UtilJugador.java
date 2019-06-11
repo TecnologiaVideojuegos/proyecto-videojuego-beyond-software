@@ -32,6 +32,12 @@ public class UtilJugador {
         if(datos.isVaritaLuz()) {
             j.getInventario().setVaritaLuz(true);
         }
+        if(datos.isBotas()) {
+            j.getInventario().setBotas(true);
+        }
+        if(datos.isBotasFuego()) {
+            j.getInventario().setBotasFuego(true);
+        }
         j.setVidaTotal(datos.getVida());
         j.setVida(j.getVidaTotal());
         j.getInventario().setPociones(datos.getPociones());

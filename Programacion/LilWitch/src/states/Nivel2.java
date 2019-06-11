@@ -19,6 +19,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import rooms.SalaBoss;
 
 
 /**
@@ -93,7 +94,8 @@ public class Nivel2 extends BasicGameState{
         Puerta p2_3 = new Puerta(840, 0, 240, 5, 0, 6, 0);
         Puerta p3_1 = new Puerta(0, 360, 5, 240, 3, 2, 0);
         Puerta p3_2 = new Puerta(840, 0, 240, 5, 0, 4, 0);
-        //Puerta p4_1 = new Puerta(840, 0, 240, 5, 0, 2, 3);
+        Puerta p4_1 = new Puerta(840, 955, 240, 5, 2, 3, 1);
+        Puerta p4_2 = new Puerta(840, 0, 240, 5, 5, 99, 1);
         Puerta p5_1 = new Puerta(1915, 360, 5, 240, 1, 6, 0);
         Puerta p6_1 = new Puerta(0, 360, 5, 240, 3, 5, 0);
         Puerta p6_2 = new Puerta(840, 960, 240, 5, 2, 2, 0);
@@ -137,7 +139,11 @@ public class Nivel2 extends BasicGameState{
         //walls4.add(pinchos4_7);
         //walls4.add(pinchos4_8);
         ArrayList<Puerta> puertas4 = new ArrayList();
-        //puertas4.add(p4_1);
+        puertas4.add(p4_1);
+        puertas4.add(p4_2);
+        ArrayList<Image> imagenes4 = new ArrayList<>();
+        imagenes4.add(mapa.getSubImage(2, 0));
+        imagenes4.add(new Image("resources/niveles/Nivel 2_v1_final.png"));
         
         ArrayList<Wall> walls5 = new ArrayList<>();
         walls5.add(limites_5);
@@ -159,7 +165,7 @@ public class Nivel2 extends BasicGameState{
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, null, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
-        Sala sala4 = new Sala(mapa.getSubImage(2, 0), walls4, puertas4, null, null, player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 2, player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, null, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, null, player, proyectiles);
         salas.add(sala1);

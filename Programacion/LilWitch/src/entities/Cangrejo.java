@@ -26,7 +26,7 @@ public class Cangrejo extends Boss {
     private SpriteAnimado spriteSecundario;
 
     public Cangrejo(Jugador player) throws SlickException {
-        super("Aequor, Guardián de los Mares", "cangrejo.png", 330, 330, 840, 120, 100, 1, 200, player, 30, 30, 60, 35);
+        super("Aequor, Guardián de los Mares", "cangrejo.png", 330, 330, 840, 120, 1, 1, 200, player, 30, 30, 60, 35);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;

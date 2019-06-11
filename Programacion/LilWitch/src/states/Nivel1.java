@@ -53,17 +53,17 @@ public class Nivel1 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        salaActual = 3;
+        salaActual = 6;
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
-        player = new Jugador(1000, 400, proyectiles);
+        player = new Jugador(920, 700, proyectiles);
         UtilJugador.guardarDatos(player, 1);
         mapa = new SpriteSheet("resources/niveles/Nivel 1_v1.png", 1920, 1080);
         fondoPausa = new Image("resources/intro/fondo_5.png");
         controles = new Image("resources/intro/controles.png");
         nivel1 = new Music("resources/sonidos/Caves.ogg");
-        //nivel1.loop();
+        nivel1.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
@@ -202,7 +202,7 @@ public class Nivel1 extends BasicGameState{
         SalaCofre sala1 = new SalaCofre(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, player, proyectiles, 8, 0, 120, 720);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos2, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, enemigos3, null, player, proyectiles);
-        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 6, new Objeto(3, 980, 420), player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 1, player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, enemigos5, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, objetos, player, proyectiles);
         salas.add(sala1);

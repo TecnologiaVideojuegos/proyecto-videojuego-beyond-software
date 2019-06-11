@@ -19,6 +19,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import rooms.SalaBoss;
 
 
 /**
@@ -50,7 +51,7 @@ public class Nivel3 extends BasicGameState{
         salas = new ArrayList<>();
         entrada = container.getInput();
         UtilJugador.cargarDatos();
-        player = UtilJugador.retrieveJugador(1000, 400, proyectiles);
+        player = UtilJugador.retrieveJugador(900, 700, proyectiles);
         mapa = new SpriteSheet("resources/niveles/Nivel 3_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         select = new Sound("resources/sonidos/Select.ogg");
@@ -95,7 +96,8 @@ public class Nivel3 extends BasicGameState{
         Puerta p2_1 = new Puerta(840, 0, 240, 5, 0, 1, 0);
         Puerta p3_1 = new Puerta(0, 360, 5, 240, 3, 1, 0);
         Puerta p3_2 = new Puerta(840, 0, 240, 5, 0, 6, 0);
-        Puerta p4_1 = new Puerta(840, 0, 240, 5, 0, 2, 3);
+        Puerta p4_1 = new Puerta(840, 955, 240, 5, 2, 5, 1);
+        Puerta p4_2 = new Puerta(840, 0, 240, 5, 5, 99, 1);
         Puerta p5_1 = new Puerta(840, 0, 240, 5, 0, 4, 0);
         Puerta p5_2 = new Puerta(1915, 360, 5, 240, 1, 6, 0);
         Puerta p6_1 = new Puerta(0, 360, 5, 240, 3, 5, 0);
@@ -141,6 +143,10 @@ public class Nivel3 extends BasicGameState{
         //walls4.add(agua4_9);
         ArrayList<Puerta> puertas4 = new ArrayList();
         puertas4.add(p4_1);
+        puertas4.add(p4_2);
+        ArrayList<Image> imagenes4 = new ArrayList<>();
+        imagenes4.add(mapa.getSubImage(0, 0));
+        imagenes4.add(new Image("resources/niveles/Nivel 3_v1_final.png"));
         
         ArrayList<Wall> walls5 = new ArrayList<>();
         walls5.add(limites_5);
@@ -166,7 +172,7 @@ public class Nivel3 extends BasicGameState{
         Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, null, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
-        Sala sala4 = new Sala(mapa.getSubImage(0, 0), walls4, puertas4, null, null, player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 3, player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(1, 0), walls5, puertas5, null, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(2, 0), walls6, puertas6, null, null, player, proyectiles);
         salas.add(sala1);
@@ -234,7 +240,7 @@ public class Nivel3 extends BasicGameState{
                 }
                 if(n == 99){
                     UtilJugador.guardarDatos(player, 4);
-                    game.addState(new Nivel2());
+                    game.addState(new Nivel4());
                     game.enterState(6, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {

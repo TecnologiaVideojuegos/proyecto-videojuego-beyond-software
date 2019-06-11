@@ -30,7 +30,8 @@ public class Principal extends StateBasedGame{
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        /*this.addState(new Logo());
+        this.addState(new Nivel5());
+        this.addState(new Logo());
         this.addState(new Logo_juego());
         this.addState(new Intro1());
         this.addState(new Intro2());
@@ -38,7 +39,7 @@ public class Principal extends StateBasedGame{
         this.addState(new Intro4());
         this.addState(new Intro5());
         this.addState(new Intro6());
-        this.addState(new Intro7());*/
+        this.addState(new Intro7());
         /*this.addState(new Historia5());
         this.addState(new Historia6());
         this.addState(new Historia7());

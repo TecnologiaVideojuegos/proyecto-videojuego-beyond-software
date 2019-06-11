@@ -36,7 +36,7 @@ public class SalaBoss extends Sala {
     private ArrayList<Image> imagenes;
     private Boss jefe;
 
-    public SalaBoss(ArrayList<Image> imagenes, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, int tipo, Objeto objeto, Jugador jugador, ControladorProyectiles proyectiles) {
+    public SalaBoss(ArrayList<Image> imagenes, ArrayList<Wall> paredes, ArrayList<Puerta> puertas, int tipo, Jugador jugador, ControladorProyectiles proyectiles) {
         super(imagenes.get(0), paredes, null, null, null, jugador, proyectiles);
         this.puertas = puertas;
         this.imagenes = imagenes;
@@ -45,27 +45,27 @@ public class SalaBoss extends Sala {
             switch(tipo) {
                 case 1:
                    this.jefe = new ReySlime(jugador);
-                   crearCofres(objeto, 0);
+                   crearCofres(new Objeto(5, 980, 420), 0);
                    break;
                 case 2:
                     this.jefe = new Spider(jugador); 
-                    crearCofres(objeto, 0);
+                    crearCofres(new Objeto(3, 980, 420), 0);
                     break;
                 case 3:
                     this.jefe = new Cangrejo(jugador); 
-                    crearCofres(objeto, 0);
+                    crearCofres(new Objeto(4, 980, 420), 0);
                     break;
                 case 4:
                     this.jefe = new Demonio(jugador, proyectiles);
-                    crearCofres(objeto, 0);
+                    crearCofres(new Objeto(8, 980, 420), 0);
                     break;
                 case 5:
                     this.jefe = new Doppelganger(jugador, proyectiles); 
-                    crearCofres(objeto, 0);
+                    crearCofres(new Objeto(9, 980, 420), 0);
                     break;
                 case 6:
                     this.jefe = new Sans(jugador, proyectiles); 
-                    crearCofres(objeto, 0);
+                    crearCofres(new Objeto(9, 980, 420), 0);
                     break;
             }
         }
