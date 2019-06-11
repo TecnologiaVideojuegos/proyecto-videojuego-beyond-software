@@ -5,6 +5,10 @@
  */
 package logic;
 
+import entities.Enemigo;
+import collisions.IColisionable;
+import collisions.Puerta;
+import entities.Jugador;
 import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 
