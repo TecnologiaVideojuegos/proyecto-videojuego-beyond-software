@@ -34,10 +34,10 @@ public class Nivel3 extends BasicGameState{
     private int salaActual = 2;
     private ControladorProyectiles proyectiles;
     private String[] options = new String[] {"Volver al juego","Volver al inicio"};
-    private int selected;
+    private int selected, contadorMusica;
     private boolean paused = false;
     private Image image;
-    private Music nivel3;
+    private Music nivel3, jefe;
     private Sound select;
     
     @Override
@@ -56,7 +56,9 @@ public class Nivel3 extends BasicGameState{
         image = new Image("resources/intro/fondo_5.png");
         select = new Sound("resources/sonidos/Select.ogg");
         nivel3 = new Music("resources/sonidos/agua.ogg");
-        //nivel3.loop();
+        nivel3.loop();
+        jefe = new Music("resources/sonidos/Boss_Music.ogg");
+        this.contadorMusica = 0;
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
@@ -205,9 +207,24 @@ public class Nivel3 extends BasicGameState{
         }
         
     }
+    
+    public void updateMusica() {
+        if(salaActual == 4 && contadorMusica == 0) {
+            nivel3.stop();
+            jefe.loop();
+            contadorMusica ++;
+        }
+        else if(salas.get(4-1).getvidaBoss() <= 0) {
+            if(!nivel3.playing()) {
+                jefe.stop();
+                nivel3.loop();
+            }
+        }
+    }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+        updateMusica();
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             if(container.isPaused()) {
                 nivel3.resume();
@@ -239,6 +256,7 @@ public class Nivel3 extends BasicGameState{
                     salas.get(salaActual-1).getGestor().resetProyectiles();
                 }
                 if(n == 99){
+                    nivel3.stop();
                     UtilJugador.guardarDatos(player, 4);
                     game.addState(new Nivel4());
                     game.enterState(22, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));

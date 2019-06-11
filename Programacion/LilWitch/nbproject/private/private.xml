@@ -3,17 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Historia4.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Principal.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Historia1.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel3.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel2.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Historia3.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Logo_juego.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel4.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Historia2.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel1.java</file>
-            <file>file:/C:/Users/Guille/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel5.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel3.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro3.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro7.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel2.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro6.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro4.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel4.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro1.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Menu.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro2.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel1.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Nivel5.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Principal.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/GameOver.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/states/Intro5.java</file>
+            <file>file:/D:/Usuarios/alvar/Documents/GitHub/proyecto-videojuego-beyond-software/Programacion/LilWitch/src/rooms/SalaBoss.java</file>
         </group>
     </open-files>
 </project-private>

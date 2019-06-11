@@ -24,6 +24,7 @@ import logic.ControladorProyectiles;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -44,16 +45,16 @@ public class SalaBoss extends Sala {
         try {
             switch(tipo) {
                 case 1:
-                   this.jefe = new ReySlime(jugador);
-                   crearCofres(new Objeto(5, 980, 420), 0);
-                   break;
+                    this.jefe = new ReySlime(jugador);
+                    crearCofres(new Objeto(5, 980, 420), 0);                   
+                    break;
                 case 2:
                     this.jefe = new Spider(jugador); 
-                    crearCofres(new Objeto(3, 980, 420), 0);
+                    crearCofres(new Objeto(3, 980, 420), 0);                    
                     break;
                 case 3:
                     this.jefe = new Cangrejo(jugador); 
-                    crearCofres(new Objeto(4, 980, 420), 0);
+                    crearCofres(new Objeto(4, 980, 420), 0);                    
                     break;
                 case 4:
                     this.jefe = new Demonio(jugador, proyectiles);
@@ -126,5 +127,9 @@ public class SalaBoss extends Sala {
         for (int i = 0; i < cofres.size(); i++) {
             super.getGestor().registrarCuerpo(cofres.get(i));
         }
+    }
+    
+    public int getvidaBoss() {
+        return jefe.getVida();
     }
 }

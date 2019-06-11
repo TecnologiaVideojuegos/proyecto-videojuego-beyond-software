@@ -176,4 +176,8 @@ public class Sala {
     public void setPlayer(Jugador player) {
         this.player = player;
     } 
+    
+    public int getvidaBoss() {
+        return 99;
+    }
 }
