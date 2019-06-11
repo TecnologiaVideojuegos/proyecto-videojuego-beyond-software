@@ -21,7 +21,7 @@ public class Sans extends Boss {
     private ControladorProyectiles proyectiles;
 
     public Sans(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
-        super("Sans", "skeleton_4.png", 120, 150, 840, 120, 15, 2, 600, player);
+        super("Sans", "skeleton_4.png", 120, 150, 840, 120, 15, 2, 900, player);
         this.player = player;
         this.proyectiles = proyectiles;
     }
