@@ -26,6 +26,11 @@ public class Demonio extends Boss {
 
     public Demonio(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
         super("Ignis, Guardián del Infierno", "demonio.png", 400, 400, 840, 120, 2, 1, 200, player, 30, 30, 60, 35);
+        super.setOffsetX(100);
+        super.setOffsetY(100);
+        super.setOffsetWidth(150);
+        super.setOffsetHeight(150);
+        super.updateHitbox();
         this.player = player;
         this.eleccion = (int) (Math.random() * 2+1);
         this.eleccionBarrera = (int) (Math.random() * 2+1);
@@ -65,7 +70,7 @@ public class Demonio extends Boss {
                     sombra.draw(20, 300);
                     break;
                 case 2:
-                    sombra.draw(1850 - super.getHitbox().getWidth(), 300);
+                    sombra.draw(1900 - super.getSprite().getStaticL().getWidth(), 300);
                     break;
                 case 3:
                     sombra.draw(800, 300);
@@ -171,7 +176,7 @@ public class Demonio extends Boss {
                 contador = 0;
                 saltando = false;
                 super.setColision(false);
-                super.getSprite().setPosicion(1850 - super.getHitbox().getWidth(), 300);
+                super.getSprite().setPosicion(1900 - super.getSprite().getStaticL().getWidth(), 300);
                 super.resetDirecciones();
                 primerTurno = false;
             }  

@@ -599,4 +599,9 @@ public class Enemigo implements IColisionable {
     public boolean isWall() {
         return false;
     }
+    
+    public void updateHitbox() {
+        hitbox.setHeight(hitbox.getHeight() - offsetHeight);
+        hitbox.setWidth(hitbox.getWidth() - offsetWidth);
+    }
 }

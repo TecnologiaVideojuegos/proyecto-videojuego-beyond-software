@@ -64,7 +64,7 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario();
+        this.inventario = new Inventario(true);
         this.hit = false;
         this.flickerTime = 0;
         
