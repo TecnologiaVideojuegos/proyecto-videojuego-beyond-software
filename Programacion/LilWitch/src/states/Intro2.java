@@ -46,8 +46,9 @@ private Music nivel1;
             game.enterState(12);
         }
         if(container.getInput().isKeyPressed(Input.KEY_SPACE)){
-            nivel1.loop();
-            game.enterState(3);
+            //nivel1.loop();
+            //game.addState(new Controles());
+            game.enterState(18);
         }
     }
     

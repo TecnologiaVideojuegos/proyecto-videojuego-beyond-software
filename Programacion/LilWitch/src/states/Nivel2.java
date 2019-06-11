@@ -236,7 +236,7 @@ public class Nivel2 extends BasicGameState{
                 if(n == 99){
                     UtilJugador.guardarDatos(player, 3);
                     game.addState(new Nivel3());
-                    game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(21, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {
                     salaActual = n;

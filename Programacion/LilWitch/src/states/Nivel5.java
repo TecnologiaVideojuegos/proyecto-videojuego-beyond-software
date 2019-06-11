@@ -38,6 +38,7 @@ public class Nivel5 extends BasicGameState{
     private boolean paused = false;
     private Image image;
     private Music nivel5;
+    private Music finalBoss;
     private Sound select;
     
     @Override
@@ -55,6 +56,7 @@ public class Nivel5 extends BasicGameState{
         mapa = new SpriteSheet("resources/niveles/Nivel 5_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         nivel5 = new Music("resources/sonidos/oscuridad.ogg");
+        finalBoss = new Music("resources/sonidos/final_boss");
         nivel5.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});

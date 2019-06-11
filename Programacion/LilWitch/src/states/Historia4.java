@@ -40,7 +40,7 @@ public class Historia4 extends BasicGameState{
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            game.enterState(7);
+            game.enterState(7, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
     }
 }
