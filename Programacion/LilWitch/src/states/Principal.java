@@ -24,7 +24,8 @@ public class Principal extends StateBasedGame{
         super("Lil'Witch");
         contenedor = new AppGameContainer(this);
         contenedor.setDisplayMode(1920, 1080, false);
-        //contenedor.setTargetFrameRate(10);
+        /*contenedor.setMouseGrabbed(true);
+        contenedor.setShowFPS(false);*/
         contenedor.start();
     }
 

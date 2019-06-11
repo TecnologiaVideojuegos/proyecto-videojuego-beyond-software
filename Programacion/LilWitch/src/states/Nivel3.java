@@ -11,7 +11,11 @@ import rooms.Sala;
 import serialization.UtilJugador;
 import collisions.Wall;
 import collisions.Puerta;
+import entities.Enemigo;
+import entities.Esqueleto;
 import entities.Jugador;
+import entities.Murcielago;
+import entities.Slime;
 import java.util.ArrayList;
 import logic.*;
 import org.newdawn.slick.geom.*;
@@ -20,6 +24,7 @@ import org.newdawn.slick.state.*;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import rooms.SalaBoss;
+import rooms.SalaCofre;
 
 
 /**
@@ -70,20 +75,11 @@ public class Nivel3 extends BasicGameState{
         Wall agua1_3 = new Wall(new float[]{1200, 480, 1320, 480, 1320, 840, 1200, 840});
         Wall agua1_4 = new Wall(new float[]{1440, 120, 1800, 120, 1800, 360, 1680, 360, 1680, 240, 1440, 240});
         Wall agua1_5 = new Wall(new float[]{1440, 720, 1800, 720, 1800, 840, 1440, 840});
-        //Wall agua2_1 = new Wall(new float[]{480, 600, 480, 720, 600, 720, 600, 600, 1320, 600, 1320, 360, 1440, 360, 1440, 240, 1320, 240, 1320, 360, 600, 360, 600, 600});
+        Wall agua2_1 = new Wall(new float[]{480, 600, 480, 720, 600, 720, 600, 600, 1320, 600, 1320, 360, 1440, 360, 1440, 240, 1320, 240, 1320, 360, 600, 360, 600, 600});
         Wall agua3_1 = new Wall(new float[]{120, 20, 120, 480, 240, 480,240, 240, 360, 240, 360, 120, 480, 120, 480, 20});
         Wall agua3_2 = new Wall(new float[]{120, 720, 480, 720, 480, 840, 120, 840});
         Wall agua3_3 = new Wall(new float[]{840, 480, 840, 600, 960, 600, 960, 480, 1080, 480, 1080, 360, 960, 360, 960, 480});
         Wall agua3_4 = new Wall(new float[]{1560, 360, 1560, 480, 1440, 480, 1440, 720, 1320, 720, 1320, 840, 1800, 840, 1800, 360});
-        Wall agua4_1 = new Wall(new float[]{20, 360, 120, 360, 120, 240, 240, 240, 240, 120, 360, 120, 360, 20, 240, 20, 240, 120, 120, 120, 120, 240, 20, 240});
-        Wall agua4_2 = new Wall(new float[]{120, 480, 480, 480, 480, 600, 120, 600});
-        Wall agua4_3 = new Wall(new float[]{20, 720, 120, 720, 120, 840, 20, 840});
-        Wall agua4_4 = new Wall(new float[]{240, 840, 360, 840, 360, 940, 240, 940});
-        Wall agua4_5 = new Wall(new float[]{1590, 840, 1680, 840, 1680, 940, 1560, 940});
-        Wall agua4_6 = new Wall(new float[]{1800, 720, 1900, 720, 1900, 840, 1800, 840});
-        Wall agua4_7 = new Wall(new float[]{1440, 480, 1800, 480, 1800, 600, 1440, 600});
-        Wall agua4_8 = new Wall(new float[]{1560, 20, 1560, 120, 1680, 120, 1680, 240, 1800, 240, 1800, 360, 1900, 360, 1900, 240, 1800, 240, 1800, 120, 1680, 120, 1680, 20});
-        Wall agua4_9 = new Wall(new float[]{720, 240, 1200, 240, 1200, 720, 720, 720});
         Wall agua5_1 = new Wall(new float[]{240, 240, 240, 360, 360, 360, 360, 240});
         Wall agua5_2 = new Wall(new float[]{240, 480, 240, 600, 360, 600, 360, 480});
         Wall agua5_3 = new Wall(new float[]{240, 720, 240, 840, 360, 840, 360, 720});
@@ -118,7 +114,7 @@ public class Nivel3 extends BasicGameState{
         
         ArrayList<Wall> walls2 = new ArrayList<>();
         walls2.add(limites_2);
-        //walls2.add(agua2_1);
+        walls2.add(agua2_1);
         ArrayList<Puerta> puertas2 = new ArrayList<>();
         puertas2.add(p2_1);
         
@@ -134,15 +130,6 @@ public class Nivel3 extends BasicGameState{
         
         ArrayList<Wall> walls4 = new ArrayList<>();
         walls4.add(limites_4);
-        //walls4.add(agua4_1);
-        //walls4.add(agua4_2);
-        //walls4.add(agua4_3);
-        //walls4.add(agua4_4);
-        //walls4.add(agua4_5);
-        //walls4.add(agua4_6);
-        //walls4.add(agua4_7);
-        //walls4.add(agua4_8);
-        //walls4.add(agua4_9);
         ArrayList<Puerta> puertas4 = new ArrayList();
         puertas4.add(p4_1);
         puertas4.add(p4_2);
@@ -171,12 +158,40 @@ public class Nivel3 extends BasicGameState{
         puertas6.add(p6_1);
         puertas6.add(p6_2);
         
-        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, null, null, player, proyectiles);
+        ArrayList<Enemigo> enemigos1 = new ArrayList<>();
+        Slime s1_1 = new Slime("slime_2.png", 120, 150, 125, 240, 4, 1);
+        Slime s1_2 = new Slime("slime_2.png", 120, 150, 1080, 240, 4, 1);
+        enemigos1.add(s1_1);
+        enemigos1.add(s1_2);
+        
+        ArrayList<Enemigo> enemigos3 = new ArrayList<>();
+        Esqueleto e3_1 = new Esqueleto("skeleton.png", 120, 150, 480, 360, 1000, 5, 1, proyectiles);
+        Esqueleto e3_2 = new Esqueleto("skeleton.png", 120, 150, 1200, 480, 1000, 5, 1, proyectiles);
+        enemigos3.add(e3_1);
+        enemigos3.add(e3_2);
+        
+        ArrayList<Enemigo> enemigos5 = new ArrayList<>();
+        Esqueleto e5_1 = new Esqueleto("skeleton.png", 120, 150, 480, 360, 1000, 5, 1, proyectiles);
+        Esqueleto e5_2 = new Esqueleto("skeleton.png", 120, 150, 480, 600, 1000, 5, 1, proyectiles);
+        Slime s5_1 = new Slime("slime_2.png", 120, 150, 1200, 480, 4, 1);
+        enemigos5.add(e5_1);
+        enemigos5.add(e5_2);
+        enemigos5.add(s5_1);
+        
+        ArrayList<Enemigo> enemigos6 = new ArrayList<>();
+        Esqueleto e6_1 = new Esqueleto("skeleton.png", 120, 150, 600, 480, 1000, 5, 1, proyectiles);
+        Esqueleto e6_2 = new Esqueleto("skeleton.png", 120, 150, 1440, 240, 1000, 5, 1, proyectiles);
+        Esqueleto e6_3 = new Esqueleto("skeleton.png", 120, 150, 1440, 600, 1000, 5, 1, proyectiles);
+        enemigos6.add(e6_1);
+        enemigos6.add(e6_2);
+        enemigos6.add(e6_3);
+        
+        Sala sala1 = new Sala(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, null, player, proyectiles);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, null, null, player, proyectiles);
-        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, null, null, player, proyectiles);
+        Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, enemigos3, null, player, proyectiles);
         SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 3, player, proyectiles);
-        Sala sala5 = new Sala(mapa.getSubImage(1, 0), walls5, puertas5, null, null, player, proyectiles);
-        Sala sala6 = new Sala(mapa.getSubImage(2, 0), walls6, puertas6, null, null, player, proyectiles);
+        Sala sala5 = new Sala(mapa.getSubImage(1, 0), walls5, puertas5, enemigos5, null, player, proyectiles);
+        SalaCofre sala6 = new SalaCofre(mapa.getSubImage(2, 0), walls6, puertas6, enemigos6, player, proyectiles, 8, 1 , 240, 480);
         salas.add(sala1);
         salas.add(sala2);
         salas.add(sala3);
