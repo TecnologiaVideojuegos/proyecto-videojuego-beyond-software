@@ -79,8 +79,8 @@ public class SalaBoss extends Sala {
     
     public void crearCofres(Objeto obj, int tipo) {
         try {
-            cofres.add(new Cofre(new Objeto(9, 840, 420), 840, 420, 0));
-            cofres.add(new Cofre(obj, obj.getPosicion().getX(), obj.getPosicion().getY(), 0));
+            cofres.add(new Cofre(new Objeto(9, 840, 420), 840, 420, 6));
+            cofres.add(new Cofre(obj, obj.getPosicion().getX(), obj.getPosicion().getY(), 6));
         } catch (SlickException ex) {
             System.out.println("Error al generar los cofres");
         }
