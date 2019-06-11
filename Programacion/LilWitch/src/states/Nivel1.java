@@ -43,6 +43,7 @@ public class Nivel1 extends BasicGameState{
     private boolean paused = false, mostrarControles;
     private Image fondoPausa, controles;
     private Music nivel1, jefe;
+    private Music historia;
     private Sound select;
     
     @Override
@@ -62,6 +63,7 @@ public class Nivel1 extends BasicGameState{
         fondoPausa = new Image("resources/intro/fondo_5.png");
         controles = new Image("resources/intro/controles.png");
         nivel1 = new Music("resources/sonidos/Caves.ogg");
+        historia = new Music("resources/sonidos/historia.ogg");
         nivel1.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         jefe = new Music("resources/sonidos/Boss_Music.ogg");
@@ -280,6 +282,9 @@ public class Nivel1 extends BasicGameState{
                         break;
                     case 2:
                         if(!mostrarControles) {
+                            container.setPaused(!container.isPaused());
+                            paused=!paused;
+                            historia.loop();
                             game.enterState(2);
                         }
                         else {

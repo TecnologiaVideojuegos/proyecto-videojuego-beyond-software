@@ -42,6 +42,7 @@ public class Nivel5 extends BasicGameState{
     private boolean paused = false, mostrarControles;
     private Image image, controles;
     private Music nivel5, jefe, jefeF;
+    private Music historia;
     private Sound select;
     
     @Override
@@ -59,6 +60,7 @@ public class Nivel5 extends BasicGameState{
         mapa = new SpriteSheet("resources/niveles/Nivel 5_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         nivel5 = new Music("resources/sonidos/oscuridad.ogg");
+        historia = new Music("resources/sonidos/historia.ogg");
         nivel5.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         jefe = new Music("resources/sonidos/Boss_Music.ogg");
@@ -258,6 +260,9 @@ public class Nivel5 extends BasicGameState{
                             break;
                         case 2:
                             if(!mostrarControles) {
+                                container.setPaused(!container.isPaused());
+                                paused=!paused;
+                                historia.loop();
                                 game.enterState(2);
                             }
                             else {
