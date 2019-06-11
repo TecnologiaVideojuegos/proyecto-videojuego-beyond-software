@@ -205,7 +205,7 @@ public class Nivel5 extends BasicGameState{
                     salas.get(salaActual-1).getGestor().resetProyectiles();
                 }
                 if(n == 99){
-                    game.addState(new Historia5());
+                    //game.addState(new Historia5());
                     game.enterState(24, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {
