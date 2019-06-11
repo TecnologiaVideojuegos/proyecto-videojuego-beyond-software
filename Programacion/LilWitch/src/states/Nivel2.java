@@ -280,6 +280,8 @@ public class Nivel2 extends BasicGameState{
             }   
         }
         if(player.getVida() <= 0) {
+            jefe.stop();
+            nivel2.stop();
             game.enterState(17);
         }
         else {

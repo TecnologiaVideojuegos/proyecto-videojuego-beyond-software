@@ -250,6 +250,9 @@ public class Nivel5 extends BasicGameState{
             }   
         }
         if(player.getVida() <= 0) {
+            jefe.stop();
+            jefeF.stop();
+            nivel5.stop();
             game.enterState(17);
         }
         else {
