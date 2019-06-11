@@ -10,6 +10,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -22,6 +23,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
  */
     public class GameOver extends BasicGameState {
     private Image image;
+    private Music historia;
     
     @Override
     public int getID() {
@@ -31,6 +33,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/intro/game_over.png");
+        historia = new Music("resources/sonidos/historia.ogg");
+        historia.loop();
     }
 
     @Override
@@ -41,6 +45,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
+            
             game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
     }
