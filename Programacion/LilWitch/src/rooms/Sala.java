@@ -106,7 +106,7 @@ public class Sala {
     public void updateEnemigos(int delta) {
         for (int i = 0; i < enemigos.size(); i++) {
             if(enemigos.get(i).getVida() <= 0) {
-                if((int) (Math.random() * 10+1) <= 3) {
+                if((int) (Math.random() * 10+1) <= 2) {
                     int x = (int) enemigos.get(i).getPosicion().getX();
                     int y = (int)enemigos.get(i).getPosicion().getY();
                     try {
