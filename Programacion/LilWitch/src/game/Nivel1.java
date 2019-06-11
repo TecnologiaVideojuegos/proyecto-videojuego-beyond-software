@@ -191,7 +191,7 @@ public class Nivel1 extends BasicGameState{
         SalaCofre sala1 = new SalaCofre(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, player, proyectiles, 8, 0, 120, 720);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos2, null, player, proyectiles);
         Sala sala3 = new Sala(mapa.getSubImage(2, 1), walls3, puertas3, enemigos3, null, player, proyectiles);
-        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 5, new Objeto(3, 980, 420), player, proyectiles);
+        SalaBoss sala4 = new SalaBoss(imagenes4, walls4, puertas4, 6, new Objeto(3, 980, 420), player, proyectiles);
         Sala sala5 = new Sala(mapa.getSubImage(0, 0), walls5, puertas5, enemigos5, null, player, proyectiles);
         Sala sala6 = new Sala(mapa.getSubImage(1, 0), walls6, puertas6, null, objetos, player, proyectiles);
         salas.add(sala1);

@@ -51,7 +51,7 @@ public class SalaBoss extends Sala {
                     crearCofres(objeto, 0);
                     break;
                 case 6:
-                    this.jefe = new ReySlime(jugador); 
+                    this.jefe = new Sans(jugador, proyectiles); 
                     crearCofres(objeto, 0);
                     break;
             }
