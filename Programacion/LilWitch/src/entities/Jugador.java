@@ -23,7 +23,7 @@ public class Jugador implements IColisionable {
     private Rectangle hitbox;
     private boolean up, down, r, l, stop, stopDialogo, hit;
     private ControladorProyectiles proyectiles;
-    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime, tiempoDialogo;
+    private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime, contadorDialogo;
     private Image corazonVacio, corazonLleno, corazonMedio;
     private Inventario inventario;
     private Sound select;
@@ -65,11 +65,11 @@ public class Jugador implements IColisionable {
         this.corazonLleno = new Image("resources/objetos/corazon-lleno.png");
         this.corazonMedio = new Image("resources/objetos/corazon-medio.png");
         this.corazonVacio = new Image("resources/objetos/corazon-vacio.png");
-        this.inventario = new Inventario(true);
+        this.inventario = new Inventario();
         this.hit = false;
         this.flickerTime = 0;
         this.stopDialogo = false;
-        this.tiempoDialogo = 0;
+        this.contadorDialogo = 0;
         dialogos = new SpriteSheet("resources/historia/Dialogo_1.png", 700, 70);
         
         select = new Sound("resources/sonidos/Select.ogg");
@@ -105,17 +105,22 @@ public class Jugador implements IColisionable {
         }
         if(stopDialogo) {
             personaje.draw();
-            if(tiempoDialogo < 1000) {
-                dialogos.getSubImage(0, 0).draw(610, 840);
-            }
-            else if(tiempoDialogo < 2000) {
-                dialogos.getSubImage(0, 1).draw(610, 840);
-            }
-            else if(tiempoDialogo < 3000) {
-                dialogos.getSubImage(0, 2).draw(610, 840);
-            }
-            else if(tiempoDialogo < 4000) {
-                dialogos.getSubImage(0, 3).draw(610, 840);
+            switch(contadorDialogo) {
+                case 0:
+                    dialogos.getSubImage(0, 0).draw(610, 840);
+                    break;
+                case 1:
+                    dialogos.getSubImage(0, 1).draw(610, 840);
+                    break;
+                case 2:
+                    dialogos.getSubImage(0, 2).draw(610, 840);
+                    break;
+                case 3:
+                    dialogos.getSubImage(0, 3).draw(610, 840);
+                    break;
+                default:
+                    stopDialogo = false;
+                    break;
             }
         }
         drawCorazones();
@@ -155,9 +160,8 @@ public class Jugador implements IColisionable {
     
     public void update(Input entrada, int delta) {
         if(stopDialogo) {
-            tiempoDialogo += delta;
-            if(tiempoDialogo >  4000) {
-                stopDialogo = false;
+            if(entrada.isKeyPressed(Input.KEY_ENTER)) {
+                contadorDialogo ++;
             }
         }
         if(hit) {

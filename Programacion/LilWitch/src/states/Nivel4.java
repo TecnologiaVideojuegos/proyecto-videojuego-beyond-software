@@ -37,10 +37,10 @@ public class Nivel4 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual = 3;
     private ControladorProyectiles proyectiles;
-    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private String[] options = new String[] {"Volver al juego", "Controles", "Volver al inicio"};
     private int selected, contadorMusica;
-    private boolean paused = false;
-    private Image image;
+    private boolean paused = false, mostrarControles;
+    private Image image, controles;
     private Music nivel4, jefe;
     private Sound select;
     
@@ -63,6 +63,8 @@ public class Nivel4 extends BasicGameState{
         select = new Sound("resources/sonidos/Select.ogg");
         jefe = new Music("resources/sonidos/Boss_Music.ogg");
         this.contadorMusica = 0;
+        this.mostrarControles = false;
+        controles = new Image("resources/intro/controles.png");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1080, 940, 1900, 940,1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20});
@@ -244,7 +246,10 @@ public class Nivel4 extends BasicGameState{
 			if (selected == i) {
 				g.drawRect(890, 470+(i*50),200,30);
 			}
-		}
+            }
+            if(mostrarControles) {
+                controles.draw(0,0);
+            }
         }else{
         salas.get(salaActual-1).draw(g, entrada);
         }
@@ -278,16 +283,29 @@ public class Nivel4 extends BasicGameState{
         
         if(container.isPaused()) {
             if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
-            switch(selected) {
-                case 0:
-                    container.setPaused(!container.isPaused());
-                    paused=!paused;
-                    break;
-                case 2:
-                    game.enterState(2);
-                    break;
+                switch(selected) {
+                        case 0:
+                            if(!mostrarControles) {
+                                container.setPaused(!container.isPaused());
+                                paused=!paused;
+                            }
+                            else {
+                                mostrarControles = !mostrarControles;
+                            }
+                            break;
+                        case 1:
+                            mostrarControles = !mostrarControles;
+                            break;
+                        case 2:
+                            if(!mostrarControles) {
+                                game.enterState(2);
+                            }
+                            else {
+                                mostrarControles = !mostrarControles;
+                            }
+                            break;
                 }
-            }   
+            }
         }
         if(player.getVida() <= 0) {
             jefe.stop();
