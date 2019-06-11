@@ -62,7 +62,7 @@ public class Nivel5 extends BasicGameState{
         nivel5.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         jefe = new Music("resources/sonidos/Boss_Music.ogg");
-        jefeF = new Music("resources/sonidos/Last_Boss_Music.ogg");
+        jefeF = new Music("resources/sonidos/final_boss.ogg");
         this.contadorMusica = 0;
         this.contadorMusica2 = 0;
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
