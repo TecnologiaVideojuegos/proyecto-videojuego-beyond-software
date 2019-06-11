@@ -90,7 +90,7 @@ public class Nivel1 extends BasicGameState{
         Wall abismo5_4 = new Wall(new float[]{1080, 20, 1080, 360, 1320, 360, 1320, 240,1200, 240, 1200, 20});
         Wall abismo5_5 = new Wall(new float[]{720, 20, 720, 120, 840, 120, 840, 20});
         Wall abismo5_6 = new Wall(new float[]{480, 20, 480, 120, 600, 120, 600, 20});
-        Wall abismo6_1 = new Wall(new float[]{900, 460, 900, 540, 1010, 540, 1010, 460});
+        //Wall abismo6_1 = new Wall(new float[]{900, 460, 900, 540, 1010, 540, 1010, 460});
         Puerta p1_1 = new Puerta(1915, 360, 5, 240, 1, 2, 1);
         Puerta p2_1 = new Puerta(1915, 360, 5, 240, 1, 3, 1);
         Puerta p2_2 = new Puerta(840, 955, 240, 5, 2, 5, 1);
@@ -253,6 +253,8 @@ public class Nivel1 extends BasicGameState{
                     break;
                 case 2:
                     game.enterState(2);
+                    container.setPaused(!container.isPaused());
+                    paused=!paused;
                     break;
                 }
             }   

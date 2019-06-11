@@ -33,7 +33,7 @@ public class Nivel3 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual = 2;
     private ControladorProyectiles proyectiles;
-    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private String[] options = new String[] {"Volver al juego","Controles", "Menú Principal"};
     private int selected;
     private boolean paused = false;
     private Image image;
@@ -56,7 +56,7 @@ public class Nivel3 extends BasicGameState{
         image = new Image("resources/intro/fondo_5.png");
         select = new Sound("resources/sonidos/Select.ogg");
         nivel3 = new Music("resources/sonidos/agua.ogg");
-        //nivel3.loop();
+        nivel3.loop();
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_3 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
@@ -68,7 +68,7 @@ public class Nivel3 extends BasicGameState{
         Wall agua1_3 = new Wall(new float[]{1200, 480, 1320, 480, 1320, 840, 1200, 840});
         Wall agua1_4 = new Wall(new float[]{1440, 120, 1800, 120, 1800, 360, 1680, 360, 1680, 240, 1440, 240});
         Wall agua1_5 = new Wall(new float[]{1440, 720, 1800, 720, 1800, 840, 1440, 840});
-        //Wall agua2_1 = new Wall(new float[]{480, 600, 480, 720, 600, 720, 600, 600, 1320, 600, 1320, 360, 1440, 360, 1440, 240, 1320, 240, 1320, 360, 600, 360, 600, 600});
+        Wall agua2_1 = new Wall(new float[]{480, 600, 480, 720, 600, 720, 600, 600, 1320, 600, 1320, 360, 1440, 360, 1440, 240, 1320, 240, 1320, 360, 600, 360, 600, 600});
         Wall agua3_1 = new Wall(new float[]{120, 20, 120, 480, 240, 480,240, 240, 360, 240, 360, 120, 480, 120, 480, 20});
         Wall agua3_2 = new Wall(new float[]{120, 720, 480, 720, 480, 840, 120, 840});
         Wall agua3_3 = new Wall(new float[]{840, 480, 840, 600, 960, 600, 960, 480, 1080, 480, 1080, 360, 960, 360, 960, 480});
@@ -116,7 +116,7 @@ public class Nivel3 extends BasicGameState{
         
         ArrayList<Wall> walls2 = new ArrayList<>();
         walls2.add(limites_2);
-        //walls2.add(agua2_1);
+        walls2.add(agua2_1);
         ArrayList<Puerta> puertas2 = new ArrayList<>();
         puertas2.add(p2_1);
         
@@ -225,6 +225,8 @@ public class Nivel3 extends BasicGameState{
                     break;
                 case 2:
                     game.enterState(2);
+                    container.setPaused(!container.isPaused());
+                    paused=!paused;
                     break;
                 }
             }   

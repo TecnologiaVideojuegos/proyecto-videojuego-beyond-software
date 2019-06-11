@@ -33,7 +33,7 @@ public class Nivel5 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual = 1;
     private ControladorProyectiles proyectiles;
-    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private String[] options = new String[] {"Volver al juego","Controles", "Menú Principal"};
     private int selected;
     private boolean paused = false;
     private Image image;
@@ -55,7 +55,7 @@ public class Nivel5 extends BasicGameState{
         mapa = new SpriteSheet("resources/niveles/Nivel 5_v1.png", 1920, 1080);
         image = new Image("resources/intro/fondo_5.png");
         nivel5 = new Music("resources/sonidos/oscuridad.ogg");
-        //nivel5.loop();
+        nivel5.loop();
         select = new Sound("resources/sonidos/Select.ogg");
         Wall limites_1 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
         Wall limites_2 = new Wall(new float[]{20, 20, 20, 360, 0, 360, 0, 600, 20, 600, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20});
@@ -191,6 +191,8 @@ public class Nivel5 extends BasicGameState{
                     break;
                 case 2:
                     game.enterState(2);
+                    container.setPaused(!container.isPaused());
+                    paused=!paused;
                     break;
                 }
             }   

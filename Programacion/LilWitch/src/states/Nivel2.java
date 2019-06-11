@@ -33,7 +33,7 @@ public class Nivel2 extends BasicGameState{
     private ArrayList<Sala> salas;
     private int salaActual = 5;
     private ControladorProyectiles proyectiles;
-    private String[] options = new String[] {"Volver al juego","Volver al inicio"};
+    private String[] options = new String[] {"Volver al juego","Controles", "Menú Principal"};
     private int selected;
     private boolean paused = false;
     private Image image;
@@ -218,6 +218,8 @@ public class Nivel2 extends BasicGameState{
                     break;
                 case 2:
                     game.enterState(2);
+                    container.setPaused(!container.isPaused());
+                    paused=!paused;
                     break;
                 }
             }   
