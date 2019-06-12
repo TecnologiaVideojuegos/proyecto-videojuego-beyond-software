@@ -2,7 +2,7 @@
  
 * * *
 
- | [Historia](./subPages/historia.html)   |    [Niveles](./subPages/niveles.html)   |    [Personajes](./subPages/personajes.html)    |   [Objetos](./subPages/objetos.html)  |
+ | [Historia](./subPages/historia.html)   |    [Niveles](./subPages/niveles.html)   |    [Personajes](./subPages/personajes.html)    |   [Objetos](./subPages/objetos.html)  |   [Sonido](./subPages/sonido.html)  |
  |:---------|:-----------|:--------------|:--------------|
  |          |            |               |               |
 
