@@ -4,7 +4,7 @@
 
 ---
 
-### [ _Lil'Which_](./Página%20Web/lilWhich.html)
+### [ _Lil'Witch](./Página%20Web/lilWitch.html)
 
 
-[![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)](./Página%20Web/lilWhich.html)
+[![lil'which](Página%20Web/img/Logo%20(PROVISIONAL).png)](./Página%20Web/lilWitch.html)
