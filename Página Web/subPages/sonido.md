@@ -1,4 +1,4 @@
-#Sonido
+Sonido
 ----
 Puesto que el equipo carecía de un técnico de sonido, hemos optado por realizar una búsqueda en Internet para encontrar un soundtrack adecuado
 
