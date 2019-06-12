@@ -2,9 +2,9 @@
  
 * * *
 
- | [Historia](./subPages/historia.html)   |    [Niveles](./subPages/niveles.html)   |    [Personajes](./subPages/personajes.html)    |   [Objetos](./subPages/objetos.html)  |   [Sonido](./subPages/sonido.html)  |
- |:---------|:-----------|:--------------|:--------------|:--------------|
- |          |            |               |               |               |
+ | [Historia](./subPages/historia.html)   |    [Niveles](./subPages/niveles.html)   |    [Personajes](./subPages/personajes.html)    |   [Objetos](./subPages/objetos.html)  |
+ |:---------|:-----------|:--------------|:--------------|
+ |          |            |               |               |
 
 BIENVENIDO A LIL'WITCH
 
