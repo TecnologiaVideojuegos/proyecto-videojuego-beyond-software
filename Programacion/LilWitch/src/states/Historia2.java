@@ -34,7 +34,7 @@ public class Historia2 extends BasicGameState{
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
         g.drawImage(image,0, 0);
-        g.drawString("CONSEJO: ", 840, 20);
+        g.drawString("CONSEJO: Prueba todas las varitas", 750, 20);
     }
 
     @Override
