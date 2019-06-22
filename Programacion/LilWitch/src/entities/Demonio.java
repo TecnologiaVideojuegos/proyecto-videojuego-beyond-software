@@ -148,13 +148,13 @@ public class Demonio extends Boss {
                 primerTurno = false;
             }  
         }
-        else if(tiempoAtaque > 1250 && contadorAtaque < 5) {
+        else if(tiempoAtaque > 1300 && contadorAtaque < 5) {
             disparoBarreraR();
             cambiarEleccionBarrera();
             tiempoAtaque = 0;
             contadorAtaque ++;
         }
-        else if(contadorAtaque == 5 && tiempoAtaque > 3750) {
+        else if(contadorAtaque == 5 && tiempoAtaque > 3800) {
             eleccion = 99;
             contadorAtaque = 0;
         }
@@ -181,14 +181,13 @@ public class Demonio extends Boss {
                 primerTurno = false;
             }  
         }
-        else if(tiempoAtaque > 1250 && contadorAtaque < 5) {
-            System.out.println("Contador: " + contador);
+        else if(tiempoAtaque > 1300 && contadorAtaque < 5) {
             disparoBarreraL();
             cambiarEleccionBarrera();
             tiempoAtaque = 0;
             contadorAtaque ++;
         }
-        else if(contadorAtaque == 5 && tiempoAtaque > 3750) {
+        else if(contadorAtaque == 5 && tiempoAtaque > 3800) {
             eleccion = 99;
             contadorAtaque = 0;
         }

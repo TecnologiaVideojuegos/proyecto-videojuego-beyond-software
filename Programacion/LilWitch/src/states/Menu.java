@@ -44,9 +44,6 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
         g.drawImage(image, 0, 0);
-        //g.setColor(Color.blue);
-        //g.drawString("Menú del Juego", 200, 50);
-        //g.setBackground(Color.white);
         g.setColor(Color.white);
         
         for (int i=0;i<options.length;i++) {
@@ -55,7 +52,7 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
                 g.drawRect(1480, 865+(i*50),360,50);
             }
         }
-        g.drawString("v1.0.3", 20, 1060);
+        g.drawString("v1.0.4", 20, 1060);
     }
 
     @Override

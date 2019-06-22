@@ -106,6 +106,7 @@ public class SalaBoss extends Sala {
     @Override
     public void draw(Graphics g, Input entrada) {
         super.draw(g);
+        super.getPlayer().draw(entrada, g);
         if(jefe.getVida() <= 0) {
             for (int i = 0; i < cofres.size(); i++) {
                 cofres.get(i).draw(); 
@@ -114,7 +115,6 @@ public class SalaBoss extends Sala {
         else {
             jefe.draw(g);
         }
-        super.getPlayer().draw(entrada, g);
     }
     
     public void habilitarPuertas() {
