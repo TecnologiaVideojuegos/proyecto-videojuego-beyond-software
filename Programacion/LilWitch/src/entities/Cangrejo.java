@@ -175,7 +175,6 @@ public class Cangrejo extends Boss {
     }
     
     public void ataque1(int delta) {
-        System.out.println("Num colisiones: " + numColisiones);
         if(primerTurno) {
             if(contador == 0) {
                 posSombra = 1;
@@ -512,7 +511,9 @@ public class Cangrejo extends Boss {
     public void alColisionar(IColisionable colision, int delta) {
         if(colision.isProyectile() != 1) {
             if (!colision.isPlayer()) {
-                super.setColision(true);
+                if(colision.isProyectile() == 0) {
+                    super.setColision(true);
+                }
                 if(super.isUp()) {
                     super.getSprite().moverY(super.getVelocidad() * 3 * (float) delta / 1000);
                 }
@@ -525,7 +526,7 @@ public class Cangrejo extends Boss {
                 if(super.isL()) {
                     super.getSprite().moverX(super.getVelocidad() * 3 * (float) delta / 1000);
                 }
-                if (tiempo > 8000) {
+                if (tiempo > 8000 && colision.isProyectile() == 0) {
                     numColisiones += 1;
                 }
             }

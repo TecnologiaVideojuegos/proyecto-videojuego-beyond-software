@@ -35,7 +35,7 @@ public class Nivel5 extends BasicGameState{
     private Jugador player;
     private SpriteSheet mapa;
     private ArrayList<Sala> salas;
-    private int salaActual = 1;
+    private int salaActual;
     private ControladorProyectiles proyectiles;
     private String[] options = new String[] {"Volver al juego", "Controles", "Volver al inicio"};
     private int selected, contadorMusica, contadorMusica2;
@@ -52,6 +52,7 @@ public class Nivel5 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        salaActual = 1;
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();

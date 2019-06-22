@@ -322,7 +322,8 @@ public class Nivel1 extends BasicGameState{
     @Override
     public void enter(GameContainer container,StateBasedGame game)throws SlickException{
         container.getInput().clearKeyPressedRecord();
-        init(container, game);     
+        init(container, game); 
+        salaActual = 6;
     }
     
     @Override

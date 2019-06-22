@@ -570,11 +570,11 @@ public class Doppelganger extends Boss {
     }
     
     public void crearProyectilG(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_4.png", x, y, 2*58, 2*72, 1f, 300*dirX, 300*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_4.png", x, y, 114, 144, 1f, 300*dirX, 300*dirY, 1, 1);
     }
     
     public void crearProyectilG2(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_4.png", x, y, 2*58, 2*72, 1f, 500*dirX, 500*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_4.png", x, y, 114, 144, 1f, 500*dirX, 500*dirY, 1, 1);
     }
     
     @Override

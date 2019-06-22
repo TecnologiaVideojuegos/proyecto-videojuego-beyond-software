@@ -7,6 +7,7 @@ package states;
  */
 
 
+import collisions.FireWall;
 import rooms.Sala;
 import serialization.UtilJugador;
 import collisions.Wall;
@@ -35,7 +36,7 @@ public class Nivel4 extends BasicGameState{
     private Jugador player;
     private SpriteSheet mapa;
     private ArrayList<Sala> salas;
-    private int salaActual = 3;
+    private int salaActual;
     private ControladorProyectiles proyectiles;
     private String[] options = new String[] {"Volver al juego", "Controles", "Volver al inicio"};
     private int selected, contadorMusica;
@@ -52,6 +53,7 @@ public class Nivel4 extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        salaActual = 3;
         proyectiles = new ControladorProyectiles();
         salas = new ArrayList<>();
         entrada = container.getInput();
@@ -73,36 +75,36 @@ public class Nivel4 extends BasicGameState{
         Wall limites_4 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
         Wall limites_5 = new Wall(new float[]{20, 20, 20, 940, 840, 940, 840, 960, 1080, 960, 1080, 940, 1900, 940, 1900, 20});
         Wall limites_6 = new Wall(new float[]{20, 20, 20, 940, 1900, 940, 1900, 600, 1920, 600, 1920, 360, 1900, 360, 1900, 20, 1080, 20, 1080, 0, 840, 0, 840, 20});
-        Wall fuego1_1 = new Wall(new float[]{120, 600, 240, 600, 240, 720, 120, 720});
-        Wall fuego1_2 = new Wall(new float[]{360, 360, 480, 360, 480, 480, 360, 480});
-        Wall fuego1_3 = new Wall(new float[]{720, 120, 1080, 120, 1080, 480, 720, 480});
-        Wall fuego1_4 = new Wall(new float[]{720, 600, 1080, 600, 1080, 840, 720, 840});
-        Wall fuego1_5 = new Wall(new float[]{1680, 120, 1800, 120, 1800, 240, 1680, 240});
-        Wall fuego1_6 = new Wall(new float[]{1440, 720, 1560, 720, 1560, 840, 1440, 840});
-        Wall fuego2_1 = new Wall(new float[]{120, 120, 840, 120, 840, 240, 720, 240, 720, 360, 120, 360});
-        Wall fuego2_2 = new Wall(new float[]{120, 600, 240, 600, 240, 720, 120, 720});
-        Wall fuego2_3 = new Wall(new float[]{360, 600, 600, 600, 600, 720, 960, 720, 960, 840, 360, 840});
-        Wall fuego2_4 = new Wall(new float[]{1560, 720, 1680, 720, 1680, 600, 1800, 600, 1800, 840, 1560, 840});
-        Wall fuego2_5 = new Wall(new float[]{840, 480, 960, 480, 960, 600, 840, 600});
-        Wall fuego2_6 = new Wall(new float[]{1080, 120, 1800, 120, 1800, 360, 1560, 360, 1560, 240, 1440, 240, 1440, 360, 1320, 360, 1320, 240, 1200, 240, 1200, 360, 1080, 360});
-        Wall fuego3_1 = new Wall(new float[]{120, 600, 360, 600, 360, 720, 480, 720, 480, 840, 120, 840});
-        Wall fuego3_2 = new Wall(new float[]{480, 120, 720, 120, 720, 360, 480, 360});
-        Wall fuego3_3 = new Wall(new float[]{1440, 120, 1800, 120, 1800, 360, 1560, 360, 1560, 240, 1440, 240});
+        FireWall fuego1_1 = new FireWall(new float[]{120, 600, 240, 600, 240, 720, 120, 720});
+        FireWall fuego1_2 = new FireWall(new float[]{360, 360, 480, 360, 480, 480, 360, 480});
+        FireWall fuego1_3 = new FireWall(new float[]{720, 120, 1080, 120, 1080, 480, 720, 480});
+        FireWall fuego1_4 = new FireWall(new float[]{720, 600, 1080, 600, 1080, 840, 720, 840});
+        FireWall fuego1_5 = new FireWall(new float[]{1680, 120, 1800, 120, 1800, 240, 1680, 240});
+        FireWall fuego1_6 = new FireWall(new float[]{1440, 720, 1560, 720, 1560, 840, 1440, 840});
+        FireWall fuego2_1 = new FireWall(new float[]{120, 120, 840, 120, 840, 240, 720, 240, 720, 360, 120, 360});
+        FireWall fuego2_2 = new FireWall(new float[]{120, 600, 240, 600, 240, 720, 120, 720});
+        FireWall fuego2_3 = new FireWall(new float[]{360, 600, 600, 600, 600, 720, 960, 720, 960, 840, 360, 840});
+        FireWall fuego2_4 = new FireWall(new float[]{1560, 720, 1680, 720, 1680, 600, 1800, 600, 1800, 840, 1560, 840});
+        FireWall fuego2_5 = new FireWall(new float[]{840, 480, 960, 480, 960, 600, 840, 600});
+        FireWall fuego2_6 = new FireWall(new float[]{1080, 120, 1800, 120, 1800, 360, 1560, 360, 1560, 240, 1440, 240, 1440, 360, 1320, 360, 1320, 240, 1200, 240, 1200, 360, 1080, 360});
+        FireWall fuego3_1 = new FireWall(new float[]{120, 600, 360, 600, 360, 720, 480, 720, 480, 840, 120, 840});
+        FireWall fuego3_2 = new FireWall(new float[]{480, 120, 720, 120, 720, 360, 480, 360});
+        FireWall fuego3_3 = new FireWall(new float[]{1440, 120, 1800, 120, 1800, 360, 1560, 360, 1560, 240, 1440, 240});
         //Wall fuego3_4 = new Wall(new float[]{1320, 600, 1440, 600, 1440, 720, 1320, 720});
         //Wall fuego4_1 = new Wall(new float[]{120, 120, 600, 120, 600, 240, 480, 240, 480, 360, 240, 360, 240, 480, 120, 480});
         //Wall fuego4_2 = new Wall(new float[]{120, 600, 240, 600, 240, 720, 480, 720, 480, 840, 600, 840, 600, 940, 120, 940});
         //Wall fuego4_3 = new Wall(new float[]{1320, 120, 1800, 120, 1800, 480, 1680, 480, 1680, 360, 1440, 360, 1440, 240, 1320, 240});
         //Wall fuego4_4 = new Wall(new float[]{1680, 600, 1800, 600, 1800, 940, 1320, 940, 1320, 840, 1440, 840, 1440, 720, 1680, 720});
         //Wall fuego4_5 = new Wall(new float[]{840, 240, 1080, 240, 1080, 360, 1200, 360, 1200, 600, 1080, 600, 1080, 720, 840, 720, 840, 600, 720, 600, 720, 360, 840, 360});
-        Wall fuego5_1 = new Wall(new float[]{360, 240, 360, 360, 480, 360, 480, 240});
-        Wall fuego5_2 = new Wall(new float[]{360, 480, 360, 600, 460, 600, 480, 480});
-        Wall fuego5_3 = new Wall(new float[]{720, 360, 720, 480, 840, 480, 840, 360});
-        Wall fuego5_4 = new Wall(new float[]{960, 600, 960, 720, 1080, 720, 1080, 600});
-        Wall fuego5_5 = new Wall(new float[]{1080, 120, 1080, 240, 1200, 240, 1200, 120});
-        Wall fuego5_6 = new Wall(new float[]{1320, 480, 1320, 600, 1440, 600, 1440, 480});
-        Wall fuego5_7 = new Wall(new float[]{1560, 240, 1560, 360, 1680, 360, 1680, 240});
-        Wall fuego6_1 = new Wall(new float[]{240, 480, 240, 720, 480, 720, 480, 480});
-        Wall fuego6_2 = new Wall(new float[]{1440, 720, 1440, 840, 1680, 840, 1680, 600, 1560, 600, 1560, 720});
+        FireWall fuego5_1 = new FireWall(new float[]{360, 240, 360, 360, 480, 360, 480, 240});
+        FireWall fuego5_2 = new FireWall(new float[]{360, 480, 360, 600, 460, 600, 480, 480});
+        FireWall fuego5_3 = new FireWall(new float[]{720, 360, 720, 480, 840, 480, 840, 360});
+        FireWall fuego5_4 = new FireWall(new float[]{960, 600, 960, 720, 1080, 720, 1080, 600});
+        FireWall fuego5_5 = new FireWall(new float[]{1080, 120, 1080, 240, 1200, 240, 1200, 120});
+        FireWall fuego5_6 = new FireWall(new float[]{1320, 480, 1320, 600, 1440, 600, 1440, 480});
+        FireWall fuego5_7 = new FireWall(new float[]{1560, 240, 1560, 360, 1680, 360, 1680, 240});
+        FireWall fuego6_1 = new FireWall(new float[]{240, 480, 240, 720, 480, 720, 480, 480});
+        FireWall fuego6_2 = new FireWall(new float[]{1440, 720, 1440, 840, 1680, 840, 1680, 600, 1560, 600, 1560, 720});
         Puerta p1_1 = new Puerta(1915, 360, 5, 240, 1, 3, 0);
         Puerta p1_2 = new Puerta(0, 360, 5, 240, 3, 1, 0);
         Puerta p2_1 = new Puerta(1915, 360, 5, 240, 1, 2, 0);

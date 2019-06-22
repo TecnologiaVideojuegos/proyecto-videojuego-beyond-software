@@ -259,7 +259,7 @@ public class Demonio extends Boss {
     }
     
     public void crearProyectilG(float x, float y, float dirX, float dirY) {
-        proyectiles.addProyectil("Fire_3.png", x, y, 2*58, 2*72, 1f, 300*dirX, 300*dirY, 1, 1);
+        proyectiles.addProyectil("Fire_3.png", x, y, 114, 144, 1f, 300*dirX, 300*dirY, 1, 1);
     }
     
     @Override

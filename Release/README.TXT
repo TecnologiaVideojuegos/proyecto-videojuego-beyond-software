@@ -1,32 +1,19 @@
-========================
-BUILD OUTPUT DESCRIPTION
-========================
+Slick - A 2D LWJGL Java Utility Library
+-----------------------------------------------------------
 
-When you build an Java application project that has a main class, the IDE
-automatically copies all of the JAR
-files on the projects classpath to your projects dist/lib folder. The IDE
-also adds each of the JAR files to the Class-Path element in the application
-JAR files manifest file (MANIFEST.MF).
+This is a very early version. The tests work but no demo has been written yet. All the natives
+are included in the main distribution in the right place. This is just meant to make it easier for quick
+start users. All the natives required can be found in jars in the 'lib' directory.
 
-To run the project from the command line, go to the dist folder and
-type the following:
 
-java -jar "LilWitch.jar" 
+Tools
+~~~~~
 
-To distribute this project, zip up the dist folder (including the lib folder)
-and distribute the ZIP file.
-
-Notes:
-
-* If two JAR files on the project classpath have the same name, only the first
-JAR file is copied to the lib folder.
-* Only JAR files are copied to the lib folder.
-If the classpath contains other types of files or folders, these files (folders)
-are not copied.
-* If a library on the projects classpath also has a Class-Path element
-specified in the manifest,the content of the Class-Path element has to be on
-the projects runtime path.
-* To set a main class in a standard Java project, right-click the project node
-in the Projects window and choose Properties. Then click Run and enter the
-class name in the Main Class field. Alternatively, you can manually type the
-class name in the manifest Main-Class element.
+AngelCode bitmap font tool - seems to be the best around at the moment and provided clean kerning 
+                             information. Available from http://www.angelcode.com/products/bmfont/.
+TilED tile map tool        - Java alternative to Mappy (which just seems borked to me). Available
+	  						 from http://www.mapeditor.org.
+ImagePacker				   - ImagePacker (http://homepage.ntlworld.com/config/imagepacker/index.htm) packs
+							 single images into large images for efficent rendering and memory usage.	
+Pedigree 				   - Particle Editor written as part of the Slick Project (Java)
+Hiero					   - Bitmap Font tool with effects written as part fo the Slick Project (Java)							 				 

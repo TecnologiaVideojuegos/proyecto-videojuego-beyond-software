@@ -440,7 +440,7 @@ public class Spider extends Boss {
     @Override
     public void alColisionar(IColisionable colision, int delta) {
         super.alColisionar(colision, delta); 
-        if (!colision.isPlayer() && tiempo > 7500) {
+        if (colision.isProyectile() == 0 && !colision.isPlayer() && tiempo > 7500) {
             numColisiones += 1;
         }
     }

@@ -351,7 +351,9 @@ public class Enemigo implements IColisionable {
     public void alColisionar(IColisionable colision, int delta) {
         if(colision.isProyectile() != 1) {
             if (!colision.isPlayer()) {
-                this.colision = true;
+                if(colision.isProyectile() == 0) {
+                    this.colision = true;
+                }
                 if(up) {
                     sprite.moverY(velocidad * (float) delta / 1000);
                 }
