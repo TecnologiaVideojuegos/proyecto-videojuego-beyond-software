@@ -23,7 +23,7 @@ public class Spider extends Boss {
     private Animation sombra;
 
     public Spider(Jugador player) throws SlickException {
-        super("Lignum, Guardián del Bosque", "arana_2.png", 300, 300, 840, 120, 60, 1, 200, player, 30, 30, 60, 35);
+        super("Lignum, Guardián del Bosque", "arana_2.png", 300, 300, 840, 120, 60, 1, 200, player, 45, 55, 95, 125);
         this.player = player;
         this.eleccion = (int) (Math.random() * 4+1);
         this.dirXo = 0;

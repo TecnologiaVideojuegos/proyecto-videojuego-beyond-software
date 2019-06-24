@@ -26,10 +26,10 @@ public class Demonio extends Boss {
 
     public Demonio(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
         super("Ignis, Guardián del Infierno", "demonio.png", 400, 400, 840, 120, 100, 1, 200, player, 30, 30, 60, 35);
-        super.setOffsetX(100);
+        super.setOffsetX(140);
         super.setOffsetY(100);
-        super.setOffsetWidth(150);
-        super.setOffsetHeight(150);
+        super.setOffsetWidth(220);
+        super.setOffsetHeight(140);
         super.updateHitbox();
         this.player = player;
         this.eleccion = (int) (Math.random() * 2+1);

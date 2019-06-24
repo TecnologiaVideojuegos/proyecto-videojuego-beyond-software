@@ -193,7 +193,7 @@ public class Nivel4 extends BasicGameState{
         enemigos1.add(s1_2);
         
         ArrayList<Enemigo> enemigos2 = new ArrayList<>();
-        Esqueleto e2_1 = new Esqueleto("skeleton.png", 120, 150, 1200, 360, 1000, 5, 1, proyectiles);
+        Esqueleto e2_1 = new Esqueleto("skeleton_2.png", 120, 150, 1200, 360, 1000, 10, 1, proyectiles);
         Slime s2_1 = new Slime("slime.png", 120, 150, 120, 240, 8, 1);
         Slime s2_2 = new Slime("slime.png", 120, 150, 360, 720, 8, 1);
         Slime s2_3 = new Slime("slime.png", 120, 150, 1440, 360, 8, 1);

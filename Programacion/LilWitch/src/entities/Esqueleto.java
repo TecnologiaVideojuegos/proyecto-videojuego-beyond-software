@@ -22,6 +22,11 @@ public class Esqueleto extends Enemigo {
     
     public Esqueleto(String filename, int ancho, int alto, int x, int y, int distanciaVision, int vida, int ataque, ControladorProyectiles proyectiles) throws SlickException {
         super(filename, ancho, alto, x, y, distanciaVision, vida, ataque, 300);
+        super.setOffsetX(20);
+        super.setOffsetY(10);
+        super.setOffsetWidth(35);
+        super.setOffsetHeight(10);
+        super.updateHitbox();
         this.proyectiles = proyectiles;
         SpriteSheet s = new SpriteSheet("resources/enemigos/" + filename, ancho, alto);
         super.getSprite().setStaticDown(s.getSprite(1, 2));

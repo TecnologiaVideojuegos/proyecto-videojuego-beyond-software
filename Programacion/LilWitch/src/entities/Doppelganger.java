@@ -28,7 +28,7 @@ public class Doppelganger extends Boss {
     private ControladorProyectiles proyectiles;
 
     public Doppelganger(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
-        super("Anaid", "boss_final.png", 96, 104, 840, 120, 200, 2, 200, player, 20, 15, 40, 15);
+        super("Anaid", "boss_final.png", 96, 104, 840, 120, 200, 2, 350, player, 20, 15, 40, 15);
         SpriteSheet s;
         Image[] i1 = new Image[10];
         Image[] i2 = new Image[10];
@@ -116,7 +116,7 @@ public class Doppelganger extends Boss {
     @Override
     public void atacar(int delta) {
         if(super.getPorcentajeVida() > 25) {
-            if(tiempo < 7000) {
+            if(tiempo < 9000) {
                 if(!start && tiempo < 4000) {
                     if(super.getCooldown() > 500) {
                         disparoCircular();   
@@ -145,9 +145,9 @@ public class Doppelganger extends Boss {
                     ataque4(delta);
                 }
                 tiempo += delta;
-                if(tiempo > 10000) {
+                if(tiempo > 12000) {
                     primerTurno = true;
-                    tiempo = 7001;
+                    tiempo = 9001;
                     if(eleccion2 == 4) {
                         eleccion = 99;
                     }
