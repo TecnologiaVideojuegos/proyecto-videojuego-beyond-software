@@ -76,7 +76,7 @@ public class Sala {
         }
         player.draw(entrada, g);
         gestor.drawProyectiles();
-        //gestor.drawHitboxes(g);
+        gestor.drawHitboxes(g);
     }
     
     public void draw(Graphics g) {
@@ -88,7 +88,7 @@ public class Sala {
             drawObjetos();
         }
         gestor.drawProyectiles();
-        //gestor.drawHitboxes(g);
+        gestor.drawHitboxes(g);
     }
     
     public int update(Input entrada, int delta) {

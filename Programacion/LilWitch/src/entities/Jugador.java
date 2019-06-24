@@ -20,7 +20,7 @@ import org.newdawn.slick.geom.Shape;
  */
 public class Jugador implements IColisionable {
     private SpriteAnimado personaje;
-    private Rectangle hitbox;
+    private Rectangle hitbox, ladoUp, ladoDown, ladoL, ladoR;
     private boolean up, down, r, l, stop, stopDialogo, hit;
     private ControladorProyectiles proyectiles;
     private int vida, vidaTotal, cooldown, varitaActual, tiempoInvencibilidad, flickerTime, contadorDialogo;
@@ -52,6 +52,10 @@ public class Jugador implements IColisionable {
         
         personaje = new SpriteAnimado(animaciones, tileSet.getSprite(0, 0), tileSet.getSprite(0, 2), tileSet.getSprite(0, 3), tileSet.getSprite(0, 1), x, y);
         hitbox = new Rectangle(personaje.getPosicion().getX(), personaje.getPosicion().getY(), personaje.getStaticDown().getWidth()-40, personaje.getStaticDown().getHeight()-15);
+        ladoUp = new Rectangle(hitbox.getX() + 8, hitbox.getY() - 6, hitbox.getWidth() - 16, 6);
+        ladoDown = new Rectangle(hitbox.getX() + 8, hitbox.getY() + hitbox.getHeight(), hitbox.getWidth() - 16, 6);
+        ladoL = new Rectangle(hitbox.getX() - 6, hitbox.getY() + 8, 6, hitbox.getHeight() - 16);
+        ladoR = new Rectangle(hitbox.getX() + hitbox.getWidth(), hitbox.getY() + 8, 6, hitbox.getHeight() - 16);
         this.up = false;
         this.down = false;
         this.r = false;
@@ -77,6 +81,7 @@ public class Jugador implements IColisionable {
     }
     
     public void draw(Input entrada, Graphics g) {
+        drawLados(g);
         if(!hit && !stopDialogo) {
             if(entrada.isKeyDown(Input.KEY_A)) {
                 personaje.drawL();
@@ -125,6 +130,13 @@ public class Jugador implements IColisionable {
         }
         drawCorazones();
         inventario.draw(g);
+    }
+    
+    public void drawLados(Graphics g) {
+        g.draw(ladoUp);
+        g.draw(ladoDown);
+        g.draw(ladoL);
+        g.draw(ladoR);
     }
     
     public void drawCorazones() {
@@ -485,16 +497,16 @@ public class Jugador implements IColisionable {
                     }    
                 }
                 else {
-                    if(up) {
+                    if(up && colision.getHitbox().intersects(ladoUp)) {
                         personaje.moverY(500f * (float) delta / 1000);
                     }
-                    if(down) {
+                    if(down && colision.getHitbox().intersects(ladoDown)) {
                         personaje.moverY(-500f * (float) delta / 1000);
                     }
-                    if(r) {
+                    if(r && colision.getHitbox().intersects(ladoR)) {
                         personaje.moverX(-500f * (float) delta / 1000);
                     }
-                    if(l) {
+                    if(l && colision.getHitbox().intersects(ladoL)) {
                         personaje.moverX(500f * (float) delta / 1000);
                     }
                     if(colision.isWall() && colision.getAtaque() > 0 && tiempoInvencibilidad > 500 && !inventario.isBotasFuego()) {
@@ -565,6 +577,10 @@ public class Jugador implements IColisionable {
     public void sincronizarArea() {
         hitbox.setX(personaje.getPosicion().getX()+20);
         hitbox.setY(personaje.getPosicion().getY()+15);
+        ladoUp.setLocation(hitbox.getX() + 8, hitbox.getY() - 3); 
+        ladoDown.setLocation(hitbox.getX() + 8, hitbox.getY() + hitbox.getHeight() - 3);
+        ladoL.setLocation(hitbox.getX() - 3, hitbox.getY() + 8); 
+        ladoR.setLocation(hitbox.getX() + hitbox.getWidth() - 3, hitbox.getY() + 8);
     }
 
     @Override
