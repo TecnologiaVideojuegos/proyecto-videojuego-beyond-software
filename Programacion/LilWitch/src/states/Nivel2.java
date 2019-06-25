@@ -269,6 +269,7 @@ public class Nivel2 extends BasicGameState{
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             if(container.isPaused()) {
                 nivel2.resume();
+                mostrarControles = false;
             }else nivel2.pause();
             container.setPaused(!container.isPaused());
             paused=!paused;

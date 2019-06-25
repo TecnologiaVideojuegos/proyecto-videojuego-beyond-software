@@ -52,7 +52,7 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
                 g.drawRect(1480, 865+(i*50),360,50);
             }
         }
-        g.drawString("v1.1.1", 20, 1060);
+        g.drawString("v1.1.2", 20, 1060);
     }
 
     @Override

@@ -81,7 +81,7 @@ public class Jugador implements IColisionable {
     }
     
     public void draw(Input entrada, Graphics g) {
-        drawLados(g);
+        //drawLados(g);
         if(!hit && !stopDialogo) {
             if(entrada.isKeyDown(Input.KEY_A)) {
                 personaje.drawL();
