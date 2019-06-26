@@ -40,18 +40,21 @@ public class Creditos extends BasicGameState{
         g.setBackground(Color.black);
         g.setColor(Color.white);
         g.drawString("CRÉDITOS", 930, 120);
-        g.drawString("JEFE DE PROYECTO", 810, 180);
-        g.drawString("Guillermo Palacios Limón", 985, 180);
-        g.drawString("PROGRAMADOR & TESTER", 775, 240);
-        g.drawString("Álvaro Barchín Rubio", 985, 240);
-        g.drawString("Con la prácticamente inexistente colaboración de:", 640, 320);
-        g.drawString("DISEÑADOR WEB", 835, 380);
-        g.drawString("Eloy Rodriguez Jañez", 985, 380);
-        g.drawString("DISEÑADOR GRÁFICO", 800, 440);
-        g.drawString("Miguel Matellanes Ramón", 985, 440);
-        g.drawString("DISEÑADOR GRÁFICO", 800, 500);
-        g.drawString("Xabier Pérez López ", 985, 500);
-        g.drawString("¡GRACIAS POR JUGAR!", 930, 620);
+        g.drawString("JEFE DE PROYECTO", 810, 240);
+        g.drawString("Guillermo Palacios Limón", 985, 240);
+        g.drawString("PROGRAMADOR & TESTER", 775, 300);
+        g.drawString("Álvaro Barchín Rubio", 985, 300);
+        g.drawString("Con la prácticamente inexistente colaboración de:", 770, 420);
+        g.drawString("DISEÑADOR WEB", 835, 480);
+        g.drawString("Eloy Rodriguez Jañez", 985, 480);
+        g.drawString("DISEÑADOR GRÁFICO", 800, 540);
+        g.drawString("Miguel Matellanes Ramón", 985, 540);
+        g.drawString("DISEÑADOR GRÁFICO", 800, 620);
+        g.drawString("Xabier Pérez López ", 985, 620);
+        g.drawString("MENCIONES ESPECIALES", 890, 740);
+        g.drawString("opengameart.org", 870, 800);
+        g.drawString("Makigas", 1030, 800);
+        g.drawString("¡GRACIAS POR JUGAR!", 890, 920);
     }
 
     @Override
