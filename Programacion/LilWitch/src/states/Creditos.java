@@ -49,12 +49,12 @@ public class Creditos extends BasicGameState{
         g.drawString("Eloy Rodriguez Jañez", 985, 480);
         g.drawString("DISEÑADOR GRÁFICO", 800, 540);
         g.drawString("Miguel Matellanes Ramón", 985, 540);
-        g.drawString("DISEÑADOR GRÁFICO", 800, 620);
-        g.drawString("Xabier Pérez López ", 985, 620);
-        g.drawString("MENCIONES ESPECIALES", 890, 740);
-        g.drawString("opengameart.org", 870, 800);
-        g.drawString("Makigas", 1030, 800);
-        g.drawString("¡GRACIAS POR JUGAR!", 890, 920);
+        g.drawString("DISEÑADOR GRÁFICO", 800, 600);
+        g.drawString("Xabier Pérez López ", 985, 600);
+        g.drawString("MENCIONES ESPECIALES", 890, 720);
+        g.drawString("opengameart.org", 870, 780);
+        g.drawString("Makigas", 1030, 780);
+        g.drawString("¡GRACIAS POR JUGAR!", 890, 900);
     }
 
     @Override
