@@ -199,7 +199,16 @@ public class Nivel1 extends BasicGameState{
         
         ArrayList<Enemigo> enemigos5 = new ArrayList<>();
         Murcielago m5_1 = new Murcielago("bat.png", 120, 120, 720, 720, 5, 1);
-         enemigos5.add(m5_1);
+        Murcielago m5_2 = new Murcielago("bat.png", 120, 120, 120, 120, 5, 1);
+        Murcielago m5_3 = new Murcielago("bat.png", 120, 120, 480, 480, 5, 1);
+        Murcielago m5_4 = new Murcielago("bat.png", 120, 120, 960, 720, 5, 1);
+        Murcielago m5_5 = new Murcielago("bat.png", 120, 120, 1200, 480, 5, 1);
+        enemigos5.add(m5_1);
+        enemigos5.add(m5_2);
+        enemigos5.add(m5_3);
+        enemigos5.add(m5_4);
+        enemigos5.add(m5_5);
+        
 
         SalaCofre sala1 = new SalaCofre(mapa.getSubImage(0, 1), walls1, puertas1, enemigos1, player, proyectiles, 8, 0, 120, 720);
         Sala sala2 = new Sala(mapa.getSubImage(1, 1), walls2, puertas2, enemigos2, null, player, proyectiles);

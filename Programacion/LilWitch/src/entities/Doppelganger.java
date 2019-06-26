@@ -28,7 +28,7 @@ public class Doppelganger extends Boss {
     private ControladorProyectiles proyectiles;
 
     public Doppelganger(Jugador player, ControladorProyectiles proyectiles) throws SlickException {
-        super("Anaid", "boss_final.png", 96, 104, 840, 120, 200, 2, 350, player, 20, 15, 40, 15);
+        super("Anaid", "boss_final.png", 96, 104, 840, 120, 300, 2, 250, player, 20, 15, 40, 15);
         SpriteSheet s;
         Image[] i1 = new Image[10];
         Image[] i2 = new Image[10];

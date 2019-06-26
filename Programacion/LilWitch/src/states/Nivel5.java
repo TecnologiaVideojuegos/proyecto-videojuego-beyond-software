@@ -205,7 +205,7 @@ public class Nivel5 extends BasicGameState{
                 controles.draw(0,0);
             }
         }else{
-        salas.get(salaActual-1).draw(g, entrada);
+            salas.get(salaActual-1).draw(g, entrada);
         }
         
     }
