@@ -22,7 +22,7 @@ public class Principal extends StateBasedGame{
     
     public Principal() throws SlickException {
         super("Lil'Witch");
-        //contenedor.setIcon("");
+        contenedor.setIcon("/resources/logos/Icono.png");
         contenedor = new AppGameContainer(this);
         contenedor.setDisplayMode(1920, 1080, false);
         //contenedor.setMouseGrabbed(true);
