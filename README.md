@@ -25,8 +25,8 @@ Hacemos una especial mención a la web **OpenGameArt** y a todos los recursos co
 ![alt text](https://github.com/TecnologiaVideojuegos/proyecto-videojuego-beyond-software/blob/master/Programacion/LilWitch/resources/logos/Logo_BeyondSoftware.png "Logo")
 
 ## El equipo
-* Guillermo Palacios Limón -> **_( Jefe de proyecto )_**
-* Álvaro Barchín Rubio -> **_( Programador, tester )_**
-* Eloy Rodriguez Jañez -> **_( Diseñador web )_**
-* Miguel Matellanes Ramón -> **_( Diseñador gráfico )_**
-* Xabier Pérez López -> **_( Diseñador gráfico )_**
+* Guillermo Palacios Limón &nbsp; **_( Jefe de proyecto )_**
+* Álvaro Barchín Rubio &nbsp; **_( Programador, tester )_**
+* Eloy Rodriguez Jañez &nbsp; **_( Diseñador web )_**
+* Miguel Matellanes Ramón &nbsp; **_( Diseñador gráfico )_**
+* Xabier Pérez López &nbsp; **_( Diseñador gráfico )_**
