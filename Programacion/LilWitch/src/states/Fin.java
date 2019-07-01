@@ -30,8 +30,8 @@ public class Fin extends BasicGameState{
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/historia/Final.png");
-        fin = new Music("resources/sonidos/fin.ogg");
-        fin.loop();
+//        fin = new Music("resources/sonidos/fin.ogg");
+//        fin.loop();
     }
 
     @Override

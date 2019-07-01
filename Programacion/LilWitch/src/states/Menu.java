@@ -127,10 +127,4 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
             }
         }
     } 
-    
-    @Override
-    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
-        container.getInput().clearKeyPressedRecord();
-        init(container, game); 
-    }
 }

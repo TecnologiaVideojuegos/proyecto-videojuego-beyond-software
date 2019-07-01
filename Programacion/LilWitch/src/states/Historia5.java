@@ -26,7 +26,6 @@ public class Historia5 extends BasicGameState{
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/historia/fin_1.png");
         fin = new Music("resources/sonidos/fin.ogg");
-        fin.loop();
     }
 
     @Override
@@ -46,5 +45,6 @@ public class Historia5 extends BasicGameState{
     public void enter(GameContainer container,StateBasedGame game)throws SlickException{
         container.getInput().clearKeyPressedRecord();
         init(container, game); 
+        fin.loop();
     }
 }

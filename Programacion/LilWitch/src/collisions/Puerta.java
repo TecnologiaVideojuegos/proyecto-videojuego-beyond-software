@@ -38,9 +38,9 @@ public class Puerta implements IColisionable {
 
     @Override
     public void alColisionar(IColisionable colision, int delta) {
-        if(colision.isPlayer()) {
-            System.out.println("Teleport");
-        }
+//        if(colision.isPlayer()) {
+//            System.out.println("Teleport");
+//        }
     }
 
     @Override

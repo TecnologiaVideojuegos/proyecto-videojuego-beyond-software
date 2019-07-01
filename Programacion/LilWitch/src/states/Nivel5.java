@@ -64,7 +64,7 @@ public class Nivel5 extends BasicGameState{
         historia = new Music("resources/sonidos/historia.ogg");
         nivel5.loop();
         select = new Sound("resources/sonidos/Select.ogg");
-        jefe = new Music("resources/sonidos/Boss_Music.ogg");
+        jefe = new Music("resources/sonidos/megalovania.ogg");
         jefeF = new Music("resources/sonidos/final_boss.ogg");
         this.contadorMusica = 0;
         this.contadorMusica2 = 0;
@@ -288,7 +288,6 @@ public class Nivel5 extends BasicGameState{
                 }
                 if(n == 99){
                     nivel5.stop();
-                    //game.addState(new Historia5());
                     game.enterState(24, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
                 else {

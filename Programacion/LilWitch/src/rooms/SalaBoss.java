@@ -62,7 +62,7 @@ public class SalaBoss extends Sala {
                     break;
                 case 5:
                     this.jefe = new Doppelganger(jugador, proyectiles); 
-                    crearCofres(new Objeto(9, 980, 420), 0);
+                    crearCofres(new Objeto(8, 980, 420), 0);
                     break;
                 case 6:
                     this.jefe = new Sans(jugador, proyectiles); 

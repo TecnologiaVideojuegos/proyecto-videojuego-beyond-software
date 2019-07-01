@@ -23,7 +23,7 @@ import org.newdawn.slick.geom.Rectangle;
 public class Doppelganger extends Boss {
     private Jugador player;
     private int movX, movY, dirXo, dirYo, tiempo, numColisiones, eleccion, eleccion2, contador, posSombra, contadorAtaque, eleccionBarrera, eleccionCirculo;
-    private boolean primerTurno, saltando, start, subiendo;
+    private boolean primerTurno, saltando, start, subiendo, primerTurnoF;
     private Animation sombra;
     private ControladorProyectiles proyectiles;
 
@@ -58,6 +58,7 @@ public class Doppelganger extends Boss {
         this.dirYo = 0;
         this.tiempo = 0;
         this.primerTurno = true;
+        this.primerTurnoF = true;
         this.numColisiones = 0;
         
         SpriteSheet tileSet;
@@ -183,7 +184,7 @@ public class Doppelganger extends Boss {
             updateAnimacion();
         }
         else {
-            if(primerTurno) {
+            if(primerTurnoF) {
                 if(contador == 0) {
                     super.setCooldown(1001);
                     posSombra = 5;
@@ -202,7 +203,7 @@ public class Doppelganger extends Boss {
                     tiempo = 0;
                     numColisiones = 0;
                     super.getSprite().setPosicion(900, 450);
-                    primerTurno = false;
+                    primerTurnoF = false;
                 }
             }
             else {
