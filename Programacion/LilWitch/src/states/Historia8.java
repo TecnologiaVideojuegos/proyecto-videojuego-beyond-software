@@ -39,7 +39,14 @@ public class Historia8 extends BasicGameState{
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
+            game.addState(new Fin());
             game.enterState(28);
         }
+    }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
     }
 }

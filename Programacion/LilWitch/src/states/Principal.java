@@ -24,18 +24,17 @@ public class Principal extends StateBasedGame{
         super("Lil'Witch");
         contenedor = new AppGameContainer(this);
         contenedor.setIcon("/resources/logos/32x32.png");
-        contenedor.setDisplayMode(1920, 1080, false);
-        //contenedor.setMouseGrabbed(true);
+        contenedor.setDisplayMode(1920, 1080, true);
+        contenedor.setMouseGrabbed(true);
         contenedor.setShowFPS(false);
         contenedor.start();
     }
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        this.addState(new Fin());
-        this.addState(new Creditos());
         this.addState(new Logo());
         this.addState(new Logo_juego());
+        this.addState(new Menu());
         this.addState(new Intro1());
         this.addState(new Intro2());
         this.addState(new Intro3());
@@ -52,10 +51,7 @@ public class Principal extends StateBasedGame{
         this.addState(new Historia6());
         this.addState(new Historia7());
         this.addState(new Historia8());
-        
         this.addState(new GameOver());
-        this.addState(new Menu());
-       
     }
     
     public static void main(String args[]) {

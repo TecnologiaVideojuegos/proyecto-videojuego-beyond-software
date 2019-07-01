@@ -51,7 +51,7 @@ public class Sans extends Boss {
             else {
                 vY = 300;
             }
-            proyectiles.addProyectil("Hueso_g.png", x, y, 120, 120, 0.25f, vX, vY, 1, 1);
+            proyectiles.addProyectil("Hueso_g.png", x, y, 120, 120, 0.25f, vX, vY, 4, 1);
             super.setCooldown(0);
         }
     }

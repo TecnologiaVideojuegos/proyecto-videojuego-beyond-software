@@ -34,7 +34,7 @@ public class Historia4 extends BasicGameState{
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
         g.drawImage(image,0, 0);
-        g.drawString("CONSEJO: Puede que te espere alguna sorpresa", 720, 20);
+        g.drawString("CONSEJO: Puede que te espere alguna sorpresa", 730, 20);
     }
 
     @Override
@@ -42,5 +42,11 @@ public class Historia4 extends BasicGameState{
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             game.enterState(7);
         }
+    }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
     }
 }

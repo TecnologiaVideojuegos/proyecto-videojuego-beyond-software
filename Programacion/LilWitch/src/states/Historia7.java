@@ -43,4 +43,10 @@ public class Historia7 extends BasicGameState{
             game.enterState(27);
         }
     }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
+    }
 }

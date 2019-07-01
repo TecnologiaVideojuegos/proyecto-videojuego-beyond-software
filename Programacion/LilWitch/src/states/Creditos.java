@@ -64,4 +64,10 @@ public class Creditos extends BasicGameState{
             game.enterState(2);
         }
     }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
+    }
 }

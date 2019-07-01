@@ -28,6 +28,7 @@ private String[] options = new String[] {"","",""};
 private StateBasedGame game;
 private Image image;
 private Sound sound;
+private Music musica;
 private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, nivel5 = false;
 
     @Override
@@ -39,6 +40,8 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/intro/fondo_1_v1.png");
         sound = new Sound("resources/sonidos/Select.ogg");
+        musica = new Music("resources/sonidos/historia.ogg");
+        musica.loop();
     }
 
     @Override
@@ -52,7 +55,7 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
                 g.drawRect(1480, 865+(i*50),360,50);
             }
         }
-        g.drawString("v1.1.3", 20, 1060);
+        g.drawString("v1.1.4", 20, 1060);
     }
 
     @Override
@@ -109,25 +112,25 @@ private boolean nivel1 = false, nivel2 = false, nivel3 = false, nivel4 = false, 
     
     @Override
     public void keyReleased(int key, char c) {
-		if (key == Input.KEY_DOWN) {
-			sound.play();
-                        selected++;
-			if (selected >= options.length) {
-				selected = 0;
-			}
-		}
-		if (key == Input.KEY_UP) {
-			sound.play();
-                        selected--;
-			if (selected < 0) {
-				selected = options.length - 1;
-			}
-		}
-		/*if (key == Input.KEY_1) {
-			game.enterState(0);
-		}
-		if (key == Input.KEY_2) {
-			game.enterState(1);
-		}*/
-	} 
+        if (key == Input.KEY_DOWN) {
+            sound.play();
+            selected++;
+            if (selected >= options.length) {
+                    selected = 0;
+            }
+        }
+        if (key == Input.KEY_UP) {
+            sound.play();
+            selected--;
+            if (selected < 0) {
+                    selected = options.length - 1;
+            }
+        }
+    } 
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
+    }
 }

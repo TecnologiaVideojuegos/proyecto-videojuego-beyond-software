@@ -33,7 +33,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         image = new Image("resources/intro/game_over.png");
-        historia = new Music("resources/sonidos/historia.ogg");
+        historia = new Music("resources/sonidos/fin.ogg");
         historia.loop();
     }
 
@@ -48,5 +48,11 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
             
             game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
+    }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
     }
 }

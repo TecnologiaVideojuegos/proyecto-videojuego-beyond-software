@@ -56,5 +56,9 @@ private Music nivel1;
         }
     }
     
-    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
+    }
 }

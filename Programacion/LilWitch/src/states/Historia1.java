@@ -34,7 +34,7 @@ public class Historia1 extends BasicGameState{
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {   
         g.drawImage(image,0, 0);
-        g.drawString("CONSEJO: Recuerda que hay un cofre en cada nivel", 700, 20);
+        g.drawString("CONSEJO: Recuerda que hay un cofre en cada nivel", 730, 20);
     }
 
     @Override
@@ -42,5 +42,11 @@ public class Historia1 extends BasicGameState{
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             game.enterState(4);
         }
+    }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
     }
 }

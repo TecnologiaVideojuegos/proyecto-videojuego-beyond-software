@@ -43,7 +43,15 @@ public class Fin extends BasicGameState{
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
             fin.stop();
+            game.addState(new Creditos());
             game.enterState(29);
         }
+    }
+    
+    @Override
+    public void enter(GameContainer container,StateBasedGame game)throws SlickException{
+        container.getInput().clearKeyPressedRecord();
+        init(container, game); 
+
     }
 }
