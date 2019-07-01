@@ -6,6 +6,11 @@
 Lil'Witch es un RPG de acción con vista desde arriba en el que el jugador controlará a una niña que está a punto de vivir la mayor aventura de su vida. A lo largo de su aventura irá encontrando varitas que incrementarán sus poderes y objetos que la ayudarán a hacerle frente a lo desconocido. Está inspirado por juegos como _The Legend of Zelda_ y _The Binding of Isaac_.
 
 ## Enlaces de interés
+
+[Descarga de Java](https://www.java.com/es/download/)
+
+[Descarga del juego](https://drive.google.com/drive/folders/1AGDweYK9Yqj1jG1st6lwGhRWuS4BcqlO?usp=sharing)
+
 [Website oficial del estudio](https://guillermopalacios97.wixsite.com/beyond-software)
 
 [Website del juego](https://tecnologiavideojuegos.github.io/proyecto-videojuego-beyond-software/)
