@@ -26,7 +26,7 @@ Hacemos una especial mención a la web **OpenGameArt** y a todos los recursos co
 
 ## El equipo
 * Guillermo Palacios Limón   **_(Jefe de proyecto)_**
-* Álvaro Barchín Rubio   **_(Programador, tester)_**
+* Álvaro Barchín Rubio               **_(Programador, tester)_**
 * Eloy Rodriguez Jañez   **_(Diseñador web)_**
 * Miguel Matellanes Ramón   **_(Diseñador gráfico)_**
 * Xabier Pérez López   **_(Diseñador gráfico)_**
