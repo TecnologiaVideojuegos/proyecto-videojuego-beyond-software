@@ -74,8 +74,8 @@ public class Sala {
         if(objetos != null) {
             drawObjetos();
         }
-        player.draw(entrada, g);
         gestor.drawProyectiles();
+        player.draw(entrada, g);  
         //gestor.drawHitboxes(g);
     }
     
